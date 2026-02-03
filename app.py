@@ -28,6 +28,7 @@ from components.calendar_view import render_calendar_view
 from components.batch_operations import render_batch_operations_toolbar
 from components.analytics_dashboard import render_analytics_dashboard
 from components.advanced_search import render_advanced_search, display_search_results
+from components.diagnostics import render_diagnostics
 
 # Page configuration
 st.set_page_config(
@@ -429,9 +430,15 @@ def display_api_status(clients):
             st.error(f"❌ Modal: {modal_health.get('message', 'Not accessible')[:50]}")
 
 
-def display_sidebar_info():
+def display_sidebar_info(clients):
     """Display information in sidebar"""
     with st.sidebar:
+        st.markdown("---")
+
+        # Diagnostics section
+        with st.expander("🔧 System Diagnostics", expanded=False):
+            render_diagnostics(clients)
+
         st.markdown("---")
         st.subheader("📖 About This App")
         st.write("""
@@ -489,7 +496,7 @@ def main():
     display_api_status(clients)
 
     # Display sidebar info
-    display_sidebar_info()
+    display_sidebar_info(clients)
 
     # Footer
     st.markdown("---")

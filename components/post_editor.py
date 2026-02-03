@@ -102,7 +102,16 @@ def render_post_editor(post: Dict[str, Any], clients) -> bool:
                         st.success("✅ Image generation triggered!")
                         st.info("The image will be generated and updated within 1-2 minutes. Refresh to see changes.")
                     else:
-                        st.warning(f"⚠️ Image generation issue: {response.get('error')}")
+                        # Detailed error logging
+                        st.error(f"❌ Image generation failed")
+                        st.error(f"Status Code: {response.get('status_code')}")
+                        st.error(f"Error: {response.get('error')}")
+
+                        # Debug info
+                        with st.expander("🔧 Debug Info"):
+                            st.write(f"**Webhook Base URL:** {modal_client.base_url}")
+                            st.write(f"**Record ID:** {record_id}")
+                            st.write(f"**Full Response:** {response}")
             except Exception as e:
                 st.error(f"❌ Error generating image: {str(e)}")
 
