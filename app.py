@@ -85,11 +85,60 @@ st.markdown("""
 
 @st.cache_resource
 def init_clients():
-    """Initialize API clients"""
+    """Initialize API clients (cached for session)"""
     return {
         "airtable": AirtableClient(),
         "modal": ModalClient(),
     }
+
+
+@st.cache_data(ttl=30)
+def cache_analytics_aggregates(total_posts, status_counts_tuple):
+    """Cache analytics calculations for 30 seconds"""
+    status_counts = dict(status_counts_tuple)
+    return {
+        "total": total_posts,
+        "status_counts": status_counts,
+        "draft": status_counts.get("Draft", 0),
+        "pending": status_counts.get("Pending Review", 0),
+        "approved": status_counts.get("Approved - Ready to Schedule", 0),
+        "scheduled": status_counts.get("Scheduled", 0),
+        "posted": status_counts.get("Posted", 0),
+        "rejected": status_counts.get("Rejected", 0),
+    }
+
+
+def check_password():
+    """Optional: Returns True if authentication is disabled or user entered correct password"""
+    # Check if authentication is enabled via environment variable
+    app_password = os.getenv("APP_PASSWORD")
+
+    # If no password is set, skip authentication
+    if not app_password:
+        return True
+
+    # Password authentication enabled
+    def password_entered():
+        if st.session_state.get("password") == app_password:
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]
+        else:
+            st.session_state["password_correct"] = False
+
+    if st.session_state.get("password_correct", False):
+        return True
+
+    st.text_input(
+        "🔒 Enter app password:",
+        type="password",
+        on_change=password_entered,
+        key="password",
+    )
+
+    if "password_correct" in st.session_state and not st.session_state["password_correct"]:
+        st.error("❌ Incorrect password")
+
+    return False
 
 
 def display_header():
@@ -408,6 +457,10 @@ def display_sidebar_info():
 
 def main():
     """Main application"""
+    # Check authentication (if enabled)
+    if not check_password():
+        st.stop()
+
     # Validate configuration
     if not validate_config():
         st.error("❌ Missing required configuration. Check environment variables.")

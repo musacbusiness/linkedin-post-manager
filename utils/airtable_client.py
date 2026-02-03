@@ -210,7 +210,7 @@ class AirtableClient:
         self, start_date: datetime, end_date: datetime
     ) -> List[Dict]:
         """
-        Get posts scheduled within a date range
+        Get posts scheduled within a date range with 15-second cache
 
         Args:
             start_date: Start of date range
@@ -219,6 +219,15 @@ class AirtableClient:
         Returns:
             List of scheduled posts
         """
+        # Cache key with date range
+        cache_key = f"scheduled_{start_date.date()}_{end_date.date()}"
+
+        # Check cache first (shorter 15s TTL for date-range queries)
+        if cache_key in self._cache:
+            data, timestamp = self._cache[cache_key]
+            if time.time() - timestamp < 15:
+                return data
+
         try:
             all_posts = self.get_all_posts(status_filter="Scheduled")
             scheduled = []
@@ -236,6 +245,8 @@ class AirtableClient:
                     except ValueError:
                         continue
 
+            # Cache the result
+            self._cache[cache_key] = (scheduled, time.time())
             return scheduled
         except Exception as e:
             print(f"Error fetching scheduled posts: {e}")
@@ -290,7 +301,7 @@ class AirtableClient:
 
     def get_posts_by_status(self, statuses: List[str]) -> List[Dict]:
         """
-        Get all posts with any of the specified statuses
+        Get all posts with any of the specified statuses (15-second cache)
 
         Args:
             statuses: List of status values to include
@@ -298,12 +309,24 @@ class AirtableClient:
         Returns:
             List of matching posts
         """
+        # Cache key with sorted status list for consistency
+        cache_key = f"posts_status_{'_'.join(sorted(statuses))}"
+
+        # Check cache first (15s TTL for status queries)
+        if cache_key in self._cache:
+            data, timestamp = self._cache[cache_key]
+            if time.time() - timestamp < 15:
+                return data
+
         try:
             all_posts = self.get_all_posts()
             matching = [
                 post for post in all_posts
                 if post.get("fields", {}).get("Status") in statuses
             ]
+
+            # Cache the result
+            self._cache[cache_key] = (matching, time.time())
             return matching
         except Exception as e:
             print(f"Error fetching posts by status: {e}")
