@@ -25,6 +25,9 @@ from components.post_table import (
 from components.post_editor import render_post_editor
 from components.revision_interface import render_revision_interface, display_revision_status
 from components.calendar_view import render_calendar_view
+from components.batch_operations import render_batch_operations_toolbar
+from components.analytics_dashboard import render_analytics_dashboard
+from components.advanced_search import render_advanced_search, display_search_results
 
 # Page configuration
 st.set_page_config(
@@ -222,22 +225,77 @@ def handle_reject_action(record_id: str, clients):
             st.error(f"❌ Error rejecting post: {str(e)}")
 
 
+def display_filtered_posts_with_actions(posts, clients):
+    """Display filtered posts with action buttons"""
+    if not posts:
+        st.warning("No posts to display")
+        return
+
+    st.write(f"### Showing {len(posts)} posts")
+
+    # Display each post as an interactive row
+    for post in posts:
+        fields = post.get("fields", {})
+        record_id = post.get("id", "")
+        title = fields.get("Title", "Untitled")[:60]
+        status = fields.get("Status", "Unknown")
+        content_preview = fields.get("Post Content", "")[:80] + "..."
+
+        # Create expandable post row
+        with st.expander(f"📄 {title} • {status}"):
+            col1, col2, col3 = st.columns([2, 1, 1])
+
+            # Content section
+            with col1:
+                st.write("**Status:**", status)
+                st.write("**Created:**", format_date(fields.get("Created")))
+                st.write("**Scheduled:**", format_date(fields.get("Scheduled Time")))
+                st.write("**Content Preview:**")
+                st.write(fields.get("Post Content", ""))
+
+            # Image section
+            with col2:
+                if fields.get("Image URL"):
+                    st.image(fields.get("Image URL"), width=200)
+
+            # Actions section
+            with col3:
+                st.write("**Actions:**")
+
+                # Approve button (only for Draft posts)
+                if status == "Draft":
+                    if st.button("✅ Approve", key=f"approve_{record_id}", use_container_width=True):
+                        handle_approve_action(record_id, clients)
+
+                # Reject button (only for Draft/Pending posts)
+                if status in ["Draft", "Pending Review"]:
+                    if st.button("❌ Reject", key=f"reject_{record_id}", use_container_width=True):
+                        handle_reject_action(record_id, clients)
+
+
 def display_phase2_interface(posts, clients):
-    """Display Phase 2 interface with tabbed navigation"""
+    """Display Phase 2/3 interface with tabbed navigation"""
     # Initialize session state for selected post
     if "selected_post_id" not in st.session_state:
         st.session_state.selected_post_id = None
 
     # Create tabs for different views
-    tab1, tab2, tab3, tab4 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "📋 Posts",
         "✏️ Editor",
         "📅 Calendar",
-        "🔄 Revisions"
+        "🔄 Revisions",
+        "📦 Batch Ops",
+        "📊 Analytics"
     ])
 
     with tab1:
-        display_posts_table(posts, clients)
+        # Advanced search and filtering
+        filtered_posts = render_advanced_search(posts)
+        st.divider()
+
+        # Display filtered posts with action buttons
+        display_filtered_posts_with_actions(filtered_posts, clients)
 
     with tab2:
         st.subheader("✏️ Post Editor & Image Generation")
@@ -291,6 +349,15 @@ def display_phase2_interface(posts, clients):
                 st.divider()
                 # Show revision form
                 render_revision_interface(selected_post, clients)
+
+    with tab5:
+        st.subheader("📦 Batch Operations")
+        st.write("Select multiple posts and perform bulk actions")
+        render_batch_operations_toolbar(posts, clients)
+
+    with tab6:
+        st.subheader("📊 Analytics Dashboard")
+        render_analytics_dashboard(posts)
 
 
 def display_api_status(clients):
