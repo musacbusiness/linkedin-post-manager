@@ -5,7 +5,6 @@ Tests and verifies system connections
 
 import streamlit as st
 import requests
-from typing import Dict, Any
 
 
 def render_diagnostics(clients) -> None:
@@ -15,98 +14,67 @@ def render_diagnostics(clients) -> None:
     Args:
         clients: Dictionary with airtable_client and modal_client
     """
-    st.subheader("🔧 System Diagnostics")
+    try:
+        modal_client = clients["modal"]
+        airtable_client = clients["airtable"]
 
-    # Test Airtable connection
-    st.write("### Airtable Connection")
-    col1, col2 = st.columns([1, 1])
+        # Show configuration first
+        st.write("**Modal Webhook URL:**")
+        st.code(modal_client.base_url)
 
-    with col1:
-        if st.button("Test Airtable", key="test_airtable"):
-            try:
-                airtable_client = clients["airtable"]
-                count = airtable_client.get_posts_count()
-                st.success(f"✅ Connected - {count} posts found")
-            except Exception as e:
-                st.error(f"❌ Failed: {str(e)}")
+        st.write("**Endpoints:**")
+        st.write(f"- Health: `{modal_client.base_url}/health`")
+        st.write(f"- Schedule: `{modal_client.base_url}/schedule`")
+        st.write(f"- Image: `{modal_client.base_url}/generate-image`")
+        st.write(f"- Revise: `{modal_client.base_url}/revise`")
+        st.write(f"- Reject: `{modal_client.base_url}/reject`")
 
-    # Test Modal connection
-    st.write("### Modal Webhook Connection")
-    col1, col2, col3 = st.columns([1, 1, 1])
+        st.divider()
 
-    with col1:
-        if st.button("Test Health Check", key="test_health"):
-            try:
-                modal_client = clients["modal"]
-                response = requests.get(
-                    f"{modal_client.base_url}/health",
-                    timeout=10
-                )
-                st.write(f"**Status Code:** {response.status_code}")
-                st.write(f"**Response:** {response.json()}")
+        # Test buttons
+        col1, col2 = st.columns(2)
 
-                if response.status_code == 200:
-                    st.success("✅ Modal webhooks accessible")
-                else:
-                    st.error(f"❌ Unexpected status: {response.status_code}")
-            except Exception as e:
-                st.error(f"❌ Connection failed: {str(e)}")
+        with col1:
+            if st.button("🏥 Test Health Check"):
+                try:
+                    response = requests.get(
+                        f"{modal_client.base_url}/health",
+                        timeout=5
+                    )
+                    st.write(f"**Status:** {response.status_code}")
+                    if response.ok:
+                        st.success("✅ Webhooks are live!")
+                        st.json(response.json())
+                    else:
+                        st.error(f"❌ Error: {response.text}")
+                except Exception as e:
+                    st.error(f"❌ Connection error: {str(e)}")
 
-    with col2:
-        if st.button("Test Schedule Endpoint", key="test_schedule"):
-            try:
-                modal_client = clients["modal"]
-                url = f"{modal_client.base_url}/schedule"
-                response = requests.post(
-                    url,
-                    json={"record_id": "test-record-id"},
-                    timeout=10
-                )
-                st.write(f"**Status Code:** {response.status_code}")
-                st.write(f"**Response:** {response.text[:200]}")
+        with col2:
+            if st.button("🖼️ Test Image Endpoint"):
+                try:
+                    response = requests.post(
+                        f"{modal_client.base_url}/generate-image",
+                        json={"record_id": "test"},
+                        timeout=5
+                    )
+                    st.write(f"**Status:** {response.status_code}")
+                    if response.status_code == 404:
+                        st.error("❌ Endpoint not found - may not be deployed")
+                    elif response.status_code == 500:
+                        st.error("❌ Server error - function crashed")
+                    else:
+                        st.info(f"Response: {response.text[:100]}")
+                except Exception as e:
+                    st.error(f"❌ Error: {str(e)}")
 
-                if response.status_code == 200:
-                    st.success("✅ Schedule endpoint working")
-                else:
-                    st.warning(f"⚠️ Status {response.status_code}")
-            except Exception as e:
-                st.error(f"❌ Failed: {str(e)}")
-
-    with col3:
-        if st.button("Test Image Endpoint", key="test_image"):
-            try:
-                modal_client = clients["modal"]
-                url = f"{modal_client.base_url}/generate-image"
-                response = requests.post(
-                    url,
-                    json={"record_id": "test-record-id"},
-                    timeout=10
-                )
-                st.write(f"**Status Code:** {response.status_code}")
-                st.write(f"**Response:** {response.text[:200]}")
-
-                if response.status_code == 200:
-                    st.success("✅ Image endpoint working")
-                else:
-                    st.warning(f"⚠️ Status {response.status_code}")
-            except Exception as e:
-                st.error(f"❌ Failed: {str(e)}")
-
-    # Show configuration
-    st.write("### Configuration")
-    with st.expander("View Loaded Configuration"):
+        st.divider()
+        st.write("**Airtable Status:**")
         try:
-            modal_client = clients["modal"]
-            st.write(f"**Modal Webhook Base URL:** `{modal_client.base_url}`")
-
-            airtable_client = clients["airtable"]
-            st.write(f"**Airtable API URL:** `{airtable_client.api_url}`")
-
-            st.write("**Endpoints being called:**")
-            st.write(f"- Schedule: `{modal_client.base_url}/schedule`")
-            st.write(f"- Generate Image: `{modal_client.base_url}/generate-image`")
-            st.write(f"- Revise: `{modal_client.base_url}/revise`")
-            st.write(f"- Reject: `{modal_client.base_url}/reject`")
-            st.write(f"- Health: `{modal_client.base_url}/health`")
+            count = airtable_client.get_posts_count()
+            st.success(f"✅ Connected - {count} posts")
         except Exception as e:
-            st.error(f"Error loading configuration: {str(e)}")
+            st.error(f"❌ Error: {str(e)}")
+
+    except Exception as e:
+        st.error(f"Error initializing diagnostics: {str(e)}")
