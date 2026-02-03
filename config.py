@@ -6,28 +6,44 @@ Loads environment variables for Airtable and Modal API access
 import os
 from typing import Optional
 from pathlib import Path
-from dotenv import load_dotenv
 
-# Load .env from parent directory (for local development)
-env_path = Path(__file__).parent.parent / ".env"
-if env_path.exists():
-    load_dotenv(env_path)
+# Try to import Streamlit for secrets (Streamlit Cloud)
+try:
+    import streamlit as st
+    _STREAMLIT_AVAILABLE = True
+except ImportError:
+    _STREAMLIT_AVAILABLE = False
 
-# Also try to load from project root
-env_root = Path(__file__).parent.parent / ".env"
-if env_root.exists():
-    load_dotenv(env_root)
+# Try to load from dotenv for local development
+try:
+    from dotenv import load_dotenv
+    env_path = Path(__file__).parent.parent / ".env"
+    if env_path.exists():
+        load_dotenv(env_path)
+except ImportError:
+    pass
 
-# Airtable Configuration
-AIRTABLE_API_KEY: str = os.getenv("AIRTABLE_API_KEY", "")
-AIRTABLE_BASE_ID: str = os.getenv("AIRTABLE_BASE_ID", "")
-AIRTABLE_LINKEDIN_TABLE_ID: str = os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", "")
+# Load configuration from Streamlit secrets (Cloud) or environment variables (local)
+if _STREAMLIT_AVAILABLE:
+    try:
+        AIRTABLE_API_KEY: str = st.secrets.get("airtable", {}).get("api_key", os.getenv("AIRTABLE_API_KEY", ""))
+        AIRTABLE_BASE_ID: str = st.secrets.get("airtable", {}).get("base_id", os.getenv("AIRTABLE_BASE_ID", ""))
+        AIRTABLE_LINKEDIN_TABLE_ID: str = st.secrets.get("airtable", {}).get("table_id", os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", ""))
+        MODAL_WEBHOOK_BASE_URL: str = st.secrets.get("modal", {}).get("webhook_base_url", os.getenv("MODAL_WEBHOOK_BASE_URL", ""))
+    except:
+        AIRTABLE_API_KEY: str = os.getenv("AIRTABLE_API_KEY", "")
+        AIRTABLE_BASE_ID: str = os.getenv("AIRTABLE_BASE_ID", "")
+        AIRTABLE_LINKEDIN_TABLE_ID: str = os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", "")
+        MODAL_WEBHOOK_BASE_URL: str = os.getenv("MODAL_WEBHOOK_BASE_URL", "")
+else:
+    # Fallback to environment variables only (for non-Streamlit environments)
+    AIRTABLE_API_KEY: str = os.getenv("AIRTABLE_API_KEY", "")
+    AIRTABLE_BASE_ID: str = os.getenv("AIRTABLE_BASE_ID", "")
+    AIRTABLE_LINKEDIN_TABLE_ID: str = os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", "")
+    MODAL_WEBHOOK_BASE_URL: str = os.getenv("MODAL_WEBHOOK_BASE_URL", "")
 
 # Construct full Airtable API base URL
 AIRTABLE_API_URL: str = f"https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/{AIRTABLE_LINKEDIN_TABLE_ID}"
-
-# Modal Configuration
-MODAL_WEBHOOK_BASE_URL: str = os.getenv("MODAL_WEBHOOK_BASE_URL", "")
 
 # Cache TTL (in seconds)
 CACHE_TTL: int = 30  # Refresh Airtable data every 30 seconds
