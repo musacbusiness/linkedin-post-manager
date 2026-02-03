@@ -20,7 +20,11 @@ from components.post_table import (
     create_status_filter,
     create_search_box,
     filter_posts,
+    format_date,
 )
+from components.post_editor import render_post_editor
+from components.revision_interface import render_revision_interface, display_revision_status
+from components.calendar_view import render_calendar_view
 
 # Page configuration
 st.set_page_config(
@@ -218,27 +222,75 @@ def handle_reject_action(record_id: str, clients):
             st.error(f"❌ Error rejecting post: {str(e)}")
 
 
-def display_quick_actions(clients):
-    """Display quick action buttons"""
-    st.subheader("⚡ Quick Actions")
+def display_phase2_interface(posts, clients):
+    """Display Phase 2 interface with tabbed navigation"""
+    # Initialize session state for selected post
+    if "selected_post_id" not in st.session_state:
+        st.session_state.selected_post_id = None
 
-    cols = st.columns(4)
+    # Create tabs for different views
+    tab1, tab2, tab3, tab4 = st.tabs([
+        "📋 Posts",
+        "✏️ Editor",
+        "📅 Calendar",
+        "🔄 Revisions"
+    ])
 
-    with cols[0]:
-        if st.button("✅ Approve Selected", use_container_width=True):
-            st.info("Coming in Phase 2: Select posts and approve in bulk")
+    with tab1:
+        display_posts_table(posts, clients)
 
-    with cols[1]:
-        if st.button("🖼️ Generate Images", use_container_width=True):
-            st.info("Coming in Phase 2: Trigger image generation for pending posts")
+    with tab2:
+        st.subheader("✏️ Post Editor & Image Generation")
+        # Select post to edit
+        post_options = {}
+        for post in posts:
+            title = post.get("fields", {}).get("Title", "Untitled")[:50]
+            post_id = post.get("id", "")
+            post_options[title] = post_id
 
-    with cols[2]:
-        if st.button("📅 View Calendar", use_container_width=True):
-            st.info("Coming in Phase 2: Visual calendar view of scheduled posts")
+        selected_title = st.selectbox(
+            "Select a post to edit:",
+            list(post_options.keys()),
+            help="Choose the post you want to edit or generate an image for"
+        )
 
-    with cols[3]:
-        if st.button("📊 View Analytics", use_container_width=True):
-            st.info("Coming in Phase 3: Analytics dashboard with metrics")
+        if selected_title:
+            selected_id = post_options[selected_title]
+            selected_post = next((p for p in posts if p.get("id") == selected_id), None)
+
+            if selected_post:
+                render_post_editor(selected_post, clients)
+
+    with tab3:
+        st.subheader("📅 Posting Schedule")
+        render_calendar_view(posts)
+
+    with tab4:
+        st.subheader("🔄 Request Revisions")
+        # Select post for revision
+        post_options = {}
+        for post in posts:
+            title = post.get("fields", {}).get("Title", "Untitled")[:50]
+            status = post.get("fields", {}).get("Status", "")
+            post_id = post.get("id", "")
+            post_options[f"{title} ({status})"] = post_id
+
+        selected_title = st.selectbox(
+            "Select a post to revise:",
+            list(post_options.keys()),
+            help="Choose the post you want to request revisions for"
+        )
+
+        if selected_title:
+            selected_id = post_options[selected_title]
+            selected_post = next((p for p in posts if p.get("id") == selected_id), None)
+
+            if selected_post:
+                # Show current status
+                display_revision_status(selected_post)
+                st.divider()
+                # Show revision form
+                render_revision_interface(selected_post, clients)
 
 
 def display_api_status(clients):
@@ -310,11 +362,8 @@ def main():
     # Display quick stats
     display_quick_stats(posts)
 
-    # Display main posts table
-    display_posts_table(posts, clients)
-
-    # Display quick actions
-    display_quick_actions(clients)
+    # Display Phase 2 interface with all features
+    display_phase2_interface(posts, clients)
 
     # Display API status
     display_api_status(clients)
@@ -328,11 +377,13 @@ def main():
     with col1:
         st.write("✅ **Phase 1:** Foundation")
     with col2:
-        st.write("🔄 **Phase 2:** Event-driven actions")
+        st.write("✅ **Phase 2:** Event-driven actions")
     with col3:
-        st.write("📊 **Phase 3:** Advanced features")
+        st.write("🔲 **Phase 3:** Advanced features")
     with col4:
-        st.write("✨ **Phase 4:** Polish")
+        st.write("🔲 **Phase 4:** Polish")
+
+    st.caption("Phase 2 Features: Approve/Reject buttons • Post Editor • Image Generation • Calendar View • Revisions")
 
 
 if __name__ == "__main__":
