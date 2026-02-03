@@ -50,6 +50,28 @@ st.markdown("""
         border-radius: 8px;
         margin: 10px 0;
     }
+    .success-action {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin: 4px 0;
+    }
+    .error-action {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin: 4px 0;
+    }
+    .action-button {
+        font-weight: bold;
+        border-radius: 6px;
+        padding: 8px 16px;
+        margin: 4px 0;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -88,7 +110,7 @@ def display_quick_stats(posts):
 
 
 def display_posts_table(posts, clients):
-    """Display main posts table with filters and actions"""
+    """Display main posts table with filters and event-driven actions"""
     st.subheader("📊 Posts Overview")
 
     # Filters
@@ -101,29 +123,99 @@ def display_posts_table(posts, clients):
     # Filter posts
     filtered_posts = filter_posts(posts, search_query, status_filter)
 
-    # Display table
+    # Display posts with action buttons
     if filtered_posts:
-        # Create dataframe for display
-        import pandas as pd
         from components.post_table import format_date
 
-        table_data = []
+        st.info(f"Showing {len(filtered_posts)} of {len(posts)} posts")
+
+        # Display each post as an interactive row
         for post in filtered_posts:
             fields = post.get("fields", {})
-            table_data.append({
-                "Title": fields.get("Title", "Untitled")[:60],
-                "Status": fields.get("Status", "Unknown"),
-                "Created": format_date(fields.get("Created")),
-                "Scheduled": format_date(fields.get("Scheduled Time")),
-                "Content Preview": (fields.get("Post Content", "")[:80] + "..."),
-            })
+            record_id = post.get("id", "")
+            title = fields.get("Title", "Untitled")[:60]
+            status = fields.get("Status", "Unknown")
+            content_preview = fields.get("Post Content", "")[:80] + "..."
 
-        df = pd.DataFrame(table_data)
-        st.dataframe(df, use_container_width=True, hide_index=True)
+            # Create expandable post row
+            with st.expander(f"📄 {title} • {status}"):
+                col1, col2, col3 = st.columns([2, 1, 1])
 
-        st.info(f"Showing {len(filtered_posts)} of {len(posts)} posts")
+                # Content section
+                with col1:
+                    st.write("**Status:**", status)
+                    st.write("**Created:**", format_date(fields.get("Created")))
+                    st.write("**Scheduled:**", format_date(fields.get("Scheduled Time")))
+                    st.write("**Content Preview:**")
+                    st.write(fields.get("Post Content", ""))
+
+                # Image section
+                with col2:
+                    if fields.get("Image URL"):
+                        st.image(fields.get("Image URL"), width=200)
+
+                # Actions section
+                with col3:
+                    st.write("**Actions:**")
+
+                    # Approve button (only for Draft posts)
+                    if status == "Draft":
+                        if st.button("✅ Approve", key=f"approve_{record_id}", use_container_width=True):
+                            handle_approve_action(record_id, clients)
+
+                    # Reject button (only for Draft/Pending posts)
+                    if status in ["Draft", "Pending Review"]:
+                        if st.button("❌ Reject", key=f"reject_{record_id}", use_container_width=True):
+                            handle_reject_action(record_id, clients)
     else:
         st.warning("No posts match the selected filters")
+
+
+def handle_approve_action(record_id: str, clients):
+    """Handle approve button action with event-driven Modal trigger"""
+    airtable_client = clients["airtable"]
+    modal_client = clients["modal"]
+
+    with st.spinner("⏳ Approving post..."):
+        try:
+            # Step 1: Update Airtable status
+            airtable_client.update_status(record_id, "Approved - Ready to Schedule")
+            st.success("✅ Airtable updated: Status → Approved")
+
+            # Step 2: Trigger Modal webhook for scheduling
+            modal_response = modal_client.trigger_scheduling(record_id)
+
+            if modal_response.get("success"):
+                st.success("✅ Modal webhook triggered: Scheduling in progress")
+                st.info(f"Post will be scheduled shortly. Check back in a moment!")
+            else:
+                st.warning(f"⚠️ Modal webhook encountered an issue: {modal_response.get('error')}")
+
+        except Exception as e:
+            st.error(f"❌ Error approving post: {str(e)}")
+
+
+def handle_reject_action(record_id: str, clients):
+    """Handle reject button action with event-driven Modal trigger"""
+    airtable_client = clients["airtable"]
+    modal_client = clients["modal"]
+
+    with st.spinner("⏳ Rejecting post..."):
+        try:
+            # Step 1: Update Airtable status
+            airtable_client.update_status(record_id, "Rejected")
+            st.success("✅ Airtable updated: Status → Rejected")
+
+            # Step 2: Trigger Modal webhook for rejection handling
+            modal_response = modal_client.trigger_rejection(record_id)
+
+            if modal_response.get("success"):
+                st.success("✅ Modal webhook triggered: Post will be deleted in 7 days")
+            else:
+                st.warning(f"⚠️ Modal webhook encountered an issue: {modal_response.get('error')}")
+
+        except Exception as e:
+            st.error(f"❌ Error rejecting post: {str(e)}")
 
 
 def display_quick_actions(clients):
@@ -232,10 +324,15 @@ def main():
 
     # Footer
     st.markdown("---")
-    st.write("Phase 1: Foundation (Basic table view)")
-    st.write("Phase 2: Event-driven actions (Approve, Reject, Edit, Revise)")
-    st.write("Phase 3: Advanced features (Calendar, Analytics, Batch operations)")
-    st.write("Phase 4: Polish and optimization")
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.write("✅ **Phase 1:** Foundation")
+    with col2:
+        st.write("🔄 **Phase 2:** Event-driven actions")
+    with col3:
+        st.write("📊 **Phase 3:** Advanced features")
+    with col4:
+        st.write("✨ **Phase 4:** Polish")
 
 
 if __name__ == "__main__":
