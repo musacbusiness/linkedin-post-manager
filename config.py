@@ -31,18 +31,26 @@ if _STREAMLIT_AVAILABLE:
         AIRTABLE_BASE_ID: str = st.secrets.get("airtable", {}).get("base_id") or st.secrets.get("AIRTABLE_BASE_ID") or os.getenv("AIRTABLE_BASE_ID", "")
         AIRTABLE_LINKEDIN_TABLE_ID: str = st.secrets.get("airtable", {}).get("table_id") or st.secrets.get("AIRTABLE_LINKEDIN_TABLE_ID") or os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", "")
         MODAL_WEBHOOK_BASE_URL: str = st.secrets.get("modal", {}).get("webhook_base_url") or st.secrets.get("MODAL_WEBHOOK_BASE_URL") or os.getenv("MODAL_WEBHOOK_BASE_URL", "")
+
+        # Supabase configuration
+        SUPABASE_URL: str = st.secrets.get("SUPABASE_URL") or os.getenv("SUPABASE_URL", "")
+        SUPABASE_KEY: str = st.secrets.get("SUPABASE_KEY") or os.getenv("SUPABASE_KEY", "")
     except Exception as e:
         # Fallback: try flat environment variables
         AIRTABLE_API_KEY: str = os.getenv("AIRTABLE_API_KEY", "")
         AIRTABLE_BASE_ID: str = os.getenv("AIRTABLE_BASE_ID", "")
         AIRTABLE_LINKEDIN_TABLE_ID: str = os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", "")
         MODAL_WEBHOOK_BASE_URL: str = os.getenv("MODAL_WEBHOOK_BASE_URL", "")
+        SUPABASE_URL: str = os.getenv("SUPABASE_URL", "")
+        SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "")
 else:
     # Fallback to environment variables only (for non-Streamlit environments)
     AIRTABLE_API_KEY: str = os.getenv("AIRTABLE_API_KEY", "")
     AIRTABLE_BASE_ID: str = os.getenv("AIRTABLE_BASE_ID", "")
     AIRTABLE_LINKEDIN_TABLE_ID: str = os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", "")
     MODAL_WEBHOOK_BASE_URL: str = os.getenv("MODAL_WEBHOOK_BASE_URL", "")
+    SUPABASE_URL: str = os.getenv("SUPABASE_URL", "")
+    SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "")
 
 # Construct full Airtable API base URL
 AIRTABLE_API_URL: str = f"https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/{AIRTABLE_LINKEDIN_TABLE_ID}"
