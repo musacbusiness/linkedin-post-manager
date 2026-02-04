@@ -273,10 +273,20 @@ def generate_image_from_post(airtable_client, record_id: str) -> Dict[str, Any]:
             return {"success": False, "error": "Failed to generate image"}
 
         # Update Airtable with image URL
-        airtable_client.update_post(record_id, {
-            "Image URL": image_url,
-            "Status": "Pending Review"
-        })
+        try:
+            print(f"[DEBUG] Updating post {record_id} with image URL: {image_url[:50]}...")
+            update_result = airtable_client.update_post(record_id, {
+                "Image URL": image_url,
+                "Status": "Pending Review"
+            })
+            print(f"[DEBUG] Update successful: {update_result}")
+        except Exception as update_error:
+            print(f"[ERROR] Failed to update post: {str(update_error)}")
+            return {
+                "success": False,
+                "error": f"Failed to save image to database: {str(update_error)}",
+                "status_code": 500
+            }
 
         return {
             "success": True,
@@ -285,6 +295,7 @@ def generate_image_from_post(airtable_client, record_id: str) -> Dict[str, Any]:
         }
 
     except Exception as e:
+        print(f"[ERROR] generate_image_from_post failed: {str(e)}")
         return {
             "success": False,
             "error": str(e),

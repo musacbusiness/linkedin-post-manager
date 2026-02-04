@@ -74,6 +74,13 @@ class SupabaseClient:
         self._cache: Dict[str, tuple] = {}
         self.cache_ttl = 30  # 30 seconds cache
 
+        # Verify field mapping is working
+        print(f"[DEBUG] SupabaseClient initialized")
+        print(f"[DEBUG] REVERSE_FIELD_MAP sample: 'Image URL' → '{self.REVERSE_FIELD_MAP.get('Image URL')}'")
+        print(f"[DEBUG] REVERSE_FIELD_MAP sample: 'Post Content' → '{self.REVERSE_FIELD_MAP.get('Post Content')}'")
+        print(f"[DEBUG] REVERSE_FIELD_MAP sample: 'Status' → '{self.REVERSE_FIELD_MAP.get('Status')}'")
+        print(f"[DEBUG] Total fields mapped: {len(self.REVERSE_FIELD_MAP)}")
+
     def _clear_cache(self):
         """Clear all cached data"""
         self._cache.clear()
