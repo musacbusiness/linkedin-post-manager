@@ -44,7 +44,7 @@ class SupabaseClient:
             import streamlit as st
             self.supabase_url = supabase_url or st.secrets.get("SUPABASE_URL") or os.getenv("SUPABASE_URL", "")
             self.supabase_key = supabase_key or st.secrets.get("SUPABASE_KEY") or os.getenv("SUPABASE_KEY", "")
-        except (ImportError, AttributeError):
+        except Exception:
             # Streamlit not available or secrets not accessible, use env vars
             self.supabase_url = supabase_url or os.getenv("SUPABASE_URL", "")
             self.supabase_key = supabase_key or os.getenv("SUPABASE_KEY", "")
