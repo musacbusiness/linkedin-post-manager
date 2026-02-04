@@ -77,12 +77,14 @@ def validate_config() -> bool:
     """
     Validate that all required configuration is set.
     Returns True if all required vars are present, False otherwise.
+
+    Note: MODAL_WEBHOOK_BASE_URL is optional with Plan B architecture
+    (we use direct APIs instead of Modal webhooks)
     """
     required = [
         ("AIRTABLE_API_KEY", AIRTABLE_API_KEY),
         ("AIRTABLE_BASE_ID", AIRTABLE_BASE_ID),
         ("AIRTABLE_LINKEDIN_TABLE_ID", AIRTABLE_LINKEDIN_TABLE_ID),
-        ("MODAL_WEBHOOK_BASE_URL", MODAL_WEBHOOK_BASE_URL),
     ]
 
     missing = [name for name, value in required if not value]
