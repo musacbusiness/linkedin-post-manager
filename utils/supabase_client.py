@@ -31,6 +31,9 @@ class SupabaseClient:
         "source": "Source",
     }
 
+    # Reverse mapping: Airtable PascalCase → Supabase snake_case
+    REVERSE_FIELD_MAP = {v: k for k, v in FIELD_MAP.items()}
+
     def __init__(self, supabase_url: str = None, supabase_key: str = None):
         """
         Initialize Supabase client with credentials
@@ -179,17 +182,25 @@ class SupabaseClient:
         Args:
             record_id: Post ID
             fields: Dictionary of field names and values to update
+                   Can be Airtable format (Title, Post Content) or Supabase format (title, post_content)
 
         Returns:
             Updated record data
         """
         try:
+            # Convert Airtable field names to Supabase format if needed
+            supabase_fields = {}
+            for key, value in fields.items():
+                # Use reverse mapping to convert Airtable names to Supabase names
+                supabase_key = self.REVERSE_FIELD_MAP.get(key, key)
+                supabase_fields[supabase_key] = value
+
             # Add updated_at timestamp
-            fields["updated_at"] = datetime.utcnow().isoformat()
+            supabase_fields["updated_at"] = datetime.utcnow().isoformat()
 
             response = (
                 self.client.table("posts")
-                .update(fields)
+                .update(supabase_fields)
                 .eq("id", record_id)
                 .execute()
             )
@@ -269,17 +280,25 @@ class SupabaseClient:
 
         Args:
             fields: Dictionary of field values for new post
+                   Can be Airtable format (Title, Post Content) or Supabase format (title, post_content)
 
         Returns:
             Created record data
         """
         try:
+            # Convert Airtable field names to Supabase format if needed
+            supabase_fields = {}
+            for key, value in fields.items():
+                # Use reverse mapping to convert Airtable names to Supabase names
+                supabase_key = self.REVERSE_FIELD_MAP.get(key, key)
+                supabase_fields[supabase_key] = value
+
             # Add timestamps
             now = datetime.utcnow().isoformat()
-            fields["created_at"] = now
-            fields["updated_at"] = now
+            supabase_fields["created_at"] = now
+            supabase_fields["updated_at"] = now
 
-            response = self.client.table("posts").insert(fields).execute()
+            response = self.client.table("posts").insert(supabase_fields).execute()
 
             # Invalidate cache
             self._clear_cache()
