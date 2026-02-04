@@ -39,13 +39,32 @@ class SupabaseClient:
             supabase_url: Supabase project URL
             supabase_key: Supabase anon/public key
         """
-        self.supabase_url = supabase_url or os.getenv("SUPABASE_URL", "")
-        self.supabase_key = supabase_key or os.getenv("SUPABASE_KEY", "")
+        # Try to import Streamlit to load secrets
+        try:
+            import streamlit as st
+            self.supabase_url = supabase_url or st.secrets.get("SUPABASE_URL") or os.getenv("SUPABASE_URL", "")
+            self.supabase_key = supabase_key or st.secrets.get("SUPABASE_KEY") or os.getenv("SUPABASE_KEY", "")
+        except (ImportError, AttributeError):
+            # Streamlit not available or secrets not accessible, use env vars
+            self.supabase_url = supabase_url or os.getenv("SUPABASE_URL", "")
+            self.supabase_key = supabase_key or os.getenv("SUPABASE_KEY", "")
 
         if not self.supabase_url or not self.supabase_key:
             raise Exception(
-                "Supabase credentials missing. Set SUPABASE_URL and SUPABASE_KEY "
-                "in environment variables or pass them to __init__"
+                "❌ Supabase credentials missing!\n\n"
+                "To fix this:\n"
+                "1. If using Streamlit Cloud:\n"
+                "   - Go to https://share.streamlit.io\n"
+                "   - Click your app settings\n"
+                "   - Go to 'Secrets'\n"
+                "   - Add SUPABASE_URL and SUPABASE_KEY\n"
+                "   - Rerun the app\n\n"
+                "2. If running locally:\n"
+                "   - Add to .env file:\n"
+                "   - SUPABASE_URL=your_url\n"
+                "   - SUPABASE_KEY=your_key\n\n"
+                "3. Before that, deploy schema:\n"
+                "   - Run supabase_schema.sql in Supabase SQL Editor\n"
             )
 
         self.client: Client = create_client(self.supabase_url, self.supabase_key)

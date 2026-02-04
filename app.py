@@ -463,8 +463,12 @@ def main():
         st.error("❌ Missing required configuration. Check environment variables.")
         st.stop()
 
-    # Initialize clients
-    clients = init_clients()
+    # Initialize clients with error handling
+    try:
+        clients = init_clients()
+    except Exception as e:
+        st.error(str(e))
+        st.stop()
 
     # Display header
     display_header()
