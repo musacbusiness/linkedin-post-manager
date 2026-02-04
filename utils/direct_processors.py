@@ -94,9 +94,13 @@ class ReplicateClient:
                 status = prediction.get("status")
 
                 if status == "succeeded":
-                    outputs = prediction.get("output", [])
-                    if outputs and len(outputs) > 0:
-                        return outputs[0]
+                    output = prediction.get("output")
+
+                    # Handle both string (Nano Banana Pro) and list (other models) formats
+                    if isinstance(output, str):
+                        return output
+                    elif isinstance(output, list) and len(output) > 0:
+                        return output[0]
                     return None
 
                 elif status == "failed":
