@@ -26,11 +26,13 @@ except ImportError:
 # Load configuration from Streamlit secrets (Cloud) or environment variables (local)
 if _STREAMLIT_AVAILABLE:
     try:
-        AIRTABLE_API_KEY: str = st.secrets.get("airtable", {}).get("api_key", os.getenv("AIRTABLE_API_KEY", ""))
-        AIRTABLE_BASE_ID: str = st.secrets.get("airtable", {}).get("base_id", os.getenv("AIRTABLE_BASE_ID", ""))
-        AIRTABLE_LINKEDIN_TABLE_ID: str = st.secrets.get("airtable", {}).get("table_id", os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", ""))
-        MODAL_WEBHOOK_BASE_URL: str = st.secrets.get("modal", {}).get("webhook_base_url", os.getenv("MODAL_WEBHOOK_BASE_URL", ""))
-    except:
+        # Try nested format first (TOML sections)
+        AIRTABLE_API_KEY: str = st.secrets.get("airtable", {}).get("api_key") or st.secrets.get("AIRTABLE_API_KEY") or os.getenv("AIRTABLE_API_KEY", "")
+        AIRTABLE_BASE_ID: str = st.secrets.get("airtable", {}).get("base_id") or st.secrets.get("AIRTABLE_BASE_ID") or os.getenv("AIRTABLE_BASE_ID", "")
+        AIRTABLE_LINKEDIN_TABLE_ID: str = st.secrets.get("airtable", {}).get("table_id") or st.secrets.get("AIRTABLE_LINKEDIN_TABLE_ID") or os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", "")
+        MODAL_WEBHOOK_BASE_URL: str = st.secrets.get("modal", {}).get("webhook_base_url") or st.secrets.get("MODAL_WEBHOOK_BASE_URL") or os.getenv("MODAL_WEBHOOK_BASE_URL", "")
+    except Exception as e:
+        # Fallback: try flat environment variables
         AIRTABLE_API_KEY: str = os.getenv("AIRTABLE_API_KEY", "")
         AIRTABLE_BASE_ID: str = os.getenv("AIRTABLE_BASE_ID", "")
         AIRTABLE_LINKEDIN_TABLE_ID: str = os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", "")

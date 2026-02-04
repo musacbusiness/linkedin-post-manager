@@ -9,12 +9,31 @@ from typing import Dict, Any, Optional
 import time
 import json
 
+# Try to import Streamlit for secrets
+try:
+    import streamlit as st
+    _STREAMLIT_AVAILABLE = True
+except ImportError:
+    _STREAMLIT_AVAILABLE = False
+
+
+def _get_secret(key: str, default: str = "") -> str:
+    """Get secret from Streamlit secrets or environment variables"""
+    if _STREAMLIT_AVAILABLE:
+        try:
+            return st.secrets.get(key) or os.getenv(key, default)
+        except:
+            return os.getenv(key, default)
+    return os.getenv(key, default)
+
 
 class ReplicateClient:
     """Direct client for Replicate image generation API"""
 
     def __init__(self):
-        self.api_token = os.getenv("REPLICATE_API_TOKEN")
+        self.api_token = _get_secret("REPLICATE_API_TOKEN")
+        if not self.api_token:
+            raise Exception("REPLICATE_API_TOKEN not found in Streamlit secrets or environment variables")
         self.base_url = "https://api.replicate.com/v1"
         self.headers = {
             "Authorization": f"Token {self.api_token}",
@@ -105,7 +124,9 @@ class ClaudeClient:
     """Direct client for Claude API for content revision"""
 
     def __init__(self):
-        self.api_key = os.getenv("ANTHROPIC_API_KEY")
+        self.api_key = _get_secret("ANTHROPIC_API_KEY")
+        if not self.api_key:
+            raise Exception("ANTHROPIC_API_KEY not found in Streamlit secrets or environment variables")
         self.base_url = "https://api.anthropic.com/v1"
         self.headers = {
             "x-api-key": self.api_key,
