@@ -193,10 +193,14 @@ class SupabaseClient:
             for key, value in fields.items():
                 # Use reverse mapping to convert Airtable names to Supabase names
                 supabase_key = self.REVERSE_FIELD_MAP.get(key, key)
+                # Debug: log the conversion
+                if key != supabase_key:
+                    print(f"🔄 Converting field: '{key}' → '{supabase_key}'")
                 supabase_fields[supabase_key] = value
 
             # Add updated_at timestamp
             supabase_fields["updated_at"] = datetime.utcnow().isoformat()
+            print(f"📝 Updating post {record_id} with fields: {list(supabase_fields.keys())}")
 
             response = (
                 self.client.table("posts")
