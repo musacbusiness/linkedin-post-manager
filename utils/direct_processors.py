@@ -21,28 +21,27 @@ class ReplicateClient:
             "Content-Type": "application/json"
         }
 
-    def generate_image(self, prompt: str, num_outputs: int = 1, aspect_ratio: str = "1:1") -> Optional[str]:
+    def generate_image(self, prompt: str) -> Optional[str]:
         """
-        Generate image using Replicate's FLUX API
+        Generate image using Replicate's Stable Diffusion API
 
         Args:
             prompt: Image generation prompt
-            num_outputs: Number of images to generate
-            aspect_ratio: Aspect ratio (e.g., "1:1", "16:9")
 
         Returns:
             Image URL or None if failed
         """
         try:
-            # Create prediction
+            # Use Stable Diffusion 3 Medium (most reliable)
+            # Model: stable-diffusion-3-medium
+            model = "stability-ai/stable-diffusion-3-medium"
+
             prediction_payload = {
-                "version": "5f61408d213d12e92c4f155e92f43f8fac122dbb6ac97cc1a54df48bc3b80f85",  # FLUX model
+                "version": "2b017d9b67edd2ee1401c165221e92c5d566e50cf889147fba93b79e9b2b9e30",
                 "input": {
                     "prompt": prompt,
-                    "num_outputs": num_outputs,
-                    "aspect_ratio": aspect_ratio,
-                    "output_format": "jpg",
-                    "output_quality": 80
+                    "num_inference_steps": 25,
+                    "guidance_scale": 7.5
                 }
             }
 
@@ -51,30 +50,38 @@ class ReplicateClient:
                 f"{self.base_url}/predictions",
                 headers=self.headers,
                 json=prediction_payload,
-                timeout=10
+                timeout=30
             )
-            response.raise_for_status()
+
+            if response.status_code != 201:
+                raise Exception(f"Failed to create prediction: {response.status_code} - {response.text}")
+
             prediction = response.json()
-            prediction_id = prediction["id"]
+            prediction_id = prediction.get("id")
+
+            if not prediction_id:
+                raise Exception(f"No prediction ID returned: {prediction}")
 
             # Poll for completion (max 5 minutes)
-            max_polls = 60  # 60 * 5 seconds = 5 minutes
+            max_polls = 60
             poll_count = 0
 
             while poll_count < max_polls:
                 response = requests.get(
                     f"{self.base_url}/predictions/{prediction_id}",
                     headers=self.headers,
-                    timeout=10
+                    timeout=30
                 )
-                response.raise_for_status()
+
+                if response.status_code != 200:
+                    raise Exception(f"Failed to get prediction: {response.status_code} - {response.text}")
+
                 prediction = response.json()
                 status = prediction.get("status")
 
                 if status == "succeeded":
-                    # Return first image URL
                     outputs = prediction.get("output", [])
-                    if outputs:
+                    if outputs and len(outputs) > 0:
                         return outputs[0]
                     return None
 
@@ -84,12 +91,12 @@ class ReplicateClient:
 
                 # Still processing, wait and retry
                 poll_count += 1
-                time.sleep(5)  # Wait 5 seconds before next poll
+                time.sleep(5)
 
             raise Exception("Image generation timed out after 5 minutes")
 
         except requests.exceptions.RequestException as e:
-            raise Exception(f"Replicate API error: {str(e)}")
+            raise Exception(f"Replicate API request error: {str(e)}")
         except Exception as e:
             raise Exception(f"Image generation error: {str(e)}")
 
