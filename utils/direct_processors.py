@@ -42,7 +42,7 @@ class ReplicateClient:
 
     def generate_image(self, prompt: str) -> Optional[str]:
         """
-        Generate image using Replicate's SDXL API
+        Generate image using Replicate's Openjourney API (openly available model)
 
         Args:
             prompt: Image generation prompt
@@ -51,17 +51,16 @@ class ReplicateClient:
             Image URL or None if failed
         """
         try:
-            # Use SDXL (stable, widely available)
-            # Version: 39e7aeb6d9955a23cc9a1851b4404fca45c13986
+            # Use Openjourney - widely available open-source model on Replicate
+            # This model works reliably without permission restrictions
             prediction_payload = {
-                "version": "39e7aeb6d9955a23cc9a1851b4404fca45c13986",
+                "version": "9936c2001faa2194a45997736e2541ce2c8cc51f1ab4d885e4639585054b891",
                 "input": {
                     "prompt": prompt,
-                    "negative_prompt": "blurry, low quality, distorted",
-                    "num_inference_steps": 25,
-                    "guidance_scale": 7.5,
-                    "scheduler": "K_EULER",
-                    "num_outputs": 1
+                    "negative_prompt": "blurry, low quality, distorted, worst quality",
+                    "num_outputs": 1,
+                    "num_inference_steps": 20,
+                    "guidance_scale": 7.5
                 }
             }
 
