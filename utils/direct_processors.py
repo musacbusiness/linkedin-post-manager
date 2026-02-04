@@ -42,7 +42,7 @@ class ReplicateClient:
 
     def generate_image(self, prompt: str) -> Optional[str]:
         """
-        Generate image using Replicate's Openjourney API (openly available model)
+        Generate image using Google's Nano Banana Pro model via Replicate API
 
         Args:
             prompt: Image generation prompt
@@ -51,16 +51,11 @@ class ReplicateClient:
             Image URL or None if failed
         """
         try:
-            # Use Openjourney - widely available open-source model on Replicate
-            # This model works reliably without permission restrictions
+            # Use Google Nano Banana Pro - optimized, fast, and reliable
             prediction_payload = {
-                "version": "9936c2001faa2194a45997736e2541ce2c8cc51f1ab4d885e4639585054b891",
+                "version": "google/nano-banana-pro",
                 "input": {
-                    "prompt": prompt,
-                    "negative_prompt": "blurry, low quality, distorted, worst quality",
-                    "num_outputs": 1,
-                    "num_inference_steps": 20,
-                    "guidance_scale": 7.5
+                    "prompt": prompt
                 }
             }
 
