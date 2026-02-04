@@ -229,47 +229,32 @@ def display_posts_table(posts, clients):
 
 
 def handle_approve_action(record_id: str, clients):
-    """Handle approve button action with event-driven Modal trigger"""
+    """Handle approve button action - Plan B: Direct status update (no Modal webhooks)"""
     airtable_client = clients["airtable"]
-    modal_client = clients["modal"]
 
     with st.spinner("⏳ Approving post..."):
         try:
-            # Step 1: Update Airtable status
+            # Update Airtable status to "Approved - Ready to Schedule"
+            # Modal's post_scheduler_exact_minute() cron will find this and handle scheduling
             airtable_client.update_status(record_id, "Approved - Ready to Schedule")
-            st.success("✅ Airtable updated: Status → Approved")
-
-            # Step 2: Trigger Modal webhook for scheduling
-            modal_response = modal_client.trigger_scheduling(record_id)
-
-            if modal_response.get("success"):
-                st.success("✅ Modal webhook triggered: Scheduling in progress")
-                st.info(f"Post will be scheduled shortly. Check back in a moment!")
-            else:
-                st.warning(f"⚠️ Modal webhook encountered an issue: {modal_response.get('error')}")
+            st.success("✅ Post approved! Will be scheduled by the posting system.")
+            st.info("Your post is now approved and will be posted on schedule.")
 
         except Exception as e:
             st.error(f"❌ Error approving post: {str(e)}")
 
 
 def handle_reject_action(record_id: str, clients):
-    """Handle reject button action with event-driven Modal trigger"""
+    """Handle reject button action - Plan B: Direct status update (no Modal webhooks)"""
     airtable_client = clients["airtable"]
-    modal_client = clients["modal"]
 
     with st.spinner("⏳ Rejecting post..."):
         try:
-            # Step 1: Update Airtable status
+            # Update Airtable status to "Rejected"
+            # Modal's cleanup_scheduled_deletions() cron will handle scheduling deletion
             airtable_client.update_status(record_id, "Rejected")
-            st.success("✅ Airtable updated: Status → Rejected")
-
-            # Step 2: Trigger Modal webhook for rejection handling
-            modal_response = modal_client.trigger_rejection(record_id)
-
-            if modal_response.get("success"):
-                st.success("✅ Modal webhook triggered: Post will be deleted in 7 days")
-            else:
-                st.warning(f"⚠️ Modal webhook encountered an issue: {modal_response.get('error')}")
+            st.success("✅ Post rejected and marked for deletion.")
+            st.info("This post will be automatically deleted in 7 days.")
 
         except Exception as e:
             st.error(f"❌ Error rejecting post: {str(e)}")

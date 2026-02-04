@@ -1,11 +1,12 @@
 """
 Revision Interface Component
-Allows requesting AI revisions to posts with live status tracking
+Allows requesting AI revisions to posts with direct Claude API
 """
 
 import streamlit as st
 import time
 from typing import Dict, Any
+from utils.direct_processors import revise_post_content
 
 
 def render_revision_interface(post: Dict[str, Any], clients) -> None:
@@ -78,31 +79,35 @@ def handle_revision_request(
     Args:
         record_id: Airtable record ID
         prompt: Revision prompt
-        revision_type: Type of revision
+        revision_type: Type of revision (currently revision only, image regeneration handled separately)
         clients: API clients
     """
     airtable_client = clients["airtable"]
-    modal_client = clients["modal"]
 
-    with st.spinner("⏳ Processing revision... (10-20 seconds)"):
+    with st.spinner("⏳ Revising your post with Claude AI... (10-20 seconds)"):
         try:
-            # Step 1: Save revision request to Airtable
+            # Step 1: Save revision request to Airtable first
             airtable_client.request_revision(record_id, prompt, revision_type)
-            st.success("✅ Airtable updated: Revision prompt saved")
 
-            # Step 2: Trigger Modal webhook
-            response = modal_client.trigger_revision(record_id)
+            # Step 2: Process revision directly using Claude API
+            response = revise_post_content(airtable_client, record_id)
 
             if response.get("success"):
-                st.success("✅ Modal webhook triggered: AI is working on your revision")
-                st.info("Your post will be updated with the requested changes. Refresh in a moment to see the changes!")
+                st.success("✅ Revision complete! Your post has been updated.")
+                st.write("**Changes Applied:**")
+                st.write(response.get("change_summary"))
 
-                # Show what was changed
-                if "changes" in response.get("data", {}):
-                    st.write("**Changes Applied:**")
-                    st.write(response["data"]["changes"])
+                # Show before/after
+                with st.expander("View details"):
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        st.write("**Original:**")
+                        st.text(response.get("original", "")[:200])
+                    with col2:
+                        st.write("**Revised:**")
+                        st.text(response.get("revised", "")[:200])
             else:
-                st.warning(f"⚠️ Revision processing issue: {response.get('error')}")
+                st.error(f"❌ Revision failed: {response.get('error')}")
 
         except Exception as e:
             st.error(f"❌ Error submitting revision: {str(e)}")

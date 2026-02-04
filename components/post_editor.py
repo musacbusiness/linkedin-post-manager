@@ -1,10 +1,11 @@
 """
 Post Editor Component
-Allows editing post content and generating images with Modal integration
+Allows editing post content and generating images with direct Replicate API
 """
 
 import streamlit as st
 from typing import Dict, Any
+from utils.direct_processors import generate_image_from_post
 
 
 def render_post_editor(post: Dict[str, Any], clients) -> bool:
@@ -86,32 +87,24 @@ def render_post_editor(post: Dict[str, Any], clients) -> bool:
 
         # Handle image generation
         if generate_image:
-            modal_client = clients["modal"]
             airtable_client = clients["airtable"]
 
-            # Update status first
             try:
-                with st.spinner("⏳ Generating image... (30-60 seconds)"):
-                    # Set status to Pending Review
-                    airtable_client.update_status(record_id, "Pending Review")
-
-                    # Trigger image generation webhook
-                    response = modal_client.trigger_image_generation(record_id)
+                with st.spinner("⏳ Generating image with Replicate API... (30-60 seconds)"):
+                    # Call direct Replicate API (no Modal dependency)
+                    response = generate_image_from_post(airtable_client, record_id)
 
                     if response.get("success"):
-                        st.success("✅ Image generation triggered!")
-                        st.info("The image will be generated and updated within 1-2 minutes. Refresh to see changes.")
+                        st.success("✅ Image generated successfully!")
+                        st.image(response.get("image_url"), width=400, caption="Generated Image")
                     else:
-                        # Detailed error logging
                         st.error(f"❌ Image generation failed")
-                        st.error(f"Status Code: {response.get('status_code')}")
                         st.error(f"Error: {response.get('error')}")
 
                         # Debug info
                         with st.expander("🔧 Debug Info"):
-                            st.write(f"**Webhook Base URL:** {modal_client.base_url}")
                             st.write(f"**Record ID:** {record_id}")
-                            st.write(f"**Full Response:** {response}")
+                            st.write(f"**Response:** {response}")
             except Exception as e:
                 st.error(f"❌ Error generating image: {str(e)}")
 

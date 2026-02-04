@@ -97,14 +97,13 @@ def render_batch_operations_toolbar(posts: List[Dict[str, Any]], clients: Any) -
 
 def handle_bulk_approve(record_ids: List[str], clients: Any) -> None:
     """
-    Handle bulk approve operation
+    Handle bulk approve operation - Plan B: Direct status updates (no Modal webhooks)
 
     Args:
         record_ids: List of record IDs to approve
-        clients: Dictionary with airtable and modal clients
+        clients: Dictionary with airtable client
     """
     airtable_client = clients["airtable"]
-    modal_client = clients["modal"]
 
     progress_bar = st.progress(0)
     status_text = st.empty()
@@ -113,16 +112,8 @@ def handle_bulk_approve(record_ids: List[str], clients: Any) -> None:
         try:
             status_text.text(f"⏳ Approving {idx + 1} of {len(record_ids)}...")
 
-            # Update Airtable
+            # Update Airtable status - Modal's scheduler will pick these up
             airtable_client.update_status(record_id, "Approved - Ready to Schedule")
-
-            # Trigger Modal webhook
-            modal_response = modal_client.trigger_scheduling(record_id)
-
-            if not modal_response.get("success"):
-                st.warning(
-                    f"⚠️ Modal webhook issue for post {record_id}: {modal_response.get('error')}"
-                )
 
             progress_bar.progress((idx + 1) / len(record_ids))
 
@@ -130,7 +121,7 @@ def handle_bulk_approve(record_ids: List[str], clients: Any) -> None:
             st.error(f"❌ Error approving post {record_id}: {str(e)}")
 
     st.success(
-        f"✅ Successfully approved {len(record_ids)} post(s)! All have been scheduled."
+        f"✅ Successfully approved {len(record_ids)} post(s)! They will be scheduled by the system."
     )
     st.session_state.batch_selected_posts = set()
     st.rerun()
@@ -138,14 +129,13 @@ def handle_bulk_approve(record_ids: List[str], clients: Any) -> None:
 
 def handle_bulk_reject(record_ids: List[str], clients: Any) -> None:
     """
-    Handle bulk reject operation
+    Handle bulk reject operation - Plan B: Direct status updates (no Modal webhooks)
 
     Args:
         record_ids: List of record IDs to reject
-        clients: Dictionary with airtable and modal clients
+        clients: Dictionary with airtable client
     """
     airtable_client = clients["airtable"]
-    modal_client = clients["modal"]
 
     progress_bar = st.progress(0)
     status_text = st.empty()
@@ -154,16 +144,8 @@ def handle_bulk_reject(record_ids: List[str], clients: Any) -> None:
         try:
             status_text.text(f"⏳ Rejecting {idx + 1} of {len(record_ids)}...")
 
-            # Update Airtable
+            # Update Airtable status - Modal's cleanup will pick these up
             airtable_client.update_status(record_id, "Rejected")
-
-            # Trigger Modal webhook
-            modal_response = modal_client.trigger_rejection(record_id)
-
-            if not modal_response.get("success"):
-                st.warning(
-                    f"⚠️ Modal webhook issue for post {record_id}: {modal_response.get('error')}"
-                )
 
             progress_bar.progress((idx + 1) / len(record_ids))
 
