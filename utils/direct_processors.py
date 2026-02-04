@@ -42,7 +42,7 @@ class ReplicateClient:
 
     def generate_image(self, prompt: str) -> Optional[str]:
         """
-        Generate image using Replicate's Stable Diffusion 2.1 API
+        Generate image using Replicate's SDXL API
 
         Args:
             prompt: Image generation prompt
@@ -51,16 +51,17 @@ class ReplicateClient:
             Image URL or None if failed
         """
         try:
-            # Use Stable Diffusion 2.1 (stable, widely available)
-            # Version: f178fa7a216c2d8de78e08e89a021f4e3ef0fa11
+            # Use SDXL (stable, widely available)
+            # Version: 39e7aeb6d9955a23cc9a1851b4404fca45c13986
             prediction_payload = {
-                "version": "f178fa7a216c2d8de78e08e89a021f4e3ef0fa11",
+                "version": "39e7aeb6d9955a23cc9a1851b4404fca45c13986",
                 "input": {
                     "prompt": prompt,
-                    "num_inference_steps": 50,
+                    "negative_prompt": "blurry, low quality, distorted",
+                    "num_inference_steps": 25,
                     "guidance_scale": 7.5,
-                    "height": 512,
-                    "width": 512
+                    "scheduler": "K_EULER",
+                    "num_outputs": 1
                 }
             }
 
