@@ -13,6 +13,24 @@ import os
 class SupabaseClient:
     """Client for interacting with Supabase PostgreSQL database"""
 
+    # Field mapping: Supabase snake_case → Airtable PascalCase
+    FIELD_MAP = {
+        "title": "Title",
+        "post_content": "Post Content",
+        "image_url": "Image URL",
+        "status": "Status",
+        "scheduled_time": "Scheduled Time",
+        "posted_time": "Posted",
+        "linkedin_url": "LinkedIn URL",
+        "revision_prompt": "Revision Prompt",
+        "revision_type": "Revision Type",
+        "notes": "Notes",
+        "created_at": "Created",
+        "updated_at": "Updated",
+        "topic": "Topic",
+        "source": "Source",
+    }
+
     def __init__(self, supabase_url: str = None, supabase_key: str = None):
         """
         Initialize Supabase client with credentials
@@ -38,6 +56,34 @@ class SupabaseClient:
         """Clear all cached data"""
         self._cache.clear()
 
+    def _to_airtable_format(self, record: Dict) -> Dict:
+        """
+        Convert Supabase record to Airtable format for compatibility.
+
+        Transforms snake_case fields to PascalCase nested in 'fields' key.
+
+        Args:
+            record: Supabase record
+
+        Returns:
+            Airtable-formatted record
+        """
+        fields = {}
+        for supabase_key, value in record.items():
+            if supabase_key == "id":
+                continue  # id stays at top level
+            airtable_key = self.FIELD_MAP.get(supabase_key, supabase_key)
+            fields[airtable_key] = value
+
+        return {
+            "id": record.get("id"),
+            "fields": fields,
+        }
+
+    def _to_airtable_format_batch(self, records: List[Dict]) -> List[Dict]:
+        """Convert list of records to Airtable format"""
+        return [self._to_airtable_format(record) for record in records]
+
     def get_all_posts(self, status_filter: Optional[str] = None) -> List[Dict]:
         """
         Fetch all posts from Supabase, optionally filtered by status
@@ -46,7 +92,7 @@ class SupabaseClient:
             status_filter: Optional status to filter by
 
         Returns:
-            List of post records
+            List of post records in Airtable format
         """
         # Check cache first
         cache_key = f"all_posts_{status_filter}"
@@ -73,10 +119,12 @@ class SupabaseClient:
                 )
 
             records = response.data or []
+            # Convert to Airtable format for compatibility
+            formatted_records = self._to_airtable_format_batch(records)
 
             # Cache the result
-            self._cache[cache_key] = (records, time.time())
-            return records
+            self._cache[cache_key] = (formatted_records, time.time())
+            return formatted_records
 
         except Exception as e:
             print(f"Error fetching posts: {e}")
@@ -90,7 +138,7 @@ class SupabaseClient:
             record_id: Post ID (UUID)
 
         Returns:
-            Post record or None if not found
+            Post record in Airtable format or None if not found
         """
         try:
             response = (
@@ -100,7 +148,7 @@ class SupabaseClient:
                 .single()
                 .execute()
             )
-            return response.data if response.data else None
+            return self._to_airtable_format(response.data) if response.data else None
         except Exception as e:
             print(f"Error fetching post {record_id}: {e}")
             return None
@@ -179,7 +227,7 @@ class SupabaseClient:
             end_date: End of date range
 
         Returns:
-            List of scheduled posts
+            List of scheduled posts in Airtable format
         """
         try:
             response = (
@@ -191,7 +239,7 @@ class SupabaseClient:
                 .execute()
             )
 
-            return response.data or []
+            return self._to_airtable_format_batch(response.data or [])
         except Exception as e:
             print(f"Error fetching scheduled posts: {e}")
             return []
@@ -251,13 +299,13 @@ class SupabaseClient:
             statuses: List of status values to include
 
         Returns:
-            List of matching posts
+            List of matching posts in Airtable format
         """
         try:
             all_posts = self.get_all_posts()
             matching = [
                 post for post in all_posts
-                if post.get("status") in statuses
+                if post.get("fields", {}).get("Status") in statuses
             ]
             return matching
         except Exception as e:
@@ -290,7 +338,7 @@ class SupabaseClient:
             query: Search query string
 
         Returns:
-            List of matching posts
+            List of matching posts in Airtable format
         """
         try:
             # Note: This is a basic search. For better full-text search,
@@ -300,8 +348,8 @@ class SupabaseClient:
 
             matching = [
                 post for post in all_posts
-                if query_lower in post.get("title", "").lower()
-                or query_lower in post.get("post_content", "").lower()
+                if query_lower in post.get("fields", {}).get("Title", "").lower()
+                or query_lower in post.get("fields", {}).get("Post Content", "").lower()
             ]
             return matching
         except Exception as e:

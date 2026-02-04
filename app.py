@@ -13,7 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from config import validate_config, POST_STATUSES
-from utils.airtable_client import AirtableClient
+from utils.supabase_client import SupabaseClient
 from utils.modal_client import ModalClient
 from components.post_table import (
     render_post_table,
@@ -88,7 +88,7 @@ st.markdown("""
 def init_clients():
     """Initialize API clients (cached for session)"""
     return {
-        "airtable": AirtableClient(),
+        "airtable": SupabaseClient(),  # Drop-in replacement for Airtable
         "modal": ModalClient(),
     }
 
@@ -405,12 +405,12 @@ def display_api_status(clients):
     with st.sidebar:
         st.subheader("🔌 API Status")
 
-        # Airtable status
+        # Supabase status
         try:
-            airtable_status = clients["airtable"].get_posts_count()
-            st.success(f"✅ Airtable: {airtable_status} posts")
+            supabase_status = clients["airtable"].get_posts_count()
+            st.success(f"✅ Supabase: {supabase_status} posts")
         except Exception as e:
-            st.error(f"❌ Airtable: {str(e)[:50]}")
+            st.error(f"❌ Supabase: {str(e)[:50]}")
 
         # Modal status
         modal_health = clients["modal"].health_check()
@@ -441,7 +441,7 @@ def display_sidebar_info(clients):
         - 📱 Mobile-responsive design
 
         **Architecture:**
-        - Streamlit → Airtable API → Modal → Make.com → LinkedIn
+        - Streamlit → Supabase (PostgreSQL) → Modal → Make.com → LinkedIn
         """)
 
         st.markdown("---")
