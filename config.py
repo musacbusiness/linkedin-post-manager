@@ -90,7 +90,13 @@ def validate_config() -> bool:
     missing = [name for name, value in required if not value]
 
     if missing:
-        print(f"❌ Missing configuration: {', '.join(missing)}")
+        # Debug: Show what's actually loaded
+        print(f"\n🔍 DEBUG: Configuration status:")
+        for name, value in required:
+            status = "✓" if value else "✗"
+            print(f"  {status} {name}: {'SET' if value else 'MISSING'}")
+        print(f"\n❌ Missing configuration: {', '.join(missing)}")
+        print(f"💡 Add these to Streamlit Secrets or .env file\n")
         return False
 
     return True
