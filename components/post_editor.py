@@ -50,7 +50,12 @@ def render_post_editor(post: Dict[str, Any], clients) -> bool:
 
         # Image preview
         if image_url:
-            st.image(image_url, width=300, caption="Current Image")
+            try:
+                st.image(image_url, width=300, caption="Current Image", use_container_width=False)
+            except Exception as e:
+                st.warning(f"Could not load image preview")
+                if image_url.startswith("http"):
+                    st.write(f"[View Image]({image_url})")
 
         # Form buttons
         col1, col2, col3 = st.columns(3)
@@ -96,7 +101,13 @@ def render_post_editor(post: Dict[str, Any], clients) -> bool:
 
                     if response.get("success"):
                         st.success("✅ Image generated successfully!")
-                        st.image(response.get("image_url"), width=400, caption="Generated Image")
+                        try:
+                            st.image(response.get("image_url"), width=400, caption="Generated Image", use_container_width=False)
+                        except Exception as e:
+                            st.warning("Image generated but could not display preview")
+                            image_url = response.get("image_url")
+                            if image_url and image_url.startswith("http"):
+                                st.write(f"[View Generated Image]({image_url})")
                     else:
                         st.error(f"❌ Image generation failed")
                         st.error(f"Error: {response.get('error')}")

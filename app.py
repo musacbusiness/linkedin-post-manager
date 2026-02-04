@@ -290,8 +290,13 @@ def display_filtered_posts_with_actions(posts, clients):
 
             # Image section
             with col2:
-                if fields.get("Image URL"):
-                    st.image(fields.get("Image URL"), width=200)
+                image_url = fields.get("Image URL")
+                if image_url:
+                    try:
+                        st.image(image_url, width=200, use_container_width=False)
+                    except Exception as e:
+                        st.warning(f"Could not load image: {str(e)[:50]}...")
+                        st.write(f"[View Image]({image_url})" if image_url.startswith("http") else "Invalid image URL")
 
             # Actions section
             with col3:
