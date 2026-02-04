@@ -42,7 +42,7 @@ class ReplicateClient:
 
     def generate_image(self, prompt: str) -> Optional[str]:
         """
-        Generate image using Replicate's Stable Diffusion API
+        Generate image using Replicate's Stable Diffusion 2.1 API
 
         Args:
             prompt: Image generation prompt
@@ -51,16 +51,16 @@ class ReplicateClient:
             Image URL or None if failed
         """
         try:
-            # Use Stable Diffusion 3 Medium (most reliable)
-            # Model: stable-diffusion-3-medium
-            model = "stability-ai/stable-diffusion-3-medium"
-
+            # Use Stable Diffusion 2.1 (stable, widely available)
+            # Version: f178fa7a216c2d8de78e08e89a021f4e3ef0fa11
             prediction_payload = {
-                "version": "2b017d9b67edd2ee1401c165221e92c5d566e50cf889147fba93b79e9b2b9e30",
+                "version": "f178fa7a216c2d8de78e08e89a021f4e3ef0fa11",
                 "input": {
                     "prompt": prompt,
-                    "num_inference_steps": 25,
-                    "guidance_scale": 7.5
+                    "num_inference_steps": 50,
+                    "guidance_scale": 7.5,
+                    "height": 512,
+                    "width": 512
                 }
             }
 
