@@ -76,38 +76,44 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
     fields = post.get("fields", {})
     record_id = post.get("id", "")
 
-    # Initialize session state for this card if not exists
-    if f"selected_{record_id}" not in st.session_state:
-        st.session_state[f"selected_{record_id}"] = False
+    # Initialize session state keys before using them
+    expand_key = f"expand_{record_id}"
+    select_key = f"select_{record_id}"
+    action_key = f"action_{record_id}"
+
+    if expand_key not in st.session_state:
+        st.session_state[expand_key] = False
+    if select_key not in st.session_state:
+        st.session_state[select_key] = False
 
     results = {
-        "selected": st.session_state.get(f"selected_{record_id}", False),
+        "selected": st.session_state[select_key],
         "action": None,
         "record_id": record_id,
     }
 
     # Show success messages from previous actions
-    action_status = st.session_state.get(f"action_{record_id}")
+    action_status = st.session_state.get(action_key)
     if action_status == "approve_success":
         st.success("✅ Post approved!")
-        del st.session_state[f"action_{record_id}"]
+        st.session_state[action_key] = None
     elif action_status == "reject_success":
         st.success("✅ Post rejected and deleted!")
-        del st.session_state[f"action_{record_id}"]
+        st.session_state[action_key] = None
 
     with st.container():
         # Top row: checkbox + status + actions
         col_check, col_status, col_actions = st.columns([0.5, 2, 1.5])
 
         with col_check:
-            is_selected = st.checkbox(
+            # Use the checkbox value directly from session_state
+            selected = st.checkbox(
                 "Select",
-                value=st.session_state.get(f"selected_{record_id}", False),
+                value=st.session_state[select_key],
                 label_visibility="collapsed",
-                key=f"select_{record_id}",
+                key=select_key,
             )
-            st.session_state[f"selected_{record_id}"] = is_selected
-            results["selected"] = is_selected
+            results["selected"] = selected
 
         with col_status:
             status = fields.get("Status", "Unknown")
@@ -124,7 +130,7 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                         try:
                             result = clients["supabase"].update_status(record_id, "Approved")
                             if result.get("success"):
-                                st.session_state[f"action_{record_id}"] = "approve_success"
+                                st.session_state[action_key] = "approve_success"
                         except Exception as e:
                             st.error(f"Error approving post: {str(e)}")
                     results["action"] = "approve"
@@ -134,13 +140,14 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                         try:
                             result = clients["supabase"].delete_post(record_id)
                             if result.get("success"):
-                                st.session_state[f"action_{record_id}"] = "reject_success"
+                                st.session_state[action_key] = "reject_success"
                         except Exception as e:
                             st.error(f"Error rejecting post: {str(e)}")
                     results["action"] = "reject"
             with col3:
                 if st.button("✏️", key=f"edit_{record_id}", help="Edit"):
-                    st.session_state[f"expand_{record_id}"] = not st.session_state.get(f"expand_{record_id}", False)
+                    # Toggle expand state
+                    st.session_state[expand_key] = not st.session_state[expand_key]
                     results["action"] = "edit"
 
         # Title and content
@@ -166,10 +173,10 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
             st.caption(f"📅 Created: {created}")
         with col2:
             if st.button("▼ Expand", key=f"expand_btn_{record_id}", use_container_width=True):
-                st.session_state[f"expand_{record_id}"] = not st.session_state.get(f"expand_{record_id}", False)
+                st.session_state[expand_key] = not st.session_state[expand_key]
 
         # Expanded view
-        if st.session_state.get(f"expand_{record_id}", False):
+        if st.session_state[expand_key]:
             st.divider()
             st.subheader("Full Post Details")
             col1, col2 = st.columns(2)
