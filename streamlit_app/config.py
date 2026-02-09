@@ -1,6 +1,6 @@
 """
 Configuration for Streamlit LinkedIn Post Manager
-Loads environment variables for Airtable and Modal API access
+Loads environment variables for Supabase and Modal API access
 """
 
 import os
@@ -18,13 +18,9 @@ env_root = Path(__file__).parent.parent / ".env"
 if env_root.exists():
     load_dotenv(env_root)
 
-# Airtable Configuration
-AIRTABLE_API_KEY: str = os.getenv("AIRTABLE_API_KEY", "")
-AIRTABLE_BASE_ID: str = os.getenv("AIRTABLE_BASE_ID", "")
-AIRTABLE_LINKEDIN_TABLE_ID: str = os.getenv("AIRTABLE_LINKEDIN_TABLE_ID", "")
-
-# Construct full Airtable API base URL
-AIRTABLE_API_URL: str = f"https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/{AIRTABLE_LINKEDIN_TABLE_ID}"
+# Supabase Configuration
+SUPABASE_URL: str = os.getenv("SUPABASE_URL", "")
+SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "")
 
 # Modal Configuration
 MODAL_WEBHOOK_BASE_URL: str = os.getenv("MODAL_WEBHOOK_BASE_URL", "")
@@ -71,9 +67,8 @@ def validate_config() -> bool:
     Returns True if all required vars are present, False otherwise.
     """
     required = [
-        ("AIRTABLE_API_KEY", AIRTABLE_API_KEY),
-        ("AIRTABLE_BASE_ID", AIRTABLE_BASE_ID),
-        ("AIRTABLE_LINKEDIN_TABLE_ID", AIRTABLE_LINKEDIN_TABLE_ID),
+        ("SUPABASE_URL", SUPABASE_URL),
+        ("SUPABASE_KEY", SUPABASE_KEY),
         ("MODAL_WEBHOOK_BASE_URL", MODAL_WEBHOOK_BASE_URL),
     ]
 

@@ -13,7 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from config import validate_config, POST_STATUSES
-from utils.airtable_client import AirtableClient
+from utils.supabase_client import SupabaseClient
 from utils.modal_client import ModalClient
 from components.post_table import (
     create_status_filter,
@@ -61,7 +61,7 @@ st.markdown("""
 def init_clients():
     """Initialize API clients (cached for session)"""
     return {
-        "airtable": AirtableClient(),
+        "supabase": SupabaseClient(),
         "modal": ModalClient(),
     }
 
@@ -102,7 +102,7 @@ def check_password():
 def display_header():
     """Display app header with title and subtitle"""
     st.markdown("<h1 class='main-header'>📱 LinkedIn Post Manager</h1>", unsafe_allow_html=True)
-    st.write("Manage LinkedIn posts efficiently with Airtable and Modal integration")
+    st.write("Manage LinkedIn posts efficiently with Supabase and Modal integration")
 
 
 def render_posts_section(posts, clients):
@@ -182,11 +182,11 @@ def render_system_health_section(clients):
         st.subheader("🔌 API Connections")
 
         try:
-            airtable_client = clients["airtable"]
-            posts = airtable_client.get_all_posts()
-            st.success(f"✅ Airtable: Connected ({len(posts)} posts)")
+            supabase_client = clients["supabase"]
+            posts = supabase_client.get_all_posts()
+            st.success(f"✅ Supabase: Connected ({len(posts)} posts)")
         except Exception as e:
-            st.error(f"❌ Airtable: {str(e)[:100]}")
+            st.error(f"❌ Supabase: {str(e)[:100]}")
 
         try:
             modal_client = clients["modal"]
@@ -232,10 +232,10 @@ def render_sidebar_navigation():
                 clients = st.session_state.get("clients")
                 if clients:
                     try:
-                        posts = clients["airtable"].get_all_posts()
-                        st.success(f"✅ Airtable: {len(posts)} posts")
+                        posts = clients["supabase"].get_all_posts()
+                        st.success(f"✅ Supabase: {len(posts)} posts")
                     except Exception as e:
-                        st.error(f"❌ Airtable: {str(e)[:50]}")
+                        st.error(f"❌ Supabase: {str(e)[:50]}")
 
                     # Modal status
                     try:
@@ -274,7 +274,7 @@ def main():
 
     # Load posts
     try:
-        posts = clients["airtable"].get_all_posts()
+        posts = clients["supabase"].get_all_posts()
     except Exception as e:
         st.error(f"Failed to load posts: {e}")
         st.stop()
