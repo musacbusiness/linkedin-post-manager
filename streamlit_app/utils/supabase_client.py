@@ -111,3 +111,11 @@ class SupabaseClient:
             return {"success": True, "data": response.data}
         except Exception as e:
             return {"success": False, "error": str(e)}
+
+    def delete_post(self, record_id: str) -> Dict:
+        """Delete a post from the database"""
+        try:
+            response = self.client.table("posts").delete().eq("id", record_id).execute()
+            return {"success": True, "data": response.data}
+        except Exception as e:
+            return {"success": False, "error": str(e)}

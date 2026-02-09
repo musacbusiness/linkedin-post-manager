@@ -67,7 +67,7 @@ def render_scheduled_indicator(scheduled_time: Optional[str]) -> None:
         st.caption(f"📅 Scheduled: {scheduled_time[:16]}")
 
 
-def render_post_card(post: Dict, selected: bool = False) -> Dict:
+def render_post_card(post: Dict, clients: Dict = None) -> Dict:
     """
     Render a single post as a card with actions
 
@@ -76,8 +76,12 @@ def render_post_card(post: Dict, selected: bool = False) -> Dict:
     fields = post.get("fields", {})
     record_id = post.get("id", "")
 
+    # Initialize session state for this card if not exists
+    if f"selected_{record_id}" not in st.session_state:
+        st.session_state[f"selected_{record_id}"] = False
+
     results = {
-        "selected": selected,
+        "selected": st.session_state.get(f"selected_{record_id}", False),
         "action": None,
         "record_id": record_id,
     }
@@ -87,13 +91,14 @@ def render_post_card(post: Dict, selected: bool = False) -> Dict:
         col_check, col_status, col_actions = st.columns([0.5, 2, 1.5])
 
         with col_check:
-            selected = st.checkbox(
+            is_selected = st.checkbox(
                 "Select",
-                value=selected,
+                value=st.session_state.get(f"selected_{record_id}", False),
                 label_visibility="collapsed",
                 key=f"select_{record_id}",
             )
-            results["selected"] = selected
+            st.session_state[f"selected_{record_id}"] = is_selected
+            results["selected"] = is_selected
 
         with col_status:
             status = fields.get("Status", "Unknown")
@@ -106,12 +111,29 @@ def render_post_card(post: Dict, selected: bool = False) -> Dict:
             col1, col2, col3 = st.columns(3)
             with col1:
                 if st.button("✅", key=f"approve_{record_id}", help="Approve"):
+                    if clients and "supabase" in clients:
+                        try:
+                            result = clients["supabase"].update_status(record_id, "Approved")
+                            if result.get("success"):
+                                st.success("Post approved!")
+                                st.rerun()
+                        except Exception as e:
+                            st.error(f"Error approving post: {str(e)}")
                     results["action"] = "approve"
             with col2:
                 if st.button("❌", key=f"reject_{record_id}", help="Reject"):
+                    if clients and "supabase" in clients:
+                        try:
+                            result = clients["supabase"].delete_post(record_id)
+                            if result.get("success"):
+                                st.success("Post rejected and deleted!")
+                                st.rerun()
+                        except Exception as e:
+                            st.error(f"Error rejecting post: {str(e)}")
                     results["action"] = "reject"
             with col3:
                 if st.button("✏️", key=f"edit_{record_id}", help="Edit"):
+                    st.session_state[f"expand_{record_id}"] = True
                     results["action"] = "edit"
 
         # Title and content
@@ -136,15 +158,33 @@ def render_post_card(post: Dict, selected: bool = False) -> Dict:
             created = format_date(fields.get("Created"))
             st.caption(f"📅 Created: {created}")
         with col2:
-            if st.button("▼ View", key=f"expand_{record_id}", use_container_width=True):
-                results["action"] = "expand"
+            if st.button("▼ Expand", key=f"expand_{record_id}", use_container_width=True):
+                st.session_state[f"expand_{record_id}"] = not st.session_state.get(f"expand_{record_id}", False)
+                st.rerun()
+
+        # Expanded view
+        if st.session_state.get(f"expand_{record_id}", False):
+            st.divider()
+            st.subheader("Full Post Details")
+            col1, col2 = st.columns(2)
+
+            with col1:
+                st.write("**Content:**")
+                st.write(fields.get("Post Content", "No content"))
+
+            with col2:
+                st.write("**Metadata:**")
+                st.caption(f"Status: {fields.get('Status', 'Unknown')}")
+                st.caption(f"Created: {format_date(fields.get('Created', ''))}")
+                if fields.get("Scheduled Time"):
+                    st.caption(f"Scheduled: {format_date(fields.get('Scheduled Time', ''))}")
 
         st.divider()
 
     return results
 
 
-def render_posts_grid(posts: List[Dict]) -> List[Dict]:
+def render_posts_grid(posts: List[Dict], clients: Dict = None) -> List[Dict]:
     """
     Render posts as a grid of cards (2 per row)
 
@@ -162,12 +202,12 @@ def render_posts_grid(posts: List[Dict]) -> List[Dict]:
 
         with col1:
             if i < len(posts):
-                result = render_post_card(posts[i])
+                result = render_post_card(posts[i], clients)
                 results.append(result)
 
         with col2:
             if i + 1 < len(posts):
-                result = render_post_card(posts[i + 1])
+                result = render_post_card(posts[i + 1], clients)
                 results.append(result)
 
     return results

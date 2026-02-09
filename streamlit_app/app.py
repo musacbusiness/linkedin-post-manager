@@ -25,6 +25,7 @@ from components.post_table import (
 )
 from components.post_card import render_posts_grid, render_post_card
 from components.dashboard import render_dashboard
+from components.calendar_view import render_calendar_view, render_calendar_mini
 
 # Page configuration
 st.set_page_config(
@@ -138,7 +139,7 @@ def render_posts_section(posts, clients):
     st.divider()
 
     # Render posts as cards
-    card_results = render_posts_grid(filtered_posts)
+    card_results = render_posts_grid(filtered_posts, clients)
 
     # Handle bulk actions
     selected_posts = [r for r in card_results if r.get("selected")]
@@ -168,40 +169,30 @@ def render_posts_section(posts, clients):
 
 
 def render_calendar_section(posts):
-    """Render the Calendar section with basic post schedule view"""
+    """Render the Calendar section with interactive calendar view"""
     st.title("📅 Calendar")
-    st.write("View posts scheduled by date")
-    st.divider()
 
     if not posts:
         st.info("No posts available")
         return
 
-    # Display posts scheduled for the future
-    st.subheader("Scheduled Posts")
-
+    # Get only posts with scheduled times
     scheduled_posts = [
         p for p in posts
-        if p.get("fields", {}).get("Scheduled Time") or p.get("fields", {}).get("Status") == "Approved - Ready to Schedule"
+        if p.get("fields", {}).get("Scheduled Time")
     ]
 
-    if scheduled_posts:
-        for post in scheduled_posts:
-            fields = post.get("fields", {})
-            col1, col2 = st.columns([3, 1])
+    if not scheduled_posts:
+        st.info("No posts scheduled yet")
+        return
 
-            with col1:
-                title = fields.get("Title", "Untitled")
-                scheduled = format_date(fields.get("Scheduled Time", ""))
-                status = fields.get("Status", "")
-                st.write(f"**{title}**")
-                st.caption(f"Scheduled: {scheduled} | Status: {status}")
+    # Display mini calendar overview
+    render_calendar_mini(scheduled_posts)
 
-            with col2:
-                if st.button("👁️ View", key=f"view_{post.get('id')}"):
-                    st.write(fields.get("Post Content", ""))
-    else:
-        st.info("No scheduled posts")
+    st.divider()
+
+    # Display interactive date picker and detailed view
+    render_calendar_view(scheduled_posts)
 
 
 def render_system_health_section(clients):
