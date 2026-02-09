@@ -260,7 +260,20 @@ def main():
 
     # Validate configuration
     if not validate_config():
-        st.error("❌ Missing required configuration. Check environment variables.")
+        st.error("""
+        ❌ **Missing required configuration**
+
+        Please add the following to your Streamlit Cloud Secrets:
+        - `SUPABASE_URL` - Your Supabase project URL
+        - `SUPABASE_KEY` - Your Supabase anon/public key
+        - `MODAL_WEBHOOK_BASE_URL` - Your Modal webhook URL
+
+        **How to add secrets:**
+        1. Go to your app settings (⋮ menu → Settings)
+        2. Click "Secrets"
+        3. Add each variable above
+        4. Save and restart the app
+        """)
         st.stop()
 
     # Initialize clients with error handling
