@@ -258,6 +258,15 @@ def main():
     if not check_password():
         st.stop()
 
+    # Reload configuration from Streamlit secrets (in case they were added after initial import)
+    try:
+        from config import SUPABASE_URL, SUPABASE_KEY
+        # Try to reload from secrets in case they were added
+        supabase_url = st.secrets.get("SUPABASE_URL", "") or SUPABASE_URL
+        supabase_key = st.secrets.get("SUPABASE_KEY", "") or SUPABASE_KEY
+    except Exception:
+        pass
+
     # Validate configuration
     if not validate_config():
         st.error("""
@@ -266,13 +275,14 @@ def main():
         Please add the following to your Streamlit Cloud Secrets:
         - `SUPABASE_URL` - Your Supabase project URL
         - `SUPABASE_KEY` - Your Supabase anon/public key
-        - `MODAL_WEBHOOK_BASE_URL` - Your Modal webhook URL
 
         **How to add secrets:**
         1. Go to your app settings (⋮ menu → Settings)
         2. Click "Secrets"
-        3. Add each variable above
+        3. Paste your configuration
         4. Save and restart the app
+
+        (MODAL_WEBHOOK_BASE_URL is optional - only needed if using Modal webhooks)
         """)
         st.stop()
 

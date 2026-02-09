@@ -18,29 +18,12 @@ env_root = Path(__file__).parent.parent / ".env"
 if env_root.exists():
     load_dotenv(env_root)
 
-# Try to import Streamlit to load secrets (for Streamlit Cloud)
-try:
-    import streamlit as st
-    _STREAMLIT_AVAILABLE = True
-except ImportError:
-    _STREAMLIT_AVAILABLE = False
-
-# Supabase Configuration - Try Streamlit secrets first, then env vars
-if _STREAMLIT_AVAILABLE:
-    try:
-        SUPABASE_URL: str = st.secrets.get("SUPABASE_URL", "") or os.getenv("SUPABASE_URL", "")
-        SUPABASE_KEY: str = st.secrets.get("SUPABASE_KEY", "") or os.getenv("SUPABASE_KEY", "")
-        MODAL_WEBHOOK_BASE_URL: str = st.secrets.get("MODAL_WEBHOOK_BASE_URL", "") or os.getenv("MODAL_WEBHOOK_BASE_URL", "")
-    except Exception as e:
-        # Fallback if secrets not available
-        SUPABASE_URL: str = os.getenv("SUPABASE_URL", "")
-        SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "")
-        MODAL_WEBHOOK_BASE_URL: str = os.getenv("MODAL_WEBHOOK_BASE_URL", "")
-else:
-    # No Streamlit available, use env vars only
-    SUPABASE_URL: str = os.getenv("SUPABASE_URL", "")
-    SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "")
-    MODAL_WEBHOOK_BASE_URL: str = os.getenv("MODAL_WEBHOOK_BASE_URL", "")
+# Supabase Configuration - Load from environment variables
+# Note: In Streamlit Cloud, secrets are accessed via st.secrets in individual components,
+# not here at module level (to avoid initialization issues)
+SUPABASE_URL: str = os.getenv("SUPABASE_URL", "")
+SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "")
+MODAL_WEBHOOK_BASE_URL: str = os.getenv("MODAL_WEBHOOK_BASE_URL", "")
 
 # Cache TTL (in seconds)
 CACHE_TTL: int = 30  # Refresh Airtable data every 30 seconds
@@ -82,25 +65,27 @@ def validate_config() -> bool:
     """
     Validate that all required configuration is set.
     Returns True if all required vars are present, False otherwise.
+
+    Note: MODAL_WEBHOOK_BASE_URL is optional (only needed if using Modal webhooks).
+    The app supports Plan B architecture with direct API calls.
     """
     required = [
         ("SUPABASE_URL", SUPABASE_URL),
         ("SUPABASE_KEY", SUPABASE_KEY),
-        ("MODAL_WEBHOOK_BASE_URL", MODAL_WEBHOOK_BASE_URL),
     ]
 
     missing = [name for name, value in required if not value]
 
     if missing:
-        print(f"\n❌ Missing configuration: {', '.join(missing)}")
+        print(f"\n❌ Missing REQUIRED configuration: {', '.join(missing)}")
         print(f"\nℹ️  Current configuration status:")
         print(f"   SUPABASE_URL: {'✓ SET' if SUPABASE_URL else '✗ MISSING'}")
         print(f"   SUPABASE_KEY: {'✓ SET' if SUPABASE_KEY else '✗ MISSING'}")
-        print(f"   MODAL_WEBHOOK_BASE_URL: {'✓ SET' if MODAL_WEBHOOK_BASE_URL else '✗ MISSING'}")
+        print(f"   MODAL_WEBHOOK_BASE_URL: {'✓ SET (optional)' if MODAL_WEBHOOK_BASE_URL else '✗ NOT SET (optional)'}")
         print(f"\n💡 Add these to Streamlit Cloud Secrets (Settings → Secrets):")
         print(f"   SUPABASE_URL=your_supabase_url")
         print(f"   SUPABASE_KEY=your_supabase_anon_key")
-        print(f"   MODAL_WEBHOOK_BASE_URL=your_modal_webhook_url\n")
+        print(f"   (MODAL_WEBHOOK_BASE_URL is only needed if using Modal webhooks)\n")
         return False
 
     return True
