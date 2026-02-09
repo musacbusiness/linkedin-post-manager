@@ -3,9 +3,9 @@ Modal Webhook Client for LinkedIn Post Manager
 Triggers Modal functions directly via HTTP webhooks instead of polling
 """
 
+import os
 import requests
 from typing import Dict, Optional, Any
-from config import MODAL_WEBHOOK_BASE_URL
 
 
 class ModalClient:
@@ -18,7 +18,14 @@ class ModalClient:
         Args:
             base_url: Modal webhook base URL
         """
-        self.base_url = base_url or MODAL_WEBHOOK_BASE_URL
+        # Try to get from Streamlit secrets, then env vars
+        try:
+            import streamlit as st
+            modal_url = base_url or st.secrets.get("MODAL_WEBHOOK_BASE_URL") or os.getenv("MODAL_WEBHOOK_BASE_URL", "")
+        except Exception:
+            modal_url = base_url or os.getenv("MODAL_WEBHOOK_BASE_URL", "")
+
+        self.base_url = modal_url
         self.timeout = 30  # 30 second timeout for Modal execution
         self.headers = {"Content-Type": "application/json"}
 

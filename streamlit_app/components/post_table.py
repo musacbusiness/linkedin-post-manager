@@ -148,6 +148,15 @@ def create_status_filter() -> Optional[str]:
     Returns:
         Selected status or None for all
     """
+    import sys
+    import os
+    from pathlib import Path
+
+    # Add parent directory to path if not already there
+    parent_dir = str(Path(__file__).parent.parent)
+    if parent_dir not in sys.path:
+        sys.path.insert(0, parent_dir)
+
     from config import POST_STATUSES
 
     statuses = ["All"] + list(POST_STATUSES.keys())
