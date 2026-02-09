@@ -86,6 +86,15 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
         "record_id": record_id,
     }
 
+    # Show success messages from previous actions
+    action_status = st.session_state.get(f"action_{record_id}")
+    if action_status == "approve_success":
+        st.success("✅ Post approved!")
+        del st.session_state[f"action_{record_id}"]
+    elif action_status == "reject_success":
+        st.success("✅ Post rejected and deleted!")
+        del st.session_state[f"action_{record_id}"]
+
     with st.container():
         # Top row: checkbox + status + actions
         col_check, col_status, col_actions = st.columns([0.5, 2, 1.5])
@@ -115,8 +124,7 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                         try:
                             result = clients["supabase"].update_status(record_id, "Approved")
                             if result.get("success"):
-                                st.success("Post approved!")
-                                st.rerun()
+                                st.session_state[f"action_{record_id}"] = "approve_success"
                         except Exception as e:
                             st.error(f"Error approving post: {str(e)}")
                     results["action"] = "approve"
@@ -126,14 +134,13 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                         try:
                             result = clients["supabase"].delete_post(record_id)
                             if result.get("success"):
-                                st.success("Post rejected and deleted!")
-                                st.rerun()
+                                st.session_state[f"action_{record_id}"] = "reject_success"
                         except Exception as e:
                             st.error(f"Error rejecting post: {str(e)}")
                     results["action"] = "reject"
             with col3:
                 if st.button("✏️", key=f"edit_{record_id}", help="Edit"):
-                    st.session_state[f"expand_{record_id}"] = True
+                    st.session_state[f"expand_{record_id}"] = not st.session_state.get(f"expand_{record_id}", False)
                     results["action"] = "edit"
 
         # Title and content
@@ -158,9 +165,8 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
             created = format_date(fields.get("Created"))
             st.caption(f"📅 Created: {created}")
         with col2:
-            if st.button("▼ Expand", key=f"expand_{record_id}", use_container_width=True):
+            if st.button("▼ Expand", key=f"expand_btn_{record_id}", use_container_width=True):
                 st.session_state[f"expand_{record_id}"] = not st.session_state.get(f"expand_{record_id}", False)
-                st.rerun()
 
         # Expanded view
         if st.session_state.get(f"expand_{record_id}", False):
