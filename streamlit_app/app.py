@@ -23,6 +23,7 @@ from components.post_table import (
     render_post_table,
     render_post_row,
 )
+from components.post_card import render_posts_grid, render_post_card
 from components.dashboard import render_dashboard
 
 # Page configuration
@@ -106,7 +107,7 @@ def display_header():
 
 
 def render_posts_section(posts, clients):
-    """Render the Posts section with filtering and table view"""
+    """Render the Posts section with card grid view and bulk actions"""
     st.title("📝 Posts")
 
     # Search and filter controls
@@ -125,11 +126,45 @@ def render_posts_section(posts, clients):
         st.info("No posts match your search or filter criteria")
         return
 
-    st.write(f"**Showing {len(filtered_posts)} of {len(posts)} posts**")
+    # Bulk action toolbar
+    col1, col2, col3 = st.columns([1, 1, 2])
+    with col1:
+        select_all = st.checkbox("📋 Select All", key="select_all")
+    with col2:
+        st.write("")  # spacing
+    with col3:
+        st.caption(f"Showing {len(filtered_posts)} of {len(posts)} posts")
 
-    # Display posts as expandable rows
-    for post in filtered_posts:
-        render_post_row(post)
+    st.divider()
+
+    # Render posts as cards
+    card_results = render_posts_grid(filtered_posts)
+
+    # Handle bulk actions
+    selected_posts = [r for r in card_results if r.get("selected")]
+    if selected_posts:
+        st.divider()
+        col1, col2, col3 = st.columns([1, 1, 2])
+        with col1:
+            if st.button(f"✅ Approve {len(selected_posts)}", use_container_width=True):
+                st.info(f"Would approve {len(selected_posts)} posts")
+        with col2:
+            if st.button(f"❌ Reject {len(selected_posts)}", use_container_width=True):
+                st.info(f"Would reject {len(selected_posts)} posts")
+
+    # Handle individual actions
+    for result in card_results:
+        if result.get("action"):
+            record_id = result.get("record_id")
+            action = result.get("action")
+            if action == "approve":
+                st.success(f"Approved post {record_id}")
+            elif action == "reject":
+                st.warning(f"Rejected post {record_id}")
+            elif action == "edit":
+                st.info(f"Editing post {record_id}")
+            elif action == "expand":
+                st.info(f"Expanding post {record_id}")
 
 
 def render_calendar_section(posts):
