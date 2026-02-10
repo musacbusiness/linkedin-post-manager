@@ -68,6 +68,23 @@ def init_clients():
     }
 
 
+def initialize_post_state(posts: List[Dict]):
+    """Pre-initialize session state for all posts BEFORE rendering widgets"""
+    for post in posts:
+        record_id = post.get("id", "")
+        expand_key = f"expand_{record_id}"
+        select_key = f"select_{record_id}"
+        action_key = f"action_{record_id}"
+
+        # Initialize keys if they don't exist
+        if expand_key not in st.session_state:
+            st.session_state[expand_key] = False
+        if select_key not in st.session_state:
+            st.session_state[select_key] = False
+        if action_key not in st.session_state:
+            st.session_state[action_key] = None
+
+
 def check_password():
     """Optional: Returns True if authentication is disabled or user entered correct password"""
     # Check if authentication is enabled via environment variable
@@ -110,6 +127,9 @@ def display_header():
 def render_posts_section(posts, clients):
     """Render the Posts section with card grid view and bulk actions"""
     st.title("📝 Posts")
+
+    # Pre-initialize session state for ALL posts (before any widget rendering)
+    initialize_post_state(posts)
 
     # Search and filter controls
     col1, col2 = st.columns([2, 1])

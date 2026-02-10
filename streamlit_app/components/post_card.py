@@ -71,23 +71,20 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
     """
     Render a single post as a card with actions
 
+    NOTE: Session state must be pre-initialized by the caller!
+
     Returns a dict with action results
     """
     fields = post.get("fields", {})
     record_id = post.get("id", "")
 
-    # Initialize session state keys before using them
+    # Build state keys (must be pre-initialized by caller)
     expand_key = f"expand_{record_id}"
     select_key = f"select_{record_id}"
     action_key = f"action_{record_id}"
 
-    if expand_key not in st.session_state:
-        st.session_state[expand_key] = False
-    if select_key not in st.session_state:
-        st.session_state[select_key] = False
-
     results = {
-        "selected": st.session_state[select_key],
+        "selected": st.session_state.get(select_key, False),
         "action": None,
         "record_id": record_id,
     }
@@ -106,10 +103,10 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
         col_check, col_status, col_actions = st.columns([0.5, 2, 1.5])
 
         with col_check:
-            # Use the checkbox value directly from session_state
+            # Use the checkbox value directly from pre-initialized session_state
             selected = st.checkbox(
                 "Select",
-                value=st.session_state[select_key],
+                value=st.session_state.get(select_key, False),
                 label_visibility="collapsed",
                 key=select_key,
             )
