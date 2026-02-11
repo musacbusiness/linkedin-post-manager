@@ -128,7 +128,10 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                             result = clients["supabase"].update_status(record_id, "Approved")
                             if result.get("success"):
                                 st.session_state[action_key] = "approve_success"
+                                st.success("✅ Status updated in database, refreshing...")
                                 st.rerun()
+                            else:
+                                st.error(f"Failed to update: {result.get('error', 'Unknown error')}")
                         except Exception as e:
                             st.error(f"Error approving post: {str(e)}")
                     else:
@@ -141,7 +144,10 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                             result = clients["supabase"].delete_post(record_id)
                             if result.get("success"):
                                 st.session_state[action_key] = "reject_success"
+                                st.success("🗑️ Post deleted from database, refreshing...")
                                 st.rerun()
+                            else:
+                                st.error(f"Failed to delete: {result.get('error', 'Unknown error')}")
                         except Exception as e:
                             st.error(f"Error rejecting post: {str(e)}")
                     else:

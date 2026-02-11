@@ -108,14 +108,20 @@ class SupabaseClient:
             response = self.client.table("posts").update(
                 {"status": new_status, "updated_at": datetime.now().isoformat()}
             ).eq("id", record_id).execute()
+            print(f"[DEBUG] Updated post {record_id} status to '{new_status}'")
+            print(f"[DEBUG] Response: {response.data}")
             return {"success": True, "data": response.data}
         except Exception as e:
+            print(f"[DEBUG] Error updating post {record_id}: {str(e)}")
             return {"success": False, "error": str(e)}
 
     def delete_post(self, record_id: str) -> Dict:
         """Delete a post from the database"""
         try:
             response = self.client.table("posts").delete().eq("id", record_id).execute()
+            print(f"[DEBUG] Deleted post {record_id}")
+            print(f"[DEBUG] Response: {response.data}")
             return {"success": True, "data": response.data}
         except Exception as e:
+            print(f"[DEBUG] Error deleting post {record_id}: {str(e)}")
             return {"success": False, "error": str(e)}
