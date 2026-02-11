@@ -128,8 +128,11 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                             result = clients["supabase"].update_status(record_id, "Approved")
                             if result.get("success"):
                                 st.session_state[action_key] = "approve_success"
+                                st.rerun()
                         except Exception as e:
                             st.error(f"Error approving post: {str(e)}")
+                    else:
+                        st.error("❌ Supabase client not available")
                     results["action"] = "approve"
             with col2:
                 if st.button("❌", key=f"reject_{record_id}", help="Reject"):
@@ -138,8 +141,11 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                             result = clients["supabase"].delete_post(record_id)
                             if result.get("success"):
                                 st.session_state[action_key] = "reject_success"
+                                st.rerun()
                         except Exception as e:
                             st.error(f"Error rejecting post: {str(e)}")
+                    else:
+                        st.error("❌ Supabase client not available")
                     results["action"] = "reject"
             with col3:
                 if st.button("✏️", key=f"edit_{record_id}", help="Edit"):
