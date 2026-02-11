@@ -8,6 +8,7 @@ import streamlit as st
 import sys
 import os
 from pathlib import Path
+from typing import List, Dict
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent))
