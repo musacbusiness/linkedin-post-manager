@@ -159,47 +159,99 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                     st.session_state[expand_key] = not st.session_state[expand_key]
                     results["action"] = "edit"
 
-        # Title and content
-        st.write(f"**{fields.get('Title', 'Untitled')[:60]}**")
+        # Clickable title to expand post
+        title = fields.get('Title', 'Untitled')
+        if st.button(f"**{title[:60]}**", key=f"title_expand_{record_id}", use_container_width=True):
+            st.session_state[expand_key] = not st.session_state[expand_key]
 
-        # Image if available
-        image_url = fields.get("Image URL")
-        if image_url:
-            try:
-                st.image(image_url, width=150)
-            except:
-                st.caption("📸 Image unavailable")
+        # Image if available (only show in collapsed view)
+        if not st.session_state[expand_key]:
+            image_url = fields.get("Image URL")
+            if image_url:
+                try:
+                    st.image(image_url, width=150)
+                except:
+                    st.caption("📸 Image unavailable")
 
-        # Post content preview
-        content = fields.get("Post Content", "")
-        if content:
-            st.caption(content[:150] + ("..." if len(content) > 150 else ""))
+            # Post content preview
+            content = fields.get("Post Content", "")
+            if content:
+                st.caption(content[:150] + ("..." if len(content) > 150 else ""))
 
-        # Bottom info
-        col1, col2 = st.columns([2, 1])
-        with col1:
+            # Bottom info (collapsed view)
             created = format_date(fields.get("Created"))
             st.caption(f"📅 Created: {created}")
-        with col2:
-            if st.button("▼ Expand", key=f"expand_btn_{record_id}", use_container_width=True):
-                st.session_state[expand_key] = not st.session_state[expand_key]
 
-        # Expanded view
+        # Expanded view with full details and editing
         if st.session_state[expand_key]:
             st.divider()
             st.subheader("Full Post Details")
-            col1, col2 = st.columns(2)
 
+            # Image in expanded view
+            image_url = fields.get("Image URL")
+            if image_url:
+                try:
+                    st.image(image_url, width=250)
+                except:
+                    st.caption("📸 Image unavailable")
+
+            # Editable fields
+            st.write("**Edit Post Content:**")
+
+            col1, col2 = st.columns(2)
             with col1:
-                st.write("**Content:**")
-                st.write(fields.get("Post Content", "No content"))
+                edited_title = st.text_input(
+                    "Title",
+                    value=fields.get("Title", ""),
+                    key=f"title_input_{record_id}"
+                )
 
             with col2:
-                st.write("**Metadata:**")
+                edited_content = st.text_area(
+                    "Content",
+                    value=fields.get("Post Content", ""),
+                    height=100,
+                    key=f"content_input_{record_id}"
+                )
+
+            # Save button
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                if st.button("💾 Save Changes", key=f"save_{record_id}", use_container_width=True):
+                    if clients and "supabase" in clients:
+                        try:
+                            # Update both title and content
+                            response = clients["supabase"].client.table("posts").update({
+                                "title": edited_title,
+                                "post_content": edited_content,
+                                "updated_at": datetime.now().isoformat()
+                            }).eq("id", record_id).execute()
+                            st.success("✅ Changes saved!")
+                            st.session_state[expand_key] = False
+                            st.rerun()
+                        except Exception as e:
+                            st.error(f"Error saving changes: {str(e)}")
+
+            with col2:
+                if st.button("🎨 Regenerate Image", key=f"regen_img_{record_id}", use_container_width=True):
+                    st.info("🖼️ Image regeneration coming soon!")
+
+            with col3:
+                if st.button("✕ Close", key=f"close_expand_{record_id}", use_container_width=True):
+                    st.session_state[expand_key] = False
+                    st.rerun()
+
+            # Metadata
+            st.divider()
+            st.write("**Metadata:**")
+            col1, col2 = st.columns(2)
+            with col1:
                 st.caption(f"Status: {fields.get('Status', 'Unknown')}")
                 st.caption(f"Created: {format_date(fields.get('Created', ''))}")
+            with col2:
                 if fields.get("Scheduled Time"):
                     st.caption(f"Scheduled: {format_date(fields.get('Scheduled Time', ''))}")
+                st.caption(f"ID: {record_id}")
 
         st.divider()
 
