@@ -155,8 +155,8 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                     results["action"] = "reject"
             with col3:
                 if st.button("✏️", key=f"edit_{record_id}", help="Edit"):
-                    # Toggle expand state
-                    st.session_state[expand_key] = not st.session_state[expand_key]
+                    # Open expanded view for editing
+                    st.session_state[expand_key] = True
                     results["action"] = "edit"
 
         # Clickable title to expand post
