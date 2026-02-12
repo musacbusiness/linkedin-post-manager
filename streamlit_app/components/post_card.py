@@ -155,8 +155,8 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                     results["action"] = "reject"
             with col3:
                 if st.button("✏️", key=f"edit_{record_id}", help="Edit"):
-                    # Open expanded view for editing
-                    st.session_state[expand_key] = True
+                    # Open full-page editor
+                    st.session_state["editing_post"] = record_id
                     results["action"] = "edit"
 
         # Clickable title to expand post
@@ -182,107 +182,50 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
             created = format_date(fields.get("Created"))
             st.caption(f"📅 Created: {created}")
 
-        # Expanded view with full details and editing
+        # Expanded view - preview only (no editing - edit goes to full page)
         if st.session_state[expand_key]:
             st.divider()
+            st.markdown("### 📖 Post Preview")
 
-            # Header with title and close button
-            col_title, col_close = st.columns([0.95, 0.05])
-            with col_title:
-                st.markdown("### ✏️ Edit Post")
-            with col_close:
-                if st.button("✕", key=f"close_expand_{record_id}", help="Close"):
-                    st.session_state[expand_key] = False
-                    st.rerun()
+            # Image in expanded view
+            image_url = fields.get("Image URL")
+            if image_url:
+                try:
+                    st.image(image_url, width=300)
+                except:
+                    st.caption("📸 Image unavailable")
 
+            # Full content
+            st.markdown("**Title:**")
+            st.write(fields.get("Title", "Untitled"))
+
+            st.markdown("**Content:**")
+            st.write(fields.get("Post Content", ""))
+
+            # Metadata
             st.divider()
-
-            # Main content: Image on left, form fields on right
-            col_image, col_form = st.columns([1, 1.5])
-
-            with col_image:
-                st.markdown("**📸 Post Image**")
-                image_url = fields.get("Image URL")
-                if image_url:
-                    try:
-                        st.image(image_url, use_column_width=True)
-                    except:
-                        st.info("📸 Image unavailable")
-                else:
-                    st.info("No image yet")
-
-                if st.button("🎨 Regenerate Image", key=f"regen_img_{record_id}", use_container_width=True):
-                    st.info("🖼️ Image regeneration coming soon!")
-
-            with col_form:
-                st.markdown("**📝 Content**")
-
-                edited_title = st.text_input(
-                    "Post Title",
-                    value=fields.get("Title", ""),
-                    placeholder="Enter post title...",
-                    key=f"title_input_{record_id}"
-                )
-
-                edited_content = st.text_area(
-                    "Post Content",
-                    value=fields.get("Post Content", ""),
-                    height=150,
-                    placeholder="Enter post content...",
-                    key=f"content_input_{record_id}"
-                )
-
-                # Character count
-                char_count = len(edited_content)
-                st.caption(f"📊 {char_count} characters")
-
-            st.divider()
-
-            # Action buttons
-            button_col1, button_col2, button_col3 = st.columns(3)
-
-            with button_col1:
-                if st.button("💾 Save Changes", key=f"save_{record_id}", use_container_width=True):
-                    if clients and "supabase" in clients:
-                        try:
-                            response = clients["supabase"].client.table("posts").update({
-                                "title": edited_title,
-                                "post_content": edited_content,
-                                "updated_at": datetime.now().isoformat()
-                            }).eq("id", record_id).execute()
-                            st.success("✅ Changes saved!")
-                            st.session_state[expand_key] = False
-                            st.rerun()
-                        except Exception as e:
-                            st.error(f"Error saving changes: {str(e)}")
-
-            with button_col2:
-                if st.button("🔄 Discard Changes", key=f"discard_{record_id}", use_container_width=True):
-                    st.session_state[expand_key] = False
-                    st.rerun()
-
-            with button_col3:
-                st.empty()
-
-            st.divider()
-
-            # Metadata section
-            st.markdown("**📋 Post Details**")
-
+            st.markdown("**Details:**")
             meta_col1, meta_col2 = st.columns(2)
 
             with meta_col1:
                 status = fields.get("Status", "Unknown")
-                st.markdown(f"**Status:** {status}")
+                st.caption(f"Status: {status}")
                 created = format_date(fields.get("Created", ""))
-                st.markdown(f"**Created:** {created}")
+                st.caption(f"Created: {created}")
 
             with meta_col2:
                 scheduled_time = fields.get("Scheduled Time")
                 if scheduled_time:
                     scheduled = format_date(scheduled_time)
-                    st.markdown(f"**Scheduled:** {scheduled}")
-                st.markdown(f"**ID:** `{record_id}`")
+                    st.caption(f"Scheduled: {scheduled}")
+                st.caption(f"ID: {record_id}")
+
+            st.divider()
+
+            # Collapse button
+            if st.button("▲ Collapse", key=f"collapse_{record_id}", use_container_width=True):
+                st.session_state[expand_key] = False
+                st.rerun()
 
         st.divider()
 

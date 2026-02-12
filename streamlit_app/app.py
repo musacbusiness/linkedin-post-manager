@@ -25,6 +25,7 @@ from components.post_table import (
     render_post_row,
 )
 from components.post_card import render_posts_grid, render_post_card
+from components.post_editor import render_post_editor
 from components.dashboard import render_dashboard
 from components.calendar_view import render_calendar_view, render_calendar_mini
 
@@ -129,6 +130,19 @@ def render_posts_section(posts, clients):
     """Render the Posts section with card grid view and bulk actions"""
     st.title("📝 Posts")
 
+    # Check if we're editing a post - if so, show full-page editor
+    if "editing_post" in st.session_state and st.session_state["editing_post"]:
+        editing_post_id = st.session_state["editing_post"]
+        # Find the post to edit
+        post_to_edit = next((p for p in posts if p.get("id") == editing_post_id), None)
+        if post_to_edit:
+            render_post_editor(post_to_edit, clients)
+            return
+        else:
+            st.error(f"Post {editing_post_id} not found")
+            st.session_state["editing_post"] = None
+            st.rerun()
+
     # Pre-initialize session state for ALL posts (before any widget rendering)
     initialize_post_state(posts)
 
@@ -184,7 +198,8 @@ def render_posts_section(posts, clients):
             elif action == "reject":
                 st.warning(f"Rejected post {record_id}")
             elif action == "edit":
-                st.info(f"Editing post {record_id}")
+                st.session_state["editing_post"] = record_id
+                st.rerun()
             elif action == "expand":
                 st.info(f"Expanding post {record_id}")
 
