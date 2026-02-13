@@ -59,8 +59,10 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
 
         st.divider()
 
-        if st.button("🎨 Regenerate Image", key=f"regen_img_full_{record_id}", use_container_width=True):
-            st.info("🖼️ Image regeneration coming soon!")
+        # Show appropriate button text based on whether image exists
+        button_text = "🎨 Regenerate Image" if image_url else "🎨 Generate Image"
+        if st.button(button_text, key=f"regen_img_full_{record_id}", use_container_width=True):
+            st.info("🖼️ Image generation coming soon!")
 
     with col_form:
         st.markdown("### 📝 Content")
