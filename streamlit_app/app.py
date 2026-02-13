@@ -64,7 +64,10 @@ st.markdown("""
 
 @st.cache_resource
 def init_clients():
-    """Initialize API clients (cached for session)"""
+    """Initialize API clients (cached for session)
+
+    Version: 2 (google/nano-banana-pro model)
+    """
     clients = {
         "supabase": SupabaseClient(),
         "modal": ModalClient(),
