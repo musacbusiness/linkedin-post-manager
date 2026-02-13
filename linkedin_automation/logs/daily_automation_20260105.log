@@ -1,0 +1,10 @@
+========================================
+Daily Automation Started: Mon Jan  5 06:05:06 EST 2026
+========================================
+Traceback (most recent call last):
+  File "/Users/musacomma/Agentic Workflow/linkedin_automation/RUN_linkedin_automation.py", line 27, in <module>
+    from execution.research_content import ContentResearcher
+  File "/Users/musacomma/Agentic Workflow/linkedin_automation/execution/research_content.py", line 20, in <module>
+    from utils.cost_optimizer import CostTracker, PromptCache, PromptCompressor
+ModuleNotFoundError: No module named 'utils'
+Completed: Mon Jan  5 06:05:07 EST 2026

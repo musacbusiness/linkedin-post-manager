@@ -1,0 +1,247 @@
+[
+  {
+    "title": "Senior Full-Stack Engineer & Automation Expert Needed",
+    "url": "https://www.upwork.com/jobs/Senior-Full-Stack-Engineer-amp-span-class-highlight-Automation-span-Expert-Needed_~021997457305876246703/?referrer_url_path=/nx/search/jobs",
+    "description": "We are seeking a highly skilled Senior Full-Stack Engineer with proven expertise in automation. The ideal candidate will have extensive experience in both front-end and back-end development, as well as a strong understanding of automation tools and practices. You will be responsible for designing, developing, and maintaining web applications while implementing to streamline processes. If you are passionate about coding and improving efficiency, we want to hear from you!",
+    "budget": 0,
+    "job_type": "fixed-price",
+    "skills": [
+      "Python",
+      "JavaScript",
+      "API",
+      "Amazon Web Services",
+      "Node.js"
+    ],
+    "client": {
+      "rating": 5.0,
+      "reviews": 0,
+      "spent": "$0",
+      "country": "",
+      "payment_verified": true
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:41:55.706378",
+    "id": "021997457305876246703"
+  },
+  {
+    "title": "Python Audio Data Engineer (Streamlit + Librosa) - MVP Build",
+    "url": "https://www.upwork.com/jobs/span-class-highlight-Python-span-Audio-Data-Engineer-Streamlit-Librosa-MVP-Build_~021997433134962059283/?referrer_url_path=/nx/search/jobs",
+    "description": "We are a music technology company building an internal data pipeline to process and label a dataset of 30,000+ audio tracks. We need a Python expert to build a local desktop app (using Streamlit) that allows our team to ingest, validate, slice, and rename audio files for machine learning training. The Goal: Build a \"Walking Skeleton\" MVP of a local Data Labeling App that runs on a desktop (Mac/PC). The Workflow You Will Build: Ingest: User selects a local source folder containing Audio Stems (.wav) and MIDI files (.mid). Auto-Pair: The script automatically matches Audio files to MIDI files based on filename similarity. Visual Slicer: The app displays a waveform visualizer (using librosa or similar). The user selects a start/end point (e.g., 16 bars) and clicks \"Crop.\" Process: The app slices BOTH the Audio and the MIDI to that exact length simultaneously. Rename & Save: The user selects tags from a dropdown (e.g., Group: \"Bass\", Instrument: \"Sub\"). The app automatically renames the files according to our strict schema ([UID]_[Group]_[Instrument].wav) and saves them to a clean output folder. Required Tech Stack: (Expert) Streamlit (For the UI) Librosa / Pydub / Soundfile (For audio processing) Pandas (For metadata handling) To Apply: Please answer these two questions in your proposal: Have you worked with Librosa or audio processing in before? (Share a brief example). Have you built a Streamlit app that handles local file manipulation? We need this MVP delivered within 3-5 days. This is a paid test project for a much larger build. We are building a massive dataset for 2026 and need a Lead Engineer to manage the pipeline long-term. If you crush this MVP, there is significant ongoing work available.",
+    "budget": 0,
+    "job_type": "fixed-price",
+    "skills": [
+      "Python",
+      "Automation",
+      "Streamlit",
+      "Digital Signal Processing",
+      "Scripting"
+    ],
+    "client": {
+      "rating": 5.0,
+      "reviews": 0,
+      "spent": "$200\nspent",
+      "country": "",
+      "payment_verified": true
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:42:00.530764",
+    "id": "021997433134962059283"
+  },
+  {
+    "title": "AI Automation Developer Needed \u2013 Build Fully Automated Travel Deals Engine (Traveltxter)",
+    "url": "https://www.upwork.com/jobs/span-class-highlight-Automation-span-Developer-Needed-Build-Fully-span-class-highlight-Automated-span-Travel-Deals-Engine-Traveltxter_~021997387350921130159/?referrer_url_path=/nx/search/jobs",
+    "description": "Build Fully Automated AI Travel Deals Engine (Traveltxter)** ## **Project Overview** I am building **Traveltxter** \u2014 an **AI-powered, fully automated travel deals engine** for UK backpackers and solo travellers. The system must: * Collect flight deals automatically * Use AI to classify & score them * Auto-generate Instagram-ready captions & hashtags * Organise everything in a clean database * Support manual + scheduling * Be simple enough that a beginner can manage it once built This is **not just an Instagram page** \u2014 it is a **scalable AI travel intelligence system**. --- ## **\u2705 What I Need Built (Full Scope)** ### **1. Central Deal Database** Build either: * Google Sheets **or** * Airtable (preferred) With these fields: * Origin * Destination City * Destination Airport Code * Country * Outbound Date * Return Date * Price (\u00a3) * Airline / Notes * Theme (ski, surf, cultural, festival, beach, city_break, all_round) * Season Fit Score (0\u201310) * Backpacker AI Score (0\u201310) * Why It\u2019s Good (1\u20132 sentences) * Booking Link * Post Status (Not Started / Draft / Scheduled / Posted) * Instagram Caption * Instagram Hashtags * Canva Template Link * Language Must include: * Filtered views (Ready to Post, High Score Only, Posted, etc.) * Clean formatting & validation rules where relevant. --- ### **2. Deal Ingestion** Set up at least **ONE live source**, such as: * Email flight deal feeds \u2192 Database * OR CSV/API feed \u2192 Database Using: * Zapier **or** * Make.com System must: * Detect new deals * Parse key details * Insert into the database automatically --- ### **3. AI Classification & Caption Generation** using OpenAI / ChatGPT API: For each qualifying deal: * Assign theme * Assign Season Fit Score * Assign Backpacker Score * Generate: * Instagram caption (UK backpacker tone) * 15\u201320 hashtags Must update the database automatically. --- ### **4. Instagram Posting Workflow** Set up a clean workflow that supports: Option A (Semi-Auto): * Canva templates * Captions auto-generated * Manual scheduling via Meta Business Suite Option B (Fully-Auto if possible): * Database \u2192 Scheduler \u2192 Instagram auto-post I\u2019m flexible depending on platform API limits. --- ### **5. Canva Setup** * Create or connect to **one reusable Canva template** * Fields must be auto-editable for: * Origin / Destination * Dates * Price * Scores System should support **fast bulk post creation**. --- ### **6. Beginner-Friendly Documentation** This is CRITICAL. You must deliver: * A full **step-by-step setup guide for a beginner** * With: * Tool signups * Where to click * What credentials to paste * How to approve & post deals * Written so even a **12-year-old could follow it** Include: * Screenshots OR Loom walkthroughs * Troubleshooting section --- ## **\u2705 Tools I\u2019m Open To** You may use: * Airtable or Google Sheets * Zapier or Make.com * OpenAI / ChatGPT API * Canva * Meta Business Suite, Buffer, or Later Recommend the **simplest, cheapest reliable stack**. --- ## **\u2705 Deliverables** You must provide: * Fully working system * Live deal ingestion * AI scoring + captions * Clean database with views * Canva template structure * Posting workflow * Full documentation * Optional: Loom video walkthrough --- ## **\u2705 Experience Required** You MUST have experience with at least two of the following: * Zapier / Make.com * Airtable * OpenAI API * Social media * No-code workflows Please include: * Examples of similar projects * Screenshots or portfolio if available --- ## **\u2705 Budget & Timeline** * Budget: **Open to fair professional rates** * Timeline: **7\u201314 days for full build** --- ## **\u2705 Long-Term Vision** This project will expand into: * Multi-language content * Subscription alerts * Mobile app * White-label B2B system If successful, I will need **long-term developers** and partners. --- ## **\u2705 To Apply, Freelancer Must Answer:** 1. Which tools would you personally recommend for this build & why? 2. Have you built AI + systems before? Examples? 3. Can you include full beginner documentation + videos? 4. Can this system later support multi-language output & scaling? 5. Estimated timeline for a working MVP? --- ## **Tone Reminder for Freelancers** This is a **serious & AI build**, not a simple IG posting job. I\u2019m looking for someone who: * Thinks in systems * Builds clean workflows * And documents properly.",
+    "budget": 0,
+    "job_type": "fixed-price",
+    "skills": [
+      "Python",
+      "API",
+      "JavaScript",
+      "WordPress",
+      "Machine Learning",
+      "Artificial Intelligence"
+    ],
+    "client": {
+      "rating": 0.0,
+      "reviews": 0,
+      "spent": "$0\nspent",
+      "country": "",
+      "payment_verified": false
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:42:05.468521",
+    "id": "021997387350921130159"
+  },
+  {
+    "title": "Freelance Integration Manager for AI & Backend Automation",
+    "url": "https://www.upwork.com/jobs/Freelance-Integration-Manager-for-amp-Backend-span-class-highlight-Automation-span_~021997393467411738799/?referrer_url_path=/nx/search/jobs",
+    "description": "We are a Conversational AI company looking for a highly technical Integration Manager. Our product interacts with thousands of users, and we need a specialist to ensure that the data from those conversations flows seamlessly into our clients' diverse ecosystems. We are looking for a \"Universal Adapter\"\u2014someone who can take our AI's webhook payload and successfully route it to any destination system, regardless of the platform or CRM involved. The Role You will be responsible for the technical execution and maintenance of our integration pipelines. You are not limited to one specific tool; you use whatever is necessary to get the data from Point A to Point B reliably. Universal Integration: Building connections to a wide variety of external systems (e.g., CRMs like Monday/HubSpot, ERPs, Support Ticketing systems, or Databases). Pipeline Architecture: Designing end-to-end workflows that handle data ingestion, transformation, and syncing using standard platforms or custom methods. API Management: Handling all technical aspects of connectivity, including Authentication (OAuth 2.0, API Keys), pagination, rate limiting, and webhooks. Data Reliability: ensuring 100% data accuracy. You must implement robust error handling (retries, dead-letter queues) to ensure no conversation data is lost if an external API goes down. Requirements Platform Agnostic: You possess deep proficiency in the low-code/no-code landscape. You are comfortable building complex workflows in tools such as Make.com, n8n, Zapier, or Tray.io, but you are not reliant on just one. Strong API Fluency: You can read any API documentation (REST or GraphQL) and implement the connection independently. You understand headers, methods (GET/POST/PUT), and response codes. Data Manipulation: You are an expert at parsing and transforming data (JSON, Arrays, Collections) to ensure the AI's output matches the strict schema of the destination system. Scripting Knowledge: Ability to write code snippets (JavaScript, ) within workflows when the visual tools fall short.",
+    "budget": 35,
+    "job_type": "hourly",
+    "skills": [
+      "Python",
+      "API",
+      "Java",
+      "JavaScript",
+      "PHP"
+    ],
+    "client": {
+      "rating": 4.7,
+      "reviews": 0,
+      "spent": "$0",
+      "country": "",
+      "payment_verified": true
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:42:10.362539",
+    "id": "021997393467411738799"
+  },
+  {
+    "title": "Python Developer Needed for Grocery Store Web Scraper",
+    "url": "https://www.upwork.com/jobs/span-class-highlight-Python-span-Developer-Needed-for-Grocery-Store-Web-Scraper_~021997431790523489681/?referrer_url_path=/nx/search/jobs",
+    "description": "I am seeking an experienced Python developer to create a web scraper for a grocery store website. The scraper should efficiently extract product details, url, prices, and images, storing the data in a structured json format according to example templates that will be provided. The ideal candidate will have experience with web scraping libraries, robust error handling, scraping techniques to ensure website access and familiarity with the grocery domain. Successful completion will be defined as delivery of robust scraper code with error handling, and any required libraries so that I can run locally on my Mac, and all products metadata is scraped successfully and verified during testing. If this project is successful, 4 more stores can be subsequently completed after the first and as separate projects.",
+    "budget": 0,
+    "job_type": "fixed-price",
+    "skills": [
+      "Python",
+      "Scrapy",
+      "Data Scraping"
+    ],
+    "client": {
+      "rating": 5.0,
+      "reviews": 0,
+      "spent": "$0",
+      "country": "",
+      "payment_verified": true
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:42:15.315864",
+    "id": "021997431790523489681"
+  },
+  {
+    "title": "AI Automation Specialist (n8n / Make / Klaviyo)",
+    "url": "https://www.upwork.com/jobs/span-class-highlight-Automation-span-Specialist-n8n-Make-Klaviyo_~021997422877621357586/?referrer_url_path=/nx/search/jobs",
+    "description": "I\u2019m looking for an AI + automation specialist to help build and maintain workflows across our tech stack, with a focus on n8n and Make. You\u2019ll support a growing retention marketing agency that is expanding into content creation, SEO, and paid ads. We use automations across Klaviyo, Slack, ClickUp, Google Sheets, and Airtable to keep operations fast, accurate, and scalable. What You Will Do Build, test, and maintain workflows in n8n and Make Integrate tools including: Klaviyo (events, flow triggers, webhooks, profile updates) Slack (notifications, alerts, approvals) ClickUp (task creation, status updates, onboarding sequences) Google Sheets ( logs, dashboards, reporting) Airtable (database syncing, calendars, content organization) Create for retention marketing processes, such as: Syncing Klaviyo metrics to Sheets or Airtable Auto-generating ClickUp tasks based on forms or campaign milestones Sending Slack alerts for key events or errors Document workflows clearly for future updates Suggest opportunities that increase efficiency and reduce manual work Who I\u2019m Looking For Open to hiring both junior and experienced candidates. Junior / Beginner Level Some hands-on experience with n8n or Make (personal or small client projects) Comfortable experimenting with APIs and JSON Fast learner and good problem solver Experienced Builder Proven ability to create production-level workflows in n8n or Make Experience integrating Klaviyo or similar email platforms Strong understanding of conditional logic, routing, and error handling Nice-to-Have Skills Klaviyo experience (especially for ecommerce / DTC) Understanding of email + SMS retention marketing Familiarity with Zapier or similar tools Basic scripting knowledge (JavaScript or ) is a plus About the Agency We are a retention marketing agency specializing in email + SMS, now expanding into content creation, SEO, and paid ads. support nearly every part of the business\u2014from reporting to content operations to client communication\u2014so this role has a major impact. How to Apply To be considered, please begin your proposal with KLAVIYO. After that, include 2\u20133 sentences on how you would integrate or Klaviyo using n8n or Make. Please also include: A short description of your experience with tools Examples of workflows you have built (describe what they did and the problem they solved) Your level of experience (junior or experienced) Your availability and time zone Your hourly rate or preferred pricing structure Proposals that do not follow the required KLAVIYO instruction will not be considered.",
+    "budget": 35,
+    "job_type": "hourly",
+    "skills": [
+      "Email Automation",
+      "CRM Automation",
+      "Omnichannel Automation",
+      "Marketing Automation",
+      "AI Agent Development"
+    ],
+    "client": {
+      "rating": 4.5,
+      "reviews": 0,
+      "spent": "$0",
+      "country": "",
+      "payment_verified": true
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:42:20.229587",
+    "id": "021997422877621357586"
+  },
+  {
+    "title": "Python developer to build a high-performance automated trading bot for the online Exchanges",
+    "url": "https://www.upwork.com/jobs/span-class-highlight-Python-span-developer-build-high-performance-span-class-highlight-automated-span-trading-bot-for-the-online-Exchanges_~021997405336008601775/?referrer_url_path=/nx/search/jobs",
+    "description": "I am looking for an experienced Python developer to build a high-performance automated trading bot for the Betfair Exchange (or Smarkets). The bot will focus on Pre-Race Horse Racing markets using a \"Green Book\" / Scalping strategy. The goal is to automate the process of entering a market, securing a tick-offset profit, and \"Greening Up\" (hedging) before the race starts to lock in a guaranteed profit regardless of the outcome. Core Responsibilities: Develop a bot using that connects to the Exchanges API (Stream API, strictly no polling due to latency). Implement Back-to-Lay and Lay-to-Back strategies based on specific triggers (e.g., Weight of Money, Price Momentum, Crossover). Implement rigorous Risk Management: Stop Loss: Auto-close position if the market moves X ticks against me. Fill or Kill: Cancel orders if not matched within X milliseconds. Time-to-Jump Exit: Hard-coded rule to close ALL positions and Green Up exactly 60 seconds before the official start time. Ensure the bot can handle \"Green Book\" calculations (distributing profit evenly across all runners). Deploy the bot on a VPS (AWS/Google Cloud) for minimal latency. Technical Requirements: Proven experience with Betfair API-NG (Exchange). Strong knowledge of 3. Experience with flumine or betfairlightweight libraries is a HUGE plus. Understanding of asynchronous programming (asyncio) to handle real-time data streams without blocking. Experience with database storage (PostgreSQL or InfluxDB) to log market data for backtesting is preferred. What I Expect: Clean, commented source code. I must own the IP (Intellectual Property). A configuration file (JSON/YAML) where I can easily adjust variables (Stake size, Stop Loss ticks, Offset ticks, Timer settings) without touching the code. A simple dashboard or CLI (Command Line Interface) to monitor live P&L. To Apply, Please Answer: Have you built a Betfair Exchange bot before? If yes, what strategy did it use? Are you familiar with the flumine framework? How do you handle \"In-Play\" risk (preventing the bot from gambling when the race starts)? How do you manage API rate limits while maintaining speed?",
+    "budget": 0,
+    "job_type": "fixed-price",
+    "skills": [
+      "Python",
+      "Automation",
+      "API",
+      "Bot Development",
+      "API Development",
+      "API Integration",
+      "Amazon Web Services"
+    ],
+    "client": {
+      "rating": 0.0,
+      "reviews": 0,
+      "spent": "$0\nspent",
+      "country": "",
+      "payment_verified": false
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:42:25.126512",
+    "id": "021997405336008601775"
+  },
+  {
+    "title": "Reddit Bot Development for Loan Tracking",
+    "url": "https://www.upwork.com/jobs/Reddit-Bot-Development-for-Loan-Tracking_~021997422166265142673/?referrer_url_path=/nx/search/jobs",
+    "description": "Seeking a skilled developer to rebuild and secure a Reddit bot for loan tracking. Reddit just updated to Devvit, and the loans-bot I was just deploying got outdated, as I do not have an old API key. They have not been too responsive to emails, but they released Devvit and it should be able to be done through that. Need a bot that would be on par with LoansBot, we are a subreddit focused on the exact same thing as /borrow/, who LoansBot was made for. Pictures are now just reference, and you can refer to LoansBot github to see how it worked on the old Reddit API. https://github.com/Tjstretchalot/LoansBot",
+    "budget": 0,
+    "job_type": "fixed-price",
+    "skills": [
+      "Python",
+      "API"
+    ],
+    "client": {
+      "rating": 0.0,
+      "reviews": 0,
+      "spent": "$0\nspent",
+      "country": "",
+      "payment_verified": true
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:42:30.043633",
+    "id": "021997422166265142673"
+  },
+  {
+    "title": "Fix Facebook Selenium Scraper",
+    "url": "https://www.upwork.com/jobs/Fix-Facebook-Selenium-Scraper_~021997377036755930130/?referrer_url_path=/nx/search/jobs",
+    "description": "I have a python selenium script that follows the below process but is currently buggy (doesn't always open each post and download the post text + all images of the post). It needs to work for all posts in one public group (get post text and put into a folder -- eg: folder '1' for first post; then put all images from that post into that same folder -- proceed to next post (skip any 'comments on a picture' that show up in the feed). The scraper works on a public group so security isn't a concern. You can create a fb account with any email to login. Please update my attached selenium script for this functionality to fully work. (Formal procedure here as reference); 0. Enter facebook login credentials on line 121 1. Opens Firefox browser (headed mode - you can watch it) 2. Logs into Facebook with your credentials 3. Navigates to the public group 4. Scrolls through feed, clicking on images to open photo viewer 5. Uses right-arrow to get ALL images in each post 6. Downloads full-resolution images + extracts post text 7. Saves to folders: 1/post.txt, 1/image_1.jpg, etc. 8. Tracks progress in progress.json to resume if stopped",
+    "budget": 0,
+    "job_type": "fixed-price",
+    "skills": [
+      "Python",
+      "Selenium"
+    ],
+    "client": {
+      "rating": 5.0,
+      "reviews": 0,
+      "spent": "$0",
+      "country": "",
+      "payment_verified": true
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:42:34.851062",
+    "id": "021997377036755930130"
+  },
+  {
+    "title": "PDF to Markdown Conversion Using Python",
+    "url": "https://www.upwork.com/jobs/PDF-Markdown-Conversion-Using-span-class-highlight-Python-span_~021997406304829843475/?referrer_url_path=/nx/search/jobs",
+    "description": "We are seeking a skilled freelancer to convert three PDF files into Markdown format using Python. The ideal candidate should have experience with PDF parsing libraries and be able to preserve the formatting of the original documents while ensuring the Markdown output is clean and accurate. Attention to detail and familiarity with Markdown syntax is essential for this project. If you have a strong background in and document conversion, we would love to hear from you!",
+    "budget": 0,
+    "job_type": "fixed-price",
+    "skills": [
+      "Python",
+      "Automation",
+      "JavaScript",
+      "HTML",
+      "API"
+    ],
+    "client": {
+      "rating": 5.0,
+      "reviews": 0,
+      "spent": "$0",
+      "country": "",
+      "payment_verified": true
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:42:39.679352",
+    "id": "021997406304829843475"
+  }
+]

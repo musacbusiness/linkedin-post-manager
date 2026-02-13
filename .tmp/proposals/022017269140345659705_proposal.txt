@@ -1,0 +1,19 @@
+**Your hiring bottleneck isn't sourcing—it's the manual screening that kills your time between "apply" and "interview."**
+
+You've already built the Retell agent, which tells me you understand the value of automating the qualification step. Now you need the connective tissue: webhooks that actually work, data flowing cleanly between systems, and logic that doesn't break when Indeed sends malformed data (and they will).
+
+**Why I'm the right fit:**
+
+I build business automation systems at ScaleAxis—not just workflows, but the operational logic behind them. I've integrated webhook-based hiring flows before, including handling the quirks of job board APIs and voice AI callbacks. The Indeed → Retell → Sheets → notification chain you're describing is straightforward for me.
+
+**My approach:**
+
+1. Map your exact trigger conditions for Retell calls (what "certain criteria" means in your context)
+2. Build each flow with error handling and logging (so you can debug without calling me)
+3. Document everything—you'll own this system, not depend on me
+
+**Timeline:** 8-12 hours total, delivered within 5-7 days.
+
+**Quick math:** If this saves you 30 minutes per applicant and you process 50/month, that's 25 hours back. System pays for itself in month one.
+
+**Question:** What's the volume of Indeed applications you're expecting weekly? That affects how I structure the Sheets monitoring.

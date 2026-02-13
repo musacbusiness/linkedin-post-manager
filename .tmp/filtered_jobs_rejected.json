@@ -1,0 +1,30 @@
+[
+  {
+    "title": "AI Automation Specialist (n8n / Make / Klaviyo)",
+    "url": "https://www.upwork.com/jobs/span-class-highlight-Automation-span-Specialist-n8n-Make-Klaviyo_~021997422877621357586/?referrer_url_path=/nx/search/jobs",
+    "description": "I\u2019m looking for an AI + automation specialist to help build and maintain workflows across our tech stack, with a focus on n8n and Make. You\u2019ll support a growing retention marketing agency that is expanding into content creation, SEO, and paid ads. We use automations across Klaviyo, Slack, ClickUp, Google Sheets, and Airtable to keep operations fast, accurate, and scalable. What You Will Do Build, test, and maintain workflows in n8n and Make Integrate tools including: Klaviyo (events, flow triggers, webhooks, profile updates) Slack (notifications, alerts, approvals) ClickUp (task creation, status updates, onboarding sequences) Google Sheets ( logs, dashboards, reporting) Airtable (database syncing, calendars, content organization) Create for retention marketing processes, such as: Syncing Klaviyo metrics to Sheets or Airtable Auto-generating ClickUp tasks based on forms or campaign milestones Sending Slack alerts for key events or errors Document workflows clearly for future updates Suggest opportunities that increase efficiency and reduce manual work Who I\u2019m Looking For Open to hiring both junior and experienced candidates. Junior / Beginner Level Some hands-on experience with n8n or Make (personal or small client projects) Comfortable experimenting with APIs and JSON Fast learner and good problem solver Experienced Builder Proven ability to create production-level workflows in n8n or Make Experience integrating Klaviyo or similar email platforms Strong understanding of conditional logic, routing, and error handling Nice-to-Have Skills Klaviyo experience (especially for ecommerce / DTC) Understanding of email + SMS retention marketing Familiarity with Zapier or similar tools Basic scripting knowledge (JavaScript or ) is a plus About the Agency We are a retention marketing agency specializing in email + SMS, now expanding into content creation, SEO, and paid ads. support nearly every part of the business\u2014from reporting to content operations to client communication\u2014so this role has a major impact. How to Apply To be considered, please begin your proposal with KLAVIYO. After that, include 2\u20133 sentences on how you would integrate or Klaviyo using n8n or Make. Please also include: A short description of your experience with tools Examples of workflows you have built (describe what they did and the problem they solved) Your level of experience (junior or experienced) Your availability and time zone Your hourly rate or preferred pricing structure Proposals that do not follow the required KLAVIYO instruction will not be considered.",
+    "budget": 35,
+    "job_type": "hourly",
+    "skills": [
+      "Email Automation",
+      "CRM Automation",
+      "Omnichannel Automation",
+      "Marketing Automation",
+      "AI Agent Development"
+    ],
+    "client": {
+      "rating": 4.5,
+      "reviews": 0,
+      "spent": "$0",
+      "country": "",
+      "payment_verified": true
+    },
+    "posted": "",
+    "proposals_count": 0,
+    "scraped_at": "2025-12-06T19:42:20.229587",
+    "id": "021997422877621357586",
+    "filter_score": 70.007,
+    "filter_reason": "Missing required skills",
+    "filtered_at": "2025-12-06T20:15:05.715691"
+  }
+]

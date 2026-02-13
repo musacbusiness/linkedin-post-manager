@@ -1,0 +1,284 @@
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+============================================================
+🚀 Airtable Webhook Server Starting
+============================================================
+
+✅ Server will run on: http://localhost:8000
+
+📋 Configure Airtable Automations:
+   1. Create automation with Status trigger
+   2. Action: Send HTTP request
+   3. URL: http://localhost:8000/webhook
+   4. Method: POST
+   5. Body (JSON):
+
+    {
+      "record_id": "{record_id}",
+      "status": "{Status}",
+      "base_id": "appw88uD6ZM0ckF8f",
+      "table_id": "tbljg75KMQWDo2Hgu"
+    }
+    
+
+⚠️  Note: Your Mac must keep this server running
+         and be accessible from the internet for webhooks to work
+
+============================================================
+
+ * Serving Flask app 'airtable_webhook_server'
+ * Debug mode: off
+Address already in use
+Port 8000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+============================================================
+🚀 Airtable Webhook Server Starting
+============================================================
+
+✅ Server will run on: http://localhost:8000
+
+📋 Configure Airtable Automations:
+   1. Create automation with Status trigger
+   2. Action: Send HTTP request
+   3. URL: http://localhost:8000/webhook
+   4. Method: POST
+   5. Body (JSON):
+
+    {
+      "record_id": "{record_id}",
+      "status": "{Status}",
+      "base_id": "appw88uD6ZM0ckF8f",
+      "table_id": "tbljg75KMQWDo2Hgu"
+    }
+    
+
+⚠️  Note: Your Mac must keep this server running
+         and be accessible from the internet for webhooks to work
+
+============================================================
+
+ * Serving Flask app 'airtable_webhook_server'
+ * Debug mode: off
+============================================================
+🚀 Airtable Webhook Server Starting
+============================================================
+
+✅ Server will run on: http://localhost:8000
+
+📋 Configure Airtable Automations:
+   1. Create automation with Status trigger
+   2. Action: Send HTTP request
+   3. URL: http://localhost:8000/webhook
+   4. Method: POST
+   5. Body (JSON):
+
+    {
+      "record_id": "{record_id}",
+      "status": "{Status}",
+      "base_id": "appw88uD6ZM0ckF8f",
+      "table_id": "tbljg75KMQWDo2Hgu"
+    }
+    
+
+⚠️  Note: Your Mac must keep this server running
+         and be accessible from the internet for webhooks to work
+
+============================================================
+
+ * Serving Flask app 'airtable_webhook_server'
+ * Debug mode: off
+============================================================
+🚀 Airtable Webhook Server Starting
+============================================================
+
+✅ Server will run on: http://localhost:8000
+
+📋 Configure Airtable Automations:
+   1. Create automation with Status trigger
+   2. Action: Send HTTP request
+   3. URL: http://localhost:8000/webhook
+   4. Method: POST
+   5. Body (JSON):
+
+    {
+      "record_id": "{record_id}",
+      "status": "{Status}",
+      "base_id": "appw88uD6ZM0ckF8f",
+      "table_id": "tbljg75KMQWDo2Hgu"
+    }
+    
+
+⚠️  Note: Your Mac must keep this server running
+         and be accessible from the internet for webhooks to work
+
+============================================================
+
+ * Serving Flask app 'airtable_webhook_server'
+ * Debug mode: off
+============================================================
+🚀 Airtable Webhook Server Starting
+============================================================
+
+✅ Server will run on: http://localhost:8000
+
+📋 Configure Airtable Automations:
+   1. Create automation with Status trigger
+   2. Action: Send HTTP request
+   3. URL: http://localhost:8000/webhook
+   4. Method: POST
+   5. Body (JSON):
+
+    {
+      "record_id": "{record_id}",
+      "status": "{Status}",
+      "base_id": "appw88uD6ZM0ckF8f",
+      "table_id": "tbljg75KMQWDo2Hgu"
+    }
+    
+
+⚠️  Note: Your Mac must keep this server running
+         and be accessible from the internet for webhooks to work
+
+============================================================
+
+ * Serving Flask app 'airtable_webhook_server'
+ * Debug mode: off
+============================================================
+🚀 Airtable Webhook Server Starting
+============================================================
+
+✅ Server will run on: http://localhost:8000
+
+📋 Configure Airtable Automations:
+   1. Create automation with Status trigger
+   2. Action: Send HTTP request
+   3. URL: http://localhost:8000/webhook
+   4. Method: POST
+   5. Body (JSON):
+
+    {
+      "record_id": "{record_id}",
+      "status": "{Status}",
+      "base_id": "appw88uD6ZM0ckF8f",
+      "table_id": "tbljg75KMQWDo2Hgu"
+    }
+    
+
+⚠️  Note: Your Mac must keep this server running
+         and be accessible from the internet for webhooks to work
+
+============================================================
+
+ * Serving Flask app 'airtable_webhook_server'
+ * Debug mode: off
+============================================================
+🚀 Airtable Webhook Server Starting
+============================================================
+
+✅ Server will run on: http://localhost:8000
+
+📋 Configure Airtable Automations:
+   1. Create automation with Status trigger
+   2. Action: Send HTTP request
+   3. URL: http://localhost:8000/webhook
+   4. Method: POST
+   5. Body (JSON):
+
+    {
+      "record_id": "{record_id}",
+      "status": "{Status}",
+      "base_id": "appw88uD6ZM0ckF8f",
+      "table_id": "tbljg75KMQWDo2Hgu"
+    }
+    
+
+⚠️  Note: Your Mac must keep this server running
+         and be accessible from the internet for webhooks to work
+
+============================================================
+
+ * Serving Flask app 'airtable_webhook_server'
+ * Debug mode: off
+============================================================
+🚀 Airtable Webhook Server Starting
+============================================================
+
+✅ Server will run on: http://localhost:8000
+
+📋 Configure Airtable Automations:
+   1. Create automation with Status trigger
+   2. Action: Send HTTP request
+   3. URL: http://localhost:8000/webhook
+   4. Method: POST
+   5. Body (JSON):
+
+    {
+      "record_id": "{record_id}",
+      "status": "{Status}",
+      "base_id": "appw88uD6ZM0ckF8f",
+      "table_id": "tbljg75KMQWDo2Hgu"
+    }
+    
+
+⚠️  Note: Your Mac must keep this server running
+         and be accessible from the internet for webhooks to work
+
+============================================================
+
+ * Serving Flask app 'airtable_webhook_server'
+ * Debug mode: off
+============================================================
+🚀 Airtable Webhook Server Starting
+============================================================
+
+✅ Server will run on: http://localhost:8000
+
+📋 Configure Airtable Automations:
+   1. Create automation with Status trigger
+   2. Action: Send HTTP request
+   3. URL: http://localhost:8000/webhook
+   4. Method: POST
+   5. Body (JSON):
+
+    {
+      "record_id": "{record_id}",
+      "status": "{Status}",
+      "base_id": "appw88uD6ZM0ckF8f",
+      "table_id": "tbljg75KMQWDo2Hgu"
+    }
+    
+
+⚠️  Note: Your Mac must keep this server running
+         and be accessible from the internet for webhooks to work
+
+============================================================
+
+ * Serving Flask app 'airtable_webhook_server'
+ * Debug mode: off
+============================================================
+🚀 Airtable Webhook Server Starting
+============================================================
+
+✅ Server will run on: http://localhost:8000
+
+📋 Configure Airtable Automations:
+   1. Create automation with Status trigger
+   2. Action: Send HTTP request
+   3. URL: http://localhost:8000/webhook
+   4. Method: POST
+   5. Body (JSON):
+
+    {
+      "record_id": "{record_id}",
+      "status": "{Status}",
+      "base_id": "appw88uD6ZM0ckF8f",
+      "table_id": "tbljg75KMQWDo2Hgu"
+    }
+    
+
+⚠️  Note: Your Mac must keep this server running
+         and be accessible from the internet for webhooks to work
+
+============================================================
+
+ * Serving Flask app 'airtable_webhook_server'
+ * Debug mode: off

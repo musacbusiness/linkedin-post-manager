@@ -1,0 +1,275 @@
+========================================
+Daily Automation Started: Thu Dec 18 06:06:57 EST 2025
+========================================
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-12-18 06:06:59,572 - __main__ - INFO - ============================================================
+2025-12-18 06:06:59,573 - __main__ - INFO - ACTION: Generate Posts & Images (7 Days)
+2025-12-18 06:06:59,573 - __main__ - INFO - ============================================================
+2025-12-18 06:07:00,194 - execution.airtable_integration - INFO - Cleaned up 0 old posted records
+2025-12-18 06:07:00,198 - __main__ - INFO - Cleaned up 0 old posted records
+2025-12-18 06:07:00,199 - execution.linkedin_scheduler - INFO - Generated 21 randomized posting times over 7 days
+2025-12-18 06:07:00,199 - execution.research_content - INFO - Starting daily content generation (21 posts)
+2025-12-18 06:07:00,201 - execution.research_content - INFO - Researching topic: AI automation for business
+2025-12-18 06:07:00,201 - execution.research_content - INFO - Researching topic: Workflow optimization
+2025-12-18 12:33:29,262 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.482600 seconds
+2025-12-18 12:33:29,276 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.408431 seconds
+2025-12-18 12:39:58,625 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 12:39:58,723 - execution.research_content - INFO - Generated 21 ideas for Workflow optimization
+2025-12-18 12:40:05,319 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 12:40:05,331 - execution.research_content - INFO - Generated 21 ideas for AI automation for business
+2025-12-18 12:40:07,370 - execution.research_content - INFO - Researching topic: Business process automation
+2025-12-18 12:40:07,371 - execution.research_content - INFO - Researching topic: AI implementation strategies
+2025-12-18 13:41:10,720 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.479291 seconds
+2025-12-18 13:41:10,731 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.435549 seconds
+2025-12-18 21:49:14,649 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.844403 seconds
+2025-12-18 21:49:14,654 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.973542 seconds
+2025-12-18 22:50:01,482 - execution.research_content - ERROR - Error researching topic AI implementation strategies: Connection error.
+2025-12-18 22:50:01,487 - execution.research_content - ERROR - Error researching topic Business process automation: Connection error.
+2025-12-18 22:50:03,645 - execution.research_content - INFO - Researching topic: Prompt engineering for productivity
+2025-12-18 22:50:03,646 - execution.research_content - INFO - Researching topic: Business efficiency tips
+2025-12-18 23:10:10,613 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.477071 seconds
+2025-12-18 23:10:10,615 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.421305 seconds
+2025-12-18 23:11:02,078 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:11:02,079 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:11:02,519 - execution.research_content - INFO - Generated 21 ideas for Prompt engineering for productivity
+2025-12-18 23:11:02,521 - execution.research_content - INFO - Generated 21 ideas for Business efficiency tips
+2025-12-18 23:11:04,591 - execution.research_content - INFO - Researching topic: Automation ROI
+2025-12-18 23:11:44,250 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:11:44,271 - execution.research_content - INFO - Generated 21 ideas for Automation ROI
+2025-12-18 23:11:55,093 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:11:55,206 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:11:55,313 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:03,926 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:03,973 - execution.research_content - INFO - Generated post content for: From 200 Support Tickets to 20: An E-commerce Story (Framework: Case Study)
+2025-12-18 23:12:04,979 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:04,987 - execution.research_content - INFO - Generated post content for: 73% of Your Competitors Are Already Using AI (Framework: BAB (Before-After-Bridge))
+2025-12-18 23:12:05,480 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:05,483 - execution.research_content - INFO - Generated post content for: Calculate Your Automation ROI in 60 Seconds (Framework: Storytelling)
+2025-12-18 23:12:18,626 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:18,806 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:19,928 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:28,441 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:28,477 - execution.research_content - INFO - Generated post content for: The 80/20 Rule of Prompt Engineering (Framework: How-To Guide)
+2025-12-18 23:12:28,962 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:28,963 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:28,966 - execution.research_content - INFO - Generated post content for: Competitor Analysis on Autopilot (Framework: Question-Answer)
+2025-12-18 23:12:28,969 - execution.research_content - INFO - Generated post content for: The 10X Rule of Automation ROI (Framework: PAS (Problem-Agitate-Solution))
+2025-12-18 23:12:41,246 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:43,989 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:43,990 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:50,921 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:50,933 - execution.research_content - INFO - Generated post content for: 2024 Data: What Workflow Changes Actually Move Revenue (Framework: AIDA (Attention-Interest-Desire-Action))
+2025-12-18 23:12:52,582 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:52,583 - execution.research_content - INFO - Generated post content for: Why Your AI Outputs Sound Generic (And How to Fix It) (Framework: PAS (Problem-Agitate-Solution))
+2025-12-18 23:12:54,164 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:12:54,166 - execution.research_content - INFO - Generated post content for: The AI Tools That Will Die in 2025 (Framework: Listicle)
+2025-12-18 23:13:07,076 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:07,647 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:08,448 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:15,804 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:15,806 - execution.research_content - INFO - Generated post content for: Automation ROI Tracking: The Dashboard You Need (Framework: How-To Guide)
+2025-12-18 23:13:16,838 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:16,841 - execution.research_content - INFO - Generated post content for: The Workflow Trend Nobody's Talking About: Reverse Automation (Framework: BAB (Before-After-Bridge))
+2025-12-18 23:13:17,216 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:17,218 - execution.research_content - INFO - Generated post content for: 87% of Failed Automations Share This ROI Mistake (Framework: Question-Answer)
+2025-12-18 23:13:30,232 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:30,939 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:31,163 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:38,927 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:38,932 - execution.research_content - INFO - Generated post content for: How a 3-Person Team Operates Like a 10-Person Company (Framework: Storytelling)
+2025-12-18 23:13:39,641 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:39,642 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:39,645 - execution.research_content - INFO - Generated post content for: Audit Your Business for AI Opportunities (Framework: Listicle)
+2025-12-18 23:13:39,646 - execution.research_content - INFO - Generated post content for: Copy This Prompt to Write Emails 10x Faster (Framework: Question-Answer)
+2025-12-18 23:13:52,795 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:52,997 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:13:54,286 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:14:01,677 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:14:01,691 - execution.research_content - INFO - Generated post content for: 5 Tasks You Should Have Automated Yesterday (Framework: PAS (Problem-Agitate-Solution))
+2025-12-18 23:14:01,863 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:14:01,867 - execution.research_content - INFO - Generated post content for: The 3 AI Metrics Your Board Actually Cares About (Framework: AIDA (Attention-Interest-Desire-Action))
+2025-12-18 23:14:02,783 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:14:02,784 - execution.research_content - INFO - Generated post content for: Copy This Prompt to Identify Your Highest-ROI Automation (Framework: PAS (Problem-Agitate-Solution))
+2025-12-18 23:14:16,621 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:14:16,919 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:14:17,824 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:14:25,507 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:14:25,510 - execution.research_content - INFO - Generated post content for: Turn Customer Reviews Into Marketing Gold (Framework: PAS (Problem-Agitate-Solution))
+2025-12-18 23:14:25,928 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:14:25,929 - execution.research_content - INFO - Generated post content for: Set Up AI Email Triage in 30 Minutes (Free Tools Only) (Framework: BAB (Before-After-Bridge))
+2025-12-18 23:14:27,071 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-18 23:14:27,077 - execution.research_content - INFO - Generated post content for: The 3-Layer Prompt Formula for Complex Tasks (Framework: Storytelling)
+2025-12-18 23:14:27,078 - execution.research_content - INFO - Generated 21 complete posts for daily content
+2025-12-18 23:14:27,082 - execution.generate_images - INFO - Generating image 1/21
+2025-12-18 23:14:27,086 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:14:27,590 - execution.generate_images - INFO - Prediction created: 2kcqe57jyxrmc0cv6k88rj9eew, waiting for completion...
+2025-12-18 23:15:10,140 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:15:10,521 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/73%_of_Your_Competitors_Are_Al_20251218_231510.png
+2025-12-18 23:15:10,524 - execution.generate_images - INFO - Image generated for post: 73% of Your Competitors Are Already Using AI
+2025-12-18 23:15:10,524 - execution.generate_images - INFO - Generating image 2/21
+2025-12-18 23:15:12,591 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:15:12,730 - execution.generate_images - INFO - Prediction created: hp79ncd39xrme0cv6k8v5bxvdc, waiting for completion...
+2025-12-18 23:15:43,817 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:15:44,054 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/From_200_Support_Tickets_to_20_20251218_231543.png
+2025-12-18 23:15:44,056 - execution.generate_images - INFO - Image generated for post: From 200 Support Tickets to 20: An E-commerce Story
+2025-12-18 23:15:44,056 - execution.generate_images - INFO - Generating image 3/21
+2025-12-18 23:15:46,139 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:15:46,431 - execution.generate_images - INFO - Prediction created: 40ev9w16v9rm80cv6k9bcsqpcg, waiting for completion...
+2025-12-18 23:16:15,693 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:16:16,020 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/Calculate_Your_Automation_ROI__20251218_231615.png
+2025-12-18 23:16:16,025 - execution.generate_images - INFO - Image generated for post: Calculate Your Automation ROI in 60 Seconds
+2025-12-18 23:16:16,025 - execution.generate_images - INFO - Generating image 4/21
+2025-12-18 23:16:18,080 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:16:18,414 - execution.generate_images - INFO - Prediction created: 1hgn73n3k1rme0cv6k9a08zqx0, waiting for completion...
+2025-12-18 23:16:52,063 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:16:52,297 - execution.generate_images - ERROR - Error downloading image: [Errno 2] No such file or directory: '../.tmp/linkedin_images/The_80/20_Rule_of_Prompt_Engin_20251218_231652.png'
+2025-12-18 23:16:52,300 - execution.generate_images - INFO - Image generated for post: The 80/20 Rule of Prompt Engineering
+2025-12-18 23:16:52,301 - execution.generate_images - INFO - Generating image 5/21
+2025-12-18 23:16:54,370 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:16:54,589 - execution.generate_images - INFO - Prediction created: t9p35g9h1nrme0cv6k9t35wx4c, waiting for completion...
+2025-12-18 23:17:36,903 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:17:37,193 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/The_10X_Rule_of_Automation_ROI_20251218_231736.png
+2025-12-18 23:17:37,195 - execution.generate_images - INFO - Image generated for post: The 10X Rule of Automation ROI
+2025-12-18 23:17:37,195 - execution.generate_images - INFO - Generating image 6/21
+2025-12-18 23:17:39,200 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:17:39,447 - execution.generate_images - INFO - Prediction created: x8zma0f0enrma0cv6k9trfk3e8, waiting for completion...
+2025-12-18 23:18:13,106 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:18:13,404 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/Competitor_Analysis_on_Autopil_20251218_231813.png
+2025-12-18 23:18:13,406 - execution.generate_images - INFO - Image generated for post: Competitor Analysis on Autopilot
+2025-12-18 23:18:13,406 - execution.generate_images - INFO - Generating image 7/21
+2025-12-18 23:18:15,479 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:18:15,651 - execution.generate_images - INFO - Prediction created: 1at4sxvdvhrma0cv6kaagp8210, waiting for completion...
+2025-12-18 23:18:49,209 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:18:49,475 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/The_AI_Tools_That_Will_Die_in__20251218_231849.png
+2025-12-18 23:18:49,479 - execution.generate_images - INFO - Image generated for post: The AI Tools That Will Die in 2025
+2025-12-18 23:18:49,479 - execution.generate_images - INFO - Generating image 8/21
+2025-12-18 23:18:51,552 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:18:51,720 - execution.generate_images - INFO - Prediction created: wv34qj7tr1rm80cv6kaab3vaq4, waiting for completion...
+2025-12-18 23:19:45,184 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:19:45,374 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/2024_Data:_What_Workflow_Chang_20251218_231945.png
+2025-12-18 23:19:45,377 - execution.generate_images - INFO - Image generated for post: 2024 Data: What Workflow Changes Actually Move Revenue
+2025-12-18 23:19:45,377 - execution.generate_images - INFO - Generating image 9/21
+2025-12-18 23:19:47,438 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:19:47,679 - execution.generate_images - INFO - Prediction created: 0pds8xenbhrm80cv6kasemaw4w, waiting for completion...
+2025-12-18 23:20:28,869 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:20:29,296 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/Why_Your_AI_Outputs_Sound_Gene_20251218_232028.png
+2025-12-18 23:20:29,299 - execution.generate_images - INFO - Image generated for post: Why Your AI Outputs Sound Generic (And How to Fix It)
+2025-12-18 23:20:29,299 - execution.generate_images - INFO - Generating image 10/21
+2025-12-18 23:20:31,373 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:20:31,769 - execution.generate_images - INFO - Prediction created: rtgr0rw1jxrme0cv6kba8tsb1m, waiting for completion...
+2025-12-18 23:21:11,687 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:21:12,110 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/Automation_ROI_Tracking:_The_D_20251218_232111.png
+2025-12-18 23:21:12,112 - execution.generate_images - INFO - Image generated for post: Automation ROI Tracking: The Dashboard You Need
+2025-12-18 23:21:12,112 - execution.generate_images - INFO - Generating image 11/21
+2025-12-18 23:21:14,170 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:21:14,386 - execution.generate_images - INFO - Prediction created: qmspqp182drmc0cv6kbrskc9ac, waiting for completion...
+2025-12-18 23:22:07,996 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:22:08,314 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/The_Workflow_Trend_Nobody's_Ta_20251218_232208.png
+2025-12-18 23:22:08,316 - execution.generate_images - INFO - Image generated for post: The Workflow Trend Nobody's Talking About: Reverse Automation
+2025-12-18 23:22:08,316 - execution.generate_images - INFO - Generating image 12/21
+2025-12-18 23:22:10,368 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:22:10,526 - execution.generate_images - INFO - Prediction created: 9vrfzyr3b9rm80cv6kcanrcp8r, waiting for completion...
+2025-12-18 23:23:02,376 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:23:02,861 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/87%_of_Failed_Automations_Shar_20251218_232302.png
+2025-12-18 23:23:02,898 - execution.generate_images - INFO - Image generated for post: 87% of Failed Automations Share This ROI Mistake
+2025-12-18 23:23:02,899 - execution.generate_images - INFO - Generating image 13/21
+2025-12-18 23:23:04,951 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:23:05,094 - execution.generate_images - INFO - Prediction created: as6v6qprh1rm80cv6kcakes2mr, waiting for completion...
+2025-12-18 23:23:38,111 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:23:38,378 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/Audit_Your_Business_for_AI_Opp_20251218_232338.png
+2025-12-18 23:23:38,382 - execution.generate_images - INFO - Image generated for post: Audit Your Business for AI Opportunities
+2025-12-18 23:23:38,382 - execution.generate_images - INFO - Generating image 14/21
+2025-12-18 23:23:40,422 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:23:40,571 - execution.generate_images - INFO - Prediction created: 14db9t332srmc0cv6kcr9pn8eg, waiting for completion...
+2025-12-18 23:24:23,594 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:24:24,171 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/How_a_3-Person_Team_Operates_L_20251218_232423.png
+2025-12-18 23:24:24,173 - execution.generate_images - INFO - Image generated for post: How a 3-Person Team Operates Like a 10-Person Company
+2025-12-18 23:24:24,173 - execution.generate_images - INFO - Generating image 15/21
+2025-12-18 23:24:26,245 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:24:26,641 - execution.generate_images - INFO - Prediction created: 5bpmzmgq2drma0cv6kdaxwmkpc, waiting for completion...
+2025-12-18 23:25:02,543 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:25:02,779 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/Copy_This_Prompt_to_Write_Emai_20251218_232502.png
+2025-12-18 23:25:02,783 - execution.generate_images - INFO - Image generated for post: Copy This Prompt to Write Emails 10x Faster
+2025-12-18 23:25:02,784 - execution.generate_images - INFO - Generating image 16/21
+2025-12-18 23:25:04,855 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:25:05,018 - execution.generate_images - INFO - Prediction created: 5vdqaf5czhrm80cv6kda2mf5s0, waiting for completion...
+2025-12-18 23:25:42,659 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:25:42,865 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/5_Tasks_You_Should_Have_Automa_20251218_232542.png
+2025-12-18 23:25:42,870 - execution.generate_images - INFO - Image generated for post: 5 Tasks You Should Have Automated Yesterday
+2025-12-18 23:25:42,870 - execution.generate_images - INFO - Generating image 17/21
+2025-12-18 23:25:44,945 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:25:45,091 - execution.generate_images - INFO - Prediction created: 5ywy4ga9h1rme0cv6kdsnp79ym, waiting for completion...
+2025-12-18 23:26:27,974 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:26:28,282 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/The_3_AI_Metrics_Your_Board_Ac_20251218_232627.png
+2025-12-18 23:26:28,285 - execution.generate_images - INFO - Image generated for post: The 3 AI Metrics Your Board Actually Cares About
+2025-12-18 23:26:28,285 - execution.generate_images - INFO - Generating image 18/21
+2025-12-18 23:26:30,316 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:26:30,521 - execution.generate_images - INFO - Prediction created: 7njz7eqtvsrmc0cv6kdvtehr00, waiting for completion...
+2025-12-18 23:27:01,648 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:27:01,909 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/Copy_This_Prompt_to_Identify_Y_20251218_232701.png
+2025-12-18 23:27:01,912 - execution.generate_images - INFO - Image generated for post: Copy This Prompt to Identify Your Highest-ROI Automation
+2025-12-18 23:27:01,912 - execution.generate_images - INFO - Generating image 19/21
+2025-12-18 23:27:03,985 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:27:04,247 - execution.generate_images - INFO - Prediction created: gz67vh3yp1rm80cv6ke9n2jxgw, waiting for completion...
+2025-12-18 23:27:46,386 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:27:46,583 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/Turn_Customer_Reviews_Into_Mar_20251218_232746.png
+2025-12-18 23:27:46,587 - execution.generate_images - INFO - Image generated for post: Turn Customer Reviews Into Marketing Gold
+2025-12-18 23:27:46,587 - execution.generate_images - INFO - Generating image 20/21
+2025-12-18 23:27:48,652 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:27:48,928 - execution.generate_images - INFO - Prediction created: 81111m9cwxrm80cv6ker6bqs48, waiting for completion...
+2025-12-18 23:28:22,093 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:28:22,278 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/Set_Up_AI_Email_Triage_in_30_M_20251218_232822.png
+2025-12-18 23:28:22,282 - execution.generate_images - INFO - Image generated for post: Set Up AI Email Triage in 30 Minutes (Free Tools Only)
+2025-12-18 23:28:22,283 - execution.generate_images - INFO - Generating image 21/21
+2025-12-18 23:28:24,358 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-18 23:28:24,575 - execution.generate_images - INFO - Prediction created: qq559y5r65rme0cv6kergh929w, waiting for completion...
+2025-12-18 23:29:13,339 - execution.generate_images - INFO - Image generated successfully
+2025-12-18 23:29:13,529 - execution.generate_images - INFO - Downloaded image to ../.tmp/linkedin_images/The_3-Layer_Prompt_Formula_for_20251218_232913.png
+2025-12-18 23:29:13,534 - execution.generate_images - INFO - Image generated for post: The 3-Layer Prompt Formula for Complex Tasks
+2025-12-18 23:29:13,534 - execution.generate_images - INFO - Generated images for 21 posts
+2025-12-18 23:29:15,448 - execution.airtable_integration - INFO - Created record in posts: rec9XxHwjvJXqEgSq
+2025-12-18 23:29:15,451 - __main__ - INFO - Added post to Airtable: rec9XxHwjvJXqEgSq (scheduled: 2025-12-19T09:37:00-05:00)
+2025-12-18 23:29:15,782 - execution.airtable_integration - INFO - Created record in posts: recESnIEcW8zzicHc
+2025-12-18 23:29:15,784 - __main__ - INFO - Added post to Airtable: recESnIEcW8zzicHc (scheduled: 2025-12-19T13:54:00-05:00)
+2025-12-18 23:29:16,177 - execution.airtable_integration - INFO - Created record in posts: recC6gTDSvjM8hOll
+2025-12-18 23:29:16,179 - __main__ - INFO - Added post to Airtable: recC6gTDSvjM8hOll (scheduled: 2025-12-19T17:57:00-05:00)
+2025-12-18 23:29:16,524 - execution.airtable_integration - INFO - Created record in posts: rec5B27tT10Uiasxl
+2025-12-18 23:29:16,526 - __main__ - INFO - Added post to Airtable: rec5B27tT10Uiasxl (scheduled: 2025-12-20T09:04:00-05:00)
+2025-12-18 23:29:16,859 - execution.airtable_integration - INFO - Created record in posts: recsisPJmXCHo8ll3
+2025-12-18 23:29:16,863 - __main__ - INFO - Added post to Airtable: recsisPJmXCHo8ll3 (scheduled: 2025-12-20T13:36:00-05:00)
+2025-12-18 23:29:17,306 - execution.airtable_integration - INFO - Created record in posts: recX3lhABUBQ2QhYF
+2025-12-18 23:29:17,310 - __main__ - INFO - Added post to Airtable: recX3lhABUBQ2QhYF (scheduled: 2025-12-20T19:06:00-05:00)
+2025-12-18 23:29:17,818 - execution.airtable_integration - INFO - Created record in posts: reca8pIOrW87TrLqU
+2025-12-18 23:29:17,820 - __main__ - INFO - Added post to Airtable: reca8pIOrW87TrLqU (scheduled: 2025-12-21T09:44:00-05:00)
+2025-12-18 23:29:18,433 - execution.airtable_integration - INFO - Created record in posts: recIVF1YholzZsSer
+2025-12-18 23:29:18,437 - __main__ - INFO - Added post to Airtable: recIVF1YholzZsSer (scheduled: 2025-12-21T13:47:00-05:00)
+2025-12-18 23:29:18,961 - execution.airtable_integration - INFO - Created record in posts: recWrziYY7bRGgtiZ
+2025-12-18 23:29:18,965 - __main__ - INFO - Added post to Airtable: recWrziYY7bRGgtiZ (scheduled: 2025-12-21T17:03:00-05:00)
+2025-12-18 23:29:19,340 - execution.airtable_integration - INFO - Created record in posts: recapqIEyOSnFXJr1
+2025-12-18 23:29:19,341 - __main__ - INFO - Added post to Airtable: recapqIEyOSnFXJr1 (scheduled: 2025-12-22T09:40:00-05:00)
+2025-12-18 23:29:19,630 - execution.airtable_integration - INFO - Created record in posts: recYqbFTOfWNCWwhs
+2025-12-18 23:29:19,632 - __main__ - INFO - Added post to Airtable: recYqbFTOfWNCWwhs (scheduled: 2025-12-22T12:00:00-05:00)
+2025-12-18 23:29:20,038 - execution.airtable_integration - INFO - Created record in posts: recRfghoWuhcXpMLw
+2025-12-18 23:29:20,042 - __main__ - INFO - Added post to Airtable: recRfghoWuhcXpMLw (scheduled: 2025-12-22T19:56:00-05:00)
+2025-12-18 23:29:20,470 - execution.airtable_integration - INFO - Created record in posts: rec5ckTYb4Eqy1lfa
+2025-12-18 23:29:20,474 - __main__ - INFO - Added post to Airtable: rec5ckTYb4Eqy1lfa (scheduled: 2025-12-23T09:52:00-05:00)
+2025-12-18 23:29:20,889 - execution.airtable_integration - INFO - Created record in posts: rec5YWZ7sgAYVnkTB
+2025-12-18 23:29:20,892 - __main__ - INFO - Added post to Airtable: rec5YWZ7sgAYVnkTB (scheduled: 2025-12-23T13:26:00-05:00)
+2025-12-18 23:29:21,216 - execution.airtable_integration - INFO - Created record in posts: recVLjd0M10eur3dq
+2025-12-18 23:29:21,221 - __main__ - INFO - Added post to Airtable: recVLjd0M10eur3dq (scheduled: 2025-12-23T18:50:00-05:00)
+2025-12-18 23:29:21,522 - execution.airtable_integration - INFO - Created record in posts: recAmXkOgTwuw8Zh9
+2025-12-18 23:29:21,528 - __main__ - INFO - Added post to Airtable: recAmXkOgTwuw8Zh9 (scheduled: 2025-12-24T08:57:00-05:00)
+2025-12-18 23:29:22,008 - execution.airtable_integration - INFO - Created record in posts: recW1o0yXNAs5QG4z
+2025-12-18 23:29:22,010 - __main__ - INFO - Added post to Airtable: recW1o0yXNAs5QG4z (scheduled: 2025-12-24T13:09:00-05:00)
+2025-12-18 23:29:22,449 - execution.airtable_integration - INFO - Created record in posts: recu0KmNh6D7z4KZ5
+2025-12-18 23:29:22,451 - __main__ - INFO - Added post to Airtable: recu0KmNh6D7z4KZ5 (scheduled: 2025-12-24T18:56:00-05:00)
+2025-12-18 23:29:22,774 - execution.airtable_integration - INFO - Created record in posts: recIoLJZgqOrz1r1o
+2025-12-18 23:29:22,776 - __main__ - INFO - Added post to Airtable: recIoLJZgqOrz1r1o (scheduled: 2025-12-25T09:17:00-05:00)
+2025-12-18 23:29:23,115 - execution.airtable_integration - INFO - Created record in posts: rec7hZO1ax95uBV3b
+2025-12-18 23:29:23,118 - __main__ - INFO - Added post to Airtable: rec7hZO1ax95uBV3b (scheduled: 2025-12-25T12:12:00-05:00)
+2025-12-18 23:29:23,519 - execution.airtable_integration - INFO - Created record in posts: recBcoWRs426Vk3Fq
+2025-12-18 23:29:23,521 - __main__ - INFO - Added post to Airtable: recBcoWRs426Vk3Fq (scheduled: 2025-12-25T17:08:00-05:00)
+2025-12-18 23:29:23,522 - __main__ - INFO - ✓ Generated 21 posts with images for 7 days
+2025-12-18 23:29:23,522 - __main__ - INFO - ✓ Added 21 posts to Airtable (Awaiting Approval)
+Completed: Thu Dec 18 23:29:24 EST 2025

@@ -1,0 +1,79 @@
+{
+  "timestamp": "2025-12-30T18:35:19.996115",
+  "summary": {
+    "total_scripts": 5,
+    "passed": 0,
+    "reviewed": 0,
+    "ready": 2,
+    "errors": 3,
+    "overall_quality": 100.0
+  },
+  "detailed_results": [
+    {
+      "script": "execution/generate_proposal.py",
+      "test_date": "2025-12-30T18:35:19.995754",
+      "test_samples": 3,
+      "metrics": {
+        "proposals_generated": 0,
+        "proposals_with_specificity": 0,
+        "proposals_under_word_limit": 0,
+        "proposals_with_cta": 0,
+        "average_word_count": 0
+      },
+      "quality_score": 0,
+      "status": "ERROR",
+      "error": "No module named 'execution'"
+    },
+    {
+      "script": "linkedin_automation/execution/research_content.py",
+      "test_date": "2025-12-30T18:35:19.995885",
+      "test_samples": 3,
+      "metrics": {
+        "ideas_generated": 0,
+        "valid_json": 0,
+        "has_required_fields": 0,
+        "ideas_with_value": 0
+      },
+      "quality_score": 0,
+      "status": "ERROR",
+      "error": "No module named 'linkedin_automation'"
+    },
+    {
+      "script": "linkedin_automation/execution/content_revisions.py",
+      "test_date": "2025-12-30T18:35:19.995982",
+      "test_samples": 0,
+      "metrics": {
+        "tested_manually": true,
+        "haiku_performance": "Optimized for summaries",
+        "cost_tracking": "Active"
+      },
+      "quality_score": 100,
+      "status": "READY"
+    },
+    {
+      "script": "upwork_automation/execution/generate_proposal.py",
+      "test_date": "2025-12-30T18:35:19.995988",
+      "test_samples": 2,
+      "metrics": {
+        "proposals_generated": 0,
+        "proposals_with_understanding": 0,
+        "proposals_with_timeline": 0
+      },
+      "quality_score": 0,
+      "status": "ERROR",
+      "error": "No module named 'upwork_automation'"
+    },
+    {
+      "script": "proposal_system/webhook_proposal_generator.py",
+      "test_date": "2025-12-30T18:35:19.996081",
+      "test_samples": 0,
+      "metrics": {
+        "transcripts_processed": 0,
+        "sonnet_performance": "Optimized for analysis",
+        "cost_tracking": "Active"
+      },
+      "quality_score": 100,
+      "status": "READY"
+    }
+  ]
+}

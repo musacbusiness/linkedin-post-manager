@@ -1,0 +1,38 @@
+2026-01-30 15:37:04,895 - INFO - ============================================================
+2026-01-30 15:37:04,895 - INFO - UPWORK PROPOSAL GENERATOR
+2026-01-30 15:37:04,895 - INFO - ============================================================
+2026-01-30 15:37:04,895 - INFO - 
+[1/3] SCRAPING JOB DETAILS...
+2026-01-30 15:37:04,895 - INFO - ====== WebDriver manager ======
+2026-01-30 15:37:12,231 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-30 15:37:12,378 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-30 15:37:12,450 - INFO - There is no [mac64] chromedriver "144.0.7559.109" for browser google-chrome "144.0.7559" in cache
+2026-01-30 15:37:12,458 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-30 15:37:12,804 - INFO - WebDriver version 144.0.7559.109 selected
+2026-01-30 15:37:12,807 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/144.0.7559.109/mac-arm64/chromedriver-mac-arm64.zip
+2026-01-30 15:37:12,808 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/144.0.7559.109/mac-arm64/chromedriver-mac-arm64.zip
+2026-01-30 15:37:12,921 - INFO - Driver downloading response is 200
+2026-01-30 15:37:13,262 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-30 15:37:13,430 - INFO - Driver has been saved in cache [/Users/musacomma/.wdm/drivers/chromedriver/mac64/144.0.7559.109]
+2026-01-30 15:37:17,413 - INFO - ✓ Selenium WebDriver initialized
+2026-01-30 15:37:17,414 - INFO - → Navigating to: https://www.upwork.com/jobs/~022017269140345659705
+2026-01-30 15:37:29,141 - ERROR - ✗ Timeout: Job page took too long to load
+2026-01-30 15:37:29,310 - WARNING - 
+⚠ Web scraping didn't work (may need authentication or chromedriver).
+2026-01-30 15:37:29,311 - WARNING - → Fallback: Paste the job description below and press Ctrl+D (Mac: Cmd+D) when done:
+
+2026-01-30 15:37:29,311 - ERROR - ✗ No job description provided.
+2026-01-30 15:47:43,845 - INFO - → Generating proposal with Claude API...
+2026-01-30 15:47:43,869 - ERROR - ✗ Proposal generation failed: "Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted"
+2026-01-30 15:47:57,200 - INFO - → Generating proposal with Claude API...
+2026-01-30 15:48:08,742 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-01-30 15:48:08,767 - INFO - ✓ Proposal generated successfully
+2026-01-30 15:48:08,801 - INFO - ✓ Proposal copied to clipboard (macOS)
+2026-01-30 15:59:30,582 - INFO - → Generating proposal with Claude API...
+2026-01-30 15:59:40,275 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-01-30 15:59:40,298 - INFO - ✓ Proposal generated successfully
+2026-01-30 15:59:40,338 - INFO - ✓ Proposal copied to clipboard (macOS)
+2026-01-30 15:59:53,529 - INFO - → Generating proposal with Claude API...
+2026-01-30 16:00:03,311 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-01-30 16:00:03,335 - INFO - ✓ Proposal generated successfully
+2026-01-30 16:00:03,361 - INFO - ✓ Proposal copied to clipboard (macOS)

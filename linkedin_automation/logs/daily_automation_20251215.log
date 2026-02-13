@@ -1,0 +1,104 @@
+========================================
+Daily Automation Started: Mon Dec 15 06:27:52 EST 2025
+========================================
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-12-15 06:27:55,609 - __main__ - INFO - ============================================================
+2025-12-15 06:27:55,610 - __main__ - INFO - ACTION: Generate Posts & Images (7 Days)
+2025-12-15 06:27:55,610 - __main__ - INFO - ============================================================
+2025-12-15 06:27:57,256 - execution.airtable_integration - INFO - Cleaned up 0 old posted records
+2025-12-15 06:27:57,260 - __main__ - INFO - Cleaned up 0 old posted records
+2025-12-15 06:27:57,260 - execution.linkedin_scheduler - INFO - Generated 21 randomized posting times over 7 days
+2025-12-15 06:27:57,261 - execution.research_content - INFO - Starting daily content generation (21 posts)
+2025-12-15 06:27:57,347 - execution.research_content - INFO - Researching topic: AI automation for business
+2025-12-15 06:27:57,420 - execution.research_content - INFO - Researching topic: Workflow optimization
+2025-12-15 06:28:41,365 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-15 06:28:41,407 - execution.research_content - INFO - Generated 21 ideas for Workflow optimization
+2025-12-15 06:28:46,861 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-15 06:28:46,871 - execution.research_content - INFO - Generated 21 ideas for AI automation for business
+2025-12-15 06:28:48,884 - execution.research_content - INFO - Researching topic: Business process automation
+2025-12-15 06:28:48,884 - execution.research_content - INFO - Researching topic: AI implementation strategies
+2025-12-15 08:30:01,965 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.477665 seconds
+2025-12-15 08:30:01,970 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.418827 seconds
+2025-12-15 13:49:58,650 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.835495 seconds
+2025-12-15 13:49:58,652 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.754310 seconds
+2025-12-15 13:49:59,481 - execution.research_content - ERROR - Error researching topic AI implementation strategies: Connection error.
+2025-12-15 13:49:59,635 - execution.research_content - ERROR - Error researching topic Business process automation: Connection error.
+2025-12-15 13:50:01,756 - execution.research_content - INFO - Researching topic: Prompt engineering for productivity
+2025-12-15 13:50:01,757 - execution.research_content - INFO - Researching topic: Business efficiency tips
+2025-12-15 13:50:01,764 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.460530 seconds
+2025-12-15 13:50:01,764 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.439500 seconds
+2025-12-15 13:50:02,244 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.937458 seconds
+2025-12-15 13:50:02,347 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.969108 seconds
+2025-12-15 13:50:03,330 - execution.research_content - ERROR - Error researching topic Prompt engineering for productivity: Connection error.
+2025-12-15 13:50:03,465 - execution.research_content - ERROR - Error researching topic Business efficiency tips: Connection error.
+2025-12-15 13:50:05,506 - execution.research_content - INFO - Researching topic: Automation ROI
+2025-12-15 13:50:05,512 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.440299 seconds
+2025-12-15 13:50:06,064 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.780442 seconds
+2025-12-15 13:50:06,983 - execution.research_content - ERROR - Error researching topic Automation ROI: Connection error.
+2025-12-15 13:50:06,992 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.494496 seconds
+2025-12-15 13:50:06,992 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.446378 seconds
+2025-12-15 13:50:06,993 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.472237 seconds
+2025-12-15 13:50:07,477 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.915719 seconds
+2025-12-15 13:50:07,478 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.813124 seconds
+2025-12-15 13:50:07,635 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.900417 seconds
+2025-12-15 13:50:08,404 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:08,526 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:08,677 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:11,813 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.497049 seconds
+2025-12-15 13:50:11,813 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.403483 seconds
+2025-12-15 13:50:11,813 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.485119 seconds
+2025-12-15 13:50:12,369 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.833997 seconds
+2025-12-15 13:50:12,444 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.910978 seconds
+2025-12-15 13:50:12,454 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.831782 seconds
+2025-12-15 13:50:13,343 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:13,428 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:13,442 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:16,551 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.474943 seconds
+2025-12-15 13:50:16,552 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.498910 seconds
+2025-12-15 13:50:16,552 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.381326 seconds
+2025-12-15 13:50:17,071 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.935872 seconds
+2025-12-15 13:50:17,084 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.977935 seconds
+2025-12-15 13:50:17,198 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.776987 seconds
+2025-12-15 13:50:18,001 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:18,152 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:18,196 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:21,330 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.426052 seconds
+2025-12-15 13:50:21,330 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.389891 seconds
+2025-12-15 13:50:21,330 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.407060 seconds
+2025-12-15 13:50:21,828 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.965055 seconds
+2025-12-15 13:50:21,861 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.988254 seconds
+2025-12-15 13:50:21,897 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.871586 seconds
+2025-12-15 13:50:22,909 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:22,924 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:22,985 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:26,136 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.492720 seconds
+2025-12-15 13:50:26,136 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.487267 seconds
+2025-12-15 13:50:26,136 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.428952 seconds
+2025-12-15 13:50:26,642 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.858520 seconds
+2025-12-15 13:50:26,716 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.900138 seconds
+2025-12-15 13:50:26,773 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.961646 seconds
+2025-12-15 13:50:27,547 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:27,649 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:27,850 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:30,987 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.412459 seconds
+2025-12-15 13:50:30,988 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.418666 seconds
+2025-12-15 13:50:30,989 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.415485 seconds
+2025-12-15 13:50:31,513 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.862786 seconds
+2025-12-15 13:50:31,548 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.804349 seconds
+2025-12-15 13:50:31,548 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.939170 seconds
+2025-12-15 13:50:32,413 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:32,508 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:32,598 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:35,749 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.483459 seconds
+2025-12-15 13:50:35,750 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.415446 seconds
+2025-12-15 13:50:35,750 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.486818 seconds
+2025-12-15 13:50:36,228 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.818080 seconds
+2025-12-15 13:50:36,335 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.807778 seconds
+2025-12-15 13:50:36,365 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.815710 seconds
+2025-12-15 13:50:37,155 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:37,259 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:37,325 - execution.research_content - ERROR - Error generating post content: Connection error.
+2025-12-15 13:50:37,326 - execution.research_content - INFO - Generated 0 complete posts for daily content
+2025-12-15 13:50:37,326 - __main__ - ERROR - No posts generated
+Completed: Mon Dec 15 13:50:37 EST 2025

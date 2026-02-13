@@ -1,0 +1,733 @@
+2025-12-06 12:32:44,839 - __main__ - INFO - ============================================================
+2025-12-06 12:32:44,839 - __main__ - INFO - SYSTEM STATUS
+2025-12-06 12:32:44,839 - __main__ - INFO - ============================================================
+2025-12-06 12:32:44,839 - __main__ - INFO - ✗ Raw scraped jobs - .tmp/raw_jobs.json 
+2025-12-06 12:32:44,839 - __main__ - INFO - ✗ Filtered & accepted jobs - .tmp/filtered_jobs_accepted.json 
+2025-12-06 12:32:44,839 - __main__ - INFO - ✗ Filtered & rejected jobs - .tmp/filtered_jobs_rejected.json 
+2025-12-06 12:32:44,839 - __main__ - INFO - ✗ ClickUp sync summary - .tmp/clickup_sync_summary.json 
+2025-12-06 12:32:44,839 - __main__ - INFO - ✗ Approved jobs from ClickUp - .tmp/approved_jobs.json 
+2025-12-06 12:32:44,839 - __main__ - INFO - ✗ Proposals generation summary - .tmp/proposals_summary.json 
+2025-12-06 12:32:44,839 - __main__ - INFO - 
+------------------------------------------------------------
+2025-12-06 12:32:44,839 - __main__ - INFO - CREDENTIALS STATUS
+2025-12-06 12:32:44,840 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 12:32:44,840 - __main__ - INFO - ✗ ClickUp API: NOT SET
+2025-12-06 12:32:44,840 - __main__ - INFO - ✓ Claude API: sk-ant-api...
+2025-12-06 12:32:44,840 - __main__ - INFO - ✗ Upwork Email: NOT SET
+2025-12-06 12:45:03,025 - __main__ - INFO - ============================================================
+2025-12-06 12:45:03,026 - __main__ - INFO - SYSTEM STATUS
+2025-12-06 12:45:03,026 - __main__ - INFO - ============================================================
+2025-12-06 12:45:03,026 - __main__ - INFO - ✗ Raw scraped jobs - .tmp/raw_jobs.json 
+2025-12-06 12:45:03,026 - __main__ - INFO - ✗ Filtered & accepted jobs - .tmp/filtered_jobs_accepted.json 
+2025-12-06 12:45:03,026 - __main__ - INFO - ✗ Filtered & rejected jobs - .tmp/filtered_jobs_rejected.json 
+2025-12-06 12:45:03,026 - __main__ - INFO - ✗ ClickUp sync summary - .tmp/clickup_sync_summary.json 
+2025-12-06 12:45:03,026 - __main__ - INFO - ✗ Approved jobs from ClickUp - .tmp/approved_jobs.json 
+2025-12-06 12:45:03,026 - __main__ - INFO - ✗ Proposals generation summary - .tmp/proposals_summary.json 
+2025-12-06 12:45:03,026 - __main__ - INFO - 
+------------------------------------------------------------
+2025-12-06 12:45:03,026 - __main__ - INFO - CREDENTIALS STATUS
+2025-12-06 12:45:03,026 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 12:45:03,026 - __main__ - INFO - ✗ ClickUp API: NOT SET
+2025-12-06 12:45:03,026 - __main__ - INFO - ✓ Claude API: sk-ant-api...
+2025-12-06 12:45:03,026 - __main__ - INFO - ✓ Upwork Email: Musacomma@...
+2025-12-06 12:45:16,405 - __main__ - INFO - ============================================================
+2025-12-06 12:45:16,406 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 12:45:16,406 - __main__ - INFO - ============================================================
+2025-12-06 12:45:16,406 - __main__ - INFO - Search query: Python automation
+2025-12-06 12:45:16,406 - __main__ - INFO - Max jobs: 20
+2025-12-06 12:45:16,406 - __main__ - INFO - Headless mode: False
+2025-12-06 12:45:16,406 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 12:45:16,406 - WDM - INFO - ====== WebDriver manager ======
+2025-12-06 12:45:17,299 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 12:45:18,449 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 12:45:18,623 - WDM - INFO - There is no [mac64] chromedriver "143.0.7499.40" for browser google-chrome "143.0.7499" in cache
+2025-12-06 12:45:18,633 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 12:45:19,770 - WDM - INFO - WebDriver version 143.0.7499.40 selected
+2025-12-06 12:45:19,774 - WDM - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.40/mac-arm64/chromedriver-mac-arm64.zip
+2025-12-06 12:45:19,774 - WDM - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.40/mac-arm64/chromedriver-mac-arm64.zip
+2025-12-06 12:45:19,922 - WDM - INFO - Driver downloading response is 200
+2025-12-06 12:46:44,431 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 12:46:44,869 - WDM - INFO - Driver has been saved in cache [/Users/musacomma/.wdm/drivers/chromedriver/mac64/143.0.7499.40]
+2025-12-06 12:46:50,465 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 12:46:50,466 - upwork_scraper_selenium - INFO - Logging into Upwork...
+2025-12-06 12:47:48,611 - upwork_scraper_selenium - ERROR - Login failed: Message: element not interactable
+  (Session info: chrome=143.0.7499.40); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementnotinteractableexception
+Stacktrace:
+0   chromedriver                        0x00000001005b2e10 cxxbridge1$str$ptr + 3028012
+1   chromedriver                        0x00000001005aacd0 cxxbridge1$str$ptr + 2994924
+2   chromedriver                        0x00000001000a6980 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73784
+3   chromedriver                        0x00000001000e598c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 331844
+4   chromedriver                        0x00000001000e3758 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323088
+5   chromedriver                        0x000000010012e978 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 630832
+6   chromedriver                        0x00000001000e217c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 317492
+7   chromedriver                        0x0000000100577360 cxxbridge1$str$ptr + 2783612
+8   chromedriver                        0x000000010057aac4 cxxbridge1$str$ptr + 2797792
+9   chromedriver                        0x00000001005575f4 cxxbridge1$str$ptr + 2653200
+10  chromedriver                        0x000000010057b334 cxxbridge1$str$ptr + 2799952
+11  chromedriver                        0x0000000100547fc4 cxxbridge1$str$ptr + 2590176
+12  chromedriver                        0x000000010059a24c cxxbridge1$str$ptr + 2926696
+13  chromedriver                        0x000000010059a3cc cxxbridge1$str$ptr + 2927080
+14  chromedriver                        0x00000001005aa928 cxxbridge1$str$ptr + 2993988
+15  libsystem_pthread.dylib             0x000000018ddb1c08 _pthread_start + 136
+16  libsystem_pthread.dylib             0x000000018ddacba8 thread_start + 8
+
+2025-12-06 12:47:48,618 - upwork_scraper_selenium - ERROR - Error scraping jobs: Message: element not interactable
+  (Session info: chrome=143.0.7499.40); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementnotinteractableexception
+Stacktrace:
+0   chromedriver                        0x00000001005b2e10 cxxbridge1$str$ptr + 3028012
+1   chromedriver                        0x00000001005aacd0 cxxbridge1$str$ptr + 2994924
+2   chromedriver                        0x00000001000a6980 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73784
+3   chromedriver                        0x00000001000e598c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 331844
+4   chromedriver                        0x00000001000e3758 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323088
+5   chromedriver                        0x000000010012e978 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 630832
+6   chromedriver                        0x00000001000e217c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 317492
+7   chromedriver                        0x0000000100577360 cxxbridge1$str$ptr + 2783612
+8   chromedriver                        0x000000010057aac4 cxxbridge1$str$ptr + 2797792
+9   chromedriver                        0x00000001005575f4 cxxbridge1$str$ptr + 2653200
+10  chromedriver                        0x000000010057b334 cxxbridge1$str$ptr + 2799952
+11  chromedriver                        0x0000000100547fc4 cxxbridge1$str$ptr + 2590176
+12  chromedriver                        0x000000010059a24c cxxbridge1$str$ptr + 2926696
+13  chromedriver                        0x000000010059a3cc cxxbridge1$str$ptr + 2927080
+14  chromedriver                        0x00000001005aa928 cxxbridge1$str$ptr + 2993988
+15  libsystem_pthread.dylib             0x000000018ddb1c08 _pthread_start + 136
+16  libsystem_pthread.dylib             0x000000018ddacba8 thread_start + 8
+
+2025-12-06 12:47:48,790 - upwork_scraper_selenium - INFO - ✓ Browser closed
+2025-12-06 12:47:48,790 - __main__ - ERROR - Scraping failed: Message: element not interactable
+  (Session info: chrome=143.0.7499.40); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementnotinteractableexception
+Stacktrace:
+0   chromedriver                        0x00000001005b2e10 cxxbridge1$str$ptr + 3028012
+1   chromedriver                        0x00000001005aacd0 cxxbridge1$str$ptr + 2994924
+2   chromedriver                        0x00000001000a6980 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73784
+3   chromedriver                        0x00000001000e598c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 331844
+4   chromedriver                        0x00000001000e3758 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323088
+5   chromedriver                        0x000000010012e978 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 630832
+6   chromedriver                        0x00000001000e217c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 317492
+7   chromedriver                        0x0000000100577360 cxxbridge1$str$ptr + 2783612
+8   chromedriver                        0x000000010057aac4 cxxbridge1$str$ptr + 2797792
+9   chromedriver                        0x00000001005575f4 cxxbridge1$str$ptr + 2653200
+10  chromedriver                        0x000000010057b334 cxxbridge1$str$ptr + 2799952
+11  chromedriver                        0x0000000100547fc4 cxxbridge1$str$ptr + 2590176
+12  chromedriver                        0x000000010059a24c cxxbridge1$str$ptr + 2926696
+13  chromedriver                        0x000000010059a3cc cxxbridge1$str$ptr + 2927080
+14  chromedriver                        0x00000001005aa928 cxxbridge1$str$ptr + 2993988
+15  libsystem_pthread.dylib             0x000000018ddb1c08 _pthread_start + 136
+16  libsystem_pthread.dylib             0x000000018ddacba8 thread_start + 8
+
+2025-12-06 12:48:36,407 - __main__ - INFO - ============================================================
+2025-12-06 12:48:36,408 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 12:48:36,408 - __main__ - INFO - ============================================================
+2025-12-06 12:48:36,408 - __main__ - INFO - Search query: Python automation
+2025-12-06 12:48:36,408 - __main__ - INFO - Max jobs: 20
+2025-12-06 12:48:36,408 - __main__ - INFO - Headless mode: False
+2025-12-06 12:48:36,408 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 12:48:36,408 - WDM - INFO - ====== WebDriver manager ======
+2025-12-06 12:48:38,309 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 12:48:38,694 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 12:48:39,239 - WDM - INFO - Driver [/Users/musacomma/.wdm/drivers/chromedriver/mac64/143.0.7499.40/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-06 12:48:42,364 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 12:48:42,365 - upwork_scraper_selenium - INFO - Logging into Upwork...
+2025-12-06 12:49:38,838 - upwork_scraper_selenium - INFO - Found email field with selector: login_username
+2025-12-06 12:49:40,535 - upwork_scraper_selenium - INFO - Found continue button with selector: login_password_continue
+2025-12-06 12:50:36,366 - upwork_scraper_selenium - ERROR - Could not find password field. Screenshot saved.
+2025-12-06 12:50:36,367 - upwork_scraper_selenium - ERROR - Login failed: Password field not found
+2025-12-06 12:50:36,367 - upwork_scraper_selenium - ERROR - Error scraping jobs: Password field not found
+2025-12-06 12:50:36,713 - upwork_scraper_selenium - INFO - ✓ Browser closed
+2025-12-06 12:50:36,715 - __main__ - ERROR - Scraping failed: Password field not found
+2025-12-06 12:51:28,515 - __main__ - INFO - ============================================================
+2025-12-06 12:51:28,515 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 12:51:28,515 - __main__ - INFO - ============================================================
+2025-12-06 12:51:28,515 - __main__ - INFO - Search query: Python automation
+2025-12-06 12:51:28,515 - __main__ - INFO - Max jobs: 20
+2025-12-06 12:51:28,515 - __main__ - INFO - Headless mode: False
+2025-12-06 12:51:28,515 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 12:51:28,516 - WDM - INFO - ====== WebDriver manager ======
+2025-12-06 12:51:29,267 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 12:51:29,583 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 12:51:30,798 - WDM - INFO - Driver [/Users/musacomma/.wdm/drivers/chromedriver/mac64/143.0.7499.40/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-06 12:51:33,764 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 12:51:33,766 - upwork_scraper_selenium - INFO - Logging into Upwork...
+2025-12-06 12:52:35,893 - upwork_scraper_selenium - INFO - Found email field with selector: login_username
+2025-12-06 12:52:37,647 - upwork_scraper_selenium - INFO - Found continue button with selector: login_password_continue
+2025-12-06 12:52:41,817 - upwork_scraper_selenium - WARNING - ⚠️  Security verification detected after email entry!
+2025-12-06 12:52:41,817 - upwork_scraper_selenium - INFO - Please complete the CAPTCHA/verification in the browser window.
+2025-12-06 12:52:41,817 - upwork_scraper_selenium - INFO - Waiting 90 seconds for manual verification...
+2025-12-06 12:55:03,554 - upwork_scraper_selenium - WARNING - Password field not found (attempt 1/3). Waiting for manual action...
+2025-12-06 12:55:03,555 - upwork_scraper_selenium - INFO - If there's a CAPTCHA or verification, please complete it now.
+2025-12-06 12:56:24,377 - upwork_scraper_selenium - WARNING - Password field not found (attempt 2/3). Waiting for manual action...
+2025-12-06 12:56:24,378 - upwork_scraper_selenium - INFO - If there's a CAPTCHA or verification, please complete it now.
+2025-12-06 12:57:45,390 - upwork_scraper_selenium - ERROR - Could not find password field after retries. Screenshot saved.
+2025-12-06 12:57:45,391 - upwork_scraper_selenium - INFO - You may need to log in manually first time. Try running again.
+2025-12-06 12:57:45,391 - upwork_scraper_selenium - ERROR - Login failed: Password field not found - Upwork may require manual verification
+2025-12-06 12:57:45,391 - upwork_scraper_selenium - ERROR - Error scraping jobs: Password field not found - Upwork may require manual verification
+2025-12-06 12:57:45,638 - upwork_scraper_selenium - INFO - ✓ Browser closed
+2025-12-06 12:57:45,638 - __main__ - ERROR - Scraping failed: Password field not found - Upwork may require manual verification
+2025-12-06 13:00:28,803 - __main__ - INFO - ============================================================
+2025-12-06 13:00:28,804 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 13:00:28,804 - __main__ - INFO - ============================================================
+2025-12-06 13:00:28,804 - __main__ - INFO - Search query: Python automation
+2025-12-06 13:00:28,804 - __main__ - INFO - Max jobs: 20
+2025-12-06 13:00:28,804 - __main__ - INFO - Headless mode: False
+2025-12-06 13:00:28,804 - __main__ - INFO - Manual login: True
+2025-12-06 13:00:28,804 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 13:00:28,804 - WDM - INFO - ====== WebDriver manager ======
+2025-12-06 13:00:29,356 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 13:00:29,587 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 13:00:30,469 - WDM - INFO - Driver [/Users/musacomma/.wdm/drivers/chromedriver/mac64/143.0.7499.40/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-06 13:00:33,245 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 13:00:33,247 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 13:00:33,247 - upwork_scraper_selenium - INFO - MANUAL LOGIN MODE
+2025-12-06 13:00:33,247 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 13:00:33,248 - upwork_scraper_selenium - INFO - Opening Upwork login page...
+2025-12-06 13:00:33,249 - upwork_scraper_selenium - INFO - Please log in manually in the browser window.
+2025-12-06 13:00:33,249 - upwork_scraper_selenium - INFO - You have 3 minutes to complete the login.
+2025-12-06 13:00:33,249 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 13:02:33,267 - upwork_scraper_selenium - ERROR - Error scraping jobs: HTTPConnectionPool(host='localhost', port=64991): Read timed out. (read timeout=120)
+2025-12-06 13:04:33,305 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='localhost', port=64991): Read timed out. (read timeout=120)")': /session/d8f7ca391525f1cad21ea5925930be70
+2025-12-06 13:05:33,434 - upwork_scraper_selenium - INFO - ✓ Browser closed
+2025-12-06 13:05:33,434 - __main__ - ERROR - Scraping failed: HTTPConnectionPool(host='localhost', port=64991): Read timed out. (read timeout=120)
+2025-12-06 16:50:34,097 - __main__ - INFO - ============================================================
+2025-12-06 16:50:34,097 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 16:50:34,097 - __main__ - INFO - ============================================================
+2025-12-06 16:50:34,097 - __main__ - INFO - Search query: Python automation
+2025-12-06 16:50:34,098 - __main__ - INFO - Max jobs: 20
+2025-12-06 16:50:34,098 - __main__ - INFO - Headless mode: False
+2025-12-06 16:50:34,098 - __main__ - INFO - Manual login: True
+2025-12-06 16:50:34,098 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 16:50:34,098 - WDM - INFO - ====== WebDriver manager ======
+2025-12-06 16:50:36,833 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 16:50:39,314 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 16:50:41,808 - WDM - INFO - Driver [/Users/musacomma/.wdm/drivers/chromedriver/mac64/143.0.7499.40/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-06 16:50:45,654 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 16:50:45,656 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 16:50:45,656 - upwork_scraper_selenium - INFO - MANUAL LOGIN MODE
+2025-12-06 16:50:45,657 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 16:50:45,657 - upwork_scraper_selenium - INFO - Opening Upwork login page...
+2025-12-06 16:50:45,657 - upwork_scraper_selenium - INFO - Please log in manually in the browser window.
+2025-12-06 16:50:45,657 - upwork_scraper_selenium - INFO - You have 3 minutes to complete the login.
+2025-12-06 16:50:45,657 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 16:52:45,660 - upwork_scraper_selenium - ERROR - Error loading login page: HTTPConnectionPool(host='localhost', port=50348): Read timed out. (read timeout=120)
+2025-12-06 16:52:45,662 - upwork_scraper_selenium - INFO - Searching Upwork for: Python automation
+2025-12-06 16:52:45,662 - upwork_scraper_selenium - INFO - Scraping page 1...
+2025-12-06 16:54:45,667 - upwork_scraper_selenium - ERROR - Error scraping jobs: HTTPConnectionPool(host='localhost', port=50348): Read timed out. (read timeout=120)
+2025-12-06 16:56:45,672 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='localhost', port=50348): Read timed out. (read timeout=120)")': /session/b1cf8fc3377d8def020c61b2de67ed8f
+2025-12-06 16:56:53,589 - upwork_scraper_selenium - INFO - ✓ Browser closed
+2025-12-06 16:56:53,592 - __main__ - ERROR - Scraping failed: HTTPConnectionPool(host='localhost', port=50348): Read timed out. (read timeout=120)
+2025-12-06 17:01:04,874 - __main__ - INFO - ============================================================
+2025-12-06 17:01:04,874 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 17:01:04,875 - __main__ - INFO - ============================================================
+2025-12-06 17:01:04,875 - __main__ - INFO - Search query: Python automation
+2025-12-06 17:01:04,875 - __main__ - INFO - Max jobs: 20
+2025-12-06 17:01:04,875 - __main__ - INFO - Headless mode: False
+2025-12-06 17:01:04,875 - __main__ - INFO - Manual login: True
+2025-12-06 17:01:04,875 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 17:14:07,825 - undetected_chromedriver.patcher - INFO - patching driver executable /Users/musacomma/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2025-12-06 17:14:14,389 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 17:14:14,389 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 17:14:14,389 - upwork_scraper_selenium - INFO - MANUAL LOGIN MODE
+2025-12-06 17:14:14,389 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 17:14:14,389 - upwork_scraper_selenium - INFO - Opening Upwork login page...
+2025-12-06 17:14:14,389 - upwork_scraper_selenium - INFO - Please log in manually in the browser window.
+2025-12-06 17:14:14,389 - upwork_scraper_selenium - INFO - You have 3 minutes to complete the login.
+2025-12-06 17:14:14,389 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 17:14:14,391 - upwork_scraper_selenium - ERROR - Error loading login page: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=143.0.7499.40)
+Stacktrace:
+0   undetected_chromedriver             0x0000000104e00568 undetected_chromedriver + 6595944
+1   undetected_chromedriver             0x0000000104df7c1a undetected_chromedriver + 6560794
+2   undetected_chromedriver             0x0000000104820c3b undetected_chromedriver + 437307
+3   undetected_chromedriver             0x00000001047f5540 undetected_chromedriver + 259392
+4   undetected_chromedriver             0x00000001048a08c8 undetected_chromedriver + 960712
+5   undetected_chromedriver             0x00000001048bfcc8 undetected_chromedriver + 1088712
+6   undetected_chromedriver             0x0000000104864fc7 undetected_chromedriver + 716743
+7   undetected_chromedriver             0x0000000104865c91 undetected_chromedriver + 720017
+8   undetected_chromedriver             0x0000000104dbd691 undetected_chromedriver + 6321809
+9   undetected_chromedriver             0x0000000104dc1af0 undetected_chromedriver + 6339312
+10  undetected_chromedriver             0x0000000104d98263 undetected_chromedriver + 6169187
+11  undetected_chromedriver             0x0000000104dc2565 undetected_chromedriver + 6341989
+12  undetected_chromedriver             0x0000000104d86ee1 undetected_chromedriver + 6098657
+13  undetected_chromedriver             0x0000000104de4ab8 undetected_chromedriver + 6482616
+14  undetected_chromedriver             0x0000000104de4c73 undetected_chromedriver + 6483059
+15  undetected_chromedriver             0x0000000104df781c undetected_chromedriver + 6559772
+16  libsystem_pthread.dylib             0x00007ff816cd9e4d _pthread_start + 115
+17  libsystem_pthread.dylib             0x00007ff816cd5857 thread_start + 15
+
+2025-12-06 17:14:14,391 - upwork_scraper_selenium - INFO - Searching Upwork for: Python automation
+2025-12-06 17:14:14,391 - upwork_scraper_selenium - INFO - Scraping page 1...
+2025-12-06 17:14:14,392 - upwork_scraper_selenium - ERROR - Error scraping jobs: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=143.0.7499.40)
+Stacktrace:
+0   undetected_chromedriver             0x0000000104e00568 undetected_chromedriver + 6595944
+1   undetected_chromedriver             0x0000000104df7c1a undetected_chromedriver + 6560794
+2   undetected_chromedriver             0x0000000104820c3b undetected_chromedriver + 437307
+3   undetected_chromedriver             0x00000001047f5540 undetected_chromedriver + 259392
+4   undetected_chromedriver             0x00000001048a08c8 undetected_chromedriver + 960712
+5   undetected_chromedriver             0x00000001048bfcc8 undetected_chromedriver + 1088712
+6   undetected_chromedriver             0x0000000104864fc7 undetected_chromedriver + 716743
+7   undetected_chromedriver             0x0000000104865c91 undetected_chromedriver + 720017
+8   undetected_chromedriver             0x0000000104dbd691 undetected_chromedriver + 6321809
+9   undetected_chromedriver             0x0000000104dc1af0 undetected_chromedriver + 6339312
+10  undetected_chromedriver             0x0000000104d98263 undetected_chromedriver + 6169187
+11  undetected_chromedriver             0x0000000104dc2565 undetected_chromedriver + 6341989
+12  undetected_chromedriver             0x0000000104d86ee1 undetected_chromedriver + 6098657
+13  undetected_chromedriver             0x0000000104de4ab8 undetected_chromedriver + 6482616
+14  undetected_chromedriver             0x0000000104de4c73 undetected_chromedriver + 6483059
+15  undetected_chromedriver             0x0000000104df781c undetected_chromedriver + 6559772
+16  libsystem_pthread.dylib             0x00007ff816cd9e4d _pthread_start + 115
+17  libsystem_pthread.dylib             0x00007ff816cd5857 thread_start + 15
+
+2025-12-06 17:14:14,578 - upwork_scraper_selenium - INFO - ✓ Browser closed
+2025-12-06 17:14:14,578 - __main__ - ERROR - Scraping failed: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=143.0.7499.40)
+Stacktrace:
+0   undetected_chromedriver             0x0000000104e00568 undetected_chromedriver + 6595944
+1   undetected_chromedriver             0x0000000104df7c1a undetected_chromedriver + 6560794
+2   undetected_chromedriver             0x0000000104820c3b undetected_chromedriver + 437307
+3   undetected_chromedriver             0x00000001047f5540 undetected_chromedriver + 259392
+4   undetected_chromedriver             0x00000001048a08c8 undetected_chromedriver + 960712
+5   undetected_chromedriver             0x00000001048bfcc8 undetected_chromedriver + 1088712
+6   undetected_chromedriver             0x0000000104864fc7 undetected_chromedriver + 716743
+7   undetected_chromedriver             0x0000000104865c91 undetected_chromedriver + 720017
+8   undetected_chromedriver             0x0000000104dbd691 undetected_chromedriver + 6321809
+9   undetected_chromedriver             0x0000000104dc1af0 undetected_chromedriver + 6339312
+10  undetected_chromedriver             0x0000000104d98263 undetected_chromedriver + 6169187
+11  undetected_chromedriver             0x0000000104dc2565 undetected_chromedriver + 6341989
+12  undetected_chromedriver             0x0000000104d86ee1 undetected_chromedriver + 6098657
+13  undetected_chromedriver             0x0000000104de4ab8 undetected_chromedriver + 6482616
+14  undetected_chromedriver             0x0000000104de4c73 undetected_chromedriver + 6483059
+15  undetected_chromedriver             0x0000000104df781c undetected_chromedriver + 6559772
+16  libsystem_pthread.dylib             0x00007ff816cd9e4d _pthread_start + 115
+17  libsystem_pthread.dylib             0x00007ff816cd5857 thread_start + 15
+
+2025-12-06 17:14:14,579 - uc - INFO - ensuring close
+2025-12-06 17:17:45,606 - __main__ - INFO - ============================================================
+2025-12-06 17:17:45,607 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 17:17:45,607 - __main__ - INFO - ============================================================
+2025-12-06 17:17:45,607 - __main__ - INFO - Search query: Python automation
+2025-12-06 17:17:45,607 - __main__ - INFO - Max jobs: 20
+2025-12-06 17:17:45,607 - __main__ - INFO - Headless mode: False
+2025-12-06 17:17:45,607 - __main__ - INFO - Manual login: True
+2025-12-06 17:17:45,607 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 17:24:01,727 - undetected_chromedriver.patcher - INFO - patching driver executable /Users/musacomma/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2025-12-06 17:24:13,599 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 17:24:14,037 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 17:24:14,133 - upwork_scraper_selenium - INFO - MANUAL LOGIN MODE
+2025-12-06 17:24:14,193 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 17:24:14,194 - upwork_scraper_selenium - INFO - Opening Upwork login page...
+2025-12-06 17:24:14,194 - upwork_scraper_selenium - INFO - Please log in manually in the browser window.
+2025-12-06 17:24:14,194 - upwork_scraper_selenium - INFO - You have 3 minutes to complete the login.
+2025-12-06 17:24:14,230 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 17:24:41,876 - upwork_scraper_selenium - INFO - Waiting for login... (170s remaining)
+2025-12-06 17:25:02,204 - upwork_scraper_selenium - INFO - ✓ Login detected! Proceeding with scraping...
+2025-12-06 17:25:02,206 - upwork_scraper_selenium - INFO - Searching Upwork for: Python automation
+2025-12-06 17:25:02,206 - upwork_scraper_selenium - INFO - Scraping page 1...
+2025-12-06 17:25:14,802 - upwork_scraper_selenium - INFO - Found 10 job cards on page 1
+2025-12-06 17:47:03,040 - upwork_scraper_selenium - INFO - Scraping page 2...
+2025-12-06 17:47:15,272 - upwork_scraper_selenium - INFO - Found 10 job cards on page 2
+2025-12-06 18:09:03,301 - upwork_scraper_selenium - INFO - Scraping page 3...
+2025-12-06 18:09:21,609 - upwork_scraper_selenium - INFO - Found 10 job cards on page 3
+2025-12-06 18:31:10,199 - upwork_scraper_selenium - INFO - Scraping page 4...
+2025-12-06 18:31:24,384 - upwork_scraper_selenium - INFO - Found 10 job cards on page 4
+2025-12-06 18:43:50,071 - __main__ - INFO - ============================================================
+2025-12-06 18:43:50,071 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 18:43:50,071 - __main__ - INFO - ============================================================
+2025-12-06 18:43:50,071 - __main__ - INFO - Search query: Python automation
+2025-12-06 18:43:50,072 - __main__ - INFO - Max jobs: 10
+2025-12-06 18:43:50,072 - __main__ - INFO - Headless mode: False
+2025-12-06 18:43:50,072 - __main__ - INFO - Manual login: True
+2025-12-06 18:43:50,072 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 18:44:57,985 - undetected_chromedriver.patcher - INFO - patching driver executable /Users/musacomma/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2025-12-06 18:45:08,577 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 18:45:08,579 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 18:45:08,579 - upwork_scraper_selenium - INFO - MANUAL LOGIN MODE
+2025-12-06 18:45:08,580 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 18:45:08,580 - upwork_scraper_selenium - INFO - Opening Upwork login page...
+2025-12-06 18:45:08,580 - upwork_scraper_selenium - INFO - Please log in manually in the browser window.
+2025-12-06 18:45:08,580 - upwork_scraper_selenium - INFO - You have 3 minutes to complete the login.
+2025-12-06 18:45:08,580 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 18:45:41,325 - upwork_scraper_selenium - INFO - Waiting for login... (170s remaining)
+2025-12-06 18:46:01,642 - upwork_scraper_selenium - INFO - Waiting for login... (160s remaining)
+2025-12-06 18:46:50,766 - upwork_scraper_selenium - INFO - ✓ Login detected! Proceeding with scraping...
+2025-12-06 18:46:50,767 - upwork_scraper_selenium - INFO - Searching Upwork for: Python automation
+2025-12-06 18:46:50,767 - upwork_scraper_selenium - INFO - Scraping page 1...
+2025-12-06 18:47:20,138 - upwork_scraper_selenium - INFO - Found 10 job cards on page 1
+2025-12-06 19:09:14,177 - __main__ - INFO - ============================================================
+2025-12-06 19:09:14,177 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 19:09:14,177 - __main__ - INFO - ============================================================
+2025-12-06 19:09:14,177 - __main__ - INFO - Search query: Python automation
+2025-12-06 19:09:14,177 - __main__ - INFO - Max jobs: 20
+2025-12-06 19:09:14,177 - __main__ - INFO - Headless mode: False
+2025-12-06 19:09:14,177 - __main__ - INFO - Manual login: True
+2025-12-06 19:09:14,177 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 19:12:45,230 - undetected_chromedriver.patcher - INFO - patching driver executable /Users/musacomma/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2025-12-06 19:12:55,660 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 19:12:55,662 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 19:12:55,663 - upwork_scraper_selenium - INFO - MANUAL LOGIN MODE
+2025-12-06 19:12:55,663 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 19:12:55,663 - upwork_scraper_selenium - INFO - Opening Upwork login page...
+2025-12-06 19:12:55,664 - upwork_scraper_selenium - INFO - Please log in manually in the browser window.
+2025-12-06 19:12:55,664 - upwork_scraper_selenium - INFO - You have 3 minutes to complete the login.
+2025-12-06 19:12:55,664 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 19:12:55,669 - upwork_scraper_selenium - ERROR - Error loading login page: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=143.0.7499.40)
+Stacktrace:
+0   undetected_chromedriver             0x0000000105629568 undetected_chromedriver + 6595944
+1   undetected_chromedriver             0x0000000105620c1a undetected_chromedriver + 6560794
+2   undetected_chromedriver             0x0000000105049c3b undetected_chromedriver + 437307
+3   undetected_chromedriver             0x000000010501e540 undetected_chromedriver + 259392
+4   undetected_chromedriver             0x00000001050c98c8 undetected_chromedriver + 960712
+5   undetected_chromedriver             0x00000001050e8cc8 undetected_chromedriver + 1088712
+6   undetected_chromedriver             0x000000010508dfc7 undetected_chromedriver + 716743
+7   undetected_chromedriver             0x000000010508ec91 undetected_chromedriver + 720017
+8   undetected_chromedriver             0x00000001055e6691 undetected_chromedriver + 6321809
+9   undetected_chromedriver             0x00000001055eaaf0 undetected_chromedriver + 6339312
+10  undetected_chromedriver             0x00000001055c1263 undetected_chromedriver + 6169187
+11  undetected_chromedriver             0x00000001055eb565 undetected_chromedriver + 6341989
+12  undetected_chromedriver             0x00000001055afee1 undetected_chromedriver + 6098657
+13  undetected_chromedriver             0x000000010560dab8 undetected_chromedriver + 6482616
+14  undetected_chromedriver             0x000000010560dc73 undetected_chromedriver + 6483059
+15  undetected_chromedriver             0x000000010562081c undetected_chromedriver + 6559772
+16  libsystem_pthread.dylib             0x00007ff816c95e4d _pthread_start + 115
+17  libsystem_pthread.dylib             0x00007ff816c91857 thread_start + 15
+
+2025-12-06 19:12:55,670 - upwork_scraper_selenium - INFO - Searching Upwork for: Python automation
+2025-12-06 19:12:55,670 - upwork_scraper_selenium - INFO - Scraping page 1...
+2025-12-06 19:12:55,673 - upwork_scraper_selenium - ERROR - Error scraping jobs: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=143.0.7499.40)
+Stacktrace:
+0   undetected_chromedriver             0x0000000105629568 undetected_chromedriver + 6595944
+1   undetected_chromedriver             0x0000000105620c1a undetected_chromedriver + 6560794
+2   undetected_chromedriver             0x0000000105049c3b undetected_chromedriver + 437307
+3   undetected_chromedriver             0x000000010501e540 undetected_chromedriver + 259392
+4   undetected_chromedriver             0x00000001050c98c8 undetected_chromedriver + 960712
+5   undetected_chromedriver             0x00000001050e8cc8 undetected_chromedriver + 1088712
+6   undetected_chromedriver             0x000000010508dfc7 undetected_chromedriver + 716743
+7   undetected_chromedriver             0x000000010508ec91 undetected_chromedriver + 720017
+8   undetected_chromedriver             0x00000001055e6691 undetected_chromedriver + 6321809
+9   undetected_chromedriver             0x00000001055eaaf0 undetected_chromedriver + 6339312
+10  undetected_chromedriver             0x00000001055c1263 undetected_chromedriver + 6169187
+11  undetected_chromedriver             0x00000001055eb565 undetected_chromedriver + 6341989
+12  undetected_chromedriver             0x00000001055afee1 undetected_chromedriver + 6098657
+13  undetected_chromedriver             0x000000010560dab8 undetected_chromedriver + 6482616
+14  undetected_chromedriver             0x000000010560dc73 undetected_chromedriver + 6483059
+15  undetected_chromedriver             0x000000010562081c undetected_chromedriver + 6559772
+16  libsystem_pthread.dylib             0x00007ff816c95e4d _pthread_start + 115
+17  libsystem_pthread.dylib             0x00007ff816c91857 thread_start + 15
+
+2025-12-06 19:12:55,766 - upwork_scraper_selenium - INFO - ✓ Browser closed
+2025-12-06 19:12:55,766 - __main__ - ERROR - Scraping failed: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=143.0.7499.40)
+Stacktrace:
+0   undetected_chromedriver             0x0000000105629568 undetected_chromedriver + 6595944
+1   undetected_chromedriver             0x0000000105620c1a undetected_chromedriver + 6560794
+2   undetected_chromedriver             0x0000000105049c3b undetected_chromedriver + 437307
+3   undetected_chromedriver             0x000000010501e540 undetected_chromedriver + 259392
+4   undetected_chromedriver             0x00000001050c98c8 undetected_chromedriver + 960712
+5   undetected_chromedriver             0x00000001050e8cc8 undetected_chromedriver + 1088712
+6   undetected_chromedriver             0x000000010508dfc7 undetected_chromedriver + 716743
+7   undetected_chromedriver             0x000000010508ec91 undetected_chromedriver + 720017
+8   undetected_chromedriver             0x00000001055e6691 undetected_chromedriver + 6321809
+9   undetected_chromedriver             0x00000001055eaaf0 undetected_chromedriver + 6339312
+10  undetected_chromedriver             0x00000001055c1263 undetected_chromedriver + 6169187
+11  undetected_chromedriver             0x00000001055eb565 undetected_chromedriver + 6341989
+12  undetected_chromedriver             0x00000001055afee1 undetected_chromedriver + 6098657
+13  undetected_chromedriver             0x000000010560dab8 undetected_chromedriver + 6482616
+14  undetected_chromedriver             0x000000010560dc73 undetected_chromedriver + 6483059
+15  undetected_chromedriver             0x000000010562081c undetected_chromedriver + 6559772
+16  libsystem_pthread.dylib             0x00007ff816c95e4d _pthread_start + 115
+17  libsystem_pthread.dylib             0x00007ff816c91857 thread_start + 15
+
+2025-12-06 19:12:55,771 - uc - INFO - ensuring close
+2025-12-06 19:13:39,069 - __main__ - INFO - ============================================================
+2025-12-06 19:13:39,070 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 19:13:39,070 - __main__ - INFO - ============================================================
+2025-12-06 19:13:39,070 - __main__ - INFO - Search query: Python automation
+2025-12-06 19:13:39,070 - __main__ - INFO - Max jobs: 20
+2025-12-06 19:13:39,070 - __main__ - INFO - Headless mode: False
+2025-12-06 19:13:39,070 - __main__ - INFO - Manual login: True
+2025-12-06 19:13:39,070 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 19:13:45,129 - uc - INFO - ensuring close
+2025-12-06 19:17:08,128 - __main__ - INFO - ============================================================
+2025-12-06 19:17:08,128 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 19:17:08,128 - __main__ - INFO - ============================================================
+2025-12-06 19:17:08,128 - __main__ - INFO - Search query: Python automation
+2025-12-06 19:17:08,128 - __main__ - INFO - Max jobs: 10
+2025-12-06 19:17:08,128 - __main__ - INFO - Headless mode: False
+2025-12-06 19:17:08,128 - __main__ - INFO - Manual login: True
+2025-12-06 19:17:08,128 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 19:17:08,128 - WDM - INFO - ====== WebDriver manager ======
+2025-12-06 19:17:08,313 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 19:17:09,027 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 19:17:09,457 - WDM - INFO - Driver [/Users/musacomma/.wdm/drivers/chromedriver/mac64/143.0.7499.40/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-06 19:17:10,927 - upwork_scraper_selenium - ERROR - Error scraping jobs: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x000000010459ee10 cxxbridge1$str$ptr + 3028012
+1   chromedriver                        0x0000000104596cd0 cxxbridge1$str$ptr + 2994924
+2   chromedriver                        0x0000000104092b1c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74196
+3   chromedriver                        0x00000001040c6074 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 284460
+4   chromedriver                        0x00000001040c306c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 272164
+5   chromedriver                        0x0000000104106e9c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 550228
+6   chromedriver                        0x00000001041068dc _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 548756
+7   chromedriver                        0x00000001040ce17c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 317492
+8   chromedriver                        0x0000000104563360 cxxbridge1$str$ptr + 2783612
+9   chromedriver                        0x0000000104566ac4 cxxbridge1$str$ptr + 2797792
+10  chromedriver                        0x00000001045435f4 cxxbridge1$str$ptr + 2653200
+11  chromedriver                        0x0000000104567334 cxxbridge1$str$ptr + 2799952
+12  chromedriver                        0x0000000104533fc4 cxxbridge1$str$ptr + 2590176
+13  chromedriver                        0x000000010458624c cxxbridge1$str$ptr + 2926696
+14  chromedriver                        0x00000001045863cc cxxbridge1$str$ptr + 2927080
+15  chromedriver                        0x0000000104596928 cxxbridge1$str$ptr + 2993988
+16  libsystem_pthread.dylib             0x000000018ddb1c08 _pthread_start + 136
+17  libsystem_pthread.dylib             0x000000018ddacba8 thread_start + 8
+
+2025-12-06 19:17:10,927 - __main__ - ERROR - Scraping failed: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x000000010459ee10 cxxbridge1$str$ptr + 3028012
+1   chromedriver                        0x0000000104596cd0 cxxbridge1$str$ptr + 2994924
+2   chromedriver                        0x0000000104092b1c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74196
+3   chromedriver                        0x00000001040c6074 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 284460
+4   chromedriver                        0x00000001040c306c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 272164
+5   chromedriver                        0x0000000104106e9c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 550228
+6   chromedriver                        0x00000001041068dc _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 548756
+7   chromedriver                        0x00000001040ce17c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 317492
+8   chromedriver                        0x0000000104563360 cxxbridge1$str$ptr + 2783612
+9   chromedriver                        0x0000000104566ac4 cxxbridge1$str$ptr + 2797792
+10  chromedriver                        0x00000001045435f4 cxxbridge1$str$ptr + 2653200
+11  chromedriver                        0x0000000104567334 cxxbridge1$str$ptr + 2799952
+12  chromedriver                        0x0000000104533fc4 cxxbridge1$str$ptr + 2590176
+13  chromedriver                        0x000000010458624c cxxbridge1$str$ptr + 2926696
+14  chromedriver                        0x00000001045863cc cxxbridge1$str$ptr + 2927080
+15  chromedriver                        0x0000000104596928 cxxbridge1$str$ptr + 2993988
+16  libsystem_pthread.dylib             0x000000018ddb1c08 _pthread_start + 136
+17  libsystem_pthread.dylib             0x000000018ddacba8 thread_start + 8
+
+2025-12-06 19:24:56,054 - __main__ - INFO - ============================================================
+2025-12-06 19:24:56,054 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 19:24:56,054 - __main__ - INFO - ============================================================
+2025-12-06 19:24:56,054 - __main__ - INFO - Search query: Python automation
+2025-12-06 19:24:56,054 - __main__ - INFO - Max jobs: 10
+2025-12-06 19:24:56,054 - __main__ - INFO - Headless mode: False
+2025-12-06 19:24:56,054 - __main__ - INFO - Manual login: True
+2025-12-06 19:24:56,054 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 19:24:56,055 - WDM - INFO - ====== WebDriver manager ======
+2025-12-06 19:24:56,275 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 19:24:57,029 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 19:25:00,141 - WDM - INFO - Driver [/Users/musacomma/.wdm/drivers/chromedriver/mac64/143.0.7499.40/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-06 19:26:01,462 - upwork_scraper_selenium - ERROR - Error scraping jobs: Message: session not created: DevToolsActivePort file doesn't exist; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x00000001031bae10 cxxbridge1$str$ptr + 3028012
+1   chromedriver                        0x00000001031b2cd0 cxxbridge1$str$ptr + 2994924
+2   chromedriver                        0x0000000102caeb1c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74196
+3   chromedriver                        0x0000000102ce5bdc _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 299668
+4   chromedriver                        0x0000000102ce2708 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 286144
+5   chromedriver                        0x0000000102cdf06c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 272164
+6   chromedriver                        0x0000000102d22e9c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 550228
+7   chromedriver                        0x0000000102d228dc _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 548756
+8   chromedriver                        0x0000000102cea17c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 317492
+9   chromedriver                        0x000000010317f360 cxxbridge1$str$ptr + 2783612
+10  chromedriver                        0x0000000103182ac4 cxxbridge1$str$ptr + 2797792
+11  chromedriver                        0x000000010315f5f4 cxxbridge1$str$ptr + 2653200
+12  chromedriver                        0x0000000103183334 cxxbridge1$str$ptr + 2799952
+13  chromedriver                        0x000000010314ffc4 cxxbridge1$str$ptr + 2590176
+14  chromedriver                        0x00000001031a224c cxxbridge1$str$ptr + 2926696
+15  chromedriver                        0x00000001031a23cc cxxbridge1$str$ptr + 2927080
+16  chromedriver                        0x00000001031b2928 cxxbridge1$str$ptr + 2993988
+17  libsystem_pthread.dylib             0x000000018ddb1c08 _pthread_start + 136
+18  libsystem_pthread.dylib             0x000000018ddacba8 thread_start + 8
+
+2025-12-06 19:26:01,471 - __main__ - ERROR - Scraping failed: Message: session not created: DevToolsActivePort file doesn't exist; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x00000001031bae10 cxxbridge1$str$ptr + 3028012
+1   chromedriver                        0x00000001031b2cd0 cxxbridge1$str$ptr + 2994924
+2   chromedriver                        0x0000000102caeb1c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74196
+3   chromedriver                        0x0000000102ce5bdc _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 299668
+4   chromedriver                        0x0000000102ce2708 _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 286144
+5   chromedriver                        0x0000000102cdf06c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 272164
+6   chromedriver                        0x0000000102d22e9c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 550228
+7   chromedriver                        0x0000000102d228dc _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 548756
+8   chromedriver                        0x0000000102cea17c _RNvCsgXDX2mvAJAg_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 317492
+9   chromedriver                        0x000000010317f360 cxxbridge1$str$ptr + 2783612
+10  chromedriver                        0x0000000103182ac4 cxxbridge1$str$ptr + 2797792
+11  chromedriver                        0x000000010315f5f4 cxxbridge1$str$ptr + 2653200
+12  chromedriver                        0x0000000103183334 cxxbridge1$str$ptr + 2799952
+13  chromedriver                        0x000000010314ffc4 cxxbridge1$str$ptr + 2590176
+14  chromedriver                        0x00000001031a224c cxxbridge1$str$ptr + 2926696
+15  chromedriver                        0x00000001031a23cc cxxbridge1$str$ptr + 2927080
+16  chromedriver                        0x00000001031b2928 cxxbridge1$str$ptr + 2993988
+17  libsystem_pthread.dylib             0x000000018ddb1c08 _pthread_start + 136
+18  libsystem_pthread.dylib             0x000000018ddacba8 thread_start + 8
+
+2025-12-06 19:27:03,878 - __main__ - INFO - ============================================================
+2025-12-06 19:27:03,878 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 19:27:03,878 - __main__ - INFO - ============================================================
+2025-12-06 19:27:03,878 - __main__ - INFO - Search query: Python automation
+2025-12-06 19:27:03,878 - __main__ - INFO - Max jobs: 10
+2025-12-06 19:27:03,878 - __main__ - INFO - Headless mode: False
+2025-12-06 19:27:03,878 - __main__ - INFO - Manual login: True
+2025-12-06 19:27:03,878 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 19:27:03,879 - WDM - INFO - ====== WebDriver manager ======
+2025-12-06 19:27:06,029 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 19:27:09,309 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 19:27:12,055 - WDM - INFO - Driver [/Users/musacomma/.wdm/drivers/chromedriver/mac64/143.0.7499.40/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-06 19:27:17,283 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 19:27:17,284 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 19:27:17,285 - upwork_scraper_selenium - INFO - MANUAL LOGIN MODE
+2025-12-06 19:27:17,285 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 19:27:17,285 - upwork_scraper_selenium - INFO - Opening Upwork login page...
+2025-12-06 19:27:17,285 - upwork_scraper_selenium - INFO - Please log in manually in the browser window.
+2025-12-06 19:27:17,285 - upwork_scraper_selenium - INFO - You have 3 minutes to complete the login.
+2025-12-06 19:27:17,285 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 19:29:17,287 - upwork_scraper_selenium - ERROR - Error loading login page: HTTPConnectionPool(host='localhost', port=53115): Read timed out. (read timeout=120)
+2025-12-06 19:29:17,289 - upwork_scraper_selenium - INFO - Searching Upwork for: Python automation
+2025-12-06 19:29:17,289 - upwork_scraper_selenium - INFO - Scraping page 1...
+2025-12-06 19:31:17,297 - upwork_scraper_selenium - ERROR - Error scraping jobs: HTTPConnectionPool(host='localhost', port=53115): Read timed out. (read timeout=120)
+2025-12-06 19:33:17,302 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='localhost', port=53115): Read timed out. (read timeout=120)")': /session/40a2772ee3093f9930826d1491938a42
+2025-12-06 19:35:17,303 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='localhost', port=53115): Read timed out. (read timeout=120)")': /session/40a2772ee3093f9930826d1491938a42
+2025-12-06 19:37:02,892 - upwork_scraper_selenium - INFO - ✓ Browser closed
+2025-12-06 19:37:02,893 - __main__ - ERROR - Scraping failed: HTTPConnectionPool(host='localhost', port=53115): Read timed out. (read timeout=120)
+2025-12-06 19:39:51,812 - __main__ - INFO - ============================================================
+2025-12-06 19:39:51,812 - __main__ - INFO - ACTION: Scrape Upwork Jobs
+2025-12-06 19:39:51,812 - __main__ - INFO - ============================================================
+2025-12-06 19:39:51,812 - __main__ - INFO - Search query: Python automation
+2025-12-06 19:39:51,812 - __main__ - INFO - Max jobs: 10
+2025-12-06 19:39:51,812 - __main__ - INFO - Headless mode: False
+2025-12-06 19:39:51,812 - __main__ - INFO - Manual login: True
+2025-12-06 19:39:51,812 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 19:39:51,813 - WDM - INFO - ====== WebDriver manager ======
+2025-12-06 19:39:52,244 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 19:39:52,427 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-12-06 19:39:52,730 - WDM - INFO - Driver [/Users/musacomma/.wdm/drivers/chromedriver/mac64/143.0.7499.40/chromedriver-mac-arm64/chromedriver] found in cache
+2025-12-06 19:39:57,682 - upwork_scraper_selenium - INFO - ✓ Chrome driver initialized
+2025-12-06 19:39:57,683 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 19:39:57,683 - upwork_scraper_selenium - INFO - MANUAL LOGIN MODE
+2025-12-06 19:39:57,683 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 19:39:57,683 - upwork_scraper_selenium - INFO - Opening Upwork...
+2025-12-06 19:39:57,683 - upwork_scraper_selenium - INFO - Please log in manually if prompted.
+2025-12-06 19:39:57,683 - upwork_scraper_selenium - INFO - You have 3 minutes to complete the login.
+2025-12-06 19:39:57,684 - upwork_scraper_selenium - INFO - ============================================================
+2025-12-06 19:40:12,457 - upwork_scraper_selenium - INFO - Waiting for login... (175s remaining)
+2025-12-06 19:40:22,480 - upwork_scraper_selenium - INFO - Waiting for login... (165s remaining)
+2025-12-06 19:40:32,511 - upwork_scraper_selenium - INFO - Waiting for login... (155s remaining)
+2025-12-06 19:40:42,539 - upwork_scraper_selenium - INFO - Waiting for login... (145s remaining)
+2025-12-06 19:40:52,566 - upwork_scraper_selenium - INFO - Waiting for login... (135s remaining)
+2025-12-06 19:41:02,588 - upwork_scraper_selenium - INFO - Waiting for login... (125s remaining)
+2025-12-06 19:41:12,626 - upwork_scraper_selenium - INFO - Waiting for login... (115s remaining)
+2025-12-06 19:41:29,127 - upwork_scraper_selenium - INFO - ✓ Login detected! Proceeding with scraping...
+2025-12-06 19:41:29,129 - upwork_scraper_selenium - INFO - Searching Upwork for: Python automation
+2025-12-06 19:41:29,129 - upwork_scraper_selenium - INFO - Scraping page 1...
+2025-12-06 19:41:50,694 - upwork_scraper_selenium - INFO - Found 10 job cards on page 1
+2025-12-06 19:42:41,684 - upwork_scraper_selenium - INFO - ✓ Scraped 10 jobs total
+2025-12-06 19:42:41,689 - upwork_scraper_selenium - INFO - ✓ Saved 10 jobs to .tmp/raw_jobs.json
+2025-12-06 19:42:41,988 - upwork_scraper_selenium - INFO - ✓ Browser closed
+2025-12-06 19:42:41,989 - __main__ - INFO - ✓ Scraped 10 jobs successfully
+2025-12-06 19:42:41,989 - __main__ - INFO - ✓ Saved to .tmp/raw_jobs.json
+2025-12-06 20:07:25,356 - __main__ - INFO - ============================================================
+2025-12-06 20:07:25,357 - __main__ - INFO - ACTION: Sync to Airtable
+2025-12-06 20:07:25,357 - __main__ - INFO - ============================================================
+2025-12-06 20:08:03,190 - __main__ - INFO - ============================================================
+2025-12-06 20:08:03,191 - __main__ - INFO - ACTION: Filter Jobs
+2025-12-06 20:08:03,191 - __main__ - INFO - ============================================================
+2025-12-06 20:08:03,192 - filter_jobs - INFO - Loaded 10 raw jobs from .tmp/raw_jobs.json
+2025-12-06 20:08:03,192 - filter_jobs - INFO - Filtering complete: 0 accepted, 10 rejected out of 10 total
+2025-12-06 20:08:03,192 - filter_jobs - INFO - Saved 0 accepted jobs to .tmp/filtered_jobs_accepted.json
+2025-12-06 20:08:03,193 - filter_jobs - INFO - Saved 10 rejected jobs to .tmp/filtered_jobs_rejected.json
+2025-12-06 20:08:03,193 - __main__ - INFO - ✓ Filtering complete: 0 accepted, 10 rejected
+2025-12-06 20:09:22,152 - __main__ - INFO - ============================================================
+2025-12-06 20:09:22,153 - __main__ - INFO - ACTION: Filter Jobs
+2025-12-06 20:09:22,153 - __main__ - INFO - ============================================================
+2025-12-06 20:09:22,153 - filter_jobs - INFO - Loaded 10 raw jobs from .tmp/raw_jobs.json
+2025-12-06 20:09:22,154 - filter_jobs - INFO - Filtering complete: 0 accepted, 10 rejected out of 10 total
+2025-12-06 20:09:22,154 - filter_jobs - INFO - Saved 0 accepted jobs to .tmp/filtered_jobs_accepted.json
+2025-12-06 20:09:22,155 - filter_jobs - INFO - Saved 10 rejected jobs to .tmp/filtered_jobs_rejected.json
+2025-12-06 20:09:22,155 - __main__ - INFO - ✓ Filtering complete: 0 accepted, 10 rejected
+2025-12-06 20:11:57,298 - __main__ - INFO - ============================================================
+2025-12-06 20:11:57,298 - __main__ - INFO - ACTION: Filter Jobs
+2025-12-06 20:11:57,298 - __main__ - INFO - ============================================================
+2025-12-06 20:11:57,299 - filter_jobs - INFO - Loaded 10 raw jobs from .tmp/raw_jobs.json
+2025-12-06 20:11:57,299 - filter_jobs - INFO - Filtering complete: 0 accepted, 10 rejected out of 10 total
+2025-12-06 20:11:57,300 - filter_jobs - INFO - Saved 0 accepted jobs to .tmp/filtered_jobs_accepted.json
+2025-12-06 20:11:57,300 - filter_jobs - INFO - Saved 10 rejected jobs to .tmp/filtered_jobs_rejected.json
+2025-12-06 20:11:57,301 - __main__ - INFO - ✓ Filtering complete: 0 accepted, 10 rejected
+2025-12-06 20:12:43,986 - __main__ - INFO - ============================================================
+2025-12-06 20:12:43,986 - __main__ - INFO - ACTION: Filter Jobs
+2025-12-06 20:12:43,986 - __main__ - INFO - ============================================================
+2025-12-06 20:12:43,987 - filter_jobs - INFO - Loaded 10 raw jobs from .tmp/raw_jobs.json
+2025-12-06 20:12:43,987 - filter_jobs - INFO - ✓ Job None ACCEPTED (Score: 75.0) - Senior Full-Stack Engineer & Automation Expert Nee
+2025-12-06 20:12:43,987 - filter_jobs - INFO - ✓ Job None ACCEPTED (Score: 75.0) - Python Audio Data Engineer (Streamlit + Librosa) -
+2025-12-06 20:12:43,987 - filter_jobs - INFO - ✓ Job None ACCEPTED (Score: 65.0) - AI Automation Developer Needed – Build Fully Autom
+2025-12-06 20:12:43,987 - filter_jobs - INFO - ✓ Job None ACCEPTED (Score: 75.0) - Freelance Integration Manager for AI & Backend Aut
+2025-12-06 20:12:43,987 - filter_jobs - INFO - ✓ Job None ACCEPTED (Score: 72.5) - Python Developer Needed for Grocery Store Web Scra
+2025-12-06 20:12:43,987 - filter_jobs - INFO - ✓ Job None ACCEPTED (Score: 67.5) - Python developer to build a high-performance autom
+2025-12-06 20:12:43,987 - filter_jobs - INFO - ✓ Job None ACCEPTED (Score: 65.0) - Reddit Bot Development for Loan Tracking
+2025-12-06 20:12:43,987 - filter_jobs - INFO - ✓ Job None ACCEPTED (Score: 72.5) - Fix Facebook Selenium Scraper
+2025-12-06 20:12:43,987 - filter_jobs - INFO - ✓ Job None ACCEPTED (Score: 77.5) - PDF to Markdown Conversion Using Python
+2025-12-06 20:12:43,987 - filter_jobs - INFO - Filtering complete: 9 accepted, 1 rejected out of 10 total
+2025-12-06 20:12:43,988 - filter_jobs - INFO - Saved 9 accepted jobs to .tmp/filtered_jobs_accepted.json
+2025-12-06 20:12:43,988 - filter_jobs - INFO - Saved 1 rejected jobs to .tmp/filtered_jobs_rejected.json
+2025-12-06 20:12:43,988 - __main__ - INFO - ✓ Filtering complete: 9 accepted, 1 rejected
+2025-12-06 20:12:59,908 - __main__ - INFO - ============================================================
+2025-12-06 20:12:59,908 - __main__ - INFO - ACTION: Sync to Airtable
+2025-12-06 20:12:59,908 - __main__ - INFO - ============================================================
+2025-12-06 20:12:59,909 - sync_to_clickup - INFO - Loaded 9 jobs from .tmp/filtered_jobs_accepted.json
+2025-12-06 20:12:59,909 - airtable_upwork - INFO - Syncing 9 jobs to Airtable...
+2025-12-06 20:13:01,236 - airtable_upwork - WARNING - Job has no ID, skipping: PDF to Markdown Conversion Using Python
+2025-12-06 20:13:01,236 - airtable_upwork - WARNING - Job has no ID, skipping: Freelance Integration Manager for AI & Backend Automation
+2025-12-06 20:13:01,236 - airtable_upwork - WARNING - Job has no ID, skipping: Senior Full-Stack Engineer & Automation Expert Needed
+2025-12-06 20:13:01,236 - airtable_upwork - WARNING - Job has no ID, skipping: Python Audio Data Engineer (Streamlit + Librosa) - MVP Build
+2025-12-06 20:13:01,236 - airtable_upwork - WARNING - Job has no ID, skipping: Python Developer Needed for Grocery Store Web Scraper
+2025-12-06 20:13:01,236 - airtable_upwork - WARNING - Job has no ID, skipping: Fix Facebook Selenium Scraper
+2025-12-06 20:13:01,237 - airtable_upwork - WARNING - Job has no ID, skipping: Python developer to build a high-performance automated trading bot for the online Exchanges
+2025-12-06 20:13:01,237 - airtable_upwork - WARNING - Job has no ID, skipping: AI Automation Developer Needed – Build Fully Automated Travel Deals Engine (Traveltxter)
+2025-12-06 20:13:01,237 - airtable_upwork - WARNING - Job has no ID, skipping: Reddit Bot Development for Loan Tracking
+2025-12-06 20:13:01,237 - airtable_upwork - INFO - ✓ Sync complete: 0 created, 9 skipped, 0 failed
+2025-12-06 20:13:01,238 - __main__ - INFO - ✓ Airtable sync complete: 0 created, 0 updated, 9 duplicates, 0 failed
+2025-12-06 20:15:05,714 - __main__ - INFO - ============================================================
+2025-12-06 20:15:05,714 - __main__ - INFO - ACTION: Filter Jobs
+2025-12-06 20:15:05,714 - __main__ - INFO - ============================================================
+2025-12-06 20:15:05,715 - filter_jobs - INFO - Loaded 10 raw jobs from .tmp/raw_jobs.json
+2025-12-06 20:15:05,715 - filter_jobs - INFO - ✓ Job 021997457305876246703 ACCEPTED (Score: 75.0) - Senior Full-Stack Engineer & Automation Expert Nee
+2025-12-06 20:15:05,715 - filter_jobs - INFO - ✓ Job 021997433134962059283 ACCEPTED (Score: 75.0) - Python Audio Data Engineer (Streamlit + Librosa) -
+2025-12-06 20:15:05,715 - filter_jobs - INFO - ✓ Job 021997387350921130159 ACCEPTED (Score: 65.0) - AI Automation Developer Needed – Build Fully Autom
+2025-12-06 20:15:05,715 - filter_jobs - INFO - ✓ Job 021997393467411738799 ACCEPTED (Score: 75.0) - Freelance Integration Manager for AI & Backend Aut
+2025-12-06 20:15:05,715 - filter_jobs - INFO - ✓ Job 021997431790523489681 ACCEPTED (Score: 72.5) - Python Developer Needed for Grocery Store Web Scra
+2025-12-06 20:15:05,715 - filter_jobs - INFO - ✓ Job 021997405336008601775 ACCEPTED (Score: 67.5) - Python developer to build a high-performance autom
+2025-12-06 20:15:05,715 - filter_jobs - INFO - ✓ Job 021997422166265142673 ACCEPTED (Score: 65.0) - Reddit Bot Development for Loan Tracking
+2025-12-06 20:15:05,715 - filter_jobs - INFO - ✓ Job 021997377036755930130 ACCEPTED (Score: 72.5) - Fix Facebook Selenium Scraper
+2025-12-06 20:15:05,715 - filter_jobs - INFO - ✓ Job 021997406304829843475 ACCEPTED (Score: 77.5) - PDF to Markdown Conversion Using Python
+2025-12-06 20:15:05,715 - filter_jobs - INFO - Filtering complete: 9 accepted, 1 rejected out of 10 total
+2025-12-06 20:15:05,716 - filter_jobs - INFO - Saved 9 accepted jobs to .tmp/filtered_jobs_accepted.json
+2025-12-06 20:15:05,717 - filter_jobs - INFO - Saved 1 rejected jobs to .tmp/filtered_jobs_rejected.json
+2025-12-06 20:15:05,717 - __main__ - INFO - ✓ Filtering complete: 9 accepted, 1 rejected
+2025-12-06 20:15:06,270 - __main__ - INFO - ============================================================
+2025-12-06 20:15:06,270 - __main__ - INFO - ACTION: Sync to Airtable
+2025-12-06 20:15:06,270 - __main__ - INFO - ============================================================
+2025-12-06 20:15:06,270 - sync_to_clickup - INFO - Loaded 9 jobs from .tmp/filtered_jobs_accepted.json
+2025-12-06 20:15:06,270 - airtable_upwork - INFO - Syncing 9 jobs to Airtable...
+2025-12-06 20:15:36,509 - airtable_upwork - INFO - ✓ Sync complete: 9 created, 0 skipped, 0 failed
+2025-12-06 20:15:36,512 - __main__ - INFO - ✓ Airtable sync complete: 9 created, 0 updated, 0 duplicates, 0 failed
+2025-12-06 21:41:34,706 - filter_jobs - INFO - ✓ Job 021997457305876246703 ACCEPTED (Score: 75.0) - Senior Full-Stack Engineer & Automation Expert Nee
+2025-12-06 21:41:34,706 - filter_jobs - INFO - ✓ Job 021997433134962059283 ACCEPTED (Score: 75.0) - Python Audio Data Engineer (Streamlit + Librosa) -
+2025-12-06 21:41:34,706 - filter_jobs - INFO - Filtering complete: 2 accepted, 0 rejected out of 2 total
+2025-12-06 21:44:06,048 - __main__ - INFO - ============================================================
+2025-12-06 21:44:06,048 - __main__ - INFO - SYSTEM STATUS
+2025-12-06 21:44:06,048 - __main__ - INFO - ============================================================
+2025-12-06 21:44:06,048 - __main__ - INFO - ✓ Raw scraped jobs - .tmp/raw_jobs.json (23573 bytes)
+2025-12-06 21:44:06,048 - __main__ - INFO - ✓ Filtered & accepted jobs - .tmp/filtered_jobs_accepted.json (21306 bytes)
+2025-12-06 21:44:06,048 - __main__ - INFO - ✓ Filtered & rejected jobs - .tmp/filtered_jobs_rejected.json (3458 bytes)
+2025-12-06 21:44:06,049 - __main__ - INFO - ✓ Airtable sync summary - .tmp/airtable_sync_summary.json (1568 bytes)
+2025-12-06 21:44:06,049 - __main__ - INFO - ✗ Approved jobs - .tmp/approved_jobs.json 
+2025-12-06 21:44:06,049 - __main__ - INFO - ✗ Proposals generation summary - .tmp/proposals_summary.json 
+2025-12-06 21:44:06,049 - __main__ - INFO - 
+------------------------------------------------------------
+2025-12-06 21:44:06,049 - __main__ - INFO - CREDENTIALS STATUS
+2025-12-06 21:44:06,049 - __main__ - INFO - ------------------------------------------------------------
+2025-12-06 21:44:06,049 - __main__ - INFO - ✓ Airtable API: patQCCzbAj...
+2025-12-06 21:44:06,049 - __main__ - INFO - ✓ Airtable Upwork Base: appw88uD6Z...
+2025-12-06 21:44:06,049 - __main__ - INFO - ✓ Claude API: sk-ant-api...
+2025-12-06 21:44:06,049 - __main__ - INFO - ✓ Upwork Email: Musacomma@...

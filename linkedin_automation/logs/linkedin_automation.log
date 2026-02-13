@@ -1,0 +1,1495 @@
+2025-12-04 16:29:32,112 - linkedin_scheduler - INFO - Generated 6 randomized posting times over 2 days
+2025-12-05 14:37:05,110 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.0.0.2:5050
+2025-12-05 14:37:05,110 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 15:30:55,360 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.12.237:5050
+2025-12-05 15:30:55,360 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 15:36:30,064 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.12.237:5050
+2025-12-05 15:36:30,064 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 15:44:23,465 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.12.237:5050
+2025-12-05 15:44:23,465 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 15:49:54,870 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.12.237:5050
+2025-12-05 15:49:54,870 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 16:13:25,124 - __main__ - INFO - Received revision request for record: recOk0DvALhAY3cYu
+2025-12-05 16:13:27,777 - content_revisions - INFO - Processing post revision for record recOk0DvALhAY3cYu
+2025-12-05 16:13:35,364 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-05 16:13:35,386 - content_revisions - INFO - Regenerated post content based on instructions
+2025-12-05 16:13:35,810 - content_revisions - INFO - Updated post content for record recOk0DvALhAY3cYu
+2025-12-05 16:13:36,150 - content_revisions - INFO - Logged revision and cleared prompt for record recOk0DvALhAY3cYu
+2025-12-05 16:13:36,153 - content_revisions - INFO - Processed 1 revision requests
+2025-12-05 16:13:36,157 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 16:13:36] "GET /revise/recOk0DvALhAY3cYu HTTP/1.1" 200 -
+2025-12-05 16:13:36,759 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 16:13:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-12-05 16:15:43,076 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 16:15:43] "GET /health HTTP/1.1" 200 -
+2025-12-05 16:15:53,474 - __main__ - INFO - Received revision request for record: recOk0DvALhAY3cYu
+2025-12-05 16:15:53,907 - content_revisions - INFO - Processed 0 revision requests
+2025-12-05 16:15:53,910 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 16:15:53] "GET /revise/recOk0DvALhAY3cYu HTTP/1.1" 200 -
+2025-12-05 20:34:01,242 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.4.112:5050
+2025-12-05 20:34:01,242 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 21:04:37,397 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 21:04:37] "GET /health HTTP/1.1" 200 -
+2025-12-05 21:06:53,908 - __main__ - INFO - Received revision request for record: recOk0DvALhAY3cYu
+2025-12-05 21:06:55,026 - content_revisions - INFO - Processing image revision for record recOk0DvALhAY3cYu
+2025-12-05 21:06:56,053 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.433722 seconds
+2025-12-05 21:07:03,675 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-05 21:07:03,694 - generate_images - INFO - Requesting image generation from Replicate
+2025-12-05 21:07:04,036 - generate_images - INFO - Prediction created: h0g6y6n59nrma0cty5mvpfdxag, waiting for completion...
+2025-12-05 21:07:45,293 - generate_images - INFO - Image generated successfully
+2025-12-05 21:07:45,296 - content_revisions - INFO - Regenerated image with new prompt
+2025-12-05 21:07:46,134 - content_revisions - INFO - Updated image for record recOk0DvALhAY3cYu
+2025-12-05 21:07:46,556 - content_revisions - INFO - Logged revision and cleared prompt for record recOk0DvALhAY3cYu
+2025-12-05 21:07:46,557 - content_revisions - INFO - Processed 1 revision requests
+2025-12-05 21:07:46,562 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 21:07:46] "GET /revise/recOk0DvALhAY3cYu HTTP/1.1" 200 -
+2025-12-05 21:30:45,125 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.249:5050
+2025-12-05 21:30:45,125 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 21:36:54,070 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.249:5050
+2025-12-05 21:36:54,070 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 21:39:42,451 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.249:5050
+2025-12-05 21:39:42,452 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 21:43:11,571 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.249:5050
+2025-12-05 21:43:11,572 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 21:43:58,040 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 21:43:58] "GET /health HTTP/1.1" 200 -
+2025-12-05 21:44:14,739 - __main__ - INFO - Received revision request for record: recscD1PvNuNNZuab
+2025-12-05 21:44:16,984 - content_revisions - INFO - Processing image revision for record recscD1PvNuNNZuab
+2025-12-05 21:44:21,900 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-05 21:44:21,922 - generate_images - INFO - Requesting image generation from Replicate
+2025-12-05 21:44:22,224 - generate_images - INFO - Prediction created: 6qfkqgec6nrme0cty65rj7hfs0, waiting for completion...
+2025-12-05 21:44:29,648 - __main__ - INFO - Received revision request for record: recscD1PvNuNNZuab
+2025-12-05 21:44:29,855 - content_revisions - INFO - Processing image revision for record recscD1PvNuNNZuab
+2025-12-05 21:44:34,023 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-05 21:44:34,026 - generate_images - INFO - Requesting image generation from Replicate
+2025-12-05 21:44:34,162 - generate_images - INFO - Prediction created: f6q0w4qtxsrm80cty65tcge7e8, waiting for completion...
+2025-12-05 21:44:57,129 - generate_images - INFO - Image generated successfully
+2025-12-05 21:44:57,133 - content_revisions - INFO - Regenerated image with new prompt
+2025-12-05 21:44:57,881 - content_revisions - INFO - Updated image for record recscD1PvNuNNZuab
+2025-12-05 21:45:01,233 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-05 21:45:01,549 - content_revisions - INFO - Logged revision and cleared prompt for record recscD1PvNuNNZuab
+2025-12-05 21:45:01,553 - content_revisions - INFO - Processed 1 revision requests
+2025-12-05 21:45:01,559 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 21:45:01] "GET /revise/recscD1PvNuNNZuab HTTP/1.1" 200 -
+2025-12-05 21:45:15,759 - generate_images - INFO - Image generated successfully
+2025-12-05 21:45:15,762 - content_revisions - INFO - Regenerated image with new prompt
+2025-12-05 21:45:16,228 - content_revisions - INFO - Updated image for record recscD1PvNuNNZuab
+2025-12-05 21:45:21,292 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-05 21:45:21,707 - content_revisions - INFO - Logged revision and cleared prompt for record recscD1PvNuNNZuab
+2025-12-05 21:45:21,710 - content_revisions - INFO - Processed 1 revision requests
+2025-12-05 21:45:21,714 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 21:45:21] "GET /revise/recscD1PvNuNNZuab HTTP/1.1" 200 -
+2025-12-05 23:15:23,767 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.249:5050
+2025-12-05 23:15:23,767 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 23:15:23,772 - auto_poster_daemon - ERROR - Error getting approved posts: 'AirtableIntegration' object has no attribute 'tables'
+2025-12-05 23:15:25,389 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 23:15:25] "GET /health HTTP/1.1" 200 -
+2025-12-05 23:16:23,993 - auto_poster_daemon - ERROR - Error getting approved posts: 'AirtableIntegration' object has no attribute 'tables'
+2025-12-05 23:16:45,508 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.249:5050
+2025-12-05 23:16:45,508 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-05 23:16:47,193 - execution.airtable_integration - INFO - Retrieved 4 records from posts
+2025-12-05 23:16:47,196 - auto_poster_daemon - INFO - Found 4 posts ready to publish
+2025-12-05 23:16:47,196 - auto_poster_daemon - INFO - Processing: How XYZ Company Saved 20 Hours per Week with Automated Workflows
+2025-12-05 23:16:47,196 - auto_poster_daemon - INFO - Posting to LinkedIn: How XYZ Company Saved 20 Hours per Week with Automated Workflows
+2025-12-05 23:16:47,196 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:16:47,196 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:16:48,138 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 23:16:48] "GET /health HTTP/1.1" 200 -
+2025-12-05 23:16:48,161 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 23:16:48] "GET /poster/status HTTP/1.1" 200 -
+2025-12-05 23:16:52,201 - auto_poster_daemon - INFO - Processing: 5 Strategies to Streamline Your Business Workflows with AI
+2025-12-05 23:16:52,202 - auto_poster_daemon - INFO - Posting to LinkedIn: 5 Strategies to Streamline Your Business Workflows with AI
+2025-12-05 23:16:52,202 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:16:52,202 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:16:57,206 - auto_poster_daemon - INFO - Processing: 🚀 3 AI Prompts That Save Me 10 Hours Every Week
+2025-12-05 23:16:57,206 - auto_poster_daemon - INFO - Posting to LinkedIn: 🚀 3 AI Prompts That Save Me 10 Hours Every Week
+2025-12-05 23:16:57,207 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:16:57,207 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:17:02,210 - auto_poster_daemon - INFO - Processing: 5 Proven Ways AI Automation Can Boost Your Business Efficiency
+2025-12-05 23:17:02,211 - auto_poster_daemon - INFO - Posting to LinkedIn: 5 Proven Ways AI Automation Can Boost Your Business Efficiency
+2025-12-05 23:17:02,211 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:17:02,211 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:17:26,734 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 23:17:26] "GET /health HTTP/1.1" 200 -
+2025-12-05 23:17:34,190 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2025 23:17:34] "GET /poster/status HTTP/1.1" 200 -
+2025-12-05 23:18:08,038 - execution.airtable_integration - INFO - Retrieved 4 records from posts
+2025-12-05 23:18:08,042 - auto_poster_daemon - INFO - Found 4 posts ready to publish
+2025-12-05 23:18:08,043 - auto_poster_daemon - INFO - Processing: How XYZ Company Saved 20 Hours per Week with Automated Workflows
+2025-12-05 23:18:08,043 - auto_poster_daemon - INFO - Posting to LinkedIn: How XYZ Company Saved 20 Hours per Week with Automated Workflows
+2025-12-05 23:18:08,043 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:18:08,043 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:18:13,048 - auto_poster_daemon - INFO - Processing: 5 Strategies to Streamline Your Business Workflows with AI
+2025-12-05 23:18:13,049 - auto_poster_daemon - INFO - Posting to LinkedIn: 5 Strategies to Streamline Your Business Workflows with AI
+2025-12-05 23:18:13,049 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:18:13,049 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:18:18,054 - auto_poster_daemon - INFO - Processing: 🚀 3 AI Prompts That Save Me 10 Hours Every Week
+2025-12-05 23:18:18,056 - auto_poster_daemon - INFO - Posting to LinkedIn: 🚀 3 AI Prompts That Save Me 10 Hours Every Week
+2025-12-05 23:18:18,057 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:18:18,057 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:18:23,058 - auto_poster_daemon - INFO - Processing: 5 Proven Ways AI Automation Can Boost Your Business Efficiency
+2025-12-05 23:18:23,058 - auto_poster_daemon - INFO - Posting to LinkedIn: 5 Proven Ways AI Automation Can Boost Your Business Efficiency
+2025-12-05 23:18:23,058 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:18:23,058 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:19:28,591 - execution.airtable_integration - INFO - Retrieved 4 records from posts
+2025-12-05 23:19:28,596 - auto_poster_daemon - INFO - Found 4 posts ready to publish
+2025-12-05 23:19:28,596 - auto_poster_daemon - INFO - Processing: How XYZ Company Saved 20 Hours per Week with Automated Workflows
+2025-12-05 23:19:28,596 - auto_poster_daemon - INFO - Posting to LinkedIn: How XYZ Company Saved 20 Hours per Week with Automated Workflows
+2025-12-05 23:19:28,596 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:19:28,597 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:19:33,601 - auto_poster_daemon - INFO - Processing: 5 Strategies to Streamline Your Business Workflows with AI
+2025-12-05 23:19:33,602 - auto_poster_daemon - INFO - Posting to LinkedIn: 5 Strategies to Streamline Your Business Workflows with AI
+2025-12-05 23:19:33,604 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:19:33,604 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:19:38,609 - auto_poster_daemon - INFO - Processing: 🚀 3 AI Prompts That Save Me 10 Hours Every Week
+2025-12-05 23:19:38,611 - auto_poster_daemon - INFO - Posting to LinkedIn: 🚀 3 AI Prompts That Save Me 10 Hours Every Week
+2025-12-05 23:19:38,611 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:19:38,611 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:19:43,623 - auto_poster_daemon - INFO - Processing: 5 Proven Ways AI Automation Can Boost Your Business Efficiency
+2025-12-05 23:19:43,623 - auto_poster_daemon - INFO - Posting to LinkedIn: 5 Proven Ways AI Automation Can Boost Your Business Efficiency
+2025-12-05 23:19:43,623 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:19:43,623 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:20:49,176 - execution.airtable_integration - INFO - Retrieved 4 records from posts
+2025-12-05 23:20:49,181 - auto_poster_daemon - INFO - Found 4 posts ready to publish
+2025-12-05 23:20:49,181 - auto_poster_daemon - INFO - Processing: How XYZ Company Saved 20 Hours per Week with Automated Workflows
+2025-12-05 23:20:49,181 - auto_poster_daemon - INFO - Posting to LinkedIn: How XYZ Company Saved 20 Hours per Week with Automated Workflows
+2025-12-05 23:20:49,181 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:20:49,181 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:20:54,186 - auto_poster_daemon - INFO - Processing: 5 Strategies to Streamline Your Business Workflows with AI
+2025-12-05 23:20:54,187 - auto_poster_daemon - INFO - Posting to LinkedIn: 5 Strategies to Streamline Your Business Workflows with AI
+2025-12-05 23:20:54,187 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:20:54,187 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:20:59,193 - auto_poster_daemon - INFO - Processing: 🚀 3 AI Prompts That Save Me 10 Hours Every Week
+2025-12-05 23:20:59,195 - auto_poster_daemon - INFO - Posting to LinkedIn: 🚀 3 AI Prompts That Save Me 10 Hours Every Week
+2025-12-05 23:20:59,195 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:20:59,195 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:21:04,199 - auto_poster_daemon - INFO - Processing: 5 Proven Ways AI Automation Can Boost Your Business Efficiency
+2025-12-05 23:21:04,199 - auto_poster_daemon - INFO - Posting to LinkedIn: 5 Proven Ways AI Automation Can Boost Your Business Efficiency
+2025-12-05 23:21:04,199 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:21:04,200 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:22:09,804 - execution.airtable_integration - INFO - Retrieved 4 records from posts
+2025-12-05 23:22:09,808 - auto_poster_daemon - INFO - Found 4 posts ready to publish
+2025-12-05 23:22:09,809 - auto_poster_daemon - INFO - Processing: How XYZ Company Saved 20 Hours per Week with Automated Workflows
+2025-12-05 23:22:09,809 - auto_poster_daemon - INFO - Posting to LinkedIn: How XYZ Company Saved 20 Hours per Week with Automated Workflows
+2025-12-05 23:22:09,809 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:22:09,809 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:22:14,814 - auto_poster_daemon - INFO - Processing: 5 Strategies to Streamline Your Business Workflows with AI
+2025-12-05 23:22:14,815 - auto_poster_daemon - INFO - Posting to LinkedIn: 5 Strategies to Streamline Your Business Workflows with AI
+2025-12-05 23:22:14,815 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:22:14,815 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:22:19,818 - auto_poster_daemon - INFO - Processing: 🚀 3 AI Prompts That Save Me 10 Hours Every Week
+2025-12-05 23:22:19,820 - auto_poster_daemon - INFO - Posting to LinkedIn: 🚀 3 AI Prompts That Save Me 10 Hours Every Week
+2025-12-05 23:22:19,820 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:22:19,820 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:22:24,825 - auto_poster_daemon - INFO - Processing: 5 Proven Ways AI Automation Can Boost Your Business Efficiency
+2025-12-05 23:22:24,826 - auto_poster_daemon - INFO - Posting to LinkedIn: 5 Proven Ways AI Automation Can Boost Your Business Efficiency
+2025-12-05 23:22:24,826 - auto_poster_daemon - ERROR - Error posting to LinkedIn: 'LinkedInPosterSelenium' object has no attribute 'post_to_linkedin'
+2025-12-05 23:22:24,826 - auto_poster_daemon - ERROR - Error updating post status: 'AirtableIntegration' object has no attribute 'get_record'
+2025-12-05 23:23:30,390 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:24:31,886 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:25:32,428 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:26:32,963 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:27:33,520 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:28:34,107 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:29:35,044 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:30:35,815 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:31:36,525 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:32:37,303 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:33:38,097 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:34:38,852 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:35:39,618 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:36:40,326 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:37:40,945 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:38:41,485 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:39:41,996 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:40:42,710 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:41:43,238 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:42:43,841 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:43:44,465 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:44:45,016 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:45:45,485 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:46:45,993 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:47:46,588 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:48:47,092 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:49:48,112 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:50:48,628 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:51:49,204 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:52:49,917 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:53:50,634 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:54:51,160 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:55:51,827 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:56:52,515 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:57:53,283 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:58:54,030 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-05 23:59:55,733 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:00:56,415 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:01:57,139 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:02:57,996 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:03:58,680 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:04:59,969 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:06:00,749 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:07:01,486 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:08:02,304 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:09:03,022 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:10:03,870 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:11:04,668 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:12:05,331 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:13:06,019 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:14:06,741 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:15:07,485 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:16:08,213 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:17:08,849 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:18:09,856 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:19:10,580 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:20:11,692 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:21:13,618 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:22:15,480 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:23:16,235 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:24:17,052 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:25:17,924 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:26:18,626 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:27:22,650 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:28:23,464 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:29:24,349 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:30:25,067 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:31:25,825 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:32:27,613 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:33:28,392 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:34:29,170 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:35:29,882 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:36:30,585 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:37:31,273 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:38:32,167 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:39:32,977 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:40:33,660 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:41:34,387 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:42:35,097 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:43:36,050 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:44:36,747 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:45:37,525 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:46:38,236 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:47:38,987 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:48:39,816 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:49:40,506 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:50:41,284 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:51:42,011 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:52:42,666 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:53:43,382 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:54:44,047 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:55:44,762 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:56:45,570 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:57:46,396 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:58:47,185 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 00:59:48,130 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:00:48,873 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:01:49,693 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:02:51,691 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:03:52,494 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:04:53,258 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:05:53,981 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:06:54,838 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:07:55,501 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:08:56,214 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:09:57,159 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:10:57,866 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:11:58,637 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:12:59,694 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:14:00,523 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:15:01,222 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:16:01,918 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:17:02,726 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:18:04,679 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:19:05,446 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:20:06,202 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:21:06,991 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:22:07,744 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:23:08,402 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:24:09,178 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:25:09,835 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:26:10,556 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:27:11,281 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:28:12,250 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:29:13,651 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:30:14,390 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:31:15,172 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:32:15,894 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:33:16,566 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:34:17,672 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:35:18,403 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:36:19,067 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:37:20,111 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:38:20,796 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:39:21,567 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:40:23,297 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:41:24,105 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:42:24,804 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:43:25,676 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:44:26,447 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:45:28,524 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:46:29,243 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:47:30,086 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:48:30,871 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:49:31,601 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:50:32,361 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:51:33,146 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:52:33,988 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:53:34,675 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:54:35,359 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:55:37,895 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:56:38,554 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:57:39,276 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:58:39,985 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 01:59:40,752 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:00:41,518 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:01:42,224 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:02:42,892 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:03:43,689 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:04:44,569 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:05:45,337 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:06:46,254 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:07:47,128 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:08:47,859 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:09:48,627 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:10:49,559 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:11:50,565 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:12:51,385 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:13:52,141 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:14:52,928 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:15:53,643 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:16:54,432 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:17:55,048 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:18:55,681 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:19:56,469 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:20:57,223 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:21:57,888 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:22:58,758 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:23:59,485 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:25:00,353 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:26:01,092 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:27:01,790 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:28:02,498 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:29:03,124 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:30:03,850 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:31:04,562 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:32:05,308 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:33:06,013 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:34:06,764 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:35:07,599 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:36:08,307 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:37:09,196 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:38:10,023 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:39:10,857 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:40:11,944 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:41:12,703 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:42:13,396 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:43:14,085 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:44:14,832 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:45:15,601 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:46:16,319 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:47:17,000 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:48:17,703 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:49:18,408 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:50:19,457 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:51:20,148 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:52:20,812 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:53:21,652 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:54:23,536 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:55:24,298 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:56:24,999 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:57:25,693 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:58:26,516 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 02:59:27,330 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:00:28,126 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:01:28,895 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:02:29,590 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:03:31,391 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:04:32,294 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:05:33,126 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:06:33,887 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:07:34,670 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:08:35,583 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:09:36,303 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:10:37,213 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:11:37,916 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:12:39,114 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:13:39,860 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:14:40,770 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:15:42,732 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:16:43,443 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:17:44,094 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:18:44,831 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:19:45,542 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:20:46,213 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:21:46,867 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:22:47,581 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:23:48,389 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:24:49,178 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:25:50,639 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:26:51,544 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:27:52,247 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:28:52,952 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:29:53,632 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:30:54,453 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:31:55,313 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:32:56,004 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:33:56,687 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:34:57,408 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:35:58,325 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:36:59,016 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:37:59,749 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:39:00,497 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:40:01,287 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:41:02,167 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:42:02,835 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:43:03,515 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:44:04,282 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:45:05,010 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:46:05,804 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:47:06,579 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:48:07,714 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:49:08,464 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:50:09,227 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:51:10,171 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:52:10,913 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:53:11,669 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:54:12,359 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:55:13,155 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:56:13,845 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:57:15,597 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:58:17,446 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 03:59:18,265 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:00:18,992 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:01:19,934 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:02:21,770 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:03:22,437 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:04:23,177 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:05:23,893 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:06:24,706 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:07:26,509 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:08:27,419 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:09:28,093 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:10:28,774 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:11:29,514 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:12:30,264 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:13:30,974 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:14:31,596 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:15:32,323 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:16:33,073 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:17:33,757 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:18:34,495 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:19:35,286 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:20:36,058 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:21:36,730 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:22:37,399 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:23:38,051 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:24:38,776 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:25:39,525 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:26:40,236 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:27:40,927 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:28:41,598 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:29:42,373 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:30:43,158 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:31:44,395 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:32:45,078 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:33:45,808 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:34:46,551 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:35:47,262 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:36:47,965 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:37:48,659 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:38:49,411 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:39:50,183 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:40:50,964 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:41:51,682 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:42:52,485 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:43:55,448 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:44:56,354 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:45:57,157 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:46:57,894 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:47:58,684 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:48:59,489 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:50:00,220 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:51:00,852 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:52:01,578 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:53:02,366 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:54:03,156 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:55:03,846 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:56:04,551 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:57:05,297 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:58:05,965 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 04:59:06,713 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:00:07,418 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:01:08,353 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:02:09,450 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:03:10,107 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:04:10,845 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:05:11,580 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:06:12,293 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:07:13,049 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:08:13,776 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:09:14,488 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:10:17,261 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:11:18,380 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:12:19,227 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:13:19,934 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:14:20,637 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:15:21,374 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:16:22,165 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:17:22,785 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:18:23,699 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:19:24,471 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:20:25,188 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:21:26,886 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:22:27,698 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:23:28,416 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:24:29,144 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:25:29,805 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:26:30,512 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:27:31,276 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:28:32,017 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:29:32,664 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:30:33,471 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:31:34,329 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:32:35,532 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:33:36,259 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:34:36,976 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:35:37,761 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:36:38,502 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:37:39,327 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:38:40,071 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:39:40,741 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:40:41,499 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:41:42,166 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:42:44,140 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:43:44,833 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:44:45,580 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:45:46,246 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:46:47,100 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:47:47,897 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:48:48,573 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:49:49,272 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:50:50,153 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:51:50,865 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:52:51,619 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:53:52,363 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:54:53,073 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:55:53,764 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:56:54,529 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:57:55,230 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:58:59,040 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 05:59:59,791 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:01:00,511 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:02:01,212 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:03:02,001 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:04:02,713 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:05:05,488 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:06:06,181 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:07:06,932 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:08:07,676 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:09:08,353 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:10:09,088 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:11:10,176 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:12:10,867 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:13:11,603 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:14:12,560 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:15:17,455 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:16:18,200 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:17:19,203 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:18:19,889 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:19:20,602 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:20:21,305 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:21:21,992 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:22:22,691 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:23:23,518 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:24:24,174 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:25:25,151 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:26:25,836 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:27:26,591 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:28:27,586 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:29:28,242 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:30:29,093 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:31:30,030 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:32:30,789 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:33:31,488 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:34:32,267 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:35:33,006 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:36:33,806 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:37:35,566 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:38:36,302 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:39:36,988 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:40:37,717 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:41:38,443 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:42:39,687 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:43:40,447 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:44:41,219 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:45:42,057 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:46:42,741 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:47:43,498 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:48:44,236 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:49:44,965 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:50:45,687 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:51:46,624 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:52:47,355 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:53:48,113 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:54:48,818 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:55:49,526 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:56:50,295 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:57:51,029 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:58:51,739 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 06:59:52,519 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:00:53,206 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:01:53,996 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:03:00,145 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:04:01,088 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:05:01,833 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:06:02,635 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:07:03,304 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:08:03,988 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:09:04,708 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:10:05,448 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:11:06,105 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:12:06,758 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:13:07,444 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:14:08,152 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:15:12,602 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:16:13,540 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:17:14,240 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:18:15,168 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:19:15,861 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:20:16,629 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:21:17,405 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:22:18,080 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:23:19,028 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:24:19,814 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:25:20,502 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:26:21,283 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:27:21,962 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:28:22,811 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:29:23,546 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:30:24,245 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:31:25,039 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:32:25,849 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:33:26,704 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:34:27,472 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:35:29,310 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:36:30,175 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:37:30,889 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:38:31,874 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:39:32,609 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:40:33,445 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:41:37,162 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:42:38,922 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:43:39,842 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:44:40,610 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:45:41,290 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:46:42,299 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:47:43,065 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:48:43,922 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:49:44,879 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:50:45,587 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:51:46,367 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:52:47,050 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:53:47,749 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:54:48,563 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:55:49,322 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:56:50,028 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:57:50,748 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:58:51,395 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 07:59:52,131 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:00:52,825 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:01:53,489 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:02:54,171 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:03:54,870 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:04:56,049 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:05:56,887 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:06:57,605 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:07:58,373 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:08:59,205 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:10:00,126 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:11:00,872 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:12:01,665 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:13:02,621 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:14:03,311 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:15:04,234 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:16:04,965 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:17:05,735 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:18:06,410 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:19:07,155 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:20:07,868 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:21:08,571 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:22:09,190 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:23:09,927 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:24:10,859 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:25:11,692 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:26:12,392 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:27:13,318 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:28:14,071 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:29:14,916 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:30:15,718 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:31:16,408 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:32:17,112 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:33:17,797 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:34:18,643 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:35:19,422 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:36:20,159 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:37:21,912 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:38:26,062 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:39:26,959 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:40:27,752 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:41:28,468 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:42:29,163 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:43:30,190 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:44:31,081 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:45:31,923 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:46:32,652 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:47:33,484 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:48:34,222 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:49:34,898 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:50:35,650 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:51:36,291 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:52:37,029 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:53:37,754 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:54:42,540 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:55:43,347 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:56:44,112 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:57:44,836 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:58:45,480 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 08:59:46,170 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:00:46,982 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:01:47,627 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:02:48,452 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:03:49,167 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:04:50,035 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:05:50,886 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:06:51,554 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:07:52,202 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:08:52,956 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:09:53,659 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:10:54,462 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:11:56,313 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:12:57,063 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:13:57,765 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:14:58,520 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:15:59,280 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:17:00,010 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:18:00,701 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:19:01,354 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:20:02,093 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:21:02,978 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:22:03,672 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:23:04,465 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:24:05,205 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:25:05,977 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:26:06,757 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:27:07,438 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:28:08,254 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:29:08,945 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:30:09,688 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:31:10,423 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:32:12,588 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:33:13,326 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:34:14,207 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:35:15,033 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:36:15,857 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:37:16,538 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:38:17,231 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:39:17,946 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:40:18,716 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:41:19,645 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:42:20,390 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:43:21,100 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:44:21,843 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:45:22,623 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:46:23,406 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:47:25,254 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:48:26,161 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:49:26,789 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:50:27,529 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:51:28,295 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:52:29,027 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:53:29,750 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:54:30,453 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:55:31,162 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:56:31,948 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:57:32,732 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:58:33,469 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 09:59:34,208 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:00:34,944 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:01:35,865 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:02:36,559 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:03:37,365 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:04:38,065 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:05:38,773 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:06:39,548 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:07:40,281 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:08:41,019 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:09:41,735 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:10:42,461 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:11:43,332 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:12:44,080 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:13:44,755 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:14:45,678 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:15:46,400 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:16:47,439 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:17:48,060 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:18:48,719 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:19:49,447 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:20:50,278 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:21:50,988 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:22:51,878 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:23:52,619 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:24:53,354 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:25:54,035 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:26:54,793 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:27:55,513 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:28:56,114 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:29:56,805 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:30:57,552 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:31:58,328 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:32:59,012 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:33:59,711 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:35:01,423 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:36:02,183 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:37:02,947 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:38:03,637 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:39:04,360 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:40:05,108 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:41:05,813 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:42:07,655 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:43:08,460 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:44:09,271 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:45:10,090 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:46:11,194 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:47:13,319 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:48:13,957 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:49:14,701 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:50:15,544 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:51:16,296 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:52:17,097 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:53:17,840 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:54:18,580 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:55:19,451 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:56:20,182 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:57:20,962 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:58:21,633 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 10:59:22,457 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:00:23,218 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:01:23,991 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:02:24,875 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:03:25,660 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:04:26,368 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:05:27,080 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:06:27,862 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:07:28,637 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:08:29,351 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:09:30,213 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:10:30,935 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:11:34,114 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 11:15:07,161 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu?filterByFormula=%7BStatus%7D%3D%27Approved+-+Ready+to+Schedule%27 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x108db5670>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-06 12:14:22,648 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu?filterByFormula=%7BStatus%7D%3D%27Approved+-+Ready+to+Schedule%27 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x108dec430>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-06 12:15:24,900 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:16:29,750 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:17:33,503 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:18:34,178 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:19:35,074 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:20:35,905 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:21:37,230 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:22:37,910 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:23:38,618 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:24:39,330 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:25:42,826 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:26:45,687 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:27:48,952 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:28:49,611 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:29:52,520 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:30:58,090 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:31:59,668 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:33:01,108 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:34:02,996 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:35:03,248 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu?filterByFormula=%7BStatus%7D%3D%27Approved+-+Ready+to+Schedule%27 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x108dec9a0>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-06 12:37:47,900 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:38:48,637 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:39:49,319 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:40:50,427 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:41:51,132 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:42:51,917 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:43:52,542 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:44:53,158 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:45:55,188 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:46:58,664 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:47:59,573 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:49:00,120 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:50:04,118 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:51:04,712 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:52:28,558 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:53:29,259 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:54:30,180 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:55:30,922 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:56:32,008 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:57:33,612 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:58:34,280 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 12:59:34,943 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:00:35,969 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:01:37,747 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:02:38,755 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:03:40,812 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:04:41,582 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:05:42,915 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:06:44,700 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:07:45,495 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:08:46,490 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:09:47,301 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:10:48,041 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:11:48,794 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:12:49,712 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:13:50,834 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:14:51,918 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:15:52,779 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:16:53,839 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:17:54,994 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:18:55,792 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:19:56,504 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:20:57,287 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:21:58,050 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:22:58,849 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:23:59,664 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:25:00,759 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:26:01,488 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:27:02,576 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:28:03,375 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:29:04,180 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:30:05,667 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:31:06,575 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:32:08,492 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:33:09,396 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:34:10,200 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:35:10,961 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:36:11,849 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:37:12,662 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:38:13,432 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:39:14,151 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:40:14,915 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:41:15,663 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:42:16,412 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:43:17,162 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:44:18,235 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:45:19,163 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:46:20,003 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:47:20,946 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:48:21,751 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:49:23,136 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:50:24,004 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:51:25,795 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:52:26,651 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:53:27,475 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:54:28,434 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:55:29,147 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:56:30,079 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:57:31,614 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:58:32,519 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 13:59:33,325 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:00:34,285 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:01:35,113 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:02:37,302 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:03:38,113 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:04:38,918 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:05:39,746 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:06:40,569 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:07:41,379 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:08:42,347 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:09:43,628 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:10:44,363 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:11:45,197 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:12:45,964 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:13:46,701 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:14:48,522 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:15:49,264 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:16:50,176 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:17:51,318 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:18:54,564 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:19:55,620 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:20:57,748 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:21:58,491 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:22:59,274 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:23:59,947 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:25:00,906 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:26:01,879 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:27:02,621 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:28:03,376 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:29:04,437 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:30:05,253 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:31:06,089 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:32:06,750 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:33:07,693 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:34:08,560 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:35:09,342 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:36:10,418 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:37:11,128 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:38:12,032 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:39:15,160 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:40:16,238 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:41:17,095 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:42:17,947 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:43:19,648 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:44:20,470 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:45:21,228 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:46:22,280 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:47:23,453 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:48:24,339 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:49:25,246 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:50:26,100 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:51:26,931 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:52:27,888 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:53:29,311 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:54:30,004 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:55:31,003 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:56:31,777 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:57:32,580 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:58:35,632 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 14:59:36,413 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:00:37,492 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:01:39,369 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:02:40,450 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:03:41,359 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:04:42,260 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:05:43,396 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:06:45,037 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:07:45,901 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:08:47,030 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:09:48,075 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:10:49,055 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:11:49,827 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:12:50,995 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:13:51,917 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:14:52,675 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:15:53,699 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:16:54,805 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:17:55,561 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:18:56,881 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:19:58,143 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:20:59,100 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:22:00,299 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:23:01,092 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:24:02,230 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:25:05,069 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:26:06,284 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:27:07,078 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:28:07,864 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:29:09,023 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:30:10,827 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:31:11,672 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:32:12,468 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:33:13,374 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:34:14,131 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:35:17,320 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:36:18,547 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:37:20,456 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:38:22,074 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:39:23,294 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:40:24,539 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:41:26,148 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:42:29,579 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:43:30,378 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:44:31,813 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:45:32,653 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:46:33,854 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:47:34,981 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:48:36,469 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:49:37,405 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:50:38,628 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:51:39,504 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:52:41,544 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:53:42,432 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:54:43,882 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:55:44,832 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:56:45,863 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:57:46,710 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:58:47,604 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 15:59:48,793 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:00:50,940 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:01:52,173 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:02:52,954 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:03:55,481 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:04:56,322 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:05:57,063 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:06:57,856 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:07:58,831 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:08:59,580 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:10:01,756 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:11:04,966 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:12:08,942 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:13:15,635 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:14:19,289 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:15:21,848 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:16:22,725 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:17:33,070 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:18:33,861 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:19:35,113 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:20:37,678 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:21:42,428 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:22:43,575 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:23:44,682 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:24:46,091 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:25:49,129 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:26:53,385 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:27:55,749 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:29:03,126 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:30:04,131 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:47:44,153 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:48:44,987 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:49:45,978 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:50:49,632 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:51:54,036 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:52:56,526 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:54:59,798 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Read timed out. (read timeout=30)
+2025-12-06 16:56:16,286 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:57:20,520 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:58:39,897 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 16:59:42,511 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:00:44,186 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:01:51,560 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:02:53,679 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:03:55,988 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:04:57,360 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:06:00,646 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:07:03,431 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:08:05,328 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:09:06,117 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:10:07,265 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:11:08,583 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:12:12,303 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:13:14,188 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:14:15,650 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:15:17,855 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:16:20,175 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:17:21,261 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:18:24,389 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:19:28,243 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:20:34,707 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:21:38,306 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:22:41,670 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:23:43,770 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:24:44,826 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:25:45,703 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:26:46,302 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:27:48,399 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:28:50,555 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:29:51,562 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:30:52,942 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:31:53,907 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:32:55,268 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:33:56,658 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:34:57,319 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:35:57,859 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:36:58,789 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:37:59,951 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:39:02,119 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:40:03,402 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:41:03,997 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:42:08,788 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:43:09,533 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:44:10,300 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:45:11,975 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:46:12,803 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:48:03,197 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Read timed out. (read timeout=30)
+2025-12-06 17:49:06,084 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:50:06,899 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:51:08,490 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:52:09,312 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:53:10,119 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:54:12,029 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:55:12,911 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:56:14,016 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:57:15,055 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:58:15,883 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 17:59:16,917 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:00:18,740 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:01:19,662 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:02:21,253 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:03:22,242 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:04:23,261 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:05:23,980 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:06:24,980 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:07:25,997 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:08:26,831 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:09:27,875 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:10:31,604 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:11:33,522 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:12:34,255 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:13:35,501 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:14:36,864 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:15:38,335 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:16:39,898 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:17:40,690 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:18:41,497 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:19:44,714 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:20:46,652 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:21:47,671 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:22:48,482 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:23:49,218 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:24:50,562 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:25:51,772 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:26:52,819 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:27:53,772 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:28:54,823 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:29:55,779 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:30:56,632 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:31:57,593 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:32:58,522 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:33:59,381 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:35:00,714 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:36:01,423 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:37:03,289 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:38:04,081 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:39:05,054 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:40:06,625 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:41:07,632 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:42:12,806 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:43:13,648 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:44:14,288 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:45:19,088 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:46:21,939 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:47:22,726 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:48:23,562 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:49:24,250 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:50:26,779 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:51:27,490 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:52:28,186 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:53:30,325 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:54:31,193 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:55:31,881 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:56:32,537 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:57:33,540 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:58:35,446 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 18:59:36,300 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:00:37,224 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:01:38,948 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:02:39,737 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:03:41,237 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:04:42,689 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:05:43,333 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:06:44,069 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:07:44,746 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:08:45,356 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:09:46,768 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:10:48,937 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:11:54,064 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:13:09,158 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:14:10,877 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:15:12,604 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:16:13,137 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:17:28,033 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:18:34,811 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:19:35,342 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:20:36,245 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:21:42,000 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:22:48,434 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu?filterByFormula=%7BStatus%7D%3D%27Approved+-+Ready+to+Schedule%27 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x108dec190>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-06 19:23:48,710 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu?filterByFormula=%7BStatus%7D%3D%27Approved+-+Ready+to+Schedule%27 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x108d55940>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-06 19:24:51,552 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:25:58,613 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:26:59,209 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:28:00,352 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:29:01,292 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:30:03,112 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:31:11,516 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:32:13,732 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:33:19,959 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:34:22,316 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:35:24,799 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:36:26,180 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:37:32,024 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:38:33,885 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:39:38,173 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:40:39,165 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:41:43,511 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:42:44,013 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:43:44,588 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:44:46,532 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:45:47,925 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:46:48,656 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:47:49,395 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:48:53,660 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:49:55,341 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:50:56,356 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:52:01,332 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:53:04,458 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:54:37,621 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Read timed out. (read timeout=30)
+2025-12-06 19:55:38,516 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:56:39,647 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:57:42,376 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 19:58:58,396 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:00:00,455 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:01:02,933 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:02:04,890 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:03:05,555 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:04:07,410 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:05:08,131 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:06:11,383 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:07:12,182 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:08:13,613 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:09:14,201 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:10:15,657 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:11:16,386 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:12:17,371 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:13:19,310 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:14:21,289 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:15:22,318 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:16:22,889 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:17:24,665 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:18:25,716 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:19:27,048 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:20:32,965 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:21:33,629 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:22:35,576 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:23:40,226 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:24:40,491 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu?filterByFormula=%7BStatus%7D%3D%27Approved+-+Ready+to+Schedule%27 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x108e09640>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-06 20:25:40,727 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu?filterByFormula=%7BStatus%7D%3D%27Approved+-+Ready+to+Schedule%27 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x108db5400>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-06 20:26:42,718 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:27:43,507 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:28:44,268 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:29:44,846 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:30:45,673 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:31:46,414 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:32:47,172 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:33:48,001 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:34:48,716 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:35:49,454 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:36:50,106 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:37:50,909 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:38:51,641 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:39:52,422 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:40:53,073 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:41:53,937 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 20:42:54,684 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:01:22,432 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:16:05,258 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:17:10,253 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:18:22,783 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:19:33,968 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:20:35,758 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:21:40,085 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:23:00,668 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:24:02,794 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:25:15,361 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:26:17,269 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:27:18,113 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:28:21,842 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:29:22,923 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:30:26,761 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:31:27,804 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:32:30,517 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:33:31,723 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:34:32,586 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:35:33,683 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:36:34,746 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:37:36,345 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:38:37,760 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:39:39,966 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:40:43,006 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:41:48,841 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:42:51,174 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:44:02,362 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:45:04,031 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:46:04,628 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:47:05,523 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:48:07,452 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:49:09,320 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:50:15,776 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:51:23,705 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:52:26,773 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:53:29,262 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:54:34,854 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:55:48,844 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:56:49,747 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:57:50,322 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 21:59:00,185 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:00:01,676 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:01:10,282 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:02:13,836 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:03:16,509 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:04:17,612 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:05:25,617 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:06:26,542 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:07:27,706 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:08:29,185 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:09:30,124 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:10:31,117 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:11:31,335 - execution.airtable_integration - ERROR - Error getting Airtable records: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu?filterByFormula=%7BStatus%7D%3D%27Approved+-+Ready+to+Schedule%27 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x108db55b0>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-06 22:12:31,957 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:13:32,699 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:14:33,472 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:15:34,222 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:16:34,926 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:17:35,725 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:18:36,455 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:19:37,256 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:20:37,944 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:21:38,665 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:22:39,399 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:23:40,135 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:24:40,867 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:25:41,570 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:26:42,262 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:27:43,058 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:28:43,781 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:29:44,464 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:30:45,234 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:31:45,975 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:32:46,604 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:33:47,390 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:34:48,180 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:35:48,831 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:36:49,633 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:37:50,377 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:38:51,046 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:39:51,886 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:40:52,685 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:41:53,373 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:42:54,115 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:43:54,819 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:44:55,553 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:45:56,304 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:46:57,039 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:47:57,771 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:48:58,567 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:49:59,358 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:51:00,165 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:52:00,930 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:53:01,674 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:54:02,418 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:55:03,225 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:56:03,945 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:57:04,707 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:58:05,432 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 22:59:06,149 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 23:00:06,861 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 23:01:07,557 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 23:02:08,349 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 23:02:24,108 - werkzeug - INFO - 127.0.0.1 - - [06/Dec/2025 23:02:24] "[33mGET /status HTTP/1.1[0m" 404 -
+2025-12-06 23:02:24,137 - werkzeug - INFO - 127.0.0.1 - - [06/Dec/2025 23:02:24] "GET /health HTTP/1.1" 200 -
+2025-12-06 23:02:28,475 - werkzeug - INFO - 127.0.0.1 - - [06/Dec/2025 23:02:28] "[33mGET /status HTTP/1.1[0m" 404 -
+2025-12-06 23:02:28,498 - werkzeug - INFO - 127.0.0.1 - - [06/Dec/2025 23:02:28] "GET /health HTTP/1.1" 200 -
+2025-12-06 23:02:54,286 - werkzeug - INFO - 127.0.0.1 - - [06/Dec/2025 23:02:54] "[33mGET / HTTP/1.1[0m" 404 -
+2025-12-06 23:03:09,059 - execution.airtable_integration - INFO - Retrieved 0 records from posts
+2025-12-06 23:03:41,077 - werkzeug - INFO - 127.0.0.1 - - [06/Dec/2025 23:03:41] "GET /health HTTP/1.1" 200 -

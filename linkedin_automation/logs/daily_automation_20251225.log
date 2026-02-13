@@ -1,0 +1,43 @@
+========================================
+Daily Automation Started: Thu Dec 25 06:12:39 EST 2025
+========================================
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-12-25 06:12:41,134 - __main__ - INFO - ============================================================
+2025-12-25 06:12:41,134 - __main__ - INFO - ACTION: Generate Posts & Images (7 Days)
+2025-12-25 06:12:41,134 - __main__ - INFO - ============================================================
+2025-12-25 06:12:41,324 - execution.airtable_integration - ERROR - Error cleaning up old posts: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu?filterByFormula=AND%28%7BStatus%7D%3D%27Posted%27%2C+IS_BEFORE%28%7BPosted+Time%7D%2C+%272025-12-18%27%29%29 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x107d30370>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-25 06:12:41,325 - __main__ - INFO - Cleaned up 0 old posted records
+2025-12-25 06:12:41,326 - execution.linkedin_scheduler - INFO - Generated 21 randomized posting times over 7 days
+2025-12-25 06:12:41,326 - execution.research_content - INFO - Starting daily content generation (21 posts)
+2025-12-25 06:12:41,327 - execution.research_content - INFO - Researching topic: AI automation for business
+2025-12-25 06:12:41,328 - execution.research_content - INFO - Researching topic: Workflow optimization
+2025-12-25 06:12:41,357 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.472978 seconds
+2025-12-25 06:12:41,357 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.409527 seconds
+2025-12-25 06:12:41,800 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.938706 seconds
+2025-12-25 06:12:41,839 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.970767 seconds
+2025-12-25 06:12:42,885 - execution.research_content - ERROR - Error researching topic AI automation for business: Connection error.
+2025-12-25 06:12:42,964 - execution.research_content - ERROR - Error researching topic Workflow optimization: Connection error.
+2025-12-25 06:12:45,103 - execution.research_content - INFO - Researching topic: Business process automation
+2025-12-25 06:12:45,104 - execution.research_content - INFO - Researching topic: AI implementation strategies
+2025-12-25 06:12:45,111 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.490710 seconds
+2025-12-25 06:12:45,112 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.477277 seconds
+2025-12-25 06:22:22,697 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.833751 seconds
+2025-12-25 06:22:22,726 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.995945 seconds
+2025-12-25 06:22:23,663 - execution.research_content - ERROR - Error researching topic AI implementation strategies: Connection error.
+2025-12-25 06:22:23,826 - execution.research_content - ERROR - Error researching topic Business process automation: Connection error.
+2025-12-25 06:22:25,900 - execution.research_content - INFO - Researching topic: Prompt engineering for productivity
+2025-12-25 06:22:25,900 - execution.research_content - INFO - Researching topic: Business efficiency tips
+2025-12-25 06:22:25,971 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.402747 seconds
+2025-12-25 06:22:25,972 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.397482 seconds
+2025-12-25 06:22:26,412 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.977791 seconds
+2025-12-25 06:22:26,453 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.973583 seconds
+2025-12-25 06:22:27,461 - execution.research_content - ERROR - Error researching topic Business efficiency tips: Connection error.
+2025-12-25 06:22:27,506 - execution.research_content - ERROR - Error researching topic Prompt engineering for productivity: Connection error.
+2025-12-25 06:22:29,524 - execution.research_content - INFO - Researching topic: Automation ROI
+2025-12-25 06:22:29,557 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.428692 seconds
+2025-12-25 06:22:30,065 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.939239 seconds
+2025-12-25 06:22:31,051 - execution.research_content - ERROR - Error researching topic Automation ROI: Connection error.
+2025-12-25 06:22:31,052 - execution.research_content - WARNING - No ideas generated, returning empty list
+2025-12-25 06:22:31,052 - __main__ - ERROR - No posts generated
+Completed: Thu Dec 25 06:22:31 EST 2025

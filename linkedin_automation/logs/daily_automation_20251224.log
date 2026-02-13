@@ -1,0 +1,250 @@
+========================================
+Daily Automation Started: Wed Dec 24 06:08:45 EST 2025
+========================================
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-12-24 06:08:48,263 - __main__ - INFO - ============================================================
+2025-12-24 06:08:48,264 - __main__ - INFO - ACTION: Generate Posts & Images (7 Days)
+2025-12-24 06:08:48,264 - __main__ - INFO - ============================================================
+2025-12-24 06:08:51,962 - execution.airtable_integration - INFO - Cleaned up 0 old posted records
+2025-12-24 06:08:51,964 - __main__ - INFO - Cleaned up 0 old posted records
+2025-12-24 06:08:51,964 - execution.linkedin_scheduler - INFO - Generated 21 randomized posting times over 7 days
+2025-12-24 06:08:51,964 - execution.research_content - INFO - Starting daily content generation (21 posts)
+2025-12-24 06:08:51,966 - execution.research_content - INFO - Researching topic: AI automation for business
+2025-12-24 06:08:51,966 - execution.research_content - INFO - Researching topic: Workflow optimization
+2025-12-24 06:59:02,223 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.408606 seconds
+2025-12-24 06:59:02,224 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.488304 seconds
+2025-12-24 10:27:19,071 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.918948 seconds
+2025-12-24 10:27:19,073 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.769029 seconds
+2025-12-24 12:16:28,004 - execution.research_content - ERROR - Error researching topic Workflow optimization: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details.
+2025-12-24 12:16:28,007 - execution.research_content - ERROR - Error researching topic AI automation for business: Request timed out or interrupted. This could be due to a network timeout, dropped connection, or request cancellation. See https://docs.anthropic.com/en/api/errors#long-requests for more details.
+2025-12-24 12:16:30,117 - execution.research_content - INFO - Researching topic: Business process automation
+2025-12-24 12:16:30,117 - execution.research_content - INFO - Researching topic: AI implementation strategies
+2025-12-24 12:17:22,173 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:17:22,272 - execution.research_content - INFO - Generated 21 ideas for AI implementation strategies
+2025-12-24 12:17:24,810 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:17:24,814 - execution.research_content - INFO - Generated 21 ideas for Business process automation
+2025-12-24 12:17:26,887 - execution.research_content - INFO - Researching topic: Prompt engineering for productivity
+2025-12-24 12:17:26,887 - execution.research_content - INFO - Researching topic: Business efficiency tips
+2025-12-24 12:18:13,831 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:18:13,841 - execution.research_content - INFO - Generated 21 ideas for Business efficiency tips
+2025-12-24 12:18:19,066 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:18:19,080 - execution.research_content - INFO - Generated 21 ideas for Prompt engineering for productivity
+2025-12-24 12:18:21,142 - execution.research_content - INFO - Researching topic: Automation ROI
+2025-12-24 12:19:08,649 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:08,662 - execution.research_content - INFO - Generated 21 ideas for Automation ROI
+2025-12-24 12:19:19,883 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:20,244 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:20,407 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:29,896 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:29,909 - execution.research_content - INFO - Generated post content for: My Morning Email Prompt That Saves 2 Hours Daily (Framework: Listicle)
+2025-12-24 12:19:30,514 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:30,517 - execution.research_content - INFO - Generated post content for: Your First Automation: Start Here (Zero Tech Skills Needed) (Framework: Case Study)
+2025-12-24 12:19:30,598 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:30,602 - execution.research_content - INFO - Generated post content for: The Persona Prompt Hack for Better Outputs (Framework: BAB (Before-After-Bridge))
+2025-12-24 12:19:43,658 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:44,463 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:45,382 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:53,798 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:53,802 - execution.research_content - INFO - Generated post content for: The Hidden Cost of Waiting on AI Implementation (Framework: Question-Answer)
+2025-12-24 12:19:54,531 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:54,534 - execution.research_content - INFO - Generated post content for: The Hidden Cost of Generic AI Prompts (Framework: Question-Answer)
+2025-12-24 12:19:55,172 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:19:55,175 - execution.research_content - INFO - Generated post content for: The Automation Payback Period Sweet Spot (Framework: How-To Guide)
+2025-12-24 12:20:08,133 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:09,164 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:11,773 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:16,839 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:16,843 - execution.research_content - INFO - Generated post content for: 2024 Automation ROI Benchmarks by Industry (Framework: PAS (Problem-Agitate-Solution))
+2025-12-24 12:20:18,068 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:18,071 - execution.research_content - INFO - Generated post content for: The Proposal Generator Prompt That Closes Deals (Framework: BAB (Before-After-Bridge))
+2025-12-24 12:20:19,010 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:19,014 - execution.research_content - INFO - Generated post content for: The Email That Writes Itself: 892% ROI (Framework: PAS (Problem-Agitate-Solution))
+2025-12-24 12:20:31,969 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:33,728 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:33,729 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:41,508 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:41,510 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:41,514 - execution.research_content - INFO - Generated post content for: From Manual to Automated in 30 Days: Your Action Plan (Framework: PAS (Problem-Agitate-Solution))
+2025-12-24 12:20:41,517 - execution.research_content - INFO - Generated post content for: The 5-Question AI Readiness Assessment (Framework: Case Study)
+2025-12-24 12:20:42,845 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:42,849 - execution.research_content - INFO - Generated post content for: Create SOPs From Video Recordings Instantly (Framework: Storytelling)
+2025-12-24 12:20:56,937 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:56,941 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:20:56,945 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:04,923 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:04,928 - execution.research_content - INFO - Generated post content for: AI Won't Fix a Broken Process (Framework: PAS (Problem-Agitate-Solution))
+2025-12-24 12:21:06,909 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:06,913 - execution.research_content - INFO - Generated post content for: From 200 Manual Invoices to Zero: A Real Story (Framework: Listicle)
+2025-12-24 12:21:07,526 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:07,529 - execution.research_content - INFO - Generated post content for: We Automated Client Onboarding. Revenue Jumped 40% (Framework: Question-Answer)
+2025-12-24 12:21:20,736 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:20,737 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:21,318 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:28,472 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:28,478 - execution.research_content - INFO - Generated post content for: The 30-Day Automation ROI Sprint (Framework: Storytelling)
+2025-12-24 12:21:29,386 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:29,389 - execution.research_content - INFO - Generated post content for: The 10-Minute Automation Audit for Your Business (Framework: Case Study)
+2025-12-24 12:21:30,820 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:30,822 - execution.research_content - INFO - Generated post content for: The Pre-Automation Checklist (Framework: How-To Guide)
+2025-12-24 12:21:44,432 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:45,473 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:45,638 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:51,453 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:51,457 - execution.research_content - INFO - Generated post content for: My 3-3-3 Rule for Automation Decisions (Framework: Listicle)
+2025-12-24 12:21:53,913 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:53,916 - execution.research_content - INFO - Generated post content for: Your First AI Win Should Take Less Than 2 Weeks (Framework: AIDA (Attention-Interest-Desire-Action))
+2025-12-24 12:21:55,644 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-24 12:21:55,647 - execution.research_content - INFO - Generated post content for: Building Your First AI Email Responder (30-Minute Guide) (Framework: BAB (Before-After-Bridge))
+2025-12-24 12:21:55,648 - execution.research_content - INFO - Generated 21 complete posts for daily content
+2025-12-24 12:21:55,650 - execution.generate_images - INFO - Generating image 1/21
+2025-12-24 12:21:55,651 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:21:56,708 - execution.generate_images - ERROR - Image generation failed: 402 - {"title":"Insufficient credit","detail":"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.","status":402}
+
+2025-12-24 12:21:56,712 - execution.generate_images - WARNING - Failed to generate image for post: My Morning Email Prompt That Saves 2 Hours Daily
+2025-12-24 12:21:56,712 - execution.generate_images - INFO - Generating image 2/21
+2025-12-24 12:21:58,764 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:21:59,107 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~8s.","status":429,"retry_after":8}
+
+2025-12-24 12:21:59,112 - execution.generate_images - WARNING - Failed to generate image for post: Your First Automation: Start Here (Zero Tech Skills Needed)
+2025-12-24 12:21:59,112 - execution.generate_images - INFO - Generating image 3/21
+2025-12-24 12:22:01,180 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:01,729 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~5s.","status":429,"retry_after":5}
+
+2025-12-24 12:22:01,731 - execution.generate_images - WARNING - Failed to generate image for post: The Persona Prompt Hack for Better Outputs
+2025-12-24 12:22:01,731 - execution.generate_images - INFO - Generating image 4/21
+2025-12-24 12:22:03,793 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:04,030 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~3s.","status":429,"retry_after":3}
+
+2025-12-24 12:22:04,034 - execution.generate_images - WARNING - Failed to generate image for post: The Hidden Cost of Waiting on AI Implementation
+2025-12-24 12:22:04,035 - execution.generate_images - INFO - Generating image 5/21
+2025-12-24 12:22:06,103 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:06,422 - execution.generate_images - ERROR - Image generation failed: 402 - {"title":"Insufficient credit","detail":"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.","status":402}
+
+2025-12-24 12:22:06,426 - execution.generate_images - WARNING - Failed to generate image for post: The Automation Payback Period Sweet Spot
+2025-12-24 12:22:06,427 - execution.generate_images - INFO - Generating image 6/21
+2025-12-24 12:22:08,494 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:08,844 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~8s.","status":429,"retry_after":8}
+
+2025-12-24 12:22:08,849 - execution.generate_images - WARNING - Failed to generate image for post: The Hidden Cost of Generic AI Prompts
+2025-12-24 12:22:08,849 - execution.generate_images - INFO - Generating image 7/21
+2025-12-24 12:22:10,920 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:11,197 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~6s.","status":429,"retry_after":6}
+
+2025-12-24 12:22:11,201 - execution.generate_images - WARNING - Failed to generate image for post: The Email That Writes Itself: 892% ROI
+2025-12-24 12:22:11,201 - execution.generate_images - INFO - Generating image 8/21
+2025-12-24 12:22:13,276 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:13,538 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~3s.","status":429,"retry_after":3}
+
+2025-12-24 12:22:13,541 - execution.generate_images - WARNING - Failed to generate image for post: 2024 Automation ROI Benchmarks by Industry
+2025-12-24 12:22:13,541 - execution.generate_images - INFO - Generating image 9/21
+2025-12-24 12:22:15,614 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:16,129 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~1s.","status":429,"retry_after":1}
+
+2025-12-24 12:22:16,132 - execution.generate_images - WARNING - Failed to generate image for post: The Proposal Generator Prompt That Closes Deals
+2025-12-24 12:22:16,133 - execution.generate_images - INFO - Generating image 10/21
+2025-12-24 12:22:18,203 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:18,648 - execution.generate_images - ERROR - Image generation failed: 402 - {"title":"Insufficient credit","detail":"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.","status":402}
+
+2025-12-24 12:22:18,653 - execution.generate_images - WARNING - Failed to generate image for post: The 5-Question AI Readiness Assessment
+2025-12-24 12:22:18,654 - execution.generate_images - INFO - Generating image 11/21
+2025-12-24 12:22:20,726 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:20,970 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~8s.","status":429,"retry_after":8}
+
+2025-12-24 12:22:20,974 - execution.generate_images - WARNING - Failed to generate image for post: From Manual to Automated in 30 Days: Your Action Plan
+2025-12-24 12:22:20,974 - execution.generate_images - INFO - Generating image 12/21
+2025-12-24 12:22:23,049 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:23,336 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~6s.","status":429,"retry_after":6}
+
+2025-12-24 12:22:23,341 - execution.generate_images - WARNING - Failed to generate image for post: Create SOPs From Video Recordings Instantly
+2025-12-24 12:22:23,341 - execution.generate_images - INFO - Generating image 13/21
+2025-12-24 12:22:25,381 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:25,694 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~3s.","status":429,"retry_after":3}
+
+2025-12-24 12:22:25,698 - execution.generate_images - WARNING - Failed to generate image for post: From 200 Manual Invoices to Zero: A Real Story
+2025-12-24 12:22:25,698 - execution.generate_images - INFO - Generating image 14/21
+2025-12-24 12:22:27,771 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:28,061 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~1s.","status":429,"retry_after":1}
+
+2025-12-24 12:22:28,066 - execution.generate_images - WARNING - Failed to generate image for post: AI Won't Fix a Broken Process
+2025-12-24 12:22:28,066 - execution.generate_images - INFO - Generating image 15/21
+2025-12-24 12:22:30,104 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:30,563 - execution.generate_images - ERROR - Image generation failed: 402 - {"title":"Insufficient credit","detail":"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.","status":402}
+
+2025-12-24 12:22:30,567 - execution.generate_images - WARNING - Failed to generate image for post: We Automated Client Onboarding. Revenue Jumped 40%
+2025-12-24 12:22:30,568 - execution.generate_images - INFO - Generating image 16/21
+2025-12-24 12:22:32,637 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:33,004 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~8s.","status":429,"retry_after":8}
+
+2025-12-24 12:22:33,007 - execution.generate_images - WARNING - Failed to generate image for post: The Pre-Automation Checklist
+2025-12-24 12:22:33,008 - execution.generate_images - INFO - Generating image 17/21
+2025-12-24 12:22:35,083 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:35,374 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~6s.","status":429,"retry_after":6}
+
+2025-12-24 12:22:35,377 - execution.generate_images - WARNING - Failed to generate image for post: The 30-Day Automation ROI Sprint
+2025-12-24 12:22:35,378 - execution.generate_images - INFO - Generating image 18/21
+2025-12-24 12:22:37,452 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:37,720 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~3s.","status":429,"retry_after":3}
+
+2025-12-24 12:22:37,724 - execution.generate_images - WARNING - Failed to generate image for post: The 10-Minute Automation Audit for Your Business
+2025-12-24 12:22:37,724 - execution.generate_images - INFO - Generating image 19/21
+2025-12-24 12:22:39,799 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:40,060 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~1s.","status":429,"retry_after":1}
+
+2025-12-24 12:22:40,063 - execution.generate_images - WARNING - Failed to generate image for post: My 3-3-3 Rule for Automation Decisions
+2025-12-24 12:22:40,064 - execution.generate_images - INFO - Generating image 20/21
+2025-12-24 12:22:42,133 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:42,416 - execution.generate_images - ERROR - Image generation failed: 402 - {"title":"Insufficient credit","detail":"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.","status":402}
+
+2025-12-24 12:22:42,421 - execution.generate_images - WARNING - Failed to generate image for post: Building Your First AI Email Responder (30-Minute Guide)
+2025-12-24 12:22:42,421 - execution.generate_images - INFO - Generating image 21/21
+2025-12-24 12:22:44,478 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-24 12:22:44,723 - execution.generate_images - ERROR - Image generation failed: 429 - {"detail":"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~8s.","status":429,"retry_after":8}
+
+2025-12-24 12:22:44,726 - execution.generate_images - WARNING - Failed to generate image for post: Your First AI Win Should Take Less Than 2 Weeks
+2025-12-24 12:22:44,726 - execution.generate_images - INFO - Generated images for 21 posts
+2025-12-24 12:22:45,422 - execution.airtable_integration - INFO - Created record in posts: recuq8HewAGZ46Yau
+2025-12-24 12:22:45,426 - __main__ - INFO - Added post to Airtable: recuq8HewAGZ46Yau (scheduled: 2025-12-25T09:21:00-05:00)
+2025-12-24 12:22:46,058 - execution.airtable_integration - INFO - Created record in posts: recHTMtJIkoECy7wE
+2025-12-24 12:22:46,064 - __main__ - INFO - Added post to Airtable: recHTMtJIkoECy7wE (scheduled: 2025-12-25T13:24:00-05:00)
+2025-12-24 12:22:47,006 - execution.airtable_integration - INFO - Created record in posts: recYV6rFMVe1rUt8q
+2025-12-24 12:22:47,010 - __main__ - INFO - Added post to Airtable: recYV6rFMVe1rUt8q (scheduled: 2025-12-25T19:00:00-05:00)
+2025-12-24 12:22:47,574 - execution.airtable_integration - INFO - Created record in posts: recmnZukeqpYz2txs
+2025-12-24 12:22:47,578 - __main__ - INFO - Added post to Airtable: recmnZukeqpYz2txs (scheduled: 2025-12-26T08:46:00-05:00)
+2025-12-24 12:22:48,391 - execution.airtable_integration - INFO - Created record in posts: recU8ZHHvNegUlIvu
+2025-12-24 12:22:48,396 - __main__ - INFO - Added post to Airtable: recU8ZHHvNegUlIvu (scheduled: 2025-12-26T12:46:00-05:00)
+2025-12-24 12:22:48,942 - execution.airtable_integration - INFO - Created record in posts: recfSiEwNHZTRC42Q
+2025-12-24 12:22:48,947 - __main__ - INFO - Added post to Airtable: recfSiEwNHZTRC42Q (scheduled: 2025-12-26T17:25:00-05:00)
+2025-12-24 12:22:49,607 - execution.airtable_integration - INFO - Created record in posts: rec44uBf6EikxwBMD
+2025-12-24 12:22:49,612 - __main__ - INFO - Added post to Airtable: rec44uBf6EikxwBMD (scheduled: 2025-12-27T08:45:00-05:00)
+2025-12-24 12:22:50,439 - execution.airtable_integration - INFO - Created record in posts: recN0g2LAXN6YGyxh
+2025-12-24 12:22:50,443 - __main__ - INFO - Added post to Airtable: recN0g2LAXN6YGyxh (scheduled: 2025-12-27T13:23:00-05:00)
+2025-12-24 12:22:50,834 - execution.airtable_integration - INFO - Created record in posts: rect3Y8rd464d2ILD
+2025-12-24 12:22:50,838 - __main__ - INFO - Added post to Airtable: rect3Y8rd464d2ILD (scheduled: 2025-12-27T18:17:00-05:00)
+2025-12-24 12:22:51,327 - execution.airtable_integration - INFO - Created record in posts: reca09cGDGSM6baEQ
+2025-12-24 12:22:51,331 - __main__ - INFO - Added post to Airtable: reca09cGDGSM6baEQ (scheduled: 2025-12-28T08:46:00-05:00)
+2025-12-24 12:22:51,782 - execution.airtable_integration - INFO - Created record in posts: rec2oW92CipxR3cxT
+2025-12-24 12:22:51,786 - __main__ - INFO - Added post to Airtable: rec2oW92CipxR3cxT (scheduled: 2025-12-28T12:29:00-05:00)
+2025-12-24 12:22:52,203 - execution.airtable_integration - INFO - Created record in posts: recwK8gg5WlvHFzNW
+2025-12-24 12:22:52,207 - __main__ - INFO - Added post to Airtable: recwK8gg5WlvHFzNW (scheduled: 2025-12-28T17:16:00-05:00)
+2025-12-24 12:22:52,648 - execution.airtable_integration - INFO - Created record in posts: recQDvuIx7vS3qnpV
+2025-12-24 12:22:52,651 - __main__ - INFO - Added post to Airtable: recQDvuIx7vS3qnpV (scheduled: 2025-12-29T09:40:00-05:00)
+2025-12-24 12:22:53,038 - execution.airtable_integration - INFO - Created record in posts: rec6AvNkXkb9UJjjT
+2025-12-24 12:22:53,042 - __main__ - INFO - Added post to Airtable: rec6AvNkXkb9UJjjT (scheduled: 2025-12-29T12:45:00-05:00)
+2025-12-24 12:22:53,465 - execution.airtable_integration - INFO - Created record in posts: recGEHmaj5hC9zTKI
+2025-12-24 12:22:53,467 - __main__ - INFO - Added post to Airtable: recGEHmaj5hC9zTKI (scheduled: 2025-12-29T18:17:00-05:00)
+2025-12-24 12:22:53,895 - execution.airtable_integration - INFO - Created record in posts: receraVGBkY8xDWCC
+2025-12-24 12:22:53,898 - __main__ - INFO - Added post to Airtable: receraVGBkY8xDWCC (scheduled: 2025-12-30T09:36:00-05:00)
+2025-12-24 12:22:54,296 - execution.airtable_integration - INFO - Created record in posts: receih3ROxtFkZ1mT
+2025-12-24 12:22:54,300 - __main__ - INFO - Added post to Airtable: receih3ROxtFkZ1mT (scheduled: 2025-12-30T12:21:00-05:00)
+2025-12-24 12:22:54,675 - execution.airtable_integration - INFO - Created record in posts: rec7WYrzeRLxjSVn9
+2025-12-24 12:22:54,680 - __main__ - INFO - Added post to Airtable: rec7WYrzeRLxjSVn9 (scheduled: 2025-12-30T18:30:00-05:00)
+2025-12-24 12:22:55,081 - execution.airtable_integration - INFO - Created record in posts: recZbfcbqJ9DaoWdA
+2025-12-24 12:22:55,084 - __main__ - INFO - Added post to Airtable: recZbfcbqJ9DaoWdA (scheduled: 2025-12-31T08:39:00-05:00)
+2025-12-24 12:22:55,505 - execution.airtable_integration - INFO - Created record in posts: recWMgNrAe0V0FSM6
+2025-12-24 12:22:55,508 - __main__ - INFO - Added post to Airtable: recWMgNrAe0V0FSM6 (scheduled: 2025-12-31T12:13:00-05:00)
+2025-12-24 12:22:55,981 - execution.airtable_integration - INFO - Created record in posts: recCoSVWQqeiJJ3i2
+2025-12-24 12:22:55,985 - __main__ - INFO - Added post to Airtable: recCoSVWQqeiJJ3i2 (scheduled: 2025-12-31T17:27:00-05:00)
+2025-12-24 12:22:55,985 - __main__ - INFO - ✓ Generated 21 posts with images for 7 days
+2025-12-24 12:22:55,985 - __main__ - INFO - ✓ Added 21 posts to Airtable (Awaiting Approval)
+Completed: Wed Dec 24 12:22:56 EST 2025

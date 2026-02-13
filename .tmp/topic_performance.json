@@ -1,0 +1,601 @@
+{
+  "topics": {
+    "Prompt Engineering Fundamentals": {
+      "total_posts": 4,
+      "approved_posts": 4,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.887254"
+    },
+    "The 80/20 Rule of AI Adoption": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.887558"
+    },
+    "AI-Powered Customer Service Responses": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.887735"
+    },
+    "Automated Content Repurposing with AI": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.887883"
+    },
+    "AI-Assisted Proposal Writing": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.888031"
+    },
+    "Intelligent Email Triage and Prioritization": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.888188"
+    },
+    "Custom GPT Creation for Specific Business Functions": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.888353"
+    },
+    "AI-Powered Meeting Summarization": {
+      "total_posts": 4,
+      "approved_posts": 2,
+      "denied_posts": 2,
+      "approval_rate": 0.5,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.888525"
+    },
+    "Contextual AI Knowledge Bases": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.888703"
+    },
+    "Prompt Chaining for Complex Tasks": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.888883"
+    },
+    "The Automation Audit Framework": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.889074"
+    },
+    "Zapier vs Make vs Custom Scripts: Decision Framework": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.889271"
+    },
+    "Building Your First Business Automation in 30 Minutes": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.889475"
+    },
+    "Multi-Step Workflow Automation Design": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.889701"
+    },
+    "Error Handling in Automated Workflows": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.889922"
+    },
+    "Automated Data Entry from Emails and Forms": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.890151"
+    },
+    "CRM Automation Beyond the Basics": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.890495"
+    },
+    "Automated Invoicing and Payment Follow-ups": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.891097"
+    },
+    "Document Generation Automation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.891476"
+    },
+    "Slack/Teams Notification Systems": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.891913"
+    },
+    "Client Onboarding Automation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.892267"
+    },
+    "Project Status Updates Without Manual Work": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.892829"
+    },
+    "Automated Quality Assurance Checklists": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.893321"
+    },
+    "Customer Feedback Collection and Analysis": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.893797"
+    },
+    "Proactive Issue Detection": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.894165"
+    },
+    "Resource Allocation Optimization": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.894538"
+    },
+    "Scope Creep Prevention Systems": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.894948"
+    },
+    "Delivery Timeline Automation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.895340"
+    },
+    "Post-Project Review Automation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.895856"
+    },
+    "Upsell and Cross-Sell Trigger Systems": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.896277"
+    },
+    "The Virtual Employee Framework": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.896706"
+    },
+    "Automated Training and Onboarding": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.897149"
+    },
+    "Self-Service Customer Portals": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.897636"
+    },
+    "AI-Powered First-Line Support": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.898129"
+    },
+    "Automated Lead Qualification": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.898618"
+    },
+    "Delegation Frameworks for Founders": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.899477"
+    },
+    "Asynchronous Communication Systems": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.900204"
+    },
+    "ChatGPT vs Claude vs Gemini: Business Use Cases": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.900904"
+    },
+    "AI-Powered Market Research": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.901556"
+    },
+    "Automated Social Media Management": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.902154"
+    },
+    "AI Writing Assistants for Business Communication": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.902767"
+    },
+    "Voice-to-Text Automation for Documentation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.903387"
+    },
+    "AI-Powered Translation for Global Business": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.904156"
+    },
+    "AI-Powered Competitor Analysis": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.904774"
+    },
+    "Sentiment Analysis for Customer Communications": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.905406"
+    },
+    "AI-Generated Case Studies and Testimonials": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.906040"
+    },
+    "Personalized Outreach at Scale": {
+      "total_posts": 3,
+      "approved_posts": 2,
+      "denied_posts": 1,
+      "approval_rate": 0.6666666666666666,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.906688"
+    },
+    "AI-Powered Contract Review": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.907349"
+    },
+    "Automated Competitive Pricing Intelligence": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.908325"
+    },
+    "AI-Enhanced Sales Call Analysis": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.909017"
+    },
+    "Smart Content Recommendations for Leads": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.909719"
+    },
+    "AI-Powered Meeting Preparation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.910430"
+    },
+    "Automated Follow-Up Sequences Based on Engagement": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.911244"
+    },
+    "Automated Appointment Scheduling and Reminders": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.912142"
+    },
+    "Dynamic Pricing Automation": {
+      "total_posts": 3,
+      "approved_posts": 0,
+      "denied_posts": 3,
+      "approval_rate": 0.0,
+      "deprecated": true,
+      "created_at": "2026-01-04T16:52:47.912784"
+    },
+    "Automated Referral Request Systems": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.913460"
+    },
+    "Subscription and Recurring Revenue Automation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.914106"
+    },
+    "Automated Proposal Follow-Up Sequences": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.914829"
+    },
+    "Win-Back Campaigns for Lost Customers": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.915532"
+    },
+    "Automated Testimonial Collection": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.916308"
+    },
+    "Cart Abandonment Recovery Automation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.917019"
+    },
+    "Automated Renewal and Upgrade Prompts": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.917786"
+    },
+    "Lead Magnet Delivery and Nurture Automation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.918510"
+    },
+    "Automated Expense Tracking and Categorization": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.919246"
+    },
+    "Inventory and Stock Alert Automation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.919996"
+    },
+    "Automated Vendor Management": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.920726"
+    },
+    "Meeting-Free Monday Automation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.921456"
+    },
+    "Automated Task Prioritization": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.922198"
+    },
+    "Client Communication Templates with AI Personalization": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.922949"
+    },
+    "Automated Project Kickoff Workflows": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.923712"
+    },
+    "Time Zone Management Automation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.924481"
+    },
+    "Automated Weekly Review Generation": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.925289"
+    },
+    "Smart Notification Filtering": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T16:52:47.926066"
+    },
+    "Automation Audit Framework": {
+      "total_posts": 0,
+      "approved_posts": 0,
+      "denied_posts": 0,
+      "approval_rate": 1.0,
+      "deprecated": false,
+      "created_at": "2026-01-04T18:14:30.642713"
+    }
+  },
+  "last_updated": "2026-01-04T18:14:30.642724",
+  "total_posts_analyzed": 14,
+  "deprecated_topics": [
+    "Dynamic Pricing Automation"
+  ]
+}

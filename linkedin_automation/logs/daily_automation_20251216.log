@@ -1,0 +1,134 @@
+========================================
+Daily Automation Started: Tue Dec 16 06:00:00 EST 2025
+========================================
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-12-16 06:00:01,537 - __main__ - INFO - ============================================================
+2025-12-16 06:00:01,537 - __main__ - INFO - ACTION: Generate Posts & Images (7 Days)
+2025-12-16 06:00:01,537 - __main__ - INFO - ============================================================
+2025-12-16 06:00:03,171 - execution.airtable_integration - INFO - Cleaned up 0 old posted records
+2025-12-16 06:00:03,174 - __main__ - INFO - Cleaned up 0 old posted records
+2025-12-16 06:00:03,175 - execution.linkedin_scheduler - INFO - Generated 21 randomized posting times over 7 days
+2025-12-16 06:00:03,175 - execution.research_content - INFO - Starting daily content generation (21 posts)
+2025-12-16 06:00:03,178 - execution.research_content - INFO - Researching topic: AI automation for business
+2025-12-16 06:00:03,178 - execution.research_content - INFO - Researching topic: Workflow optimization
+2025-12-16 06:00:51,391 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:00:51,422 - execution.research_content - INFO - Generated 21 ideas for AI automation for business
+2025-12-16 06:00:54,930 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:00:54,935 - execution.research_content - INFO - Generated 21 ideas for Workflow optimization
+2025-12-16 06:00:57,058 - execution.research_content - INFO - Researching topic: Business process automation
+2025-12-16 06:00:57,059 - execution.research_content - INFO - Researching topic: AI implementation strategies
+2025-12-16 06:01:45,374 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:01:45,379 - execution.research_content - INFO - Generated 21 ideas for Business process automation
+2025-12-16 06:01:51,200 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:01:51,204 - execution.research_content - INFO - Generated 21 ideas for AI implementation strategies
+2025-12-16 06:01:53,313 - execution.research_content - INFO - Researching topic: Prompt engineering for productivity
+2025-12-16 06:01:53,313 - execution.research_content - INFO - Researching topic: Business efficiency tips
+2025-12-16 06:02:38,513 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:02:38,519 - execution.research_content - INFO - Generated 21 ideas for Business efficiency tips
+2025-12-16 06:02:43,223 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:02:43,225 - execution.research_content - INFO - Generated 21 ideas for Prompt engineering for productivity
+2025-12-16 06:02:45,348 - execution.research_content - INFO - Researching topic: Automation ROI
+2025-12-16 06:03:38,723 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:03:38,729 - execution.research_content - INFO - Generated 21 ideas for Automation ROI
+2025-12-16 06:03:49,374 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:03:49,409 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:03:49,433 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:03:58,047 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:03:58,048 - execution.research_content - INFO - Generated post content for: Automating Your Sales Pipeline: A Complete Walkthrough (Framework: Listicle)
+2025-12-16 06:03:59,922 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:03:59,923 - execution.research_content - INFO - Generated post content for: Your First AI Hire Should Be Human (Framework: Listicle)
+2025-12-16 06:04:00,165 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:04:00,167 - execution.research_content - INFO - Generated post content for: The AI Tools Your Competitors Are Actually Using (Framework: How-To Guide)
+2025-12-16 06:04:13,539 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:04:13,652 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:04:14,971 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:04:23,165 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:04:23,169 - execution.research_content - INFO - Generated post content for: Automation ROI Timeline: When to Expect Returns (Framework: AIDA (Attention-Interest-Desire-Action))
+2025-12-16 06:04:24,066 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:04:24,068 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-16 06:04:24,071 - execution.research_content - INFO - Generated post content for: From 200 Emails to 12: Our Inbox Automation Journey (Framework: AIDA (Attention-Interest-Desire-Action))
+2025-12-16 06:04:24,072 - execution.research_content - INFO - Generated post content for: The AI Implementation Maturity Model (Framework: PAS (Problem-Agitate-Solution))
+2025-12-16 06:04:27,321 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:27,322 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:27,322 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:27,323 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnHTGQeo4gHizC4TGV'}
+2025-12-16 06:04:27,324 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnHR2xWKrTTSLj37x4'}
+2025-12-16 06:04:27,324 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnHSGsFk7jYgKHsMWv'}
+2025-12-16 06:04:30,557 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:30,558 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnXFUmSFUN4rid2zHJ'}
+2025-12-16 06:04:30,583 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:30,584 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnXFUxiDpDAXrucvsD'}
+2025-12-16 06:04:30,612 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:30,614 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnXQfACYBau1oaMJPw'}
+2025-12-16 06:04:33,835 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:33,837 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnmK59G9JmJZKKjNEh'}
+2025-12-16 06:04:33,845 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:33,846 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnmMJZfWziMU14cC2C'}
+2025-12-16 06:04:33,854 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:33,855 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnmKp8iz4X4GswrYBW'}
+2025-12-16 06:04:37,001 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:37,002 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnzqASiwzDPskKNaBN'}
+2025-12-16 06:04:37,120 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:37,121 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFnzusk3ZkuB6tQZmkq'}
+2025-12-16 06:04:37,394 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:37,395 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFo19mL4MgPw7N27jGi'}
+2025-12-16 06:04:40,641 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:40,643 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFoGMZT1dwm7pKtDhsL'}
+2025-12-16 06:04:40,668 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:40,669 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFoGTGMsKUWUufv388w'}
+2025-12-16 06:04:40,683 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 400 Bad Request"
+2025-12-16 06:04:40,685 - execution.research_content - ERROR - Error generating post content: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CWAFoGPJSLYEG3T4ogigf'}
+2025-12-16 06:04:40,686 - execution.research_content - INFO - Generated 6 complete posts for daily content
+2025-12-16 06:04:40,686 - execution.generate_images - INFO - Generating image 1/6
+2025-12-16 06:04:40,687 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-16 06:04:41,046 - execution.generate_images - INFO - Prediction created: ka2ywqvh8hrm80cv4vat2394jc, waiting for completion...
+2025-12-16 06:06:43,444 - execution.generate_images - ERROR - Prediction timed out
+2025-12-16 06:06:43,452 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-16 06:06:43,454 - execution.generate_images - WARNING - Failed to generate image for post: Automating Your Sales Pipeline: A Complete Walkthrough
+2025-12-16 06:06:43,455 - execution.generate_images - INFO - Generating image 2/6
+2025-12-16 06:06:45,567 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-16 06:06:45,958 - execution.generate_images - INFO - Prediction created: yvqfahtrbdrmc0cv4vbvyga0sw, waiting for completion...
+2025-12-16 06:13:14,109 - execution.generate_images - ERROR - Prediction timed out
+2025-12-16 06:13:14,138 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-16 06:13:14,140 - execution.generate_images - WARNING - Failed to generate image for post: The AI Tools Your Competitors Are Actually Using
+2025-12-16 06:13:14,141 - execution.generate_images - INFO - Generating image 3/6
+2025-12-16 06:13:16,277 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-16 06:13:16,602 - execution.generate_images - INFO - Prediction created: dwdszwaf3srm80cv4vetk6tgd8, waiting for completion...
+2025-12-16 06:13:48,172 - execution.generate_images - ERROR - Error polling prediction: HTTPSConnectionPool(host='api.replicate.com', port=443): Read timed out. (read timeout=10)
+2025-12-16 06:13:48,175 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-16 06:13:48,175 - execution.generate_images - WARNING - Failed to generate image for post: Your First AI Hire Should Be Human
+2025-12-16 06:13:48,175 - execution.generate_images - INFO - Generating image 4/6
+2025-12-16 06:13:50,298 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-16 06:13:50,317 - execution.generate_images - ERROR - Error generating image: HTTPSConnectionPool(host='api.replicate.com', port=443): Max retries exceeded with url: /v1/predictions (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a25e0a0>: Failed to resolve 'api.replicate.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:50,317 - execution.generate_images - WARNING - Failed to generate image for post: From 200 Emails to 12: Our Inbox Automation Journey
+2025-12-16 06:13:50,318 - execution.generate_images - INFO - Generating image 5/6
+2025-12-16 06:13:52,434 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-16 06:13:52,440 - execution.generate_images - ERROR - Error generating image: HTTPSConnectionPool(host='api.replicate.com', port=443): Max retries exceeded with url: /v1/predictions (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a25ec70>: Failed to resolve 'api.replicate.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:52,440 - execution.generate_images - WARNING - Failed to generate image for post: The AI Implementation Maturity Model
+2025-12-16 06:13:52,441 - execution.generate_images - INFO - Generating image 6/6
+2025-12-16 06:13:54,608 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-16 06:13:54,629 - execution.generate_images - ERROR - Error generating image: HTTPSConnectionPool(host='api.replicate.com', port=443): Max retries exceeded with url: /v1/predictions (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a257610>: Failed to resolve 'api.replicate.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,629 - execution.generate_images - WARNING - Failed to generate image for post: Automation ROI Timeline: When to Expect Returns
+2025-12-16 06:13:54,629 - execution.generate_images - INFO - Generated images for 6 posts
+2025-12-16 06:13:54,639 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a250940>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,640 - execution.airtable_integration - WARNING - Retrying without Status field (may need to add dropdown option in Airtable)
+2025-12-16 06:13:54,648 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a24c070>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,654 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a24cfa0>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,654 - execution.airtable_integration - WARNING - Retrying without Status field (may need to add dropdown option in Airtable)
+2025-12-16 06:13:54,658 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a215670>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,664 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a215070>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,664 - execution.airtable_integration - WARNING - Retrying without Status field (may need to add dropdown option in Airtable)
+2025-12-16 06:13:54,667 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a24cb80>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,671 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a24c670>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,671 - execution.airtable_integration - WARNING - Retrying without Status field (may need to add dropdown option in Airtable)
+2025-12-16 06:13:54,675 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a2506d0>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,679 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a2573a0>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,679 - execution.airtable_integration - WARNING - Retrying without Status field (may need to add dropdown option in Airtable)
+2025-12-16 06:13:54,684 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a227af0>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,688 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a2573d0>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,688 - execution.airtable_integration - WARNING - Retrying without Status field (may need to add dropdown option in Airtable)
+2025-12-16 06:13:54,691 - execution.airtable_integration - ERROR - Error creating Airtable record: HTTPSConnectionPool(host='api.airtable.com', port=443): Max retries exceeded with url: /v0/appw88uD6ZM0ckF8f/tbljg75KMQWDo2Hgu (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a2505e0>: Failed to resolve 'api.airtable.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-12-16 06:13:54,692 - __main__ - INFO - ✓ Generated 6 posts with images for 7 days
+2025-12-16 06:13:54,692 - __main__ - INFO - ✓ Added 0 posts to Airtable (Awaiting Approval)
+Completed: Tue Dec 16 06:13:54 EST 2025

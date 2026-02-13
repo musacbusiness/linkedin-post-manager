@@ -16,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from config import validate_config, POST_STATUSES
 from utils.supabase_client import SupabaseClient
 from utils.modal_client import ModalClient
+from utils.replicate_client import ReplicateClient
 from components.post_table import (
     create_status_filter,
     create_search_box,
@@ -64,10 +65,19 @@ st.markdown("""
 @st.cache_resource
 def init_clients():
     """Initialize API clients (cached for session)"""
-    return {
+    clients = {
         "supabase": SupabaseClient(),
         "modal": ModalClient(),
     }
+
+    # Try to initialize Replicate (optional - only if API token is set)
+    try:
+        clients["replicate"] = ReplicateClient()
+    except Exception as e:
+        print(f"Warning: Replicate client not available: {str(e)}")
+        clients["replicate"] = None
+
+    return clients
 
 
 def initialize_post_state(posts: List[Dict]):
@@ -260,6 +270,19 @@ def render_system_health_section(clients):
         except Exception as e:
             st.error(f"❌ Modal: {str(e)[:100]}")
 
+        try:
+            replicate_client = clients.get("replicate")
+            if replicate_client:
+                health = replicate_client.health_check()
+                if health.get("success"):
+                    st.success("✅ Replicate: Connected")
+                else:
+                    st.warning(f"⚠️ Replicate: {health.get('message', 'Not available')}")
+            else:
+                st.warning("⚠️ Replicate: Not configured")
+        except Exception as e:
+            st.error(f"❌ Replicate: {str(e)[:100]}")
+
     # Environment Info
     with col2:
         st.subheader("📊 Environment")
@@ -308,6 +331,20 @@ def render_sidebar_navigation():
                             st.error(f"❌ Modal: {modal_health.get('message', 'Not accessible')[:50]}")
                     except:
                         st.warning("Modal status unavailable")
+
+                    # Replicate status
+                    try:
+                        replicate_client = clients.get("replicate")
+                        if replicate_client:
+                            replicate_health = replicate_client.health_check()
+                            if replicate_health.get("success"):
+                                st.success("✅ Replicate: Ready")
+                            else:
+                                st.warning(f"⚠️ Replicate: {replicate_health.get('message', 'Not accessible')[:50]}")
+                        else:
+                            st.warning("Replicate: Not configured")
+                    except:
+                        st.warning("Replicate status unavailable")
             except Exception:
                 st.warning("Could not load API status")
 

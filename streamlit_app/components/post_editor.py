@@ -62,7 +62,39 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
         # Show appropriate button text based on whether image exists
         button_text = "🎨 Regenerate Image" if image_url else "🎨 Generate Image"
         if st.button(button_text, key=f"regen_img_full_{record_id}", use_container_width=True):
-            st.info("🖼️ Image generation coming soon!")
+            if clients and "replicate" in clients:
+                try:
+                    # Get image prompt from post or generate from title/content
+                    image_prompt = fields.get("Image Prompt", "")
+                    if not image_prompt:
+                        # Generate a prompt from title and content
+                        title = fields.get("Title", "LinkedIn Post")
+                        content_preview = fields.get("Post Content", "")[:100]
+                        image_prompt = f"Professional LinkedIn post image for: {title}. {content_preview}"
+
+                    with st.spinner("🎨 Generating image... This may take a minute"):
+                        result = clients["replicate"].generate_image(image_prompt)
+
+                    if result.get("success"):
+                        generated_url = result.get("image_url")
+                        # Save to database
+                        try:
+                            response = clients["supabase"].client.table("posts").update({
+                                "image_url": generated_url,
+                                "image_prompt": image_prompt,
+                                "updated_at": datetime.now().isoformat()
+                            }).eq("id", record_id).execute()
+                            st.success("✅ Image generated and saved!")
+                            st.rerun()
+                        except Exception as e:
+                            st.error(f"Error saving image: {str(e)}")
+                    else:
+                        st.error(f"Image generation failed: {result.get('error', 'Unknown error')}")
+
+                except Exception as e:
+                    st.error(f"Error generating image: {str(e)}")
+            else:
+                st.error("❌ Replicate client not available")
 
     with col_form:
         st.markdown("### 📝 Content")

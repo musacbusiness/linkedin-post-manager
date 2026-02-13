@@ -1,0 +1,273 @@
+========================================
+Daily Automation Started: Wed Dec 17 06:17:12 EST 2025
+========================================
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-12-17 06:17:13,867 - __main__ - INFO - ============================================================
+2025-12-17 06:17:13,867 - __main__ - INFO - ACTION: Generate Posts & Images (7 Days)
+2025-12-17 06:17:13,867 - __main__ - INFO - ============================================================
+2025-12-17 06:17:14,995 - execution.airtable_integration - INFO - Cleaned up 0 old posted records
+2025-12-17 06:17:14,996 - __main__ - INFO - Cleaned up 0 old posted records
+2025-12-17 06:17:14,997 - execution.linkedin_scheduler - INFO - Generated 21 randomized posting times over 7 days
+2025-12-17 06:17:14,997 - execution.research_content - INFO - Starting daily content generation (21 posts)
+2025-12-17 06:17:15,056 - execution.research_content - INFO - Researching topic: AI automation for business
+2025-12-17 06:17:15,232 - execution.research_content - INFO - Researching topic: Workflow optimization
+2025-12-17 07:18:21,441 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.390710 seconds
+2025-12-17 07:18:21,443 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.472348 seconds
+2025-12-17 08:19:28,545 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.768138 seconds
+2025-12-17 08:19:28,547 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.890690 seconds
+2025-12-17 09:20:36,608 - execution.research_content - ERROR - Error researching topic AI automation for business: Connection error.
+2025-12-17 09:20:36,615 - execution.research_content - ERROR - Error researching topic Workflow optimization: Connection error.
+2025-12-17 09:20:38,806 - execution.research_content - INFO - Researching topic: Business process automation
+2025-12-17 09:20:38,808 - execution.research_content - INFO - Researching topic: AI implementation strategies
+2025-12-17 09:21:28,262 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 09:21:28,309 - execution.research_content - INFO - Generated 21 ideas for AI implementation strategies
+2025-12-17 09:21:29,029 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 09:21:29,033 - execution.research_content - INFO - Generated 21 ideas for Business process automation
+2025-12-17 09:21:31,173 - execution.research_content - INFO - Researching topic: Prompt engineering for productivity
+2025-12-17 09:21:31,173 - execution.research_content - INFO - Researching topic: Business efficiency tips
+2025-12-17 10:23:35,799 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.457565 seconds
+2025-12-17 10:23:35,806 - anthropic._base_client - INFO - Retrying request to /v1/messages in 0.493546 seconds
+2025-12-17 10:24:27,681 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:24:27,711 - execution.research_content - INFO - Generated 21 ideas for Prompt engineering for productivity
+2025-12-17 10:24:28,516 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:24:28,521 - execution.research_content - INFO - Generated 21 ideas for Business efficiency tips
+2025-12-17 10:24:30,583 - execution.research_content - INFO - Researching topic: Automation ROI
+2025-12-17 10:25:17,769 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:25:17,776 - execution.research_content - INFO - Generated 21 ideas for Automation ROI
+2025-12-17 10:25:28,220 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:25:28,828 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:25:30,664 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:25:38,742 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:25:38,752 - execution.research_content - INFO - Generated post content for: The Hidden Cost of Prompt Illiteracy (Framework: Case Study)
+2025-12-17 10:25:40,798 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:25:40,800 - execution.research_content - INFO - Generated post content for: The Automation Payback Period Most Owners Get Wrong (Framework: Case Study)
+2025-12-17 10:25:41,023 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:25:41,026 - execution.research_content - INFO - Generated post content for: Automate Your Sales Pipeline in One Weekend (Framework: PAS (Problem-Agitate-Solution))
+2025-12-17 10:25:54,716 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:25:55,235 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:25:56,879 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:05,213 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:05,215 - execution.research_content - INFO - Generated post content for: Stop Writing Emails From Scratch (Framework: AIDA (Attention-Interest-Desire-Action))
+2025-12-17 10:26:06,778 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:06,782 - execution.research_content - INFO - Generated post content for: Automation Stack: Best ROI Tools Under $100/Month (Framework: Listicle)
+2025-12-17 10:26:10,012 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:10,015 - execution.research_content - INFO - Generated post content for: Building Your Company's Prompt Playbook (Framework: BAB (Before-After-Bridge))
+2025-12-17 10:26:23,358 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:23,638 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:24,454 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:31,129 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:31,133 - execution.research_content - INFO - Generated post content for: Automate Your Competitor Research Weekly (Framework: AIDA (Attention-Interest-Desire-Action))
+2025-12-17 10:26:34,285 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:34,288 - execution.research_content - INFO - Generated post content for: The Integration Checklist Nobody Gives You (Framework: Storytelling)
+2025-12-17 10:26:34,385 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:34,389 - execution.research_content - INFO - Generated post content for: Building Your First AI Committee (Without the Politics) (Framework: AIDA (Attention-Interest-Desire-Action))
+2025-12-17 10:26:48,504 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:48,590 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:50,355 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:58,944 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:58,954 - execution.research_content - INFO - Generated post content for: The Automation ROI Red Flags (Framework: PAS (Problem-Agitate-Solution))
+2025-12-17 10:26:59,101 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:59,105 - execution.research_content - INFO - Generated post content for: We Automated Our Hiring Process. Here's What Happened. (Framework: Storytelling)
+2025-12-17 10:26:59,556 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:26:59,559 - execution.research_content - INFO - Generated post content for: Create Your AI Sales Assistant Today (Framework: BAB (Before-After-Bridge))
+2025-12-17 10:27:13,607 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:14,825 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:23,563 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:23,572 - execution.research_content - INFO - Generated post content for: Stop Asking AI Open-Ended Questions (Framework: AIDA (Attention-Interest-Desire-Action))
+2025-12-17 10:27:23,955 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:23,959 - execution.research_content - INFO - Generated post content for: Small Teams Are Winning Against Enterprises (Framework: How-To Guide)
+2025-12-17 10:27:24,970 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:33,834 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:33,852 - execution.research_content - INFO - Generated post content for: How We Cut Payroll Processing From 8 Hours to 20 Minutes (Framework: BAB (Before-After-Bridge))
+2025-12-17 10:27:48,166 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:48,538 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:48,806 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:58,374 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:58,380 - execution.research_content - INFO - Generated post content for: Why Your Competitors Are Suddenly So Fast (Framework: How-To Guide)
+2025-12-17 10:27:58,594 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:58,595 - execution.research_content - INFO - Generated post content for: Data Cleanup: The Step Everyone Skips (Framework: BAB (Before-After-Bridge))
+2025-12-17 10:27:58,875 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:27:58,880 - execution.research_content - INFO - Generated post content for: How a 3-Person Agency Handles 50+ Clients (Framework: PAS (Problem-Agitate-Solution))
+2025-12-17 10:28:12,835 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:28:14,085 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:28:14,350 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:28:22,089 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:28:22,093 - execution.research_content - INFO - Generated post content for: The Friday 15: End Your Week Right (Framework: Listicle)
+2025-12-17 10:28:22,541 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:28:22,545 - execution.research_content - INFO - Generated post content for: The Hidden Cost of Context Switching (Framework: BAB (Before-After-Bridge))
+2025-12-17 10:28:23,762 - httpx - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2025-12-17 10:28:23,764 - execution.research_content - INFO - Generated post content for: Your Team Fears AI—Here's What to Say (Framework: BAB (Before-After-Bridge))
+2025-12-17 10:28:23,765 - execution.research_content - INFO - Generated 21 complete posts for daily content
+2025-12-17 10:28:23,857 - execution.generate_images - INFO - Generating image 1/21
+2025-12-17 10:28:23,889 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:28:24,858 - execution.generate_images - INFO - Prediction created: 4h5bzxa0wdrm80cv5kptmydrsw, waiting for completion...
+2025-12-17 10:30:25,164 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 10:30:25,172 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 10:30:25,176 - execution.generate_images - WARNING - Failed to generate image for post: The Hidden Cost of Prompt Illiteracy
+2025-12-17 10:30:25,176 - execution.generate_images - INFO - Generating image 2/21
+2025-12-17 10:30:27,235 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:30:27,523 - execution.generate_images - INFO - Prediction created: ka4ymz1035rme0cv5kqr3m6rxg, waiting for completion...
+2025-12-17 10:32:29,920 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 10:32:29,928 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 10:32:29,932 - execution.generate_images - WARNING - Failed to generate image for post: The Automation Payback Period Most Owners Get Wrong
+2025-12-17 10:32:29,932 - execution.generate_images - INFO - Generating image 3/21
+2025-12-17 10:32:32,007 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:32:32,297 - execution.generate_images - INFO - Prediction created: xr0q0sg7g5rme0cv5krs9ac8aw, waiting for completion...
+2025-12-17 10:34:33,936 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 10:34:33,942 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 10:34:33,945 - execution.generate_images - WARNING - Failed to generate image for post: Automate Your Sales Pipeline in One Weekend
+2025-12-17 10:34:33,945 - execution.generate_images - INFO - Generating image 4/21
+2025-12-17 10:34:35,984 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:34:36,214 - execution.generate_images - INFO - Prediction created: dqg2k0zbk9rme0cv5ksbwh9a74, waiting for completion...
+2025-12-17 10:36:36,284 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 10:36:36,293 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 10:36:36,297 - execution.generate_images - WARNING - Failed to generate image for post: Automation Stack: Best ROI Tools Under $100/Month
+2025-12-17 10:36:36,297 - execution.generate_images - INFO - Generating image 5/21
+2025-12-17 10:36:38,358 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:36:38,628 - execution.generate_images - INFO - Prediction created: x30veky9nhrme0cv5ktb7c9e28, waiting for completion...
+2025-12-17 10:38:40,707 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 10:38:40,724 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 10:38:40,726 - execution.generate_images - WARNING - Failed to generate image for post: Building Your Company's Prompt Playbook
+2025-12-17 10:38:40,726 - execution.generate_images - INFO - Generating image 6/21
+2025-12-17 10:38:42,797 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:38:43,090 - execution.generate_images - INFO - Prediction created: ptnq9axfv9rm80cv5kva5dyfqr, waiting for completion...
+2025-12-17 10:42:58,910 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 10:42:59,065 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 10:42:59,072 - execution.generate_images - WARNING - Failed to generate image for post: Stop Writing Emails From Scratch
+2025-12-17 10:42:59,073 - execution.generate_images - INFO - Generating image 7/21
+2025-12-17 10:43:01,217 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:43:04,807 - execution.generate_images - INFO - Prediction created: 68n342xe9srm80cv5kxbt5sza4, waiting for completion...
+2025-12-17 10:53:10,441 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 10:53:12,572 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 10:53:12,726 - execution.generate_images - WARNING - Failed to generate image for post: The Integration Checklist Nobody Gives You
+2025-12-17 10:53:12,727 - execution.generate_images - INFO - Generating image 8/21
+2025-12-17 10:53:14,807 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:53:16,421 - execution.generate_images - INFO - Prediction created: mc3xaag339rm80cv5m280ae5ew, waiting for completion...
+2025-12-17 10:55:18,000 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 10:55:18,052 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 10:55:18,055 - execution.generate_images - WARNING - Failed to generate image for post: Automate Your Competitor Research Weekly
+2025-12-17 10:55:18,055 - execution.generate_images - INFO - Generating image 9/21
+2025-12-17 10:55:20,105 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:55:20,446 - execution.generate_images - INFO - Prediction created: pf4prz77txrma0cv5m2v4zqs3m, waiting for completion...
+2025-12-17 10:57:22,682 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 10:57:22,691 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 10:57:22,694 - execution.generate_images - WARNING - Failed to generate image for post: Building Your First AI Committee (Without the Politics)
+2025-12-17 10:57:22,694 - execution.generate_images - INFO - Generating image 10/21
+2025-12-17 10:57:24,766 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:57:25,062 - execution.generate_images - INFO - Prediction created: 3k9bgp6em5rmc0cv5m3s526w08, waiting for completion...
+2025-12-17 10:59:25,621 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 10:59:25,628 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 10:59:25,632 - execution.generate_images - WARNING - Failed to generate image for post: Create Your AI Sales Assistant Today
+2025-12-17 10:59:25,633 - execution.generate_images - INFO - Generating image 11/21
+2025-12-17 10:59:27,704 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 10:59:27,984 - execution.generate_images - INFO - Prediction created: jrhwqs5evdrm80cv5m4rgqkhmm, waiting for completion...
+2025-12-17 11:01:28,103 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:01:28,110 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:01:28,114 - execution.generate_images - WARNING - Failed to generate image for post: We Automated Our Hiring Process. Here's What Happened.
+2025-12-17 11:01:28,115 - execution.generate_images - INFO - Generating image 12/21
+2025-12-17 11:01:30,186 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 11:01:30,568 - execution.generate_images - INFO - Prediction created: ejzzgr4dkhrm80cv5m5rcf7ky0, waiting for completion...
+2025-12-17 11:03:31,652 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:03:31,658 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:03:31,662 - execution.generate_images - WARNING - Failed to generate image for post: The Automation ROI Red Flags
+2025-12-17 11:03:31,662 - execution.generate_images - INFO - Generating image 13/21
+2025-12-17 11:03:33,721 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 11:03:33,988 - execution.generate_images - INFO - Prediction created: s8wme9vfs9rma0cv5m6r39gkem, waiting for completion...
+2025-12-17 11:05:36,895 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:05:36,910 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:05:36,913 - execution.generate_images - WARNING - Failed to generate image for post: How We Cut Payroll Processing From 8 Hours to 20 Minutes
+2025-12-17 11:05:36,913 - execution.generate_images - INFO - Generating image 14/21
+2025-12-17 11:05:39,047 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 11:05:39,326 - execution.generate_images - INFO - Prediction created: fzjs8v2saxrma0cv5m7vmffknw, waiting for completion...
+2025-12-17 11:09:03,801 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:09:04,009 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:09:04,017 - execution.generate_images - WARNING - Failed to generate image for post: Small Teams Are Winning Against Enterprises
+2025-12-17 11:09:04,017 - execution.generate_images - INFO - Generating image 15/21
+2025-12-17 11:09:06,712 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 11:09:07,715 - execution.generate_images - INFO - Prediction created: vgg1fa47d1rme0cv5m98ytqjyc, waiting for completion...
+2025-12-17 11:11:07,897 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:11:07,907 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:11:07,915 - execution.generate_images - WARNING - Failed to generate image for post: Stop Asking AI Open-Ended Questions
+2025-12-17 11:11:07,915 - execution.generate_images - INFO - Generating image 16/21
+2025-12-17 11:11:09,981 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 11:11:10,334 - execution.generate_images - INFO - Prediction created: 02ghj5b66xrme0cv5mab1ym5a4, waiting for completion...
+2025-12-17 11:13:12,457 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:13:12,467 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:13:12,470 - execution.generate_images - WARNING - Failed to generate image for post: How a 3-Person Agency Handles 50+ Clients
+2025-12-17 11:13:12,471 - execution.generate_images - INFO - Generating image 17/21
+2025-12-17 11:13:14,540 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 11:13:14,826 - execution.generate_images - INFO - Prediction created: zp2dfnacp5rm80cv5mb9knj2mg, waiting for completion...
+2025-12-17 11:15:17,085 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:15:17,094 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:15:17,098 - execution.generate_images - WARNING - Failed to generate image for post: Why Your Competitors Are Suddenly So Fast
+2025-12-17 11:15:17,099 - execution.generate_images - INFO - Generating image 18/21
+2025-12-17 11:15:19,154 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 11:15:19,384 - execution.generate_images - INFO - Prediction created: 8h411n9k91rme0cv5mc9ybjhw4, waiting for completion...
+2025-12-17 11:17:21,383 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:17:21,388 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:17:21,391 - execution.generate_images - WARNING - Failed to generate image for post: Data Cleanup: The Step Everyone Skips
+2025-12-17 11:17:21,391 - execution.generate_images - INFO - Generating image 19/21
+2025-12-17 11:17:23,406 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 11:17:23,740 - execution.generate_images - INFO - Prediction created: tgezsj8s1hrma0cv5mdbbwsnmr, waiting for completion...
+2025-12-17 11:19:25,717 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:19:25,727 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:19:25,731 - execution.generate_images - WARNING - Failed to generate image for post: Your Team Fears AI—Here's What to Say
+2025-12-17 11:19:25,731 - execution.generate_images - INFO - Generating image 20/21
+2025-12-17 11:19:27,801 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 11:19:28,112 - execution.generate_images - INFO - Prediction created: t3jh24zyv9rma0cv5mdtbj9p6g, waiting for completion...
+2025-12-17 11:21:28,294 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:21:28,301 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:21:28,305 - execution.generate_images - WARNING - Failed to generate image for post: The Hidden Cost of Context Switching
+2025-12-17 11:21:28,305 - execution.generate_images - INFO - Generating image 21/21
+2025-12-17 11:21:30,326 - execution.generate_images - INFO - Requesting image generation from Replicate
+2025-12-17 11:21:30,580 - execution.generate_images - INFO - Prediction created: a21a0tpx7srma0cv5mevzq180r, waiting for completion...
+2025-12-17 11:36:10,334 - execution.generate_images - ERROR - Prediction timed out
+2025-12-17 11:36:12,312 - execution.generate_images - ERROR - Failed to get image URL from prediction
+2025-12-17 11:36:12,574 - execution.generate_images - WARNING - Failed to generate image for post: The Friday 15: End Your Week Right
+2025-12-17 11:36:12,577 - execution.generate_images - INFO - Generated images for 21 posts
+2025-12-17 11:36:16,827 - execution.airtable_integration - INFO - Created record in posts: recW9jdL7RvU01zVN
+2025-12-17 11:36:16,837 - __main__ - INFO - Added post to Airtable: recW9jdL7RvU01zVN (scheduled: 2025-12-18T09:34:00-05:00)
+2025-12-17 11:36:17,405 - execution.airtable_integration - INFO - Created record in posts: recP5yT2SMHs9sgM5
+2025-12-17 11:36:17,418 - __main__ - INFO - Added post to Airtable: recP5yT2SMHs9sgM5 (scheduled: 2025-12-18T12:27:00-05:00)
+2025-12-17 11:36:17,876 - execution.airtable_integration - INFO - Created record in posts: recDVdW8GhphLIBiw
+2025-12-17 11:36:17,878 - __main__ - INFO - Added post to Airtable: recDVdW8GhphLIBiw (scheduled: 2025-12-18T18:49:00-05:00)
+2025-12-17 11:36:18,295 - execution.airtable_integration - INFO - Created record in posts: rec6ZC7ONUbsZEu3v
+2025-12-17 11:36:18,325 - __main__ - INFO - Added post to Airtable: rec6ZC7ONUbsZEu3v (scheduled: 2025-12-19T08:38:00-05:00)
+2025-12-17 11:36:18,851 - execution.airtable_integration - INFO - Created record in posts: reczqWNq0FRU0BjRi
+2025-12-17 11:36:18,853 - __main__ - INFO - Added post to Airtable: reczqWNq0FRU0BjRi (scheduled: 2025-12-19T12:40:00-05:00)
+2025-12-17 11:36:19,192 - execution.airtable_integration - INFO - Created record in posts: recejpWkAzYwakLE1
+2025-12-17 11:36:19,223 - __main__ - INFO - Added post to Airtable: recejpWkAzYwakLE1 (scheduled: 2025-12-19T17:29:00-05:00)
+2025-12-17 11:36:19,650 - execution.airtable_integration - INFO - Created record in posts: recpm1M1zDuoozeu2
+2025-12-17 11:36:19,652 - __main__ - INFO - Added post to Airtable: recpm1M1zDuoozeu2 (scheduled: 2025-12-20T09:15:00-05:00)
+2025-12-17 11:36:20,039 - execution.airtable_integration - INFO - Created record in posts: rec4hS4UpMtjRmLV1
+2025-12-17 11:36:20,041 - __main__ - INFO - Added post to Airtable: rec4hS4UpMtjRmLV1 (scheduled: 2025-12-20T13:44:00-05:00)
+2025-12-17 11:36:20,446 - execution.airtable_integration - INFO - Created record in posts: recKYAftcxSoLna6D
+2025-12-17 11:36:20,448 - __main__ - INFO - Added post to Airtable: recKYAftcxSoLna6D (scheduled: 2025-12-20T19:14:00-05:00)
+2025-12-17 11:36:20,849 - execution.airtable_integration - INFO - Created record in posts: recogYyd0FPQMCX6P
+2025-12-17 11:36:20,852 - __main__ - INFO - Added post to Airtable: recogYyd0FPQMCX6P (scheduled: 2025-12-21T08:50:00-05:00)
+2025-12-17 11:36:21,202 - execution.airtable_integration - INFO - Created record in posts: rectXowWuOsu2V3J6
+2025-12-17 11:36:21,204 - __main__ - INFO - Added post to Airtable: rectXowWuOsu2V3J6 (scheduled: 2025-12-21T12:40:00-05:00)
+2025-12-17 11:36:21,532 - execution.airtable_integration - INFO - Created record in posts: recSgU8Zglz7Uihah
+2025-12-17 11:36:21,535 - __main__ - INFO - Added post to Airtable: recSgU8Zglz7Uihah (scheduled: 2025-12-21T18:18:00-05:00)
+2025-12-17 11:36:21,916 - execution.airtable_integration - INFO - Created record in posts: recDrWwFHAS7tQEqa
+2025-12-17 11:36:21,920 - __main__ - INFO - Added post to Airtable: recDrWwFHAS7tQEqa (scheduled: 2025-12-22T09:26:00-05:00)
+2025-12-17 11:36:22,229 - execution.airtable_integration - INFO - Created record in posts: recqPlofbS1NqDvrc
+2025-12-17 11:36:22,233 - __main__ - INFO - Added post to Airtable: recqPlofbS1NqDvrc (scheduled: 2025-12-22T13:01:00-05:00)
+2025-12-17 11:36:22,550 - execution.airtable_integration - INFO - Created record in posts: recHiV3BSax5N8dkR
+2025-12-17 11:36:22,554 - __main__ - INFO - Added post to Airtable: recHiV3BSax5N8dkR (scheduled: 2025-12-22T19:27:00-05:00)
+2025-12-17 11:36:22,973 - execution.airtable_integration - INFO - Created record in posts: recGxBPdCUKwu0R50
+2025-12-17 11:36:22,975 - __main__ - INFO - Added post to Airtable: recGxBPdCUKwu0R50 (scheduled: 2025-12-23T09:18:00-05:00)
+2025-12-17 11:36:23,303 - execution.airtable_integration - INFO - Created record in posts: recYwfoRIxtKtjHJm
+2025-12-17 11:36:23,307 - __main__ - INFO - Added post to Airtable: recYwfoRIxtKtjHJm (scheduled: 2025-12-23T12:14:00-05:00)
+2025-12-17 11:36:23,670 - execution.airtable_integration - INFO - Created record in posts: recL1NKbd1g0cQsik
+2025-12-17 11:36:23,674 - __main__ - INFO - Added post to Airtable: recL1NKbd1g0cQsik (scheduled: 2025-12-23T19:16:00-05:00)
+2025-12-17 11:36:24,141 - execution.airtable_integration - INFO - Created record in posts: recedcXe8Er6HvFNm
+2025-12-17 11:36:24,145 - __main__ - INFO - Added post to Airtable: recedcXe8Er6HvFNm (scheduled: 2025-12-24T08:41:00-05:00)
+2025-12-17 11:36:24,483 - execution.airtable_integration - INFO - Created record in posts: recdGHshicm6UfknX
+2025-12-17 11:36:24,487 - __main__ - INFO - Added post to Airtable: recdGHshicm6UfknX (scheduled: 2025-12-24T13:15:00-05:00)
+2025-12-17 11:36:24,858 - execution.airtable_integration - INFO - Created record in posts: rectXd4Y9QrU8OP1M
+2025-12-17 11:36:24,860 - __main__ - INFO - Added post to Airtable: rectXd4Y9QrU8OP1M (scheduled: 2025-12-24T19:15:00-05:00)
+2025-12-17 11:36:24,861 - __main__ - INFO - ✓ Generated 21 posts with images for 7 days
+2025-12-17 11:36:24,861 - __main__ - INFO - ✓ Added 21 posts to Airtable (Awaiting Approval)
+Completed: Wed Dec 17 11:36:25 EST 2025

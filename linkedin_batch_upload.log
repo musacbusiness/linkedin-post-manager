@@ -1,0 +1,68 @@
+2026-01-04 13:28:18,979 - INFO - Loaded 30 posts for upload
+2026-01-04 13:28:18,979 - INFO - Starting upload of 30 posts to Airtable
+2026-01-04 13:28:19,307 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:19,634 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:19,987 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:20,326 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:20,658 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:20,983 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:21,406 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:21,781 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:22,155 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:22,516 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:22,865 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:23,189 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:23,523 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:23,847 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:24,189 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:24,529 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:24,846 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:25,180 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:25,510 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:25,837 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:26,166 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:26,530 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:26,893 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:27,200 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:27,538 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:27,867 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:28,182 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:28,534 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:28,837 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:29,149 - ERROR - Error creating record: 422 - {"error":{"type":"UNKNOWN_FIELD_NAME","message":"Unknown field name: \"Topic\""}}
+2026-01-04 13:28:29,151 - INFO - Summary saved to upload_summary_20260104_132829.json
+2026-01-04 13:28:29,151 - WARNING - Upload completed with 30 failures
+2026-01-04 13:28:42,069 - INFO - Loaded 30 posts for upload
+2026-01-04 13:28:42,070 - INFO - Starting upload of 30 posts to Airtable
+2026-01-04 13:28:42,443 - INFO - Created record: recVWBqt2ZXG2Rk3H - Prompt Engineering Fundamentals
+2026-01-04 13:28:42,863 - INFO - Created record: recPvvBFQ02K1n6cr - AI-Powered Customer Service
+2026-01-04 13:28:43,271 - INFO - Created record: recNYRbiK6mq6rJuj - Automated Content Repurposing
+2026-01-04 13:28:43,660 - INFO - Created record: recMHsnDk9fS6cWv2 - 80/20 Rule of AI Adoption
+2026-01-04 13:28:44,020 - INFO - Created record: recQOOABGAEY3sv6Y - Standard Operating Procedures
+2026-01-04 13:28:44,466 - INFO - Created record: recR933qaiKshQwoz - Building Feedback Loops
+2026-01-04 13:28:48,590 - INFO - Created record: recOWJo1CQ89onxPn - Automated Invoicing and Payment Follow-ups
+2026-01-04 13:28:48,972 - INFO - Created record: recrg8KjeXbB7UTon - Tasks vs Workflows vs Systems
+2026-01-04 13:28:49,342 - INFO - Created record: recmxUPZUkYUvNofn - Real-Time Dashboard Creation
+2026-01-04 13:28:49,707 - INFO - Created record: rec2hY9VBUQVvDBST - Automated Quality Assurance
+2026-01-04 13:28:50,067 - INFO - Created record: recgKaPwuTdef4G78 - Custom GPT Creation
+2026-01-04 13:28:50,464 - INFO - Created record: recRu0ha4cZJM1qEu - AI-Assisted Proposal Writing
+2026-01-04 13:28:50,870 - INFO - Created record: rec8Vo0dUZgugAztd - Intelligent Email Triage
+2026-01-04 13:28:51,230 - INFO - Created record: rec44NGSLGWbGT5kM - Automation Audit Framework
+2026-01-04 13:28:51,587 - INFO - Created record: recxbMFoHbkZ6th32 - CRM Automation Beyond Basics
+2026-01-04 13:28:51,957 - INFO - Created record: recojPvlV4Z58Sd3a - Zapier vs Make vs Custom Scripts
+2026-01-04 13:28:52,764 - INFO - Created record: recrIMv5HXKL5oKIS - Self-Annealing Systems
+2026-01-04 13:28:53,125 - INFO - Created record: recOqMEd9C2ue4EZW - Dependency Mapping
+2026-01-04 13:28:53,496 - INFO - Created record: recWlj321Tz8Yh74b - Modular System Design
+2026-01-04 13:28:53,904 - INFO - Created record: recwsAQbQjq1tVi8H - Documentation-Driven Operations
+2026-01-04 13:28:54,305 - INFO - Created record: recF8BSL7FjzlmM5H - Cloud-Based Operations
+2026-01-04 13:28:54,667 - INFO - Created record: recr4HjiIstz1ct3s - Automated Reporting Systems
+2026-01-04 13:28:55,040 - INFO - Created record: recuBsyQLTvcpvrfG - API Integration Fundamentals
+2026-01-04 13:28:55,386 - INFO - Created record: recwOYsHYykj7aVaG - Client Onboarding Automation
+2026-01-04 13:28:55,745 - INFO - Created record: recKgNAqomIcIF3GJ - Proactive Issue Detection
+2026-01-04 13:28:56,104 - INFO - Created record: recUeRi4sW57s9Uaa - Strategic Payment Automation
+2026-01-04 13:28:56,480 - INFO - Created record: recHtRWOqDyJpI8Sc - Scope Creep Prevention
+2026-01-04 13:28:56,867 - INFO - Created record: receWY4Rg0YhB5mqR - Hybrid Human-AI Workflows
+2026-01-04 13:28:57,232 - INFO - Created record: recedJ2PK8cp20BK1 - Predictive Churn Detection
+2026-01-04 13:28:57,605 - INFO - Created record: reciIm9QKLgIA9Bl6 - A/B Testing Automation
+2026-01-04 13:28:57,608 - INFO - Summary saved to upload_summary_20260104_132857.json
+2026-01-04 13:28:57,608 - INFO - All posts uploaded successfully!

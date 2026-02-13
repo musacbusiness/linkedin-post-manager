@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Cloud-Based Operations",
+    "content": "Most businesses lose 2-3 hours per day hunting for files. We moved everything to cloud storage with automated tagging. Now every document is findable in under 10 seconds. Zero filing cabinets. Zero lost files. 📁☁️",
+    "character_count": 234
+  },
+  {
+    "title": "Automated Reporting Systems",
+    "content": "Here's how we cut reporting time from 8 hours to 8 minutes: Scripts pull data from 5 systems, normalize it, generate dashboards automatically. Every Monday at 6 AM. No human touch needed. 📊⚡",
+    "character_count": 206
+  },
+  {
+    "title": "API Integration Fundamentals",
+    "content": "The difference between businesses that scale and those that stall? API integrations. Your CRM talks to your accounting system. Your scheduling tool updates your project tracker. Data flows automatically. No double entry. 🔗",
+    "character_count": 244
+  },
+  {
+    "title": "Client Onboarding Automation",
+    "content": "This saved us 6 hours per new client: Automated onboarding sequence sends contract, collects payment, schedules kickoff, creates project folder, adds to CRM. Trigger: email received. Everything else happens automatically. ✨🚀",
+    "character_count": 242
+  },
+  {
+    "title": "Proactive Issue Detection",
+    "content": "Most businesses react to problems. Smart businesses prevent them. We built monitors that flag issues before clients notice: API failures, payment declines, project delays. Catch problems at 10%, not 90%. 🔍",
+    "character_count": 226
+  },
+  {
+    "title": "Automated Invoicing",
+    "content": "Here's the truth about late payments: they happen because you're not following up systematically. Automate invoice sending, payment reminders at day 7, 14, 21. Our DSO dropped from 45 to 18 days. 💰📧",
+    "character_count": 221
+  },
+  {
+    "title": "Scope Creep Prevention",
+    "content": "Scope creep kills profitability. We built a simple system: every request goes through a form that checks against the SOW. In-scope? Auto-approve. Out of scope? Triggers change order workflow. Protects margins. 🛡️",
+    "character_count": 227
+  },
+  {
+    "title": "Hybrid Human-AI Workflows",
+    "content": "The future isn't AI replacing humans. It's AI handling the boring stuff so humans do the high-value work. AI drafts, humans refine. AI analyzes, humans decide. AI extracts data, humans build relationships. 🤖🤝",
+    "character_count": 236
+  },
+  {
+    "title": "Predictive Churn Detection",
+    "content": "This saved 3 clients last quarter: automated system tracks engagement metrics (login frequency, feature usage, support tickets). Flags at-risk accounts before they churn. Proactive outreach wins. 📉➡️📈",
+    "character_count": 213
+  },
+  {
+    "title": "A/B Testing Automation",
+    "content": "Most businesses guess. Winners test systematically. We automated A/B tests for email subject lines, landing pages, pricing pages. System runs tests, collects data, picks winners automatically. 10% lift in conversions. 🧪📈",
+    "character_count": 241
+  }
+]

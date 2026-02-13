@@ -1,0 +1,22 @@
+**Clean pipeline, no bloat — I get it.**
+
+You've probably seen this before: someone overcomplicates a simple form-to-database flow, adds unnecessary steps, and suddenly a 30-minute setup becomes a debugging nightmare. You want the opposite — data in, data out, zero missing values.
+
+**Why me:**
+I've built dozens of Tally → Make → Airtable pipelines for clients. This exact stack. The common failure point isn't the tools — it's sloppy field mapping and not accounting for edge cases (empty fields, special characters, date formats). I build with those in mind from the start.
+
+**My approach:**
+1. Map every Tally field to Airtable columns (confirm data types match)
+2. Build the Make scenario with error handling so you know if something breaks
+3. Run 5+ test submissions covering normal inputs AND edge cases
+4. Deliver a written summary you can hand to anyone on your team
+
+**Timeline & Price:**
+$300 fixed. Delivered within 24 hours of access.
+
+**What you get:**
+A pipeline that just works. No maintenance headaches. If a field changes later, the documentation makes updates trivial.
+
+If this sounds right, send over access to the three tools and I'll have it live by tomorrow.
+
+— Musa

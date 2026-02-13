@@ -1,0 +1,888 @@
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-12-26 23:07:30,600 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.249:8000
+2025-12-26 23:07:30,601 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-12-26 23:07:40,306 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.249:8000
+2025-12-26 23:07:40,307 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-12-27 12:49:27,832 - __main__ - INFO - Webhook received: {'record_id': 'rec036I0Bjg8HT2Cu', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 12:49:27,838 - __main__ - INFO - Webhook: rec036I0Bjg8HT2Cu -> Pending Review
+2025-12-27 12:49:27,838 - __main__ - INFO - Calling Modal function: rec036I0Bjg8HT2Cu -> Pending Review
+2025-12-27 12:49:27,838 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 12:49:27,855 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 12:49:27,855 - __main__ - INFO - Calling handle_webhook with: record_id=rec036I0Bjg8HT2Cu, status=Pending Review
+2025-12-27 12:49:31,336 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 12:49:31,338 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 12:49:31] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 12:49:31,346 - __main__ - INFO - Webhook received: {'record_id': 'rec0JRXCnqGg1PkAc', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 12:49:31,347 - __main__ - INFO - Webhook: rec0JRXCnqGg1PkAc -> Pending Review
+2025-12-27 12:49:31,347 - __main__ - INFO - Calling Modal function: rec0JRXCnqGg1PkAc -> Pending Review
+2025-12-27 12:49:31,347 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 12:49:31,347 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 12:49:31,347 - __main__ - INFO - Calling handle_webhook with: record_id=rec0JRXCnqGg1PkAc, status=Pending Review
+2025-12-27 12:49:31,759 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 12:49:31,760 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 12:49:31] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 12:49:31,772 - __main__ - INFO - Webhook received: {'record_id': 'rec12kzf7NQoCLZMO', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 12:49:31,772 - __main__ - INFO - Webhook: rec12kzf7NQoCLZMO -> Pending Review
+2025-12-27 12:49:31,772 - __main__ - INFO - Calling Modal function: rec12kzf7NQoCLZMO -> Pending Review
+2025-12-27 12:49:31,772 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 12:49:31,773 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 12:49:31,773 - __main__ - INFO - Calling handle_webhook with: record_id=rec12kzf7NQoCLZMO, status=Pending Review
+2025-12-27 12:49:32,261 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 12:49:32,262 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 12:49:32] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 12:49:32,274 - __main__ - INFO - Webhook received: {'record_id': 'rec1h83oIOQsOMiBR', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 12:49:32,274 - __main__ - INFO - Webhook: rec1h83oIOQsOMiBR -> Pending Review
+2025-12-27 12:49:32,274 - __main__ - INFO - Calling Modal function: rec1h83oIOQsOMiBR -> Pending Review
+2025-12-27 12:49:32,274 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 12:49:32,275 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 12:49:32,275 - __main__ - INFO - Calling handle_webhook with: record_id=rec1h83oIOQsOMiBR, status=Pending Review
+2025-12-27 13:04:34,534 - __main__ - ERROR - Error calling Modal function: (<Status.FAILED_PRECONDITION: 9>, 'Function call has expired', None)
+Traceback (most recent call last):
+  File "/Users/musacomma/Agentic Workflow/airtable_webhook_server.py", line 58, in call_modal_function
+    result = handle_webhook_fn.remote(record_id, status, base_id, table_id)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/synchronicity/synchronizer.py", line 669, in proxy_method
+    return wrapped_method(instance, *args, **kwargs)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/synchronicity/combined_types.py", line 33, in __call__
+    raise uc_exc.exc
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_object.py", line 339, in wrapped
+    return await method(self, *args, **kwargs)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_functions.py", line 1760, in remote
+    return await self._call_function(args, kwargs)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_functions.py", line 1704, in _call_function
+    return await invocation.run_function()
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_functions.py", line 290, in run_function
+    item = await self._get_single_output()
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_functions.py", line 271, in _get_single_output
+    await self.pop_function_call_outputs(
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_functions.py", line 244, in pop_function_call_outputs
+    response: api_pb2.FunctionGetOutputsResponse = await self.stub.FunctionGetOutputs(
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_utils/grpc_utils.py", line 412, in _retry_transient_errors
+    raise exc
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_utils/grpc_utils.py", line 362, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_grpc_client.py", line 44, in __exit__
+    raise exc from None  # from None to skip the grpc-internal cause
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/grpclib/client.py", line 346, in _raise_for_grpc_status
+    raise GRPCError(status, message, details)
+grpclib.exceptions.GRPCError: (<Status.FAILED_PRECONDITION: 9>, 'Function call has expired', None)
+2025-12-27 13:04:34,596 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 13:04:34] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 13:04:34,603 - __main__ - INFO - Webhook received: {'record_id': 'rec1hJsyrrusRMShv', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 13:04:34,604 - __main__ - INFO - Webhook: rec1hJsyrrusRMShv -> Pending Review
+2025-12-27 13:04:34,604 - __main__ - INFO - Calling Modal function: rec1hJsyrrusRMShv -> Pending Review
+2025-12-27 13:04:34,604 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 13:04:34,604 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 13:04:34,604 - __main__ - INFO - Calling handle_webhook with: record_id=rec1hJsyrrusRMShv, status=Pending Review
+2025-12-27 13:04:37,229 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 13:04:37,230 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 13:04:37] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 13:04:37,242 - __main__ - INFO - Webhook received: {'record_id': 'rec2oW92CipxR3cxT', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 13:04:37,243 - __main__ - INFO - Webhook: rec2oW92CipxR3cxT -> Pending Review
+2025-12-27 13:04:37,243 - __main__ - INFO - Calling Modal function: rec2oW92CipxR3cxT -> Pending Review
+2025-12-27 13:04:37,243 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 13:04:37,243 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 13:04:37,243 - __main__ - INFO - Calling handle_webhook with: record_id=rec2oW92CipxR3cxT, status=Pending Review
+2025-12-27 13:04:37,442 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 13:04:37,443 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 13:04:37] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 13:04:37,455 - __main__ - INFO - Webhook received: {'record_id': 'rec3DY8yIgI567NkK', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 13:04:37,455 - __main__ - INFO - Webhook: rec3DY8yIgI567NkK -> Pending Review
+2025-12-27 13:04:37,455 - __main__ - INFO - Calling Modal function: rec3DY8yIgI567NkK -> Pending Review
+2025-12-27 13:04:37,455 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 13:04:37,456 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 13:04:37,456 - __main__ - INFO - Calling handle_webhook with: record_id=rec3DY8yIgI567NkK, status=Pending Review
+2025-12-27 13:04:37,649 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 13:04:37,650 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 13:04:37] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 13:04:37,662 - __main__ - INFO - Webhook received: {'record_id': 'recFYjXRHH0fu11fC', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 13:04:37,662 - __main__ - INFO - Webhook: recFYjXRHH0fu11fC -> Pending Review
+2025-12-27 13:04:37,662 - __main__ - INFO - Calling Modal function: recFYjXRHH0fu11fC -> Pending Review
+2025-12-27 13:04:37,662 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 13:04:37,662 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 13:04:37,662 - __main__ - INFO - Calling handle_webhook with: record_id=recFYjXRHH0fu11fC, status=Pending Review
+2025-12-27 13:04:37,898 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 13:04:37,899 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 13:04:37] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 13:04:37,910 - __main__ - INFO - Webhook received: {'record_id': 'recUMuZhPC0qenb0m', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 13:04:37,910 - __main__ - INFO - Webhook: recUMuZhPC0qenb0m -> Pending Review
+2025-12-27 13:04:37,910 - __main__ - INFO - Calling Modal function: recUMuZhPC0qenb0m -> Pending Review
+2025-12-27 13:04:37,910 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 13:04:37,911 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 13:04:37,911 - __main__ - INFO - Calling handle_webhook with: record_id=recUMuZhPC0qenb0m, status=Pending Review
+2025-12-27 13:04:38,114 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 13:04:38,115 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 13:04:38] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 13:04:38,126 - __main__ - INFO - Webhook received: {'record_id': 'recXP8aBKemqMrQF1', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 13:04:38,126 - __main__ - INFO - Webhook: recXP8aBKemqMrQF1 -> Pending Review
+2025-12-27 13:04:38,126 - __main__ - INFO - Calling Modal function: recXP8aBKemqMrQF1 -> Pending Review
+2025-12-27 13:04:38,126 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 13:04:38,126 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 13:04:38,127 - __main__ - INFO - Calling handle_webhook with: record_id=recXP8aBKemqMrQF1, status=Pending Review
+2025-12-27 13:04:38,339 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 13:04:38,341 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 13:04:38] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 13:04:38,352 - __main__ - INFO - Webhook received: {'record_id': 'recv805hXzHSoA3Z9', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 13:04:38,353 - __main__ - INFO - Webhook: recv805hXzHSoA3Z9 -> Pending Review
+2025-12-27 13:04:38,353 - __main__ - INFO - Calling Modal function: recv805hXzHSoA3Z9 -> Pending Review
+2025-12-27 13:04:38,353 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 13:04:38,353 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 13:04:38,353 - __main__ - INFO - Calling handle_webhook with: record_id=recv805hXzHSoA3Z9, status=Pending Review
+2025-12-27 13:04:38,546 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 13:04:38,548 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 13:04:38] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:30:18,742 - __main__ - INFO - Webhook received: {'record_id': 'rec036I0Bjg8HT2Cu', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:30:18,744 - __main__ - INFO - Webhook: rec036I0Bjg8HT2Cu -> Pending Review
+2025-12-27 14:30:18,744 - __main__ - INFO - Calling Modal function: rec036I0Bjg8HT2Cu -> Pending Review
+2025-12-27 14:30:18,744 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:30:18,746 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:30:18,746 - __main__ - INFO - Calling handle_webhook with: record_id=rec036I0Bjg8HT2Cu, status=Pending Review
+2025-12-27 14:30:21,757 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 14:30:21,759 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:30:21] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:30:21,771 - __main__ - INFO - Webhook received: {'record_id': 'rec0JRXCnqGg1PkAc', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:30:21,771 - __main__ - INFO - Webhook: rec0JRXCnqGg1PkAc -> Pending Review
+2025-12-27 14:30:21,771 - __main__ - INFO - Calling Modal function: rec0JRXCnqGg1PkAc -> Pending Review
+2025-12-27 14:30:21,772 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:30:21,772 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:30:21,772 - __main__ - INFO - Calling handle_webhook with: record_id=rec0JRXCnqGg1PkAc, status=Pending Review
+2025-12-27 14:30:22,229 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 14:30:22,231 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:30:22] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:30:22,242 - __main__ - INFO - Webhook received: {'record_id': 'rec12kzf7NQoCLZMO', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:30:22,243 - __main__ - INFO - Webhook: rec12kzf7NQoCLZMO -> Pending Review
+2025-12-27 14:30:22,243 - __main__ - INFO - Calling Modal function: rec12kzf7NQoCLZMO -> Pending Review
+2025-12-27 14:30:22,243 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:30:22,243 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:30:22,243 - __main__ - INFO - Calling handle_webhook with: record_id=rec12kzf7NQoCLZMO, status=Pending Review
+2025-12-27 14:30:22,641 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 14:30:22,642 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:30:22] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:30:22,653 - __main__ - INFO - Webhook received: {'record_id': 'rec1h83oIOQsOMiBR', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:30:22,654 - __main__ - INFO - Webhook: rec1h83oIOQsOMiBR -> Pending Review
+2025-12-27 14:30:22,654 - __main__ - INFO - Calling Modal function: rec1h83oIOQsOMiBR -> Pending Review
+2025-12-27 14:30:22,654 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:30:22,654 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:30:22,654 - __main__ - INFO - Calling handle_webhook with: record_id=rec1h83oIOQsOMiBR, status=Pending Review
+2025-12-27 14:30:23,030 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 14:30:23,032 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:30:23] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:30:23,043 - __main__ - INFO - Webhook received: {'record_id': 'rec1hJsyrrusRMShv', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:30:23,043 - __main__ - INFO - Webhook: rec1hJsyrrusRMShv -> Pending Review
+2025-12-27 14:30:23,043 - __main__ - INFO - Calling Modal function: rec1hJsyrrusRMShv -> Pending Review
+2025-12-27 14:30:23,044 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:30:23,044 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:30:23,044 - __main__ - INFO - Calling handle_webhook with: record_id=rec1hJsyrrusRMShv, status=Pending Review
+2025-12-27 14:30:23,427 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 14:30:23,428 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:30:23] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:30:23,439 - __main__ - INFO - Webhook received: {'record_id': 'rec2oW92CipxR3cxT', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:30:23,440 - __main__ - INFO - Webhook: rec2oW92CipxR3cxT -> Pending Review
+2025-12-27 14:30:23,440 - __main__ - INFO - Calling Modal function: rec2oW92CipxR3cxT -> Pending Review
+2025-12-27 14:30:23,440 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:30:23,440 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:30:23,440 - __main__ - INFO - Calling handle_webhook with: record_id=rec2oW92CipxR3cxT, status=Pending Review
+2025-12-27 14:46:58,527 - __main__ - INFO - Webhook received: {'record_id': 'rec3DY8yIgI567NkK', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:46:58,528 - __main__ - INFO - Webhook: rec3DY8yIgI567NkK -> Pending Review
+2025-12-27 14:46:58,528 - __main__ - INFO - Calling Modal function: rec3DY8yIgI567NkK -> Pending Review
+2025-12-27 14:46:58,528 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:46:58,528 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:46:58,528 - __main__ - INFO - Calling handle_webhook with: record_id=rec3DY8yIgI567NkK, status=Pending Review
+2025-12-27 14:46:58,812 - __main__ - ERROR - Error calling Modal function: (<Status.FAILED_PRECONDITION: 9>, 'Function call has expired', None)
+Traceback (most recent call last):
+  File "/Users/musacomma/Agentic Workflow/airtable_webhook_server.py", line 58, in call_modal_function
+    result = handle_webhook_fn.remote(record_id, status, base_id, table_id)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/synchronicity/synchronizer.py", line 669, in proxy_method
+    return wrapped_method(instance, *args, **kwargs)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/synchronicity/combined_types.py", line 33, in __call__
+    raise uc_exc.exc
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_object.py", line 339, in wrapped
+    return await method(self, *args, **kwargs)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_functions.py", line 1760, in remote
+    return await self._call_function(args, kwargs)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_functions.py", line 1704, in _call_function
+    return await invocation.run_function()
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_functions.py", line 290, in run_function
+    item = await self._get_single_output()
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_functions.py", line 271, in _get_single_output
+    await self.pop_function_call_outputs(
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_functions.py", line 244, in pop_function_call_outputs
+    response: api_pb2.FunctionGetOutputsResponse = await self.stub.FunctionGetOutputs(
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_grpc_client.py", line 108, in __call__
+    return await _retry_transient_errors(
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_utils/grpc_utils.py", line 412, in _retry_transient_errors
+    raise exc
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_utils/grpc_utils.py", line 362, in _retry_transient_errors
+    return await fn_callable(req, metadata=attempt_metadata, timeout=timeout)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_grpc_client.py", line 139, in direct
+    return await self.client._call_unary(self.wrapped_method, req, timeout=timeout, metadata=metadata)
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/modal/_grpc_client.py", line 44, in __exit__
+    raise exc from None  # from None to skip the grpc-internal cause
+  File "/Users/musacomma/Library/Python/3.9/lib/python/site-packages/grpclib/client.py", line 346, in _raise_for_grpc_status
+    raise GRPCError(status, message, details)
+grpclib.exceptions.GRPCError: (<Status.FAILED_PRECONDITION: 9>, 'Function call has expired', None)
+2025-12-27 14:46:58,814 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:46:58] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:47:01,821 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 14:47:01,823 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:47:01] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:47:01,835 - __main__ - INFO - Webhook received: {'record_id': 'recFYjXRHH0fu11fC', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:47:01,835 - __main__ - INFO - Webhook: recFYjXRHH0fu11fC -> Pending Review
+2025-12-27 14:47:01,835 - __main__ - INFO - Calling Modal function: recFYjXRHH0fu11fC -> Pending Review
+2025-12-27 14:47:01,836 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:47:01,836 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:47:01,836 - __main__ - INFO - Calling handle_webhook with: record_id=recFYjXRHH0fu11fC, status=Pending Review
+2025-12-27 14:47:02,341 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 14:47:02,342 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:47:02] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:47:02,354 - __main__ - INFO - Webhook received: {'record_id': 'recUMuZhPC0qenb0m', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:47:02,354 - __main__ - INFO - Webhook: recUMuZhPC0qenb0m -> Pending Review
+2025-12-27 14:47:02,354 - __main__ - INFO - Calling Modal function: recUMuZhPC0qenb0m -> Pending Review
+2025-12-27 14:47:02,354 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:47:02,355 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:47:02,355 - __main__ - INFO - Calling handle_webhook with: record_id=recUMuZhPC0qenb0m, status=Pending Review
+2025-12-27 14:47:02,713 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 14:47:02,714 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:47:02] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:47:02,726 - __main__ - INFO - Webhook received: {'record_id': 'recXP8aBKemqMrQF1', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:47:02,726 - __main__ - INFO - Webhook: recXP8aBKemqMrQF1 -> Pending Review
+2025-12-27 14:47:02,726 - __main__ - INFO - Calling Modal function: recXP8aBKemqMrQF1 -> Pending Review
+2025-12-27 14:47:02,726 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:47:02,726 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:47:02,727 - __main__ - INFO - Calling handle_webhook with: record_id=recXP8aBKemqMrQF1, status=Pending Review
+2025-12-27 14:47:03,099 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 14:47:03,101 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:47:03] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 14:47:03,112 - __main__ - INFO - Webhook received: {'record_id': 'recv805hXzHSoA3Z9', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 14:47:03,113 - __main__ - INFO - Webhook: recv805hXzHSoA3Z9 -> Pending Review
+2025-12-27 14:47:03,113 - __main__ - INFO - Calling Modal function: recv805hXzHSoA3Z9 -> Pending Review
+2025-12-27 14:47:03,113 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 14:47:03,113 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 14:47:03,113 - __main__ - INFO - Calling handle_webhook with: record_id=recv805hXzHSoA3Z9, status=Pending Review
+2025-12-27 14:47:03,515 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 14:47:03,516 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 14:47:03] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 22:37:34,885 - __main__ - INFO - Webhook received: {'record_id': 'recN6hXK3HVN9Yo7s', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 22:37:34,889 - __main__ - INFO - Webhook: recN6hXK3HVN9Yo7s -> Pending Review
+2025-12-27 22:37:34,889 - __main__ - INFO - Calling Modal function: recN6hXK3HVN9Yo7s -> Pending Review
+2025-12-27 22:37:34,890 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 22:37:34,896 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 22:37:34,896 - __main__ - INFO - Calling handle_webhook with: record_id=recN6hXK3HVN9Yo7s, status=Pending Review
+2025-12-27 22:37:38,136 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 22:37:38,137 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 22:37:38] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 22:40:45,774 - __main__ - INFO - Webhook received: {'record_id': 'receTUCDu1c3KZutM', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 22:40:45,775 - __main__ - INFO - Webhook: receTUCDu1c3KZutM -> Pending Review
+2025-12-27 22:40:45,775 - __main__ - INFO - Calling Modal function: receTUCDu1c3KZutM -> Pending Review
+2025-12-27 22:40:45,775 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 22:40:45,776 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 22:40:45,776 - __main__ - INFO - Calling handle_webhook with: record_id=receTUCDu1c3KZutM, status=Pending Review
+2025-12-27 22:40:48,223 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 22:40:48,226 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 22:40:48] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 22:44:42,636 - __main__ - INFO - Webhook received: {'record_id': 'recqPlofbS1NqDvrc', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 22:44:42,637 - __main__ - INFO - Webhook: recqPlofbS1NqDvrc -> Pending Review
+2025-12-27 22:44:42,637 - __main__ - INFO - Calling Modal function: recqPlofbS1NqDvrc -> Pending Review
+2025-12-27 22:44:42,637 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 22:44:42,638 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 22:44:42,639 - __main__ - INFO - Calling handle_webhook with: record_id=recqPlofbS1NqDvrc, status=Pending Review
+2025-12-27 22:44:46,093 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 22:44:46,094 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 22:44:46] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 22:52:46,253 - __main__ - INFO - Webhook received: {'record_id': 'receTUCDu1c3KZutM', 'status': 'Approved - Ready to Schedule', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 22:52:46,265 - __main__ - INFO - Webhook: receTUCDu1c3KZutM -> Approved - Ready to Schedule
+2025-12-27 22:52:46,265 - __main__ - INFO - Calling Modal function: receTUCDu1c3KZutM -> Approved - Ready to Schedule
+2025-12-27 22:52:46,265 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 22:52:46,286 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 22:52:46,286 - __main__ - INFO - Calling handle_webhook with: record_id=receTUCDu1c3KZutM, status=Approved - Ready to Schedule
+2025-12-27 22:52:48,981 - __main__ - INFO - Result: {'success': True, 'action': 'scheduling_triggered'}
+2025-12-27 22:52:48,994 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 22:52:48] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 22:54:53,833 - __main__ - INFO - Webhook received: {'record_id': 'rec9XxHwjvJXqEgSq', 'status': 'Approved - Ready to Schedule', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 22:54:53,835 - __main__ - INFO - Webhook: rec9XxHwjvJXqEgSq -> Approved - Ready to Schedule
+2025-12-27 22:54:53,835 - __main__ - INFO - Calling Modal function: rec9XxHwjvJXqEgSq -> Approved - Ready to Schedule
+2025-12-27 22:54:53,835 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 22:54:53,836 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 22:54:53,836 - __main__ - INFO - Calling handle_webhook with: record_id=rec9XxHwjvJXqEgSq, status=Approved - Ready to Schedule
+2025-12-27 22:54:56,900 - __main__ - INFO - Result: {'success': True, 'action': 'scheduling_triggered'}
+2025-12-27 22:54:56,901 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 22:54:56] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 22:57:02,164 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 22:57:02] "GET /health HTTP/1.1" 200 -
+2025-12-27 22:57:26,907 - __main__ - INFO - Webhook received: {'record_id': 'test-123', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 22:57:26,908 - __main__ - INFO - Webhook: test-123 -> Pending Review
+2025-12-27 22:57:26,908 - __main__ - INFO - Calling Modal function: test-123 -> Pending Review
+2025-12-27 22:57:26,908 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 22:57:26,909 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 22:57:26,909 - __main__ - INFO - Calling handle_webhook with: record_id=test-123, status=Pending Review
+2025-12-27 22:57:30,232 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2025-12-27 22:57:30,234 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 22:57:30] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 22:58:02,845 - __main__ - INFO - Webhook received: {'record_id': 'recC6gTDSvjM8hOll', 'status': 'Rejected', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 22:58:02,846 - __main__ - INFO - Webhook: recC6gTDSvjM8hOll -> Rejected
+2025-12-27 22:58:02,847 - __main__ - INFO - Calling Modal function: recC6gTDSvjM8hOll -> Rejected
+2025-12-27 22:58:02,847 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 22:58:02,848 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 22:58:02,848 - __main__ - INFO - Calling handle_webhook with: record_id=recC6gTDSvjM8hOll, status=Rejected
+2025-12-27 22:58:03,287 - __main__ - INFO - Result: {'success': True, 'action': 'rejection_handled'}
+2025-12-27 22:58:03,290 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 22:58:03] "POST /webhook HTTP/1.1" 200 -
+2025-12-27 23:01:09,581 - __main__ - INFO - Webhook received: {'record_id': 'rec5B27tT10Uiasxl', 'status': 'Approved - Ready to Schedule', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2025-12-27 23:01:09,582 - __main__ - INFO - Webhook: rec5B27tT10Uiasxl -> Approved - Ready to Schedule
+2025-12-27 23:01:09,582 - __main__ - INFO - Calling Modal function: rec5B27tT10Uiasxl -> Approved - Ready to Schedule
+2025-12-27 23:01:09,582 - __main__ - INFO - Looking up deployed Modal function...
+2025-12-27 23:01:09,587 - __main__ - INFO - Successfully looked up deployed function
+2025-12-27 23:01:09,587 - __main__ - INFO - Calling handle_webhook with: record_id=rec5B27tT10Uiasxl, status=Approved - Ready to Schedule
+2025-12-27 23:01:13,031 - __main__ - INFO - Result: {'success': True, 'action': 'scheduling_triggered'}
+2025-12-27 23:01:13,036 - werkzeug - INFO - 127.0.0.1 - - [27/Dec/2025 23:01:13] "POST /webhook HTTP/1.1" 200 -
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-12-27 23:01:46,723 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.249:8000
+2025-12-27 23:01:46,723 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-12-27 23:01:57,066 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.249:8000
+2025-12-27 23:01:57,066 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-01-01 08:21:58,004 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.0.0.2:8000
+2026-01-01 08:21:58,036 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-01-04 15:05:40,429 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://10.4.80.195:8000
+2026-01-04 15:05:40,433 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-01-04 15:26:08,787 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.0.0.2:8000
+2026-01-04 15:26:08,810 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-01-04 19:05:10,578 - __main__ - INFO - Webhook received: {'record_id': 'recexkcAtCIxdlCiH', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 19:05:10,583 - __main__ - INFO - Webhook: recexkcAtCIxdlCiH -> Pending Review
+2026-01-04 19:05:10,583 - __main__ - INFO - Calling Modal function: recexkcAtCIxdlCiH -> Pending Review
+2026-01-04 19:05:10,583 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 19:05:10,591 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 19:05:10,591 - __main__ - INFO - Calling handle_webhook with: record_id=recexkcAtCIxdlCiH, status=Pending Review
+2026-01-04 19:05:11,799 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 19:05:11,802 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 19:05:11] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 20:36:50,731 - __main__ - INFO - Webhook received: {'record_id': 'recexkcAtCIxdlCiH', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 20:36:50,732 - __main__ - INFO - Webhook: recexkcAtCIxdlCiH -> Pending Review
+2026-01-04 20:36:50,732 - __main__ - INFO - Calling Modal function: recexkcAtCIxdlCiH -> Pending Review
+2026-01-04 20:36:50,733 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 20:36:50,734 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 20:36:50,735 - __main__ - INFO - Calling handle_webhook with: record_id=recexkcAtCIxdlCiH, status=Pending Review
+2026-01-04 20:37:35,372 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 20:37:35,376 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 20:37:35] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 20:38:02,225 - __main__ - INFO - Webhook received: {'record_id': 'rect4PR65b1xis4FT', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 20:38:02,231 - __main__ - INFO - Webhook: rect4PR65b1xis4FT -> Pending Review
+2026-01-04 20:38:02,231 - __main__ - INFO - Calling Modal function: rect4PR65b1xis4FT -> Pending Review
+2026-01-04 20:38:02,231 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 20:38:02,232 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 20:38:02,232 - __main__ - INFO - Calling handle_webhook with: record_id=rect4PR65b1xis4FT, status=Pending Review
+2026-01-04 20:38:02,649 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 20:38:02,650 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 20:38:02] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 20:38:33,195 - __main__ - INFO - Webhook received: {'record_id': 'recWnOk6wtt0QsRAz', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 20:38:33,196 - __main__ - INFO - Webhook: recWnOk6wtt0QsRAz -> Pending Review
+2026-01-04 20:38:33,196 - __main__ - INFO - Calling Modal function: recWnOk6wtt0QsRAz -> Pending Review
+2026-01-04 20:38:33,196 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 20:38:33,196 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 20:38:33,197 - __main__ - INFO - Calling handle_webhook with: record_id=recWnOk6wtt0QsRAz, status=Pending Review
+2026-01-04 20:38:33,599 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 20:38:33,600 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 20:38:33] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:21,584 - __main__ - INFO - Webhook received: {'record_id': 'rec7onhKkkiiSuILP', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:21,586 - __main__ - INFO - Webhook: rec7onhKkkiiSuILP -> Pending Review
+2026-01-04 21:13:21,586 - __main__ - INFO - Calling Modal function: rec7onhKkkiiSuILP -> Pending Review
+2026-01-04 21:13:21,586 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:21,590 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:21,590 - __main__ - INFO - Calling handle_webhook with: record_id=rec7onhKkkiiSuILP, status=Pending Review
+2026-01-04 21:13:25,032 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:25,033 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:25] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:25,041 - __main__ - INFO - Webhook received: {'record_id': 'rec9jLrEu0r51PA5r', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:25,041 - __main__ - INFO - Webhook: rec9jLrEu0r51PA5r -> Pending Review
+2026-01-04 21:13:25,041 - __main__ - INFO - Calling Modal function: rec9jLrEu0r51PA5r -> Pending Review
+2026-01-04 21:13:25,041 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:25,041 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:25,041 - __main__ - INFO - Calling handle_webhook with: record_id=rec9jLrEu0r51PA5r, status=Pending Review
+2026-01-04 21:13:25,737 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:25,738 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:25] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:25,748 - __main__ - INFO - Webhook received: {'record_id': 'recAANMYTCadHzWag', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:25,748 - __main__ - INFO - Webhook: recAANMYTCadHzWag -> Pending Review
+2026-01-04 21:13:25,748 - __main__ - INFO - Calling Modal function: recAANMYTCadHzWag -> Pending Review
+2026-01-04 21:13:25,748 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:25,749 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:25,749 - __main__ - INFO - Calling handle_webhook with: record_id=recAANMYTCadHzWag, status=Pending Review
+2026-01-04 21:13:26,322 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:26,323 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:26] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:26,329 - __main__ - INFO - Webhook received: {'record_id': 'recADA2i1i318IRt1', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:26,329 - __main__ - INFO - Webhook: recADA2i1i318IRt1 -> Pending Review
+2026-01-04 21:13:26,329 - __main__ - INFO - Calling Modal function: recADA2i1i318IRt1 -> Pending Review
+2026-01-04 21:13:26,330 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:26,330 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:26,330 - __main__ - INFO - Calling handle_webhook with: record_id=recADA2i1i318IRt1, status=Pending Review
+2026-01-04 21:13:26,928 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:26,929 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:26] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:26,938 - __main__ - INFO - Webhook received: {'record_id': 'recB6S0AclGxfdtul', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:26,938 - __main__ - INFO - Webhook: recB6S0AclGxfdtul -> Pending Review
+2026-01-04 21:13:26,938 - __main__ - INFO - Calling Modal function: recB6S0AclGxfdtul -> Pending Review
+2026-01-04 21:13:26,938 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:26,939 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:26,939 - __main__ - INFO - Calling handle_webhook with: record_id=recB6S0AclGxfdtul, status=Pending Review
+2026-01-04 21:13:27,669 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:27,671 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:27] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:27,679 - __main__ - INFO - Webhook received: {'record_id': 'recH02R6nxhIh6Gwe', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:27,680 - __main__ - INFO - Webhook: recH02R6nxhIh6Gwe -> Pending Review
+2026-01-04 21:13:27,680 - __main__ - INFO - Calling Modal function: recH02R6nxhIh6Gwe -> Pending Review
+2026-01-04 21:13:27,680 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:27,680 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:27,680 - __main__ - INFO - Calling handle_webhook with: record_id=recH02R6nxhIh6Gwe, status=Pending Review
+2026-01-04 21:13:28,280 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:28,281 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:28] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:28,291 - __main__ - INFO - Webhook received: {'record_id': 'recIhh0qpoJrdnvDe', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:28,291 - __main__ - INFO - Webhook: recIhh0qpoJrdnvDe -> Pending Review
+2026-01-04 21:13:28,291 - __main__ - INFO - Calling Modal function: recIhh0qpoJrdnvDe -> Pending Review
+2026-01-04 21:13:28,291 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:28,292 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:28,292 - __main__ - INFO - Calling handle_webhook with: record_id=recIhh0qpoJrdnvDe, status=Pending Review
+2026-01-04 21:13:28,800 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:28,801 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:28] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:28,810 - __main__ - INFO - Webhook received: {'record_id': 'recNWVnLnQRSC5VZV', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:28,810 - __main__ - INFO - Webhook: recNWVnLnQRSC5VZV -> Pending Review
+2026-01-04 21:13:28,810 - __main__ - INFO - Calling Modal function: recNWVnLnQRSC5VZV -> Pending Review
+2026-01-04 21:13:28,810 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:28,811 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:28,811 - __main__ - INFO - Calling handle_webhook with: record_id=recNWVnLnQRSC5VZV, status=Pending Review
+2026-01-04 21:13:29,803 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:29,804 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:29] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:29,814 - __main__ - INFO - Webhook received: {'record_id': 'recOmrRHPTy7byMRA', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:29,814 - __main__ - INFO - Webhook: recOmrRHPTy7byMRA -> Pending Review
+2026-01-04 21:13:29,814 - __main__ - INFO - Calling Modal function: recOmrRHPTy7byMRA -> Pending Review
+2026-01-04 21:13:29,814 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:29,815 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:29,815 - __main__ - INFO - Calling handle_webhook with: record_id=recOmrRHPTy7byMRA, status=Pending Review
+2026-01-04 21:13:30,410 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:30,412 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:30] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:30,425 - __main__ - INFO - Webhook received: {'record_id': 'recPIdSLmoQOLbpxP', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:30,426 - __main__ - INFO - Webhook: recPIdSLmoQOLbpxP -> Pending Review
+2026-01-04 21:13:30,426 - __main__ - INFO - Calling Modal function: recPIdSLmoQOLbpxP -> Pending Review
+2026-01-04 21:13:30,426 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:30,426 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:30,426 - __main__ - INFO - Calling handle_webhook with: record_id=recPIdSLmoQOLbpxP, status=Pending Review
+2026-01-04 21:13:30,939 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:30,939 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:30] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:30,950 - __main__ - INFO - Webhook received: {'record_id': 'recRaDCt0E0MW4184', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:30,950 - __main__ - INFO - Webhook: recRaDCt0E0MW4184 -> Pending Review
+2026-01-04 21:13:30,950 - __main__ - INFO - Calling Modal function: recRaDCt0E0MW4184 -> Pending Review
+2026-01-04 21:13:30,950 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:30,950 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:30,950 - __main__ - INFO - Calling handle_webhook with: record_id=recRaDCt0E0MW4184, status=Pending Review
+2026-01-04 21:13:31,541 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:31,552 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:31] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:31,559 - __main__ - INFO - Webhook received: {'record_id': 'recS8mRSmx49NWdFp', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:31,560 - __main__ - INFO - Webhook: recS8mRSmx49NWdFp -> Pending Review
+2026-01-04 21:13:31,560 - __main__ - INFO - Calling Modal function: recS8mRSmx49NWdFp -> Pending Review
+2026-01-04 21:13:31,560 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:31,560 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:31,561 - __main__ - INFO - Calling handle_webhook with: record_id=recS8mRSmx49NWdFp, status=Pending Review
+2026-01-04 21:13:32,145 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:32,146 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:32] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:32,158 - __main__ - INFO - Webhook received: {'record_id': 'recYOGzp53QbzB3Vq', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:32,158 - __main__ - INFO - Webhook: recYOGzp53QbzB3Vq -> Pending Review
+2026-01-04 21:13:32,158 - __main__ - INFO - Calling Modal function: recYOGzp53QbzB3Vq -> Pending Review
+2026-01-04 21:13:32,158 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:32,159 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:32,159 - __main__ - INFO - Calling handle_webhook with: record_id=recYOGzp53QbzB3Vq, status=Pending Review
+2026-01-04 21:13:32,900 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:32,901 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:32] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:32,907 - __main__ - INFO - Webhook received: {'record_id': 'receDvcxw3oOafBW5', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:32,907 - __main__ - INFO - Webhook: receDvcxw3oOafBW5 -> Pending Review
+2026-01-04 21:13:32,907 - __main__ - INFO - Calling Modal function: receDvcxw3oOafBW5 -> Pending Review
+2026-01-04 21:13:32,908 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:32,908 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:32,908 - __main__ - INFO - Calling handle_webhook with: record_id=receDvcxw3oOafBW5, status=Pending Review
+2026-01-04 21:13:33,514 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:33,515 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:33] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:33,524 - __main__ - INFO - Webhook received: {'record_id': 'recgBLT2k2lOVfgWJ', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:33,524 - __main__ - INFO - Webhook: recgBLT2k2lOVfgWJ -> Pending Review
+2026-01-04 21:13:33,524 - __main__ - INFO - Calling Modal function: recgBLT2k2lOVfgWJ -> Pending Review
+2026-01-04 21:13:33,524 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:33,525 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:33,525 - __main__ - INFO - Calling handle_webhook with: record_id=recgBLT2k2lOVfgWJ, status=Pending Review
+2026-01-04 21:13:34,139 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:34,141 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:34] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:34,153 - __main__ - INFO - Webhook received: {'record_id': 'recgL6OmUb4mbA9bb', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:34,153 - __main__ - INFO - Webhook: recgL6OmUb4mbA9bb -> Pending Review
+2026-01-04 21:13:34,153 - __main__ - INFO - Calling Modal function: recgL6OmUb4mbA9bb -> Pending Review
+2026-01-04 21:13:34,153 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:34,154 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:34,154 - __main__ - INFO - Calling handle_webhook with: record_id=recgL6OmUb4mbA9bb, status=Pending Review
+2026-01-04 21:13:34,686 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:34,687 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:34] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:34,695 - __main__ - INFO - Webhook received: {'record_id': 'reci8oYZg8rL4crkG', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:34,695 - __main__ - INFO - Webhook: reci8oYZg8rL4crkG -> Pending Review
+2026-01-04 21:13:34,695 - __main__ - INFO - Calling Modal function: reci8oYZg8rL4crkG -> Pending Review
+2026-01-04 21:13:34,695 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:34,695 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:34,695 - __main__ - INFO - Calling handle_webhook with: record_id=reci8oYZg8rL4crkG, status=Pending Review
+2026-01-04 21:13:35,227 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:35,228 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:35] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:35,237 - __main__ - INFO - Webhook received: {'record_id': 'recn285ZqD5JKh5gw', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:35,238 - __main__ - INFO - Webhook: recn285ZqD5JKh5gw -> Pending Review
+2026-01-04 21:13:35,238 - __main__ - INFO - Calling Modal function: recn285ZqD5JKh5gw -> Pending Review
+2026-01-04 21:13:35,238 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:35,238 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:35,238 - __main__ - INFO - Calling handle_webhook with: record_id=recn285ZqD5JKh5gw, status=Pending Review
+2026-01-04 21:13:35,703 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:35,704 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:35] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:35,715 - __main__ - INFO - Webhook received: {'record_id': 'recsEbXmONhMyiTE5', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:35,715 - __main__ - INFO - Webhook: recsEbXmONhMyiTE5 -> Pending Review
+2026-01-04 21:13:35,715 - __main__ - INFO - Calling Modal function: recsEbXmONhMyiTE5 -> Pending Review
+2026-01-04 21:13:35,715 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:35,716 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:35,716 - __main__ - INFO - Calling handle_webhook with: record_id=recsEbXmONhMyiTE5, status=Pending Review
+2026-01-04 21:13:36,370 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:36,371 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:36] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:36,376 - __main__ - INFO - Webhook received: {'record_id': 'recuDupnIoUENA9Tl', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:36,376 - __main__ - INFO - Webhook: recuDupnIoUENA9Tl -> Pending Review
+2026-01-04 21:13:36,376 - __main__ - INFO - Calling Modal function: recuDupnIoUENA9Tl -> Pending Review
+2026-01-04 21:13:36,376 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:36,377 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:36,377 - __main__ - INFO - Calling handle_webhook with: record_id=recuDupnIoUENA9Tl, status=Pending Review
+2026-01-04 21:13:37,946 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:37,947 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:37] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 21:13:37,953 - __main__ - INFO - Webhook received: {'record_id': 'reczZcLfKAsiJGbfl', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 21:13:37,953 - __main__ - INFO - Webhook: reczZcLfKAsiJGbfl -> Pending Review
+2026-01-04 21:13:37,953 - __main__ - INFO - Calling Modal function: reczZcLfKAsiJGbfl -> Pending Review
+2026-01-04 21:13:37,953 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 21:13:37,953 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 21:13:37,953 - __main__ - INFO - Calling handle_webhook with: record_id=reczZcLfKAsiJGbfl, status=Pending Review
+2026-01-04 21:13:39,216 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 21:13:39,217 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 21:13:39] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:29,598 - __main__ - INFO - Webhook received: {'record_id': 'rec7onhKkkiiSuILP', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:29,623 - __main__ - INFO - Webhook: rec7onhKkkiiSuILP -> Pending Review
+2026-01-04 23:07:29,624 - __main__ - INFO - Calling Modal function: rec7onhKkkiiSuILP -> Pending Review
+2026-01-04 23:07:29,624 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:29,625 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:29,625 - __main__ - INFO - Calling handle_webhook with: record_id=rec7onhKkkiiSuILP, status=Pending Review
+2026-01-04 23:07:33,658 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:33,665 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:33] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:33,678 - __main__ - INFO - Webhook received: {'record_id': 'rec9jLrEu0r51PA5r', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:33,679 - __main__ - INFO - Webhook: rec9jLrEu0r51PA5r -> Pending Review
+2026-01-04 23:07:33,679 - __main__ - INFO - Calling Modal function: rec9jLrEu0r51PA5r -> Pending Review
+2026-01-04 23:07:33,679 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:33,680 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:33,680 - __main__ - INFO - Calling handle_webhook with: record_id=rec9jLrEu0r51PA5r, status=Pending Review
+2026-01-04 23:07:34,062 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:34,062 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:34] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:34,071 - __main__ - INFO - Webhook received: {'record_id': 'recAANMYTCadHzWag', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:34,071 - __main__ - INFO - Webhook: recAANMYTCadHzWag -> Pending Review
+2026-01-04 23:07:34,072 - __main__ - INFO - Calling Modal function: recAANMYTCadHzWag -> Pending Review
+2026-01-04 23:07:34,072 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:34,072 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:34,072 - __main__ - INFO - Calling handle_webhook with: record_id=recAANMYTCadHzWag, status=Pending Review
+2026-01-04 23:07:34,487 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:34,487 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:34] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:34,493 - __main__ - INFO - Webhook received: {'record_id': 'recADA2i1i318IRt1', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:34,493 - __main__ - INFO - Webhook: recADA2i1i318IRt1 -> Pending Review
+2026-01-04 23:07:34,493 - __main__ - INFO - Calling Modal function: recADA2i1i318IRt1 -> Pending Review
+2026-01-04 23:07:34,493 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:34,494 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:34,494 - __main__ - INFO - Calling handle_webhook with: record_id=recADA2i1i318IRt1, status=Pending Review
+2026-01-04 23:07:34,926 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:34,931 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:34] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:34,937 - __main__ - INFO - Webhook received: {'record_id': 'recB6S0AclGxfdtul', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:34,937 - __main__ - INFO - Webhook: recB6S0AclGxfdtul -> Pending Review
+2026-01-04 23:07:34,937 - __main__ - INFO - Calling Modal function: recB6S0AclGxfdtul -> Pending Review
+2026-01-04 23:07:34,937 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:34,938 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:34,938 - __main__ - INFO - Calling handle_webhook with: record_id=recB6S0AclGxfdtul, status=Pending Review
+2026-01-04 23:07:35,273 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:35,274 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:35] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:35,279 - __main__ - INFO - Webhook received: {'record_id': 'recH02R6nxhIh6Gwe', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:35,279 - __main__ - INFO - Webhook: recH02R6nxhIh6Gwe -> Pending Review
+2026-01-04 23:07:35,279 - __main__ - INFO - Calling Modal function: recH02R6nxhIh6Gwe -> Pending Review
+2026-01-04 23:07:35,279 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:35,279 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:35,280 - __main__ - INFO - Calling handle_webhook with: record_id=recH02R6nxhIh6Gwe, status=Pending Review
+2026-01-04 23:07:35,591 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:35,591 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:35] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:35,598 - __main__ - INFO - Webhook received: {'record_id': 'recIhh0qpoJrdnvDe', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:35,598 - __main__ - INFO - Webhook: recIhh0qpoJrdnvDe -> Pending Review
+2026-01-04 23:07:35,598 - __main__ - INFO - Calling Modal function: recIhh0qpoJrdnvDe -> Pending Review
+2026-01-04 23:07:35,598 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:35,598 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:35,598 - __main__ - INFO - Calling handle_webhook with: record_id=recIhh0qpoJrdnvDe, status=Pending Review
+2026-01-04 23:07:35,968 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:35,974 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:35] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:35,980 - __main__ - INFO - Webhook received: {'record_id': 'recNWVnLnQRSC5VZV', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:35,980 - __main__ - INFO - Webhook: recNWVnLnQRSC5VZV -> Pending Review
+2026-01-04 23:07:35,981 - __main__ - INFO - Calling Modal function: recNWVnLnQRSC5VZV -> Pending Review
+2026-01-04 23:07:35,981 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:35,981 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:35,981 - __main__ - INFO - Calling handle_webhook with: record_id=recNWVnLnQRSC5VZV, status=Pending Review
+2026-01-04 23:07:36,273 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:36,274 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:36] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:36,283 - __main__ - INFO - Webhook received: {'record_id': 'recOmrRHPTy7byMRA', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:36,283 - __main__ - INFO - Webhook: recOmrRHPTy7byMRA -> Pending Review
+2026-01-04 23:07:36,283 - __main__ - INFO - Calling Modal function: recOmrRHPTy7byMRA -> Pending Review
+2026-01-04 23:07:36,283 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:36,283 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:36,284 - __main__ - INFO - Calling handle_webhook with: record_id=recOmrRHPTy7byMRA, status=Pending Review
+2026-01-04 23:07:36,770 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:36,771 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:36] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:36,781 - __main__ - INFO - Webhook received: {'record_id': 'recPIdSLmoQOLbpxP', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:36,781 - __main__ - INFO - Webhook: recPIdSLmoQOLbpxP -> Pending Review
+2026-01-04 23:07:36,781 - __main__ - INFO - Calling Modal function: recPIdSLmoQOLbpxP -> Pending Review
+2026-01-04 23:07:36,781 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:36,781 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:36,781 - __main__ - INFO - Calling handle_webhook with: record_id=recPIdSLmoQOLbpxP, status=Pending Review
+2026-01-04 23:07:37,503 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:37,504 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:37] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:37,515 - __main__ - INFO - Webhook received: {'record_id': 'recRaDCt0E0MW4184', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:37,515 - __main__ - INFO - Webhook: recRaDCt0E0MW4184 -> Pending Review
+2026-01-04 23:07:37,515 - __main__ - INFO - Calling Modal function: recRaDCt0E0MW4184 -> Pending Review
+2026-01-04 23:07:37,515 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:37,515 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:37,516 - __main__ - INFO - Calling handle_webhook with: record_id=recRaDCt0E0MW4184, status=Pending Review
+2026-01-04 23:07:37,929 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:37,930 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:37] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:37,939 - __main__ - INFO - Webhook received: {'record_id': 'recS8mRSmx49NWdFp', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:37,939 - __main__ - INFO - Webhook: recS8mRSmx49NWdFp -> Pending Review
+2026-01-04 23:07:37,939 - __main__ - INFO - Calling Modal function: recS8mRSmx49NWdFp -> Pending Review
+2026-01-04 23:07:37,939 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:37,940 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:37,940 - __main__ - INFO - Calling handle_webhook with: record_id=recS8mRSmx49NWdFp, status=Pending Review
+2026-01-04 23:07:38,280 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:38,280 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:38] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:38,295 - __main__ - INFO - Webhook received: {'record_id': 'recWnOk6wtt0QsRAz', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:38,295 - __main__ - INFO - Webhook: recWnOk6wtt0QsRAz -> Pending Review
+2026-01-04 23:07:38,295 - __main__ - INFO - Calling Modal function: recWnOk6wtt0QsRAz -> Pending Review
+2026-01-04 23:07:38,295 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:38,295 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:38,295 - __main__ - INFO - Calling handle_webhook with: record_id=recWnOk6wtt0QsRAz, status=Pending Review
+2026-01-04 23:07:38,601 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:38,602 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:38] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:38,610 - __main__ - INFO - Webhook received: {'record_id': 'recYOGzp53QbzB3Vq', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:38,611 - __main__ - INFO - Webhook: recYOGzp53QbzB3Vq -> Pending Review
+2026-01-04 23:07:38,611 - __main__ - INFO - Calling Modal function: recYOGzp53QbzB3Vq -> Pending Review
+2026-01-04 23:07:38,611 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:38,611 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:38,611 - __main__ - INFO - Calling handle_webhook with: record_id=recYOGzp53QbzB3Vq, status=Pending Review
+2026-01-04 23:07:38,916 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:38,917 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:38] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:38,926 - __main__ - INFO - Webhook received: {'record_id': 'receDvcxw3oOafBW5', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:38,926 - __main__ - INFO - Webhook: receDvcxw3oOafBW5 -> Pending Review
+2026-01-04 23:07:38,926 - __main__ - INFO - Calling Modal function: receDvcxw3oOafBW5 -> Pending Review
+2026-01-04 23:07:38,926 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:38,927 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:38,927 - __main__ - INFO - Calling handle_webhook with: record_id=receDvcxw3oOafBW5, status=Pending Review
+2026-01-04 23:07:39,248 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:39,248 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:39] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:39,275 - __main__ - INFO - Webhook received: {'record_id': 'recexkcAtCIxdlCiH', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:39,286 - __main__ - INFO - Webhook: recexkcAtCIxdlCiH -> Pending Review
+2026-01-04 23:07:39,286 - __main__ - INFO - Calling Modal function: recexkcAtCIxdlCiH -> Pending Review
+2026-01-04 23:07:39,286 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:39,286 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:39,286 - __main__ - INFO - Calling handle_webhook with: record_id=recexkcAtCIxdlCiH, status=Pending Review
+2026-01-04 23:07:39,556 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:39,557 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:39] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:39,563 - __main__ - INFO - Webhook received: {'record_id': 'recgBLT2k2lOVfgWJ', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:39,563 - __main__ - INFO - Webhook: recgBLT2k2lOVfgWJ -> Pending Review
+2026-01-04 23:07:39,564 - __main__ - INFO - Calling Modal function: recgBLT2k2lOVfgWJ -> Pending Review
+2026-01-04 23:07:39,564 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:39,564 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:39,564 - __main__ - INFO - Calling handle_webhook with: record_id=recgBLT2k2lOVfgWJ, status=Pending Review
+2026-01-04 23:07:39,860 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:39,864 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:39] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:39,874 - __main__ - INFO - Webhook received: {'record_id': 'recgL6OmUb4mbA9bb', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:39,875 - __main__ - INFO - Webhook: recgL6OmUb4mbA9bb -> Pending Review
+2026-01-04 23:07:39,875 - __main__ - INFO - Calling Modal function: recgL6OmUb4mbA9bb -> Pending Review
+2026-01-04 23:07:39,875 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:39,875 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:39,875 - __main__ - INFO - Calling handle_webhook with: record_id=recgL6OmUb4mbA9bb, status=Pending Review
+2026-01-04 23:07:40,337 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:40,338 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:40] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:40,347 - __main__ - INFO - Webhook received: {'record_id': 'reci8oYZg8rL4crkG', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:40,347 - __main__ - INFO - Webhook: reci8oYZg8rL4crkG -> Pending Review
+2026-01-04 23:07:40,347 - __main__ - INFO - Calling Modal function: reci8oYZg8rL4crkG -> Pending Review
+2026-01-04 23:07:40,347 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:40,348 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:40,348 - __main__ - INFO - Calling handle_webhook with: record_id=reci8oYZg8rL4crkG, status=Pending Review
+2026-01-04 23:07:40,696 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:40,697 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:40] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:40,706 - __main__ - INFO - Webhook received: {'record_id': 'recn285ZqD5JKh5gw', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:40,706 - __main__ - INFO - Webhook: recn285ZqD5JKh5gw -> Pending Review
+2026-01-04 23:07:40,706 - __main__ - INFO - Calling Modal function: recn285ZqD5JKh5gw -> Pending Review
+2026-01-04 23:07:40,706 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:40,707 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:40,707 - __main__ - INFO - Calling handle_webhook with: record_id=recn285ZqD5JKh5gw, status=Pending Review
+2026-01-04 23:07:41,246 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:41,246 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:41] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:41,257 - __main__ - INFO - Webhook received: {'record_id': 'recsEbXmONhMyiTE5', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:41,257 - __main__ - INFO - Webhook: recsEbXmONhMyiTE5 -> Pending Review
+2026-01-04 23:07:41,257 - __main__ - INFO - Calling Modal function: recsEbXmONhMyiTE5 -> Pending Review
+2026-01-04 23:07:41,258 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:41,258 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:41,258 - __main__ - INFO - Calling handle_webhook with: record_id=recsEbXmONhMyiTE5, status=Pending Review
+2026-01-04 23:07:41,697 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:41,698 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:41] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:41,705 - __main__ - INFO - Webhook received: {'record_id': 'rect4PR65b1xis4FT', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:41,706 - __main__ - INFO - Webhook: rect4PR65b1xis4FT -> Pending Review
+2026-01-04 23:07:41,706 - __main__ - INFO - Calling Modal function: rect4PR65b1xis4FT -> Pending Review
+2026-01-04 23:07:41,706 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:41,707 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:41,707 - __main__ - INFO - Calling handle_webhook with: record_id=rect4PR65b1xis4FT, status=Pending Review
+2026-01-04 23:07:42,003 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:42,004 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:42] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:42,015 - __main__ - INFO - Webhook received: {'record_id': 'recuDupnIoUENA9Tl', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:42,015 - __main__ - INFO - Webhook: recuDupnIoUENA9Tl -> Pending Review
+2026-01-04 23:07:42,015 - __main__ - INFO - Calling Modal function: recuDupnIoUENA9Tl -> Pending Review
+2026-01-04 23:07:42,016 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:42,016 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:42,016 - __main__ - INFO - Calling handle_webhook with: record_id=recuDupnIoUENA9Tl, status=Pending Review
+2026-01-04 23:07:42,321 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:42,322 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:42] "POST /webhook HTTP/1.1" 200 -
+2026-01-04 23:07:42,329 - __main__ - INFO - Webhook received: {'record_id': 'reczZcLfKAsiJGbfl', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-04 23:07:42,329 - __main__ - INFO - Webhook: reczZcLfKAsiJGbfl -> Pending Review
+2026-01-04 23:07:42,329 - __main__ - INFO - Calling Modal function: reczZcLfKAsiJGbfl -> Pending Review
+2026-01-04 23:07:42,329 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-04 23:07:42,329 - __main__ - INFO - Successfully looked up deployed function
+2026-01-04 23:07:42,329 - __main__ - INFO - Calling handle_webhook with: record_id=reczZcLfKAsiJGbfl, status=Pending Review
+2026-01-04 23:07:42,775 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-04 23:07:42,775 - werkzeug - INFO - 127.0.0.1 - - [04/Jan/2026 23:07:42] "POST /webhook HTTP/1.1" 200 -
+2026-01-05 07:41:09,985 - __main__ - INFO - Webhook received: {'record_id': 'recsY6WGoUwAu2O26', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-05 07:41:09,987 - __main__ - INFO - Webhook: recsY6WGoUwAu2O26 -> Pending Review
+2026-01-05 07:41:09,987 - __main__ - INFO - Calling Modal function: recsY6WGoUwAu2O26 -> Pending Review
+2026-01-05 07:41:09,987 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-05 07:41:09,988 - __main__ - INFO - Successfully looked up deployed function
+2026-01-05 07:41:09,989 - __main__ - INFO - Calling handle_webhook with: record_id=recsY6WGoUwAu2O26, status=Pending Review
+2026-01-05 07:41:14,683 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-05 07:41:14,685 - werkzeug - INFO - 127.0.0.1 - - [05/Jan/2026 07:41:14] "POST /webhook HTTP/1.1" 200 -
+2026-01-05 07:41:45,315 - __main__ - INFO - Webhook received: {'record_id': 'recsY6WGoUwAu2O26', 'status': 'Rejected', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-05 07:41:45,317 - __main__ - INFO - Webhook: recsY6WGoUwAu2O26 -> Rejected
+2026-01-05 07:41:45,317 - __main__ - INFO - Calling Modal function: recsY6WGoUwAu2O26 -> Rejected
+2026-01-05 07:41:45,317 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-05 07:41:45,317 - __main__ - INFO - Successfully looked up deployed function
+2026-01-05 07:41:45,317 - __main__ - INFO - Calling handle_webhook with: record_id=recsY6WGoUwAu2O26, status=Rejected
+2026-01-05 07:41:45,965 - __main__ - INFO - Result: {'success': True, 'action': 'rejection_handled'}
+2026-01-05 07:41:45,967 - werkzeug - INFO - 127.0.0.1 - - [05/Jan/2026 07:41:45] "POST /webhook HTTP/1.1" 200 -
+2026-01-05 09:03:00,737 - __main__ - INFO - Webhook received: {'record_id': 'recsY6WGoUwAu2O26', 'status': 'Rejected', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-05 09:03:00,738 - __main__ - INFO - Webhook: recsY6WGoUwAu2O26 -> Rejected
+2026-01-05 09:03:00,738 - __main__ - INFO - Calling Modal function: recsY6WGoUwAu2O26 -> Rejected
+2026-01-05 09:03:00,739 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-05 09:03:00,740 - __main__ - INFO - Successfully looked up deployed function
+2026-01-05 09:03:00,740 - __main__ - INFO - Calling handle_webhook with: record_id=recsY6WGoUwAu2O26, status=Rejected
+2026-01-05 09:03:05,988 - __main__ - INFO - Result: {'success': True, 'action': 'rejection_handled'}
+2026-01-05 09:03:05,990 - werkzeug - INFO - 127.0.0.1 - - [05/Jan/2026 09:03:05] "POST /webhook HTTP/1.1" 200 -
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-01-07 16:16:20,786 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.249:8000
+2026-01-07 16:16:20,883 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-01-10 21:58:33,920 - __main__ - INFO - Webhook received: {'record_id': 'rec9KTKpmdBMYfPqo', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-10 21:58:33,932 - __main__ - INFO - Webhook: rec9KTKpmdBMYfPqo -> Pending Review
+2026-01-10 21:58:33,932 - __main__ - INFO - Calling Modal function: rec9KTKpmdBMYfPqo -> Pending Review
+2026-01-10 21:58:33,932 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-10 21:58:34,126 - __main__ - INFO - Successfully looked up deployed function
+2026-01-10 21:58:34,127 - __main__ - INFO - Calling handle_webhook with: record_id=rec9KTKpmdBMYfPqo, status=Pending Review
+2026-01-10 21:58:38,836 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-10 21:58:38,841 - werkzeug - INFO - 127.0.0.1 - - [10/Jan/2026 21:58:38] "POST /webhook HTTP/1.1" 200 -
+2026-01-10 22:02:18,687 - __main__ - INFO - Webhook received: {'record_id': 'rec0y5fAuHgJdoCyD', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-10 22:02:18,690 - __main__ - INFO - Webhook: rec0y5fAuHgJdoCyD -> Pending Review
+2026-01-10 22:02:18,690 - __main__ - INFO - Calling Modal function: rec0y5fAuHgJdoCyD -> Pending Review
+2026-01-10 22:02:18,690 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-10 22:02:18,691 - __main__ - INFO - Successfully looked up deployed function
+2026-01-10 22:02:18,691 - __main__ - INFO - Calling handle_webhook with: record_id=rec0y5fAuHgJdoCyD, status=Pending Review
+2026-01-10 22:02:24,293 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-10 22:02:24,296 - werkzeug - INFO - 127.0.0.1 - - [10/Jan/2026 22:02:24] "POST /webhook HTTP/1.1" 200 -
+2026-01-14 07:26:40,385 - __main__ - INFO - Webhook received: {'record_id': 'recID3XTb5yPFf7ep', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-14 07:26:40,459 - __main__ - INFO - Webhook: recID3XTb5yPFf7ep -> Pending Review
+2026-01-14 07:26:40,459 - __main__ - INFO - Calling Modal function: recID3XTb5yPFf7ep -> Pending Review
+2026-01-14 07:26:40,459 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-14 07:26:40,577 - __main__ - INFO - Successfully looked up deployed function
+2026-01-14 07:26:40,581 - __main__ - INFO - Calling handle_webhook with: record_id=recID3XTb5yPFf7ep, status=Pending Review
+2026-01-14 07:26:42,402 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-14 07:26:42,425 - werkzeug - INFO - 127.0.0.1 - - [14/Jan/2026 07:26:42] "POST /webhook HTTP/1.1" 200 -
+2026-01-14 07:32:33,731 - __main__ - INFO - Webhook received: {'record_id': 'recFI5UAZUKrEn2gv', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-14 07:32:33,732 - __main__ - INFO - Webhook: recFI5UAZUKrEn2gv -> Pending Review
+2026-01-14 07:32:33,733 - __main__ - INFO - Calling Modal function: recFI5UAZUKrEn2gv -> Pending Review
+2026-01-14 07:32:33,733 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-14 07:32:33,734 - __main__ - INFO - Successfully looked up deployed function
+2026-01-14 07:32:33,735 - __main__ - INFO - Calling handle_webhook with: record_id=recFI5UAZUKrEn2gv, status=Pending Review
+2026-01-14 07:32:36,203 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-14 07:32:36,206 - werkzeug - INFO - 127.0.0.1 - - [14/Jan/2026 07:32:36] "POST /webhook HTTP/1.1" 200 -
+2026-01-14 08:02:27,634 - __main__ - INFO - Webhook received: {'record_id': 'recFI5UAZUKrEn2gv', 'status': 'Approved - Ready to Schedule', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-14 08:02:27,686 - __main__ - INFO - Webhook: recFI5UAZUKrEn2gv -> Approved - Ready to Schedule
+2026-01-14 08:02:27,686 - __main__ - INFO - Calling Modal function: recFI5UAZUKrEn2gv -> Approved - Ready to Schedule
+2026-01-14 08:02:27,686 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-14 08:02:27,704 - __main__ - INFO - Successfully looked up deployed function
+2026-01-14 08:02:27,705 - __main__ - INFO - Calling handle_webhook with: record_id=recFI5UAZUKrEn2gv, status=Approved - Ready to Schedule
+2026-01-14 08:02:32,304 - __main__ - INFO - Result: {'success': True, 'action': 'scheduling_triggered'}
+2026-01-14 08:02:32,307 - werkzeug - INFO - 127.0.0.1 - - [14/Jan/2026 08:02:32] "POST /webhook HTTP/1.1" 200 -
+2026-01-14 08:07:12,087 - __main__ - INFO - Webhook received: {'record_id': 'reckHDkdJypUSu9wy', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-14 08:07:12,127 - __main__ - INFO - Webhook: reckHDkdJypUSu9wy -> Pending Review
+2026-01-14 08:07:12,128 - __main__ - INFO - Calling Modal function: reckHDkdJypUSu9wy -> Pending Review
+2026-01-14 08:07:12,128 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-14 08:07:12,129 - __main__ - INFO - Successfully looked up deployed function
+2026-01-14 08:07:12,129 - __main__ - INFO - Calling handle_webhook with: record_id=reckHDkdJypUSu9wy, status=Pending Review
+2026-01-14 08:07:18,596 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-14 08:07:18,597 - werkzeug - INFO - 127.0.0.1 - - [14/Jan/2026 08:07:18] "POST /webhook HTTP/1.1" 200 -
+2026-01-14 08:09:23,616 - __main__ - INFO - Webhook received: {'record_id': 'reckHDkdJypUSu9wy', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-14 08:09:23,625 - __main__ - INFO - Webhook: reckHDkdJypUSu9wy -> Pending Review
+2026-01-14 08:09:23,625 - __main__ - INFO - Calling Modal function: reckHDkdJypUSu9wy -> Pending Review
+2026-01-14 08:09:23,625 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-14 08:09:23,626 - __main__ - INFO - Successfully looked up deployed function
+2026-01-14 08:09:23,626 - __main__ - INFO - Calling handle_webhook with: record_id=reckHDkdJypUSu9wy, status=Pending Review
+2026-01-14 08:09:26,574 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-14 08:09:26,575 - werkzeug - INFO - 127.0.0.1 - - [14/Jan/2026 08:09:26] "POST /webhook HTTP/1.1" 200 -
+2026-01-14 08:12:14,351 - __main__ - INFO - Webhook received: {'record_id': 'reckHDkdJypUSu9wy', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-14 08:12:14,352 - __main__ - INFO - Webhook: reckHDkdJypUSu9wy -> Pending Review
+2026-01-14 08:12:14,352 - __main__ - INFO - Calling Modal function: reckHDkdJypUSu9wy -> Pending Review
+2026-01-14 08:12:14,352 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-14 08:12:14,421 - __main__ - INFO - Successfully looked up deployed function
+2026-01-14 08:12:14,421 - __main__ - INFO - Calling handle_webhook with: record_id=reckHDkdJypUSu9wy, status=Pending Review
+2026-01-14 08:12:21,013 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-14 08:12:21,014 - werkzeug - INFO - 127.0.0.1 - - [14/Jan/2026 08:12:21] "POST /webhook HTTP/1.1" 200 -
+2026-01-14 08:13:38,413 - __main__ - INFO - Webhook received: {'record_id': 'reckHDkdJypUSu9wy', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-14 08:13:38,423 - __main__ - INFO - Webhook: reckHDkdJypUSu9wy -> Pending Review
+2026-01-14 08:13:38,423 - __main__ - INFO - Calling Modal function: reckHDkdJypUSu9wy -> Pending Review
+2026-01-14 08:13:38,423 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-14 08:13:38,424 - __main__ - INFO - Successfully looked up deployed function
+2026-01-14 08:13:38,424 - __main__ - INFO - Calling handle_webhook with: record_id=reckHDkdJypUSu9wy, status=Pending Review
+2026-01-14 08:13:43,085 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-14 08:13:43,086 - werkzeug - INFO - 127.0.0.1 - - [14/Jan/2026 08:13:43] "POST /webhook HTTP/1.1" 200 -
+2026-01-15 13:07:58,868 - __main__ - INFO - Webhook received: {'record_id': 'recprMk1p0GuLi0pE', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-15 13:07:58,875 - __main__ - INFO - Webhook: recprMk1p0GuLi0pE -> Pending Review
+2026-01-15 13:07:58,875 - __main__ - INFO - Calling Modal function: recprMk1p0GuLi0pE -> Pending Review
+2026-01-15 13:07:58,875 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-15 13:07:58,889 - __main__ - INFO - Successfully looked up deployed function
+2026-01-15 13:07:58,889 - __main__ - INFO - Calling handle_webhook with: record_id=recprMk1p0GuLi0pE, status=Pending Review
+2026-01-15 13:07:59,471 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-01-15 13:07:59,480 - werkzeug - INFO - 127.0.0.1 - - [15/Jan/2026 13:07:59] "POST /webhook HTTP/1.1" 200 -
+2026-01-15 13:12:12,765 - __main__ - INFO - Webhook received: {'record_id': 'recprMk1p0GuLi0pE', 'status': 'Approved - Ready to Schedule', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-01-15 13:12:12,766 - __main__ - INFO - Webhook: recprMk1p0GuLi0pE -> Approved - Ready to Schedule
+2026-01-15 13:12:12,766 - __main__ - INFO - Calling Modal function: recprMk1p0GuLi0pE -> Approved - Ready to Schedule
+2026-01-15 13:12:12,766 - __main__ - INFO - Looking up deployed Modal function...
+2026-01-15 13:12:12,768 - __main__ - INFO - Successfully looked up deployed function
+2026-01-15 13:12:12,769 - __main__ - INFO - Calling handle_webhook with: record_id=recprMk1p0GuLi0pE, status=Approved - Ready to Schedule
+2026-01-15 13:12:17,256 - __main__ - INFO - Result: {'success': True, 'action': 'scheduling_triggered'}
+2026-01-15 13:12:17,261 - werkzeug - INFO - 127.0.0.1 - - [15/Jan/2026 13:12:17] "POST /webhook HTTP/1.1" 200 -
+/Users/musacomma/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-01-23 16:48:04,112 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.68.57:8000
+2026-01-23 16:48:04,133 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-02 22:28:36,850 - __main__ - INFO - Webhook received: {'record_id': 'rec945NmNW3r7YuIM', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-02-02 22:28:36,859 - __main__ - INFO - Webhook: rec945NmNW3r7YuIM -> Pending Review
+2026-02-02 22:28:36,859 - __main__ - INFO - Calling Modal function: rec945NmNW3r7YuIM -> Pending Review
+2026-02-02 22:28:36,859 - __main__ - INFO - Looking up deployed Modal function...
+2026-02-02 22:28:36,876 - __main__ - INFO - Successfully looked up deployed function
+2026-02-02 22:28:36,876 - __main__ - INFO - Calling handle_webhook with: record_id=rec945NmNW3r7YuIM, status=Pending Review
+2026-02-02 22:28:38,770 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-02-02 22:28:38,771 - werkzeug - INFO - 127.0.0.1 - - [02/Feb/2026 22:28:38] "POST /webhook HTTP/1.1" 200 -
+2026-02-02 22:33:17,074 - __main__ - INFO - Webhook received: {'record_id': 'rec9ngST2OKXF1wA7', 'status': 'Pending Review', 'base_id': 'appw88uD6ZM0ckF8f', 'table_id': 'tbljg75KMQWDo2Hgu'}
+2026-02-02 22:33:17,078 - __main__ - INFO - Webhook: rec9ngST2OKXF1wA7 -> Pending Review
+2026-02-02 22:33:17,078 - __main__ - INFO - Calling Modal function: rec9ngST2OKXF1wA7 -> Pending Review
+2026-02-02 22:33:17,078 - __main__ - INFO - Looking up deployed Modal function...
+2026-02-02 22:33:17,086 - __main__ - INFO - Successfully looked up deployed function
+2026-02-02 22:33:17,087 - __main__ - INFO - Calling handle_webhook with: record_id=rec9ngST2OKXF1wA7, status=Pending Review
+2026-02-02 22:33:17,736 - __main__ - INFO - Result: {'success': True, 'action': 'image_generation_triggered'}
+2026-02-02 22:33:17,737 - werkzeug - INFO - 127.0.0.1 - - [02/Feb/2026 22:33:17] "POST /webhook HTTP/1.1" 200 -
