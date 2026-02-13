@@ -35,13 +35,13 @@ class ReplicateClient:
         self.api_token = token
         replicate.Client(api_token=self.api_token)
 
-    def generate_image(self, prompt: str, model: str = "black-forest-labs/flux-schnell") -> Dict[str, Any]:
+    def generate_image(self, prompt: str, model: str = "google/nano-banana-pro") -> Dict[str, Any]:
         """
         Generate an image using Replicate API
 
         Args:
             prompt: Image description/prompt
-            model: Model to use for generation (default: flux-schnell for fast generation)
+            model: Model to use for generation (default: google/nano-banana-pro)
 
         Returns:
             Dictionary with success status and image URL or error
