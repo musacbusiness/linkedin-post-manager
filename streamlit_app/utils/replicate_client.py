@@ -56,10 +56,20 @@ class ReplicateClient:
             )
 
             # Extract image URL from output
+            # Replicate returns FileOutput objects, need to get the .url property
             if isinstance(output, list) and len(output) > 0:
-                image_url = output[0]
+                item = output[0]
+                # Handle FileOutput object
+                if hasattr(item, 'url'):
+                    image_url = item.url
+                else:
+                    image_url = str(item)
             else:
-                image_url = output
+                # Handle single FileOutput object
+                if hasattr(output, 'url'):
+                    image_url = output.url
+                else:
+                    image_url = str(output)
 
             print(f"[DEBUG] Image generated successfully: {image_url}")
 
