@@ -77,6 +77,9 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
 
                     if result.get("success"):
                         generated_url = result.get("image_url")
+                        # Ensure URL is a string (not FileOutput object)
+                        generated_url = str(generated_url)
+
                         # Save to database
                         try:
                             response = clients["supabase"].client.table("posts").update({

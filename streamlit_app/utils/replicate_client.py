@@ -61,15 +61,19 @@ class ReplicateClient:
                 item = output[0]
                 # Handle FileOutput object
                 if hasattr(item, 'url'):
-                    image_url = item.url
+                    image_url = str(item.url)
                 else:
                     image_url = str(item)
             else:
                 # Handle single FileOutput object
                 if hasattr(output, 'url'):
-                    image_url = output.url
+                    image_url = str(output.url)
                 else:
                     image_url = str(output)
+
+            # Ensure it's a proper string URL
+            if not isinstance(image_url, str):
+                image_url = str(image_url)
 
             print(f"[DEBUG] Image generated successfully: {image_url}")
 
