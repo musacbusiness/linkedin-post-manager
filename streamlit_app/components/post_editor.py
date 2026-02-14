@@ -88,6 +88,9 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
                                 "updated_at": datetime.now().isoformat()
                             }).eq("id", record_id).execute()
                             st.success("✅ Image generated and saved!")
+                            # Show the generated URL immediately
+                            st.info("📸 Image URL saved:")
+                            st.code(generated_url, language="url")
                             st.rerun()
                         except Exception as e:
                             st.error(f"Error saving image: {str(e)}")
