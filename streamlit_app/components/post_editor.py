@@ -87,9 +87,17 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
                             with st.spinner("💾 Uploading image to storage..."):
                                 # Download image from Replicate URL
                                 print(f"[DEBUG] Downloading image from: {replicate_url[:50]}...")
-                                img_response = requests.get(replicate_url)
+                                img_response = requests.get(replicate_url, timeout=30)
+                                print(f"[DEBUG] Download response status: {img_response.status_code}")
+
+                                if img_response.status_code != 200:
+                                    raise Exception(f"Failed to download image from Replicate: HTTP {img_response.status_code}")
+
                                 image_bytes = img_response.content
                                 print(f"[DEBUG] Downloaded {len(image_bytes)} bytes")
+
+                                if not image_bytes or len(image_bytes) == 0:
+                                    raise Exception("Downloaded image has no data (0 bytes)")
 
                                 # Generate filename based on timestamp
                                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

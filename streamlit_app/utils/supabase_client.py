@@ -237,17 +237,30 @@ class SupabaseClient:
             print(f"[DEBUG] Uploading image to Supabase Storage: {filename}")
             print(f"[DEBUG] Image size: {len(image_bytes)} bytes")
 
+            if not image_bytes or len(image_bytes) == 0:
+                raise Exception("Image data is empty")
+
             # Upload the file to storage
+            print(f"[DEBUG] Calling storage.from_('{bucket_name}').upload()...")
             response = self.client.storage.from_(bucket_name).upload(
                 filename,
                 image_bytes,
                 {"content-type": "image/jpeg"}
             )
 
+            print(f"[DEBUG] Upload response type: {type(response)}")
             print(f"[DEBUG] Upload response: {response}")
 
+            if response is None:
+                raise Exception("Upload response is None")
+
             # Get the permanent public URL
+            print(f"[DEBUG] Getting public URL for: {filename}")
             public_url = self.client.storage.from_(bucket_name).get_public_url(filename)
+            print(f"[DEBUG] Public URL: {public_url}")
+
+            if not public_url:
+                raise Exception("Failed to generate public URL")
 
             print(f"[DEBUG] Image uploaded to storage successfully: {public_url}")
             return {
@@ -258,6 +271,7 @@ class SupabaseClient:
         except Exception as e:
             import traceback
             error_trace = traceback.format_exc()
-            print(f"[DEBUG] Error uploading image to storage: {str(e)}")
-            print(f"[DEBUG] Traceback: {error_trace}")
-            return {"success": False, "error": str(e)}
+            print(f"[DEBUG] ERROR uploading image to storage: {str(e)}")
+            print(f"[DEBUG] Error type: {type(e).__name__}")
+            print(f"[DEBUG] Traceback:\n{error_trace}")
+            return {"success": False, "error": str(e), "error_type": type(e).__name__}
