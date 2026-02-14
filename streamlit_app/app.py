@@ -66,7 +66,7 @@ st.markdown("""
 def init_clients():
     """Initialize API clients (cached for session)
 
-    Version: 3 (auto-scheduling with schedule_post)
+    Version: 4 (flux-schnell model for testing)
     """
     clients = {
         "supabase": SupabaseClient(),
