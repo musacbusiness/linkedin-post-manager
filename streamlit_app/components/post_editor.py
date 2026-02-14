@@ -100,13 +100,16 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
                                     storage_url = storage_result.get("url")
                                     final_url = storage_url
                                     success_msg = "✅ Image generated and stored in Supabase Storage!"
+                                    upload_failed = False
                                 else:
                                     # Fallback: use Replicate URL but show warning
                                     error_msg = storage_result.get('error', 'Unknown error')
-                                    st.warning(f"⚠️ Storage upload failed: {error_msg}")
-                                    st.info("Using temporary Replicate URL as fallback (will expire in ~7 days)")
+                                    st.error(f"❌ Storage upload failed: {error_msg}")
+                                    st.error(f"Full error details: {storage_result}")
+                                    st.warning("Using temporary Replicate URL as fallback (will expire in ~7 days)")
                                     final_url = replicate_url
                                     success_msg = "Image generated (using temporary URL)"
+                                    upload_failed = True
 
                                 # Save the image URL to database
                                 response = clients["supabase"].client.table("posts").update({
@@ -118,7 +121,10 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
                                 # Show the URL
                                 st.info("📸 Image URL:")
                                 st.code(final_url, language="url")
-                                st.rerun()
+
+                                # Only rerun if upload succeeded (no persistent error to show)
+                                if not upload_failed:
+                                    st.rerun()
                         except Exception as e:
                             st.error(f"Error saving image: {str(e)}")
                             import traceback
