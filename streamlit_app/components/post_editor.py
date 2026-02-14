@@ -98,24 +98,31 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
 
                                 if storage_result.get("success"):
                                     storage_url = storage_result.get("url")
-
-                                    # Save the Supabase Storage URL to database (not the temporary Replicate URL)
-                                    response = clients["supabase"].client.table("posts").update({
-                                        "image_url": storage_url,
-                                        "image_prompt": image_prompt,
-                                        "updated_at": datetime.now().isoformat()
-                                    }).eq("id", record_id).execute()
-                                    st.success("✅ Image generated and saved!")
-                                    # Show the permanent URL
-                                    st.info("📸 Image permanently stored:")
-                                    st.code(storage_url, language="url")
-                                    st.rerun()
+                                    final_url = storage_url
+                                    success_msg = "✅ Image generated and stored in Supabase Storage!"
                                 else:
+                                    # Fallback: use Replicate URL but show warning
                                     error_msg = storage_result.get('error', 'Unknown error')
-                                    st.error(f"❌ Error uploading to storage: {error_msg}")
-                                    st.warning(f"Debug info: Full error response: {storage_result}")
+                                    st.warning(f"⚠️ Storage upload failed: {error_msg}")
+                                    st.info("Using temporary Replicate URL as fallback (will expire in ~7 days)")
+                                    final_url = replicate_url
+                                    success_msg = "Image generated (using temporary URL)"
+
+                                # Save the image URL to database
+                                response = clients["supabase"].client.table("posts").update({
+                                    "image_url": final_url,
+                                    "image_prompt": image_prompt,
+                                    "updated_at": datetime.now().isoformat()
+                                }).eq("id", record_id).execute()
+                                st.success(success_msg)
+                                # Show the URL
+                                st.info("📸 Image URL:")
+                                st.code(final_url, language="url")
+                                st.rerun()
                         except Exception as e:
                             st.error(f"Error saving image: {str(e)}")
+                            import traceback
+                            st.code(traceback.format_exc())
                     else:
                         st.error(f"Image generation failed: {result.get('error', 'Unknown error')}")
 
