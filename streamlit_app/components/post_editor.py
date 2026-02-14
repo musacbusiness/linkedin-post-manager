@@ -86,49 +86,71 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
                         try:
                             with st.spinner("💾 Uploading image to storage..."):
                                 # Download image from Replicate URL
+                                print(f"[DEBUG] Downloading image from: {replicate_url[:50]}...")
                                 img_response = requests.get(replicate_url)
                                 image_bytes = img_response.content
+                                print(f"[DEBUG] Downloaded {len(image_bytes)} bytes")
 
                                 # Generate filename based on timestamp
                                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                                 filename = f"{timestamp}_{record_id[:8]}.jpg"
+                                print(f"[DEBUG] Generated filename: {filename}")
 
                                 # Upload to Supabase Storage
+                                print(f"[DEBUG] Calling upload_image_to_storage()...")
                                 storage_result = clients["supabase"].upload_image_to_storage(image_bytes, filename)
+                                print(f"[DEBUG] Storage result: {storage_result}")
 
                                 if storage_result.get("success"):
                                     storage_url = storage_result.get("url")
                                     final_url = storage_url
                                     success_msg = "✅ Image generated and stored in Supabase Storage!"
                                     upload_failed = False
+                                    print(f"[DEBUG] Storage upload succeeded: {final_url}")
                                 else:
                                     # Fallback: use Replicate URL but show warning
                                     error_msg = storage_result.get('error', 'Unknown error')
-                                    st.error(f"❌ Storage upload failed: {error_msg}")
-                                    st.error(f"Full error details: {storage_result}")
+                                    print(f"[DEBUG] Storage upload FAILED: {error_msg}")
+                                    st.divider()
+                                    st.error(f"❌ Storage upload failed")
+                                    st.error(f"Error: {error_msg}")
+                                    st.error(f"Full details: {storage_result}")
+                                    st.divider()
                                     st.warning("Using temporary Replicate URL as fallback (will expire in ~7 days)")
                                     final_url = replicate_url
                                     success_msg = "Image generated (using temporary URL)"
                                     upload_failed = True
 
                                 # Save the image URL to database
+                                print(f"[DEBUG] Updating database with image URL: {final_url}")
                                 response = clients["supabase"].client.table("posts").update({
                                     "image_url": final_url,
                                     "image_prompt": image_prompt,
                                     "updated_at": datetime.now().isoformat()
                                 }).eq("id", record_id).execute()
+                                print(f"[DEBUG] Database update response: {response}")
+
+                                st.divider()
                                 st.success(success_msg)
-                                # Show the URL
                                 st.info("📸 Image URL:")
                                 st.code(final_url, language="url")
+                                st.divider()
 
                                 # Only rerun if upload succeeded (no persistent error to show)
                                 if not upload_failed:
+                                    print(f"[DEBUG] Upload succeeded, calling st.rerun()")
                                     st.rerun()
+                                else:
+                                    print(f"[DEBUG] Upload failed, NOT calling st.rerun()")
                         except Exception as e:
-                            st.error(f"Error saving image: {str(e)}")
+                            print(f"[DEBUG] EXCEPTION in image upload block: {str(e)}")
                             import traceback
-                            st.code(traceback.format_exc())
+                            error_trace = traceback.format_exc()
+                            print(f"[DEBUG] Traceback: {error_trace}")
+                            st.divider()
+                            st.error(f"Error saving image: {str(e)}")
+                            st.code(error_trace)
+                            st.divider()
                     else:
                         st.error(f"Image generation failed: {result.get('error', 'Unknown error')}")
 
