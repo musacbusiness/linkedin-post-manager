@@ -234,6 +234,9 @@ class SupabaseClient:
         try:
             bucket_name = "generated-images"
 
+            print(f"[DEBUG] Uploading image to Supabase Storage: {filename}")
+            print(f"[DEBUG] Image size: {len(image_bytes)} bytes")
+
             # Upload the file to storage
             response = self.client.storage.from_(bucket_name).upload(
                 filename,
@@ -241,15 +244,20 @@ class SupabaseClient:
                 {"content-type": "image/jpeg"}
             )
 
+            print(f"[DEBUG] Upload response: {response}")
+
             # Get the permanent public URL
             public_url = self.client.storage.from_(bucket_name).get_public_url(filename)
 
-            print(f"[DEBUG] Image uploaded to storage: {public_url}")
+            print(f"[DEBUG] Image uploaded to storage successfully: {public_url}")
             return {
                 "success": True,
                 "url": public_url,
                 "filename": filename
             }
         except Exception as e:
+            import traceback
+            error_trace = traceback.format_exc()
             print(f"[DEBUG] Error uploading image to storage: {str(e)}")
+            print(f"[DEBUG] Traceback: {error_trace}")
             return {"success": False, "error": str(e)}

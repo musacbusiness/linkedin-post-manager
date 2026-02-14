@@ -111,7 +111,9 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
                                     st.code(storage_url, language="url")
                                     st.rerun()
                                 else:
-                                    st.error(f"Error uploading to storage: {storage_result.get('error')}")
+                                    error_msg = storage_result.get('error', 'Unknown error')
+                                    st.error(f"❌ Error uploading to storage: {error_msg}")
+                                    st.warning(f"Debug info: Full error response: {storage_result}")
                         except Exception as e:
                             st.error(f"Error saving image: {str(e)}")
                     else:
