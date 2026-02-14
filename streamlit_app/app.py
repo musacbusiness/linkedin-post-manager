@@ -66,7 +66,7 @@ st.markdown("""
 def init_clients():
     """Initialize API clients (cached for session)
 
-    Version: 2 (google/nano-banana-pro model)
+    Version: 3 (auto-scheduling with schedule_post)
     """
     clients = {
         "supabase": SupabaseClient(),
