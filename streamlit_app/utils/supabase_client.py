@@ -4,8 +4,9 @@ Drop-in replacement for Airtable API client
 """
 
 import os
+import random
 from typing import List, Dict, Optional, Any
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class SupabaseClient:
@@ -124,4 +125,97 @@ class SupabaseClient:
             return {"success": True, "data": response.data}
         except Exception as e:
             print(f"[DEBUG] Error deleting post {record_id}: {str(e)}")
+            return {"success": False, "error": str(e)}
+
+    def schedule_post(self, record_id: str) -> Dict:
+        """
+        Auto-schedule post to random time in next available window
+
+        Scheduling windows (user's local timezone):
+        - 8:00 AM - 10:00 AM
+        - 12:00 PM - 2:00 PM
+        - 5:00 PM - 7:00 PM
+
+        Returns:
+            Dictionary with success status and scheduled time
+        """
+        try:
+            # Get all posts to check for scheduling conflicts
+            all_posts = self.get_all_posts()
+            scheduled_times = []
+            for post in all_posts:
+                scheduled_time = post.get("fields", {}).get("Scheduled Time")
+                if scheduled_time:
+                    try:
+                        scheduled_times.append(datetime.fromisoformat(scheduled_time.replace("Z", "+00:00")))
+                    except:
+                        pass
+
+            # Define 3 daily time windows (start_hour, end_hour)
+            windows = [
+                (8, 10),   # 8:00 AM - 10:00 AM
+                (12, 14),  # 12:00 PM - 2:00 PM
+                (17, 19),  # 5:00 PM - 7:00 PM
+            ]
+
+            now = datetime.now()
+            scheduled_datetime = None
+
+            # Look ahead up to 30 days to find an available slot
+            for days_ahead in range(30):
+                check_date = now + timedelta(days=days_ahead)
+
+                # Try each window for this day
+                for start_hour, end_hour in windows:
+                    # Random time within window (2-hour range)
+                    random_hour = random.randint(start_hour, end_hour - 1)
+                    random_minute = random.randint(0, 59)
+                    candidate_time = check_date.replace(
+                        hour=random_hour,
+                        minute=random_minute,
+                        second=0,
+                        microsecond=0
+                    )
+
+                    # Skip past times
+                    if candidate_time <= now:
+                        continue
+
+                    # Check if slot is available (no post within 30 minutes)
+                    slot_available = True
+                    for existing_time in scheduled_times:
+                        time_diff = abs((candidate_time - existing_time).total_seconds())
+                        if time_diff < 1800:  # 30 minutes
+                            slot_available = False
+                            break
+
+                    if slot_available:
+                        scheduled_datetime = candidate_time
+                        break
+
+                if scheduled_datetime:
+                    break
+
+            if not scheduled_datetime:
+                return {
+                    "success": False,
+                    "error": "No available time slots in next 30 days"
+                }
+
+            # Update post with scheduled time and Approved status
+            response = self.client.table("posts").update({
+                "status": "Approved",
+                "scheduled_time": scheduled_datetime.isoformat(),
+                "updated_at": now.isoformat()
+            }).eq("id", record_id).execute()
+
+            print(f"[DEBUG] Scheduled post {record_id} for {scheduled_datetime.isoformat()}")
+            return {
+                "success": True,
+                "scheduled_time": scheduled_datetime.isoformat(),
+                "data": response.data
+            }
+
+        except Exception as e:
+            print(f"[DEBUG] Error scheduling post {record_id}: {str(e)}")
             return {"success": False, "error": str(e)}

@@ -125,13 +125,23 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
                 if st.button("✅", key=f"approve_{record_id}", help="Approve"):
                     if clients and "supabase" in clients:
                         try:
-                            result = clients["supabase"].update_status(record_id, "Approved")
+                            # Auto-schedule the post on approval
+                            result = clients["supabase"].schedule_post(record_id)
                             if result.get("success"):
                                 st.session_state[action_key] = "approve_success"
-                                st.success("✅ Status updated in database, refreshing...")
+                                scheduled_time = result.get("scheduled_time", "")
+                                if scheduled_time:
+                                    try:
+                                        dt = datetime.fromisoformat(scheduled_time.replace("Z", "+00:00"))
+                                        time_str = dt.strftime("%b %d at %I:%M %p")
+                                        st.success(f"✅ Post approved and scheduled for {time_str}!")
+                                    except:
+                                        st.success("✅ Post approved and scheduled!")
+                                else:
+                                    st.success("✅ Post approved and scheduled!")
                                 st.rerun()
                             else:
-                                st.error(f"Failed to update: {result.get('error', 'Unknown error')}")
+                                st.error(f"Failed to approve: {result.get('error', 'Unknown error')}")
                         except Exception as e:
                             st.error(f"Error approving post: {str(e)}")
                     else:
