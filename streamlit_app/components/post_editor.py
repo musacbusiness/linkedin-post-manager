@@ -99,6 +99,14 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
             else:
                 st.error("❌ Replicate client not available")
 
+        st.divider()
+
+        # Display saved image URL
+        if image_url:
+            st.markdown("### 🔗 Image URL")
+            st.code(image_url, language="url")
+            st.caption("This URL is saved in your database and will be used for the LinkedIn post")
+
     with col_form:
         st.markdown("### 📝 Content")
 
