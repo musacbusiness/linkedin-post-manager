@@ -6,6 +6,8 @@ Displays a post in full-page edit mode with back button
 import streamlit as st
 from datetime import datetime
 from typing import Dict, Optional
+import requests
+from io import BytesIO
 
 
 def format_date(date_str: Optional[str]) -> str:
@@ -76,22 +78,40 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
                         result = clients["replicate"].generate_image(image_prompt)
 
                     if result.get("success"):
-                        generated_url = result.get("image_url")
+                        replicate_url = result.get("image_url")
                         # Ensure URL is a string (not FileOutput object)
-                        generated_url = str(generated_url)
+                        replicate_url = str(replicate_url)
 
-                        # Save to database
+                        # Download image from Replicate and upload to Supabase Storage
                         try:
-                            response = clients["supabase"].client.table("posts").update({
-                                "image_url": generated_url,
-                                "image_prompt": image_prompt,
-                                "updated_at": datetime.now().isoformat()
-                            }).eq("id", record_id).execute()
-                            st.success("✅ Image generated and saved!")
-                            # Show the generated URL immediately
-                            st.info("📸 Image URL saved:")
-                            st.code(generated_url, language="url")
-                            st.rerun()
+                            with st.spinner("💾 Uploading image to storage..."):
+                                # Download image from Replicate URL
+                                img_response = requests.get(replicate_url)
+                                image_bytes = img_response.content
+
+                                # Generate filename based on timestamp
+                                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                                filename = f"{timestamp}_{record_id[:8]}.jpg"
+
+                                # Upload to Supabase Storage
+                                storage_result = clients["supabase"].upload_image_to_storage(image_bytes, filename)
+
+                                if storage_result.get("success"):
+                                    storage_url = storage_result.get("url")
+
+                                    # Save the Supabase Storage URL to database (not the temporary Replicate URL)
+                                    response = clients["supabase"].client.table("posts").update({
+                                        "image_url": storage_url,
+                                        "image_prompt": image_prompt,
+                                        "updated_at": datetime.now().isoformat()
+                                    }).eq("id", record_id).execute()
+                                    st.success("✅ Image generated and saved!")
+                                    # Show the permanent URL
+                                    st.info("📸 Image permanently stored:")
+                                    st.code(storage_url, language="url")
+                                    st.rerun()
+                                else:
+                                    st.error(f"Error uploading to storage: {storage_result.get('error')}")
                         except Exception as e:
                             st.error(f"Error saving image: {str(e)}")
                     else:

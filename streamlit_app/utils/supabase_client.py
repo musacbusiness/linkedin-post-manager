@@ -219,3 +219,37 @@ class SupabaseClient:
         except Exception as e:
             print(f"[DEBUG] Error scheduling post {record_id}: {str(e)}")
             return {"success": False, "error": str(e)}
+
+    def upload_image_to_storage(self, image_bytes: bytes, filename: str) -> Dict:
+        """
+        Upload image to Supabase Storage bucket and return permanent public URL
+
+        Args:
+            image_bytes: Image file as bytes
+            filename: Name for the file (e.g., "image.jpg")
+
+        Returns:
+            Dictionary with success status and public URL
+        """
+        try:
+            bucket_name = "generated-images"
+
+            # Upload the file to storage
+            response = self.client.storage.from_(bucket_name).upload(
+                filename,
+                image_bytes,
+                {"content-type": "image/jpeg"}
+            )
+
+            # Get the permanent public URL
+            public_url = self.client.storage.from_(bucket_name).get_public_url(filename)
+
+            print(f"[DEBUG] Image uploaded to storage: {public_url}")
+            return {
+                "success": True,
+                "url": public_url,
+                "filename": filename
+            }
+        except Exception as e:
+            print(f"[DEBUG] Error uploading image to storage: {str(e)}")
+            return {"success": False, "error": str(e)}
