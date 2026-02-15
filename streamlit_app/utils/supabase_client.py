@@ -147,7 +147,11 @@ class SupabaseClient:
                 scheduled_time = post.get("fields", {}).get("Scheduled Time")
                 if scheduled_time:
                     try:
-                        scheduled_times.append(datetime.fromisoformat(scheduled_time.replace("Z", "+00:00")))
+                        # Parse and strip timezone info to make it naive (comparable with now)
+                        dt = datetime.fromisoformat(scheduled_time.replace("Z", "+00:00"))
+                        # Convert to naive datetime by removing timezone info
+                        naive_dt = dt.replace(tzinfo=None)
+                        scheduled_times.append(naive_dt)
                     except:
                         pass
 
