@@ -269,8 +269,16 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
         st.markdown(f"**Created:** {created}")
 
     with meta_col2:
-        scheduled_time = fields.get("Scheduled Time")
-        if scheduled_time:
-            scheduled = format_date(scheduled_time)
-            st.markdown(f"**Scheduled:** {scheduled}")
+        posted_at = fields.get("Posted")
+        if posted_at:
+            posted = format_date(posted_at)
+            st.markdown(f"**Posted:** {posted} ✅")
+            linkedin_url = fields.get("LinkedIn URL")
+            if linkedin_url:
+                st.markdown(f"**[View on LinkedIn →]({linkedin_url})**")
+        else:
+            scheduled_time = fields.get("Scheduled Time")
+            if scheduled_time:
+                scheduled = format_date(scheduled_time)
+                st.markdown(f"**Scheduled:** {scheduled}")
         st.markdown(f"**ID:** `{record_id}`")

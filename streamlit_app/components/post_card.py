@@ -67,6 +67,39 @@ def render_scheduled_indicator(scheduled_time: Optional[str]) -> None:
         st.caption(f"📅 Scheduled: {scheduled_time[:16]}")
 
 
+def render_posted_indicator(posted_at: Optional[str], linkedin_url: Optional[str] = None) -> None:
+    """Render posted status indicator"""
+    if not posted_at:
+        return
+
+    try:
+        dt = datetime.fromisoformat(posted_at.replace("Z", "+00:00"))
+        time_str = dt.strftime("%b %d at %I:%M %p")
+
+        if linkedin_url:
+            st.markdown(
+                f"""
+                <div style='background-color: #E8F8F0; color: #0A66C2; padding: 4px 8px;
+                border-radius: 8px; font-size: 10px; display: inline-block; margin-top: 4px;'>
+                ✅ Posted: {time_str} • <a href="{linkedin_url}" target="_blank">View on LinkedIn</a>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+        else:
+            st.markdown(
+                f"""
+                <div style='background-color: #E8F8F0; color: #0A66C2; padding: 4px 8px;
+                border-radius: 8px; font-size: 10px; display: inline-block; margin-top: 4px;'>
+                ✅ Posted: {time_str}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+    except:
+        st.caption(f"✅ Posted: {posted_at[:16]}")
+
+
 def render_post_card(post: Dict, clients: Dict = None) -> Dict:
     """
     Render a single post as a card with actions
@@ -115,9 +148,17 @@ def render_post_card(post: Dict, clients: Dict = None) -> Dict:
         with col_status:
             status = fields.get("Status", "Unknown")
             render_status_badge(status)
-            scheduled_time = fields.get("Scheduled Time")
-            if scheduled_time:
-                render_scheduled_indicator(scheduled_time)
+
+            # Show posted indicator if post has been published
+            posted_at = fields.get("Posted")
+            if posted_at:
+                linkedin_url = fields.get("LinkedIn URL")
+                render_posted_indicator(posted_at, linkedin_url)
+            else:
+                # Show scheduled indicator if not yet posted
+                scheduled_time = fields.get("Scheduled Time")
+                if scheduled_time:
+                    render_scheduled_indicator(scheduled_time)
 
         with col_actions:
             col1, col2, col3 = st.columns(3)
