@@ -224,6 +224,20 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
         if char_count > max_chars:
             st.warning(f"⚠️ Content exceeds recommended limit by {char_count - max_chars} characters")
 
+        st.divider()
+
+        # Image prompt textarea
+        st.markdown("**🎨 Image Prompt**")
+        edited_image_prompt = st.text_area(
+            "Image Prompt",
+            value=fields.get("image_prompt", ""),
+            height=120,
+            placeholder="Enter image prompt for AI image generation (used by Stable Diffusion)...",
+            key=f"image_prompt_input_full_{record_id}",
+            label_visibility="collapsed"
+        )
+        st.caption("📸 This prompt is used to generate the LinkedIn post image. Update it to control how the image looks.")
+
     st.divider()
 
     # Action buttons
@@ -237,6 +251,7 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
                     response = clients["supabase"].client.table("posts").update({
                         "title": edited_title,
                         "post_content": edited_content,
+                        "image_prompt": edited_image_prompt,
                         "updated_at": datetime.now().isoformat()
                     }).eq("id", record_id).execute()
                     st.success("✅ Changes saved successfully!")
@@ -282,3 +297,16 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
                 scheduled = format_date(scheduled_time)
                 st.markdown(f"**Scheduled:** {scheduled}")
         st.markdown(f"**ID:** `{record_id}`")
+
+    st.divider()
+
+    # Image Prompt Preview
+    st.markdown("### 🎨 Image Prompt Details")
+    current_image_prompt = edited_image_prompt if 'edited_image_prompt' in locals() else fields.get("image_prompt", "")
+
+    if current_image_prompt:
+        with st.expander("📸 Current Image Prompt", expanded=False):
+            st.text(current_image_prompt)
+            st.caption(f"Length: {len(current_image_prompt)} characters")
+    else:
+        st.info("ℹ️ No image prompt yet. Add one above to generate custom images for this post.")
