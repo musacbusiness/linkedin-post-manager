@@ -511,9 +511,19 @@ def render_ai_generate_post_form(clients):
                     else:
                         st.error(f"❌ Generation failed: {result.get('error', 'Unknown error')}")
 
+            except ImportError as e:
+                st.error(f"❌ Import Error: {str(e)}")
+                st.warning("Troubleshooting:")
+                st.write("1. Make sure execution/__init__.py exists")
+                st.write("2. Make sure execution/post_generation_pipeline.py exists")
+                st.write("3. Try refreshing the page")
+                import traceback
+                st.code(traceback.format_exc())
             except Exception as e:
                 st.error(f"❌ Error during generation: {str(e)}")
                 st.write("Make sure the post generation pipeline is properly configured.")
+                import traceback
+                st.code(traceback.format_exc())
 
     with col2:
         if st.button("❌ Cancel", key="cancel_ai_post", use_container_width=True):
