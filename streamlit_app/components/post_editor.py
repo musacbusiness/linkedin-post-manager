@@ -230,7 +230,7 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
         st.markdown("**🎨 Image Prompt**")
         edited_image_prompt = st.text_area(
             "Image Prompt",
-            value=fields.get("image_prompt", ""),
+            value=fields.get("Image Prompt", ""),
             height=120,
             placeholder="Enter image prompt for AI image generation (used by Stable Diffusion)...",
             key=f"image_prompt_input_full_{record_id}",
@@ -302,7 +302,7 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
 
     # Image Prompt Preview
     st.markdown("### 🎨 Image Prompt Details")
-    current_image_prompt = edited_image_prompt if 'edited_image_prompt' in locals() else fields.get("image_prompt", "")
+    current_image_prompt = edited_image_prompt if 'edited_image_prompt' in locals() else fields.get("Image Prompt", "")
 
     if current_image_prompt:
         with st.expander("📸 Current Image Prompt", expanded=False):
