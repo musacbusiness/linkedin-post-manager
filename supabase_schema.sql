@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS posts (
   title TEXT NOT NULL,
   post_content TEXT NOT NULL,
   image_url TEXT,
+  image_prompt TEXT,
 
   -- Status Management
   status TEXT NOT NULL DEFAULT 'Draft' CHECK (status IN (
@@ -38,7 +39,8 @@ CREATE TABLE IF NOT EXISTS posts (
 
   -- Metadata
   topic TEXT,
-  source TEXT DEFAULT 'manual'
+  source TEXT DEFAULT 'manual',
+  generation_metadata JSONB
 );
 
 -- Create index on status for faster filtering
