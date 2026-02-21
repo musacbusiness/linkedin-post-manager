@@ -18,7 +18,6 @@ sys.path.insert(0, str(Path(__file__).parent.parent))  # Add grandparent for exe
 from config import validate_config, POST_STATUSES
 from utils.supabase_client import SupabaseClient
 from utils.modal_client import ModalClient
-from utils.replicate_client import ReplicateClient
 from components.post_table import (
     create_status_filter,
     create_search_box,
@@ -77,6 +76,7 @@ def init_clients():
 
     # Try to initialize Replicate (optional - only if API token is set)
     try:
+        from utils.replicate_client import ReplicateClient
         clients["replicate"] = ReplicateClient()
     except Exception as e:
         print(f"Warning: Replicate client not available: {str(e)}")
