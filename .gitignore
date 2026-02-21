@@ -43,3 +43,4 @@ htmlcov/
 
 # Cache
 .streamlit/cache/
+.streamlit/secrets.toml
