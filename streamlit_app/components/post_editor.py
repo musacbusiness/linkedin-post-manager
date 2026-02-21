@@ -32,6 +32,16 @@ def render_post_editor(post: Dict, clients: Dict = None) -> None:
     fields = post.get("fields", {})
     record_id = post.get("id", "")
 
+    # Debug: Show what data we're loading
+    debug_col1, debug_col2 = st.columns(2)
+    with debug_col1:
+        st.caption(f"**Image Prompt from DB**: {repr(fields.get('Image Prompt', ''))}")
+    with debug_col2:
+        if fields.get("Image Prompt"):
+            st.caption("✅ Image prompt loaded from database")
+        else:
+            st.warning("⚠️ Image prompt is empty - may not exist in database yet")
+
     # Header with back button
     col_back, col_title = st.columns([0.1, 0.9])
     with col_back:
