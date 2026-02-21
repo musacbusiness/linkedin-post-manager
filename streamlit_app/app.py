@@ -7,6 +7,7 @@ Sidebar navigation with 4 sections: Dashboard, Posts, Calendar, System Health
 import streamlit as st
 import sys
 import os
+import json
 from pathlib import Path
 from typing import List, Dict
 
@@ -148,6 +149,11 @@ def render_posts_section(posts, clients):
         render_create_post_form(clients)
         return
 
+    # Check if we're AI generating a post - if so, show generation form
+    if "ai_generating_post" in st.session_state and st.session_state["ai_generating_post"]:
+        render_ai_generate_post_form(clients)
+        return
+
     # Check if we're editing a post - if so, show full-page editor
     if "editing_post" in st.session_state and st.session_state["editing_post"]:
         editing_post_id = st.session_state["editing_post"]
@@ -164,16 +170,30 @@ def render_posts_section(posts, clients):
     # Pre-initialize session state for ALL posts (before any widget rendering)
     initialize_post_state(posts)
 
-    # Search, filter, and create controls
-    col1, col2, col3 = st.columns([2, 1, 0.8])
+    # New Post button at the top
+    col1, col2, col3 = st.columns([2.5, 1, 0.8])
+    with col1:
+        st.write("")  # Spacing
+    with col2:
+        st.write("")  # Spacing
+    with col3:
+        if st.button("➕ New Post", key="new_post_btn", use_container_width=True):
+            st.session_state["post_creation_choice"] = True
+            st.rerun()
+
+    st.divider()
+
+    # Show post creation choice modal if button was clicked
+    if "post_creation_choice" in st.session_state and st.session_state["post_creation_choice"]:
+        render_post_creation_choice_modal()
+        return
+
+    # Search and filter controls
+    col1, col2 = st.columns([2, 1])
     with col1:
         search_query = create_search_box()
     with col2:
         status_filter = create_status_filter()
-    with col3:
-        if st.button("➕ New Post", key="new_post_btn", use_container_width=True):
-            st.session_state["creating_post"] = True
-            st.rerun()
 
     st.divider()
 
@@ -224,6 +244,36 @@ def render_posts_section(posts, clients):
                 st.rerun()
             elif action == "expand":
                 st.info(f"Expanding post {record_id}")
+
+
+def render_post_creation_choice_modal():
+    """Render a modal to choose between manual creation or AI generation"""
+    st.markdown("### 📌 Create New Post")
+    st.write("How would you like to create your post?")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("#### ✍️ Create Manually")
+        st.write("Write your own post content with title and optional image prompt.")
+        if st.button("📝 Manual Creation", key="choice_manual", use_container_width=True):
+            st.session_state["post_creation_choice"] = False
+            st.session_state["creating_post"] = True
+            st.rerun()
+
+    with col2:
+        st.markdown("#### 🤖 AI Generation")
+        st.write("Let AI automatically generate a post using the 7-stage pipeline.")
+        if st.button("🚀 AI Generate", key="choice_ai", use_container_width=True):
+            st.session_state["post_creation_choice"] = False
+            st.session_state["ai_generating_post"] = True
+            st.rerun()
+
+    st.divider()
+
+    if st.button("← Cancel", key="choice_cancel", use_container_width=True):
+        st.session_state["post_creation_choice"] = False
+        st.rerun()
 
 
 def render_create_post_form(clients):
@@ -341,6 +391,136 @@ def render_create_post_form(clients):
         "• Add 3-5 relevant hashtags\n\n"
         "After creating, you can edit the post to add images or make changes."
     )
+
+
+def render_ai_generate_post_form(clients):
+    """Render a form to AI generate a new post using the pipeline"""
+    col_back, col_title = st.columns([0.1, 0.9])
+    with col_back:
+        if st.button("← Back", key="back_ai_generate_post", help="Return to posts"):
+            st.session_state["ai_generating_post"] = False
+            st.rerun()
+
+    with col_title:
+        st.title("🤖 AI Generate Post")
+
+    st.divider()
+
+    st.markdown("### 🎯 Generation Settings")
+    st.write("The AI will generate a LinkedIn post using the 7-stage pipeline.")
+
+    # Optional: Let user specify a topic or let AI choose
+    col1, col2 = st.columns([1.5, 1.5])
+
+    with col1:
+        topic_input = st.text_input(
+            "📌 Topic (Optional)",
+            placeholder="Leave blank for AI to choose a topic automatically...",
+            key="ai_topic_input",
+            help="If specified, AI will generate a post about this topic"
+        )
+
+    with col2:
+        framework_choice = st.selectbox(
+            "🎨 Framework Preference (Optional)",
+            ["Auto-Select", "PAS", "AIDA", "VSQ", "SLA", "Storytelling"],
+            key="ai_framework_choice",
+            help="AI will try to use this framework if compatible with the topic"
+        )
+
+    st.divider()
+
+    # Generation info
+    with st.expander("ℹ️ How AI Generation Works"):
+        st.markdown("""
+        The AI uses a 7-stage pipeline to generate high-quality LinkedIn posts:
+
+        1. **Topic Selection** - Chooses a relevant topic (or uses your input)
+        2. **Research** - Gathers research and key points
+        3. **Framework Selection** - Picks the best writing framework
+        4. **Content Generation** - Writes the post (1,300-1,900 characters)
+        5. **Image Prompt Generation** - Creates a prompt for image generation
+        6. **Quality Control** - Evaluates post against 12 quality criteria
+        7. **Root Cause Analysis** - Improves if any criteria aren't met
+
+        Posts are automatically saved with status "Pending Review" for your approval.
+        """)
+
+    st.divider()
+
+    # Action buttons
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        if st.button("🚀 Generate Post", key="generate_ai_post", use_container_width=True):
+            try:
+                with st.spinner("🤖 Generating post... This may take 1-2 minutes"):
+                    from execution.post_generation_pipeline import PostGenerationPipeline
+                    from datetime import datetime
+
+                    # Initialize pipeline
+                    pipeline = PostGenerationPipeline()
+
+                    # Build user profile
+                    user_profile = {
+                        "expertise": os.getenv("USER_EXPERTISE", "AI automation consultant"),
+                        "target_audience": os.getenv("USER_TARGET_AUDIENCE", "small business owners, solopreneurs"),
+                        "tone": os.getenv("USER_TONE", "practical, approachable, authentic"),
+                        "avoid": os.getenv("USER_AVOID", "jargon, corporate speak, hype").split(","),
+                    }
+
+                    # Add topic if specified
+                    if topic_input:
+                        user_profile["specified_topic"] = topic_input
+
+                    # Add framework preference if not auto-select
+                    if framework_choice != "Auto-Select":
+                        user_profile["preferred_framework"] = framework_choice.lower()
+
+                    # Generate post
+                    result = pipeline.run(user_profile)
+
+                    if result.get("success"):
+                        post_data = result.get("data", {})
+
+                        # Save to Supabase
+                        supabase = clients["supabase"]
+                        response = supabase.client.table("posts").insert({
+                            "title": post_data.get("title", "")[:200],
+                            "post_content": post_data.get("post_content", ""),
+                            "image_prompt": post_data.get("image_prompt", ""),
+                            "status": "Pending Review",
+                            "generation_metadata": json.dumps(post_data.get("metadata", {})),
+                            "created_at": datetime.now().isoformat(),
+                            "updated_at": datetime.now().isoformat()
+                        }).execute()
+
+                        if response.data:
+                            st.success("✅ Post generated and saved successfully!")
+                            st.info(
+                                f"**Title**: {post_data.get('title', 'N/A')}\n\n"
+                                f"**Content**: {post_data.get('post_content', 'N/A')[:300]}...\n\n"
+                                f"**Framework**: {post_data.get('metadata', {}).get('framework', 'N/A')}\n\n"
+                                f"**Characters**: {post_data.get('metadata', {}).get('character_count', 0)}"
+                            )
+                            st.session_state["ai_generating_post"] = False
+                            st.rerun()
+                        else:
+                            st.error("❌ Failed to save post to database")
+                    else:
+                        st.error(f"❌ Generation failed: {result.get('error', 'Unknown error')}")
+
+            except Exception as e:
+                st.error(f"❌ Error during generation: {str(e)}")
+                st.write("Make sure the post generation pipeline is properly configured.")
+
+    with col2:
+        if st.button("❌ Cancel", key="cancel_ai_post", use_container_width=True):
+            st.session_state["ai_generating_post"] = False
+            st.rerun()
+
+    with col3:
+        st.empty()
 
 
 def render_calendar_section(posts):
