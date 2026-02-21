@@ -13,6 +13,7 @@ from typing import List, Dict
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent.parent))  # Add grandparent for execution module
 
 from config import validate_config, POST_STATUSES
 from utils.supabase_client import SupabaseClient
