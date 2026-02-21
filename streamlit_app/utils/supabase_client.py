@@ -68,6 +68,12 @@ class SupabaseClient:
             response = query.execute()
             posts = response.data
 
+            # Debug: Log first post structure
+            if posts:
+                print(f"[DEBUG] First post raw data from Supabase: {list(posts[0].keys())}")
+                if posts[0].get("image_prompt"):
+                    print(f"[DEBUG] ✅ image_prompt found in first post: {repr(posts[0].get('image_prompt')[:50])}")
+
             # Convert to Airtable-like format
             return [self._to_airtable_format(post) for post in posts]
         except Exception as e:
@@ -76,6 +82,11 @@ class SupabaseClient:
 
     def _to_airtable_format(self, record: Dict) -> Dict:
         """Convert Supabase record to Airtable-like format"""
+        # Debug: Check what columns we're getting from Supabase
+        record_keys = list(record.keys())
+        if "image_prompt" not in record_keys:
+            print(f"[DEBUG] WARNING: image_prompt not in Supabase record! Keys: {record_keys}")
+
         return {
             "id": record.get("id", ""),
             "fields": {
@@ -85,7 +96,7 @@ class SupabaseClient:
                 "Image Prompt": record.get("image_prompt", ""),
                 "Status": record.get("status", ""),
                 "Scheduled Time": record.get("scheduled_time", ""),
-                "Posted": record.get("posted_at", ""),
+                "Posted": record.get("posted_time", ""),
                 "LinkedIn URL": record.get("linkedin_url", ""),
                 "Created": record.get("created_at", ""),
                 "Updated": record.get("updated_at", ""),
