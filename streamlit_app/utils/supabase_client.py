@@ -59,8 +59,12 @@ class SupabaseClient:
             List of posts in Airtable format
         """
         try:
-            # Query posts table
-            query = self.client.table("posts").select("*")
+            # Query posts table - explicitly include all columns including image_prompt
+            query = self.client.table("posts").select(
+                "id,title,post_content,image_url,image_prompt,status,scheduled_time,"
+                "posted_time,linkedin_url,created_at,updated_at,topic,source,revision_prompt,"
+                "revision_type,notes,generation_metadata"
+            )
 
             if status_filter:
                 query = query.eq("status", status_filter)
