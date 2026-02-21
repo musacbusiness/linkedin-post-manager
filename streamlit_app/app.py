@@ -143,6 +143,11 @@ def render_posts_section(posts, clients):
     """Render the Posts section with card grid view and bulk actions"""
     st.title("📝 Posts")
 
+    # Check if we're creating a new post - if so, show creation form
+    if "creating_post" in st.session_state and st.session_state["creating_post"]:
+        render_create_post_form(clients)
+        return
+
     # Check if we're editing a post - if so, show full-page editor
     if "editing_post" in st.session_state and st.session_state["editing_post"]:
         editing_post_id = st.session_state["editing_post"]
@@ -159,12 +164,16 @@ def render_posts_section(posts, clients):
     # Pre-initialize session state for ALL posts (before any widget rendering)
     initialize_post_state(posts)
 
-    # Search and filter controls
-    col1, col2 = st.columns([2, 1])
+    # Search, filter, and create controls
+    col1, col2, col3 = st.columns([2, 1, 0.8])
     with col1:
         search_query = create_search_box()
     with col2:
         status_filter = create_status_filter()
+    with col3:
+        if st.button("➕ New Post", key="new_post_btn", use_container_width=True):
+            st.session_state["creating_post"] = True
+            st.rerun()
 
     st.divider()
 
@@ -215,6 +224,123 @@ def render_posts_section(posts, clients):
                 st.rerun()
             elif action == "expand":
                 st.info(f"Expanding post {record_id}")
+
+
+def render_create_post_form(clients):
+    """Render a form to create a new post manually"""
+    col_back, col_title = st.columns([0.1, 0.9])
+    with col_back:
+        if st.button("← Back", key="back_create_post", help="Return to posts"):
+            st.session_state["creating_post"] = False
+            st.rerun()
+
+    with col_title:
+        st.title("✏️ Create New Post")
+
+    st.divider()
+
+    # Create form columns
+    col1, col2 = st.columns([1.2, 1.8])
+
+    with col1:
+        st.markdown("### 📸 Post Image (Optional)")
+        st.info("You can add an image after saving the post, or during editing")
+
+    with col2:
+        st.markdown("### 📝 Post Content")
+
+        # Title input
+        post_title = st.text_input(
+            "Post Title",
+            placeholder="Enter post title...",
+            key="create_post_title"
+        )
+
+        # Content textarea
+        post_content = st.text_area(
+            "Post Content",
+            value="",
+            height=300,
+            placeholder="Enter post content...",
+            key="create_post_content"
+        )
+
+        # Character count
+        char_count = len(post_content)
+        max_chars = 3000
+        st.caption(f"📊 {char_count} / {max_chars} characters")
+
+        if char_count > max_chars:
+            st.warning(f"⚠️ Content exceeds recommended limit by {char_count - max_chars} characters")
+
+        st.divider()
+
+        # Image prompt textarea
+        st.markdown("**🎨 Image Prompt (Optional)**")
+        image_prompt = st.text_area(
+            "Image Prompt",
+            value="",
+            height=120,
+            placeholder="Enter image prompt for AI image generation (used by Stable Diffusion)...",
+            key="create_post_image_prompt",
+            label_visibility="collapsed"
+        )
+
+    st.divider()
+
+    # Action buttons
+    st.markdown("### 💾 Actions")
+    button_col1, button_col2, button_col3 = st.columns(3)
+
+    with button_col1:
+        if st.button("💾 Create Post", key="save_new_post", use_container_width=True):
+            if not post_title or not post_content:
+                st.error("❌ Post title and content are required")
+            else:
+                try:
+                    from datetime import datetime
+
+                    # Save new post to Supabase
+                    supabase = clients["supabase"]
+                    response = supabase.client.table("posts").insert({
+                        "title": post_title[:200],
+                        "post_content": post_content,
+                        "image_prompt": image_prompt if image_prompt else None,
+                        "status": "Pending Review",
+                        "created_at": datetime.now().isoformat(),
+                        "updated_at": datetime.now().isoformat()
+                    }).execute()
+
+                    if response.data:
+                        st.success("✅ Post created successfully!")
+                        st.session_state["creating_post"] = False
+                        st.rerun()
+                    else:
+                        st.error("❌ Failed to create post")
+                except Exception as e:
+                    st.error(f"❌ Error creating post: {str(e)}")
+
+    with button_col2:
+        if st.button("❌ Discard", key="discard_new_post", use_container_width=True):
+            st.session_state["creating_post"] = False
+            st.rerun()
+
+    with button_col3:
+        st.empty()
+
+    st.divider()
+
+    # Info section
+    st.markdown("### ℹ️ Tips")
+    st.info(
+        "💡 **Best Practices**:\n\n"
+        "• Keep posts between 1,300-1,900 characters for optimal LinkedIn engagement\n"
+        "• Start with a compelling hook (first 210 characters)\n"
+        "• Use line breaks and bullet points for readability\n"
+        "• End with a question to drive comments\n"
+        "• Add 3-5 relevant hashtags\n\n"
+        "After creating, you can edit the post to add images or make changes."
+    )
 
 
 def render_calendar_section(posts):
