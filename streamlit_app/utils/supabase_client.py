@@ -62,7 +62,7 @@ class SupabaseClient:
             # Query posts table - explicitly include all columns including image_prompt
             query = self.client.table("posts").select(
                 "id,title,post_content,image_url,image_prompt,status,scheduled_time,"
-                "posted_time,linkedin_url,created_at,updated_at,topic,source,revision_prompt,"
+                "posted_at,linkedin_url,created_at,updated_at,topic,source,revision_prompt,"
                 "revision_type,notes,generation_metadata"
             )
 
@@ -103,7 +103,7 @@ class SupabaseClient:
                 "Image Prompt": record.get("image_prompt", ""),
                 "Status": record.get("status", ""),
                 "Scheduled Time": record.get("scheduled_time", ""),
-                "Posted": record.get("posted_time", ""),
+                "Posted": record.get("posted_at", ""),
                 "LinkedIn URL": record.get("linkedin_url", ""),
                 "Created": record.get("created_at", ""),
                 "Updated": record.get("updated_at", ""),
