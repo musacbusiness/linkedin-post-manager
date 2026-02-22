@@ -59,12 +59,8 @@ class SupabaseClient:
             List of posts in Airtable format
         """
         try:
-            # Query posts table - explicitly include all columns including image_prompt
-            query = self.client.table("posts").select(
-                "id,title,post_content,image_url,image_prompt,status,scheduled_time,"
-                "posted_at,linkedin_url,created_at,updated_at,topic,source,revision_prompt,"
-                "revision_type,notes,generation_metadata"
-            )
+            # Query posts table - use SELECT * to get all columns
+            query = self.client.table("posts").select("*")
 
             if status_filter:
                 query = query.eq("status", status_filter)
@@ -74,17 +70,21 @@ class SupabaseClient:
 
             # Debug: Log first post structure
             if posts:
-                print(f"[DEBUG] First post raw data from Supabase: {list(posts[0].keys())}")
-                print(f"[DEBUG] Full post data: {posts[0]}")
-                if posts[0].get("image_prompt"):
-                    print(f"[DEBUG] ✅ image_prompt found in first post: {repr(posts[0].get('image_prompt')[:50])}")
+                first_post = posts[0]
+                print(f"[DEBUG] First post keys: {list(first_post.keys())}")
+                print(f"[DEBUG] image_prompt value: {repr(first_post.get('image_prompt', 'KEY_NOT_FOUND'))}")
+                print(f"[DEBUG] image_prompt type: {type(first_post.get('image_prompt'))}")
+                if first_post.get("image_prompt"):
+                    print(f"[DEBUG] ✅ image_prompt found: {repr(first_post.get('image_prompt')[:100])}")
                 else:
-                    print(f"[DEBUG] ⚠️ image_prompt is None or empty in first post")
+                    print(f"[DEBUG] ⚠️ image_prompt is empty or None")
 
             # Convert to Airtable-like format
             return [self._to_airtable_format(post) for post in posts]
         except Exception as e:
+            import traceback
             print(f"Error fetching posts: {str(e)}")
+            print(f"Traceback: {traceback.format_exc()}")
             return []
 
     def _to_airtable_format(self, record: Dict) -> Dict:
