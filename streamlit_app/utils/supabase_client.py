@@ -59,14 +59,19 @@ class SupabaseClient:
             List of posts in Airtable format
         """
         try:
+            print(f"[DEBUG] get_all_posts() called, status_filter={status_filter}")
+
             # Query posts table - use SELECT * to get all columns
             query = self.client.table("posts").select("*")
 
             if status_filter:
                 query = query.eq("status", status_filter)
 
+            print(f"[DEBUG] Executing Supabase query...")
             response = query.execute()
             posts = response.data
+
+            print(f"[DEBUG] Got {len(posts)} posts from Supabase")
 
             # Debug: Log first post structure
             if posts:
@@ -78,13 +83,17 @@ class SupabaseClient:
                     print(f"[DEBUG] ✅ image_prompt found: {repr(first_post.get('image_prompt')[:100])}")
                 else:
                     print(f"[DEBUG] ⚠️ image_prompt is empty or None")
+            else:
+                print(f"[DEBUG] ⚠️ NO POSTS RETURNED FROM SUPABASE!")
 
             # Convert to Airtable-like format
-            return [self._to_airtable_format(post) for post in posts]
+            result = [self._to_airtable_format(post) for post in posts]
+            print(f"[DEBUG] Returning {len(result)} formatted posts")
+            return result
         except Exception as e:
             import traceback
-            print(f"Error fetching posts: {str(e)}")
-            print(f"Traceback: {traceback.format_exc()}")
+            print(f"[ERROR] get_all_posts() failed: {str(e)}")
+            print(f"[ERROR] Traceback: {traceback.format_exc()}")
             return []
 
     def _to_airtable_format(self, record: Dict) -> Dict:
