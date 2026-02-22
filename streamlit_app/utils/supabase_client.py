@@ -75,8 +75,11 @@ class SupabaseClient:
             # Debug: Log first post structure
             if posts:
                 print(f"[DEBUG] First post raw data from Supabase: {list(posts[0].keys())}")
+                print(f"[DEBUG] Full post data: {posts[0]}")
                 if posts[0].get("image_prompt"):
                     print(f"[DEBUG] ✅ image_prompt found in first post: {repr(posts[0].get('image_prompt')[:50])}")
+                else:
+                    print(f"[DEBUG] ⚠️ image_prompt is None or empty in first post")
 
             # Convert to Airtable-like format
             return [self._to_airtable_format(post) for post in posts]
