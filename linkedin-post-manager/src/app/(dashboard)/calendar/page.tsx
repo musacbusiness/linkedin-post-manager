@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { usePosts } from '@/hooks/use-posts'
+import { useRealtimePosts } from '@/hooks/use-realtime-posts'
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
@@ -11,6 +12,9 @@ import { cn } from '@/lib/utils'
 export default function CalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+
+  // Enable real-time updates
+  useRealtimePosts()
 
   const { data: posts } = usePosts({ status: 'scheduled' })
 

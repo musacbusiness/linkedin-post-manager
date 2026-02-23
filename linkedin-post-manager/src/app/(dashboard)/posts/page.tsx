@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import { usePosts, useDeletePost, useUpdatePost, useSchedulePost } from '@/hooks/use-posts'
+import { useRealtimePosts } from '@/hooks/use-realtime-posts'
 import { useState } from 'react'
 import { Search, Plus, Trash2, CheckCircle, XCircle, Calendar, Clock } from 'lucide-react'
 import { Post } from '@/types/post'
@@ -12,6 +13,9 @@ import { Post } from '@/types/post'
 export default function PostsPage() {
   const [statusFilter, setStatusFilter] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+
+  // Enable real-time updates
+  useRealtimePosts()
 
   const { data: posts, isLoading, error } = usePosts({
     status: statusFilter === 'all' ? undefined : statusFilter,
