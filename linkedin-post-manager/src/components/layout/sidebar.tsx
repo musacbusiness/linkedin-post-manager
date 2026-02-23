@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   LayoutDashboard,
   FileText,
@@ -113,19 +114,31 @@ export function Sidebar({ onSignOut }: SidebarProps) {
       </button>
 
       {/* Mobile Sidebar */}
-      {mobileOpen && (
-        <>
-          {/* Backdrop */}
-          <div
-            className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-30"
-            onClick={() => setMobileOpen(false)}
-          />
-          {/* Sidebar */}
-          <aside className="md:hidden fixed left-0 top-0 h-screen w-60 bg-purple-dark/95 backdrop-blur-md border-r border-gray-700 z-40">
-            {sidebarContent}
-          </aside>
-        </>
-      )}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-30"
+              onClick={() => setMobileOpen(false)}
+            />
+            {/* Sidebar */}
+            <motion.aside
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="md:hidden fixed left-0 top-0 h-screen w-60 bg-purple-dark/95 backdrop-blur-md border-r border-gray-700 z-40"
+            >
+              {sidebarContent}
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </>
   )
 }

@@ -3,6 +3,8 @@
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { PostCardSkeleton } from '@/components/ui/skeleton'
+import { useToast } from '@/components/ui/toast'
 import Link from 'next/link'
 import { usePosts, useDeletePost, useUpdatePost, useSchedulePost } from '@/hooks/use-posts'
 import { useRealtimePosts } from '@/hooks/use-realtime-posts'
@@ -13,6 +15,7 @@ import { Post } from '@/types/post'
 export default function PostsPage() {
   const [statusFilter, setStatusFilter] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const { showToast } = useToast()
 
   // Enable real-time updates
   useRealtimePosts()
@@ -28,29 +31,45 @@ export default function PostsPage() {
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this post?')) {
-      await deletePost.mutateAsync(id)
+      try {
+        await deletePost.mutateAsync(id)
+        showToast('success', 'Post deleted', 'The post has been permanently deleted')
+      } catch (err) {
+        showToast('error', 'Delete failed', err instanceof Error ? err.message : 'Failed to delete post')
+      }
     }
   }
 
   const handleApprove = async (post: Post) => {
-    await updatePost.mutateAsync({
-      id: post.id,
-      data: { status: 'approved' },
-    })
+    try {
+      await updatePost.mutateAsync({
+        id: post.id,
+        data: { status: 'approved' },
+      })
+      showToast('success', 'Post approved', 'You can now schedule this post')
+    } catch (err) {
+      showToast('error', 'Approval failed', err instanceof Error ? err.message : 'Failed to approve post')
+    }
   }
 
   const handleReject = async (post: Post) => {
-    await updatePost.mutateAsync({
-      id: post.id,
-      data: { status: 'rejected' },
-    })
+    try {
+      await updatePost.mutateAsync({
+        id: post.id,
+        data: { status: 'rejected' },
+      })
+      showToast('warning', 'Post rejected', 'The post has been marked as rejected')
+    } catch (err) {
+      showToast('error', 'Rejection failed', err instanceof Error ? err.message : 'Failed to reject post')
+    }
   }
 
   const handleSchedule = async (id: string) => {
     try {
       await schedulePost.mutateAsync(id)
+      showToast('success', 'Post scheduled', 'Your post has been scheduled successfully')
     } catch (err) {
-      alert(err instanceof Error ? err.message : 'Failed to schedule post')
+      showToast('error', 'Scheduling failed', err instanceof Error ? err.message : 'Failed to schedule post')
     }
   }
 
@@ -117,8 +136,10 @@ export default function PostsPage() {
 
       {/* Loading State */}
       {isLoading && (
-        <div className="text-center py-12">
-          <p className="text-gray-400">Loading posts...</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <PostCardSkeleton key={i} />
+          ))}
         </div>
       )}
 
