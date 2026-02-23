@@ -23,7 +23,7 @@ export interface PipelineResult {
 }
 
 export class PostGenerationPipeline {
-  private anthropic
+  private anthropic: any
 
   constructor(apiKey: string) {
     this.anthropic = new Anthropic({ apiKey })
