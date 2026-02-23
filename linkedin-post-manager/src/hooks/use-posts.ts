@@ -103,3 +103,25 @@ export function useDeletePost() {
     },
   })
 }
+
+// Auto-schedule post
+export function useSchedulePost() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const response = await fetch(`/api/posts/${id}/schedule`, {
+        method: 'POST',
+      })
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.error || 'Failed to schedule post')
+      }
+      return response.json()
+    },
+    onSuccess: (_, id) => {
+      queryClient.invalidateQueries({ queryKey: ['posts'] })
+      queryClient.invalidateQueries({ queryKey: ['posts', id] })
+    },
+  })
+}

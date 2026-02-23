@@ -4,9 +4,9 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
-import { usePosts, useDeletePost, useUpdatePost } from '@/hooks/use-posts'
+import { usePosts, useDeletePost, useUpdatePost, useSchedulePost } from '@/hooks/use-posts'
 import { useState } from 'react'
-import { Search, Plus, Trash2, CheckCircle, XCircle, Calendar } from 'lucide-react'
+import { Search, Plus, Trash2, CheckCircle, XCircle, Calendar, Clock } from 'lucide-react'
 import { Post } from '@/types/post'
 
 export default function PostsPage() {
@@ -20,6 +20,7 @@ export default function PostsPage() {
 
   const deletePost = useDeletePost()
   const updatePost = useUpdatePost()
+  const schedulePost = useSchedulePost()
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this post?')) {
@@ -39,6 +40,14 @@ export default function PostsPage() {
       id: post.id,
       data: { status: 'rejected' },
     })
+  }
+
+  const handleSchedule = async (id: string) => {
+    try {
+      await schedulePost.mutateAsync(id)
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to schedule post')
+    }
   }
 
   const statusOptions = [
@@ -202,9 +211,26 @@ export default function PostsPage() {
                         </button>
                       </>
                     )}
-                    {post.status !== 'pending_review' && (
+                    {post.status === 'approved' && (
+                      <button
+                        onClick={() => handleSchedule(post.id)}
+                        disabled={schedulePost.isPending}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <Clock className="w-4 h-4" />
+                        {schedulePost.isPending ? 'Scheduling...' : 'Auto-Schedule'}
+                      </button>
+                    )}
+                    {post.status !== 'pending_review' && post.status !== 'approved' && (
                       <Link href={`/posts/${post.id}`} className="flex-1">
                         <Button variant="secondary" className="w-full">
+                          Edit
+                        </Button>
+                      </Link>
+                    )}
+                    {post.status === 'approved' && (
+                      <Link href={`/posts/${post.id}`} className="flex-shrink-0">
+                        <Button variant="secondary">
                           Edit
                         </Button>
                       </Link>
