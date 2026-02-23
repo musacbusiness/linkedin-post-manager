@@ -191,7 +191,7 @@ export default function GeneratePostPage() {
             {progress.length === 0 && !error && (
               <div className="text-center py-12">
                 <Sparkles className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-500">Click "Generate Post" to start</p>
+                <p className="text-gray-500">Click &quot;Generate Post&quot; to start</p>
               </div>
             )}
 

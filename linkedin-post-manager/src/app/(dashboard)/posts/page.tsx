@@ -1,5 +1,6 @@
 'use client'
 
+import NextImage from 'next/image'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -190,12 +191,13 @@ export default function PostsPage() {
                 </div>
 
                 {/* Image Preview */}
-                <div className="h-48 bg-gray-900 rounded-t-xl overflow-hidden">
+                <div className="h-48 bg-gray-900 rounded-t-xl overflow-hidden relative">
                   {post.image_url ? (
-                    <img
+                    <NextImage
                       src={post.image_url}
                       alt={post.title}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full">

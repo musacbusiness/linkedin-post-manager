@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { usePosts } from '@/hooks/use-posts'
@@ -221,9 +222,11 @@ export default function CalendarPage() {
                         <div className="flex items-start gap-3">
                           {post.image_url && (
                             <div className="w-12 h-12 bg-gray-700 rounded overflow-hidden flex-shrink-0">
-                              <img
+                              <Image
                                 src={post.image_url}
                                 alt=""
+                                width={48}
+                                height={48}
                                 className="w-full h-full object-cover"
                               />
                             </div>

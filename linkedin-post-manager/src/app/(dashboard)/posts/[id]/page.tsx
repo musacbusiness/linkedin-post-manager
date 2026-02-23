@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import NextImage from 'next/image'
 import { useRouter, useParams } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -127,12 +128,13 @@ export default function EditPostPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               {/* Image Preview */}
-              <div className="aspect-square bg-gray-900 rounded-lg overflow-hidden">
+              <div className="aspect-square bg-gray-900 rounded-lg overflow-hidden relative">
                 {imageUrl ? (
-                  <img
+                  <NextImage
                     src={imageUrl}
                     alt="Post preview"
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 ) : (
                   <div className="flex items-center justify-center h-full">
