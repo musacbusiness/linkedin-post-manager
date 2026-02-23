@@ -191,7 +191,7 @@ Research:
 ${research.keyPoints.map((p: string, i: number) => `${i + 1}. ${p}`).join('\n')}
 
 Use Cases:
-${research.useCases.map((u: string, i: number) => `- ${u}`).join('\n')}
+${research.useCases.map((u: string) => `- ${u}`).join('\n')}
 
 Framework: ${framework}
 Tone: ${profile.tone || 'professional'}
