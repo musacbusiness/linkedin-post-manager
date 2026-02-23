@@ -29,7 +29,7 @@ export function useRealtimePosts() {
 
           // If it's an UPDATE or DELETE, also invalidate the specific post
           if (payload.eventType === 'UPDATE' || payload.eventType === 'DELETE') {
-            const postId = payload.old?.id || payload.new?.id
+            const postId = (payload.old as any)?.id || (payload.new as any)?.id
             if (postId) {
               queryClient.invalidateQueries({ queryKey: ['posts', postId] })
             }
