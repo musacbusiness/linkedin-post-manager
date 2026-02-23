@@ -102,9 +102,11 @@ export default function DashboardPage() {
             <CardDescription>Use AI to create posts</CardDescription>
           </CardHeader>
           <CardContent>
-            <Button variant="secondary" className="w-full">
-              Generate
-            </Button>
+            <Link href="/posts/generate" className="block">
+              <Button variant="secondary" className="w-full">
+                Generate
+              </Button>
+            </Link>
           </CardContent>
         </Card>
 
