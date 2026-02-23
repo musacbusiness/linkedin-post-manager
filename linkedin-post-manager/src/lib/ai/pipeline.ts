@@ -156,7 +156,7 @@ Format as JSON:
     return JSON.parse(jsonMatch[0])
   }
 
-  private async selectFramework(topic: string, research: any): Promise<string> {
+  private async selectFramework(topic: string, _research: any): Promise<string> {
     const message = await this.anthropic.messages.create({
       model: 'claude-3-5-sonnet-20241022',
       max_tokens: 300,
