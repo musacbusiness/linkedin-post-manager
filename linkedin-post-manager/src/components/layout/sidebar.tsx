@@ -15,7 +15,7 @@ import {
 import { useState } from 'react'
 
 interface SidebarProps {
-  onSignOut: () => void
+  onSignOut: () => Promise<void>
 }
 
 export function Sidebar({ onSignOut }: SidebarProps) {

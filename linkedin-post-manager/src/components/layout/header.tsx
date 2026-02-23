@@ -1,6 +1,6 @@
 'use client'
 
-import { useAuth } from '@/hooks/use-auth'
+import { User } from '@supabase/supabase-js'
 import { Bell, LogOut, User as UserIcon } from 'lucide-react'
 import {
   DropdownMenu,
@@ -11,13 +11,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-export function Header() {
-  const { user, signOut } = useAuth()
+interface HeaderProps {
+  user: User | null
+  onSignOut: () => Promise<void>
+}
 
-  const handleSignOut = async () => {
-    await signOut()
-  }
-
+export function Header({ user, onSignOut }: HeaderProps) {
   const userInitials = user?.email
     ?.split('@')[0]
     .split('')
@@ -74,7 +73,7 @@ export function Header() {
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
               <button
-                onClick={handleSignOut}
+                onClick={() => onSignOut()}
                 className="w-full justify-start cursor-pointer text-red-400 hover:text-red-300"
               >
                 <LogOut className="w-4 h-4 mr-2" />

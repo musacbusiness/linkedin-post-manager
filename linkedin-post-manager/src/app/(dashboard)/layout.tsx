@@ -1,31 +1,25 @@
-'use client'
-
-import { useAuth } from '@/hooks/use-auth'
+import { createClient } from '@/lib/supabase/server'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Header } from '@/components/layout/header'
+import { signOut } from './actions'
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const { signOut } = useAuth()
-
-  const handleSignOut = async () => {
-    try {
-      await signOut()
-    } catch (err) {
-      console.error('Sign out error:', err)
-    }
-  }
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   return (
     <div className="min-h-screen bg-black">
       {/* Sidebar Navigation */}
-      <Sidebar onSignOut={handleSignOut} />
+      <Sidebar onSignOut={signOut} />
 
       {/* Header */}
-      <Header />
+      <Header user={user} onSignOut={signOut} />
 
       {/* Main Content */}
       <main className="pt-16 md:pl-60 p-4 md:p-6">
