@@ -122,7 +122,7 @@ Return ONLY the topic (one sentence, no explanation).`
     return text.trim()
   }
 
-  private async conductResearch(topic: string, profile: UserProfile): Promise<{
+  private async conductResearch(topic: string, _profile: UserProfile): Promise<{
     keyPoints: string[]
     useCases: string[]
     dataPoints: string[]
