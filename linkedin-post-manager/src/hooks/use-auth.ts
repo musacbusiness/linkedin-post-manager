@@ -16,6 +16,7 @@ export function useAuth() {
   const supabase = supabaseRef.current
 
   // Listen for auth changes on mount - the only source of truth for auth state
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // This listener will fire immediately with the current session if one exists
     const {
