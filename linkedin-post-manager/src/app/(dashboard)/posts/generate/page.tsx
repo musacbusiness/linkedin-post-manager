@@ -7,7 +7,6 @@ import { Label } from '@/components/ui/label'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Sparkles, CheckCircle, XCircle, Loader2, ArrowLeft } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 
 interface PipelineProgress {
   stage: number
@@ -17,7 +16,6 @@ interface PipelineProgress {
 }
 
 export default function GeneratePostPage() {
-  const router = useRouter()
   const [isGenerating, setIsGenerating] = useState(false)
   const [progress, setProgress] = useState<PipelineProgress[]>([])
   const [generatedPostId, setGeneratedPostId] = useState<string | null>(null)
