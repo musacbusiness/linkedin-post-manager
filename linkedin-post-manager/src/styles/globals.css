@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #121116;
+    --foreground: #fafafa;
+    --card: #1c1825;
+    --primary: #6b4ceb;
+    --secondary: #9378ff;
+    --border: #404040;
+    --destructive: #ef4444;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-black text-white font-inter antialiased;
+    color-scheme: dark;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold leading-tight;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h4 {
+    @apply text-lg;
+  }
+
+  h5 {
+    @apply text-base;
+  }
+
+  h6 {
+    @apply text-sm;
+  }
+
+  a {
+    @apply text-purple-accent hover:text-purple-light transition-colors;
+  }
+
+  code {
+    @apply rounded bg-gray-900 px-1.5 py-0.5 font-mono text-sm font-medium;
+  }
+}
+
+@layer components {
+  /* Card Hover Effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:border-purple-accent hover:shadow-lg hover:shadow-purple-accent/20;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-purple-accent px-4 py-2 font-semibold text-white transition-all duration-200 hover:scale-105 hover:bg-purple-light active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg bg-gray-800 px-4 py-2 font-medium text-white transition-colors hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Danger Button */
+  .btn-danger {
+    @apply inline-flex items-center justify-center rounded-lg bg-gray-800 px-4 py-2 font-medium text-white transition-colors hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Ghost Button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium text-white transition-colors hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Input Styles */
+  .input {
+    @apply w-full rounded-lg border border-gray-700 bg-gray-900 px-4 py-2 text-white placeholder-gray-500 transition-all duration-200 focus:border-purple-accent focus:outline-none focus:ring-2 focus:ring-purple-accent/20;
+  }
+
+  /* Textarea Styles */
+  .textarea {
+    @apply w-full rounded-lg border border-gray-700 bg-gray-900 px-4 py-2 text-white placeholder-gray-500 transition-all duration-200 focus:border-purple-accent focus:outline-none focus:ring-2 focus:ring-purple-accent/20 resize-none;
+  }
+
+  /* Card Component */
+  .card {
+    @apply rounded-xl border border-gray-700 bg-purple-dark p-6;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center rounded-full bg-purple-accent/10 px-3 py-1 text-sm font-medium text-purple-light;
+  }
+
+  /* Status Badge */
+  .badge-status {
+    @apply inline-flex items-center rounded-full bg-purple-accent/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-white;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-gray-700;
+  }
+
+  /* Loading Skeleton */
+  .skeleton {
+    @apply animate-pulse rounded-lg bg-gray-800;
+  }
+
+  /* Page Container */
+  .container-page {
+    @apply min-h-screen bg-black;
+  }
+
+  /* Content Wrapper */
+  .content-wrapper {
+    @apply mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-purple-accent to-purple-light bg-clip-text text-transparent;
+  }
+
+  /* Glass Effect */
+  .glass {
+    @apply rounded-xl border border-gray-700/50 bg-purple-dark/80 backdrop-blur-lg;
+  }
+}
+
+/* Animations */
+@layer utilities {
+  .animate-in {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .animate-out {
+    animation: fadeOut 0.3s ease-in-out forwards;
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  /* Text Truncation */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
