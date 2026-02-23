@@ -1,12 +1,7 @@
 import { User } from '@supabase/supabase-js'
 
-export interface AuthUser extends User {
-  email: string
-  user_metadata?: {
-    full_name?: string
-    avatar_url?: string
-  }
-}
+// Use Supabase's User type directly
+export type AuthUser = User
 
 export interface AuthState {
   user: AuthUser | null
