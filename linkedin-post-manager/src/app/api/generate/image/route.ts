@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     )
 
     // Get the generated image URL
-    const imageUrl = Array.isArray(output) ? output[0] : output
+    let imageUrl = Array.isArray(output) ? output[0] : output
 
     if (!imageUrl || typeof imageUrl !== 'string') {
       console.error('Invalid output from Replicate:', output)
@@ -64,6 +64,11 @@ export async function POST(request: NextRequest) {
         { error: 'Failed to generate image' },
         { status: 500 }
       )
+    }
+
+    // Fix protocol-relative URLs from Replicate
+    if (imageUrl.startsWith('//')) {
+      imageUrl = 'https:' + imageUrl
     }
 
     console.log('Image generated successfully:', imageUrl)
