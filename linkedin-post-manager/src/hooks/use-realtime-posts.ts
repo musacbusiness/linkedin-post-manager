@@ -9,7 +9,8 @@ import { createClient } from '@/lib/supabase/client'
 export function useRealtimePosts() {
   const queryClient = useQueryClient()
 
-  // Use ref to maintain stable supabase client reference  const supabaseRef = useRef(createClient())
+  // Use ref to maintain stable supabase client reference
+  const supabaseRef = useRef(createClient())
   const supabase = supabaseRef.current
 
   useEffect(() => {
