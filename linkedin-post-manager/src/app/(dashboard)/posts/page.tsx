@@ -8,7 +8,7 @@ import { PostCardSkeleton } from '@/components/ui/skeleton'
 import { useToast } from '@/components/ui/toast'
 import Link from 'next/link'
 import { usePosts, useDeletePost, useUpdatePost, useSchedulePost } from '@/hooks/use-posts'
-import { useRealtimePosts } from '@/hooks/use-realtime-posts'
+// import { useRealtimePosts } from '@/hooks/use-realtime-posts' // TEMPORARILY DISABLED
 import { useState } from 'react'
 import { Search, Plus, Trash2, CheckCircle, XCircle, Calendar, Clock, Sparkles } from 'lucide-react'
 import { Post } from '@/types/post'
@@ -19,7 +19,8 @@ export default function PostsPage() {
   const { showToast } = useToast()
 
   // Enable real-time updates for live post changes
-  useRealtimePosts()
+  // TEMPORARILY DISABLED to debug crash
+  // useRealtimePosts()
 
   const { data: posts, isLoading, error } = usePosts({
     status: statusFilter === 'all' ? undefined : statusFilter,
