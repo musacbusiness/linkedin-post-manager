@@ -14,9 +14,18 @@ import { Search, Plus, Trash2, CheckCircle, XCircle, Calendar, Clock, Sparkles }
 import { Post } from '@/types/post'
 
 export default function PostsPage() {
-  const [statusFilter, setStatusFilter] = useState('all')
-  const [searchQuery, setSearchQuery] = useState('')
-  const { showToast } = useToast()
+  const [statusFilter, setStatusFilter] = useState<string>('all')
+  const [searchQuery, setSearchQuery] = useState<string>('')
+
+  // Defensive: wrap useToast in try-catch
+  let showToast: ((type: any, title: string, message?: string) => void) | null = null
+  try {
+    const toastHook = useToast()
+    showToast = toastHook?.showToast || null
+  } catch (err) {
+    console.error('useToast error:', err)
+    showToast = () => {} // Fallback no-op function
+  }
 
   // Enable real-time updates for live post changes
   // TEMPORARILY DISABLED to debug crash
@@ -35,9 +44,13 @@ export default function PostsPage() {
     if (confirm('Are you sure you want to delete this post?')) {
       try {
         await deletePost.mutateAsync(id)
-        showToast('success', 'Post deleted', 'The post has been permanently deleted')
+        if (showToast) {
+          showToast('success', 'Post deleted', 'The post has been permanently deleted')
+        }
       } catch (err) {
-        showToast('error', 'Delete failed', err instanceof Error ? err.message : 'Failed to delete post')
+        if (showToast) {
+          showToast('error', 'Delete failed', err instanceof Error ? err.message : 'Failed to delete post')
+        }
       }
     }
   }
@@ -48,9 +61,13 @@ export default function PostsPage() {
         id: post.id,
         data: { status: 'approved' },
       })
-      showToast('success', 'Post approved', 'You can now schedule this post')
+      if (showToast) {
+        showToast('success', 'Post approved', 'You can now schedule this post')
+      }
     } catch (err) {
-      showToast('error', 'Approval failed', err instanceof Error ? err.message : 'Failed to approve post')
+      if (showToast) {
+        showToast('error', 'Approval failed', err instanceof Error ? err.message : 'Failed to approve post')
+      }
     }
   }
 
@@ -60,21 +77,30 @@ export default function PostsPage() {
         id: post.id,
         data: { status: 'rejected' },
       })
-      showToast('warning', 'Post rejected', 'The post has been marked as rejected')
+      if (showToast) {
+        showToast('warning', 'Post rejected', 'The post has been marked as rejected')
+      }
     } catch (err) {
-      showToast('error', 'Rejection failed', err instanceof Error ? err.message : 'Failed to reject post')
+      if (showToast) {
+        showToast('error', 'Rejection failed', err instanceof Error ? err.message : 'Failed to reject post')
+      }
     }
   }
 
   const handleSchedule = async (id: string) => {
     try {
       await schedulePost.mutateAsync(id)
-      showToast('success', 'Post scheduled', 'Your post has been scheduled successfully')
+      if (showToast) {
+        showToast('success', 'Post scheduled', 'Your post has been scheduled successfully')
+      }
     } catch (err) {
-      showToast('error', 'Scheduling failed', err instanceof Error ? err.message : 'Failed to schedule post')
+      if (showToast) {
+        showToast('error', 'Scheduling failed', err instanceof Error ? err.message : 'Failed to schedule post')
+      }
     }
   }
 
+  // Defensive: ensure statusOptions is always an array
   const statusOptions = [
     { value: 'all', label: 'All Posts' },
     { value: 'pending_review', label: 'Pending Review' },
@@ -83,6 +109,9 @@ export default function PostsPage() {
     { value: 'posted', label: 'Posted' },
     { value: 'rejected', label: 'Rejected' },
   ]
+
+  // Defensive: ensure posts is always an array
+  const safePosts = Array.isArray(posts) ? posts : []
 
   return (
     <div className="space-y-8">
@@ -128,7 +157,7 @@ export default function PostsPage() {
           onChange={(e) => setStatusFilter(e.target.value)}
           className="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-purple-accent focus:ring-2 focus:ring-purple-accent/20 transition-all"
         >
-          {statusOptions.map((option) => (
+          {Array.isArray(statusOptions) && statusOptions.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -139,7 +168,7 @@ export default function PostsPage() {
       {/* Loading State */}
       {isLoading && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Array.from({ length: 6 }).map((_, i) => (
+          {[0, 1, 2, 3, 4, 5].map((i) => (
             <PostCardSkeleton key={i} />
           ))}
         </div>
@@ -155,7 +184,7 @@ export default function PostsPage() {
       )}
 
       {/* Empty State */}
-      {!isLoading && !error && (!posts || posts.length === 0) && (
+      {!isLoading && !error && safePosts.length === 0 && (
         <Card hoverable>
           <div className="text-center py-12">
             <p className="text-gray-400 mb-4">No posts found</p>
@@ -167,9 +196,9 @@ export default function PostsPage() {
       )}
 
       {/* Posts Grid */}
-      {!isLoading && !error && posts && posts.length > 0 && (
+      {!isLoading && !error && safePosts.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
+          {safePosts.map((post) => (
             <Card key={post.id} hoverable>
               <div className="relative">
                 {/* Status Badge */}
