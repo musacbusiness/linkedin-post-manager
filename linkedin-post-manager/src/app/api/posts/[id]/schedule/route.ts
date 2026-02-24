@@ -19,12 +19,11 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Verify post exists and belongs to user
+    // Verify post exists
     const { data: post, error: fetchError } = await supabase
       .from('posts')
       .select('id')
       .eq('id', params.id)
-      .eq('user_id', user.id)
       .single()
 
     if (fetchError || !post) {
@@ -32,7 +31,7 @@ export async function POST(
     }
 
     // Auto-schedule the post
-    const result = await autoSchedulePost(supabase, params.id, user.id)
+    const result = await autoSchedulePost(supabase, params.id)
 
     if (!result.success) {
       return NextResponse.json(

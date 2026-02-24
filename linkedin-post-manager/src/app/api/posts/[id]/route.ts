@@ -22,7 +22,6 @@ export async function GET(
       .from('posts')
       .select('*')
       .eq('id', params.id)
-      .eq('user_id', user.id)
       .single()
 
     if (error) {
@@ -67,7 +66,6 @@ export async function PATCH(
       .from('posts')
       .update(body)
       .eq('id', params.id)
-      .eq('user_id', user.id)
       .select()
       .single()
 
@@ -110,7 +108,6 @@ export async function DELETE(
       .from('posts')
       .delete()
       .eq('id', params.id)
-      .eq('user_id', user.id)
 
     if (error) {
       console.error('Error deleting post:', error)

@@ -19,15 +19,13 @@ interface ScheduleResult {
  */
 export async function autoSchedulePost(
   supabase: SupabaseClient,
-  postId: string,
-  userId: string
+  postId: string
 ): Promise<ScheduleResult> {
   try {
     // Get all scheduled posts for conflict checking
     const { data: allPosts, error: fetchError } = await supabase
       .from('posts')
       .select('scheduled_for')
-      .eq('user_id', userId)
       .not('scheduled_for', 'is', null)
 
     if (fetchError) {
@@ -113,7 +111,6 @@ export async function autoSchedulePost(
         updated_at: new Date().toISOString()
       })
       .eq('id', postId)
-      .eq('user_id', userId)
 
     if (updateError) {
       console.error('Error updating post:', updateError)

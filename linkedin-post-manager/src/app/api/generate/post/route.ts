@@ -54,7 +54,6 @@ export async function POST(request: NextRequest) {
             const { data: newPost, error: insertError } = await supabase
               .from('posts')
               .insert({
-                user_id: user.id,
                 title: result.title,
                 content: result.content,
                 image_prompt: result.imagePrompt,

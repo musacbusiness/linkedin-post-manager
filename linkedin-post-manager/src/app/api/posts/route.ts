@@ -24,7 +24,6 @@ export async function GET(request: NextRequest) {
     let query = supabase
       .from('posts')
       .select('*')
-      .eq('user_id', user.id)
       .order('created_at', { ascending: false })
 
     // Apply filters
@@ -82,7 +81,6 @@ export async function POST(request: NextRequest) {
     const { data: post, error } = await supabase
       .from('posts')
       .insert({
-        user_id: user.id,
         title,
         content,
         image_prompt: image_prompt || null,
