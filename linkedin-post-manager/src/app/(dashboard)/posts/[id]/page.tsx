@@ -14,7 +14,18 @@ import { Sparkles, Loader2, Image as ImageIcon } from 'lucide-react'
 export default function EditPostPage() {
   const params = useParams()
   const router = useRouter()
-  const postId = params.id as string
+
+  // Defensive: ensure postId is a valid string
+  const rawId = params?.id
+  const postId = typeof rawId === 'string' ? rawId : Array.isArray(rawId) ? rawId[0] : ''
+
+  // Defensive: if no valid postId, redirect to posts page
+  useEffect(() => {
+    if (!postId) {
+      console.error('No valid post ID found in params:', params)
+      router.push('/posts')
+    }
+  }, [postId, params, router])
 
   const { data: post, isLoading } = usePost(postId)
   const updatePost = useUpdatePost()
@@ -26,13 +37,13 @@ export default function EditPostPage() {
   const [isGeneratingImage, setIsGeneratingImage] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Initialize form with post data
+  // Initialize form with post data - with defensive null checks
   useEffect(() => {
     if (post) {
-      setTitle(post.title)
-      setContent(post.content)
-      setImagePrompt(post.image_prompt || '')
-      setImageUrl(post.image_url)
+      setTitle(post?.title || '')
+      setContent(post?.content || '')
+      setImagePrompt(post?.image_prompt || '')
+      setImageUrl(post?.image_url || null)
     }
   }, [post])
 
@@ -236,7 +247,7 @@ export default function EditPostPage() {
                     required
                   />
                   <p className="text-xs text-gray-500">
-                    {content.length} / 3000 characters
+                    {(content || '').length} / 3000 characters
                   </p>
                 </div>
 
