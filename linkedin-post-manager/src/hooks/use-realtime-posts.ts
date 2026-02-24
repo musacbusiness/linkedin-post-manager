@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import { createClient } from '@/lib/supabase/client'
 
@@ -8,7 +8,9 @@ import { createClient } from '@/lib/supabase/client'
  */
 export function useRealtimePosts() {
   const queryClient = useQueryClient()
-  const supabase = createClient()
+
+  // Use ref to maintain stable supabase client reference  const supabaseRef = useRef(createClient())
+  const supabase = supabaseRef.current
 
   useEffect(() => {
     // Subscribe to all changes in the posts table
