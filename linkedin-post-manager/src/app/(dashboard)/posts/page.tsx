@@ -18,7 +18,7 @@ export default function PostsPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const { showToast } = useToast()
 
-  // Enable real-time updates
+  // Enable real-time updates for live post changes
   useRealtimePosts()
 
   const { data: posts, isLoading, error } = usePosts({
