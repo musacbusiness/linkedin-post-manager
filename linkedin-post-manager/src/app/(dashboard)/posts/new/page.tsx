@@ -8,44 +8,66 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { useCreatePost } from '@/hooks/use-posts'
+import { useToast } from '@/components/ui/toast'
+import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 
 export default function NewPostPage() {
+  const router = useRouter()
+  const createPost = useCreatePost()
+  const { showToast } = useToast()
+
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [imagePrompt, setImagePrompt] = useState('')
   const [error, setError] = useState<string | null>(null)
 
-  const router = useRouter()
-  const createPost = useCreatePost()
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
 
+    if (!title.trim() || !content.trim()) {
+      setError('Title and content are required')
+      return
+    }
+
     try {
       await createPost.mutateAsync({
-        title,
-        content,
-        image_prompt: imagePrompt || undefined,
+        title: title.trim(),
+        content: content.trim(),
+        image_prompt: imagePrompt.trim() || undefined,
       })
 
+      showToast('success', 'Post created', 'Your post has been created successfully')
       router.push('/posts')
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create post')
+      const errorMessage = err instanceof Error ? err.message : 'Failed to create post'
+      setError(errorMessage)
+      showToast('error', 'Creation failed', errorMessage)
     }
   }
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Create Post</h1>
-        <p className="text-gray-400">Write and publish a new LinkedIn post</p>
+      {/* Header */}
+      <div className="flex items-center gap-4">
+        <Link href="/posts">
+          <Button variant="ghost" size="sm" className="gap-2">
+            <ArrowLeft className="w-4 h-4" />
+            Back
+          </Button>
+        </Link>
+        <div>
+          <h1 className="text-3xl font-bold text-white mb-2">Create New Post</h1>
+          <p className="text-gray-400">Write a new LinkedIn post</p>
+        </div>
       </div>
 
+      {/* Form */}
       <Card hoverable>
         <CardHeader>
-          <CardTitle>New Post</CardTitle>
-          <CardDescription>Create a new post for your LinkedIn profile</CardDescription>
+          <CardTitle>Post Details</CardTitle>
+          <CardDescription>Enter your post information</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -81,11 +103,11 @@ export default function NewPostPage() {
                 placeholder="Write your post content here..."
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                rows={8}
+                rows={12}
                 required
               />
               <p className="text-xs text-gray-500">
-                {content.length} / 3000 characters
+                {(content || '').length} / 3000 characters
               </p>
             </div>
 
@@ -96,13 +118,13 @@ export default function NewPostPage() {
               </Label>
               <Textarea
                 id="imagePrompt"
-                placeholder="Describe the image you want to generate (e.g., 'A modern office with people collaborating')..."
+                placeholder="Describe the image you want to generate later..."
                 value={imagePrompt}
                 onChange={(e) => setImagePrompt(e.target.value)}
-                rows={3}
+                rows={4}
               />
               <p className="text-xs text-gray-500">
-                Leave blank to create post without an image
+                You can generate an image after creating the post
               </p>
             </div>
 
@@ -112,6 +134,7 @@ export default function NewPostPage() {
                 type="submit"
                 variant="primary"
                 isLoading={createPost.isPending}
+                disabled={createPost.isPending}
               >
                 {createPost.isPending ? 'Creating...' : 'Create Post'}
               </Button>

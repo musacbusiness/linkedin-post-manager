@@ -158,12 +158,55 @@
     animation: fadeOut 0.3s ease-in-out forwards;
   }
 
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.3s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   @keyframes fadeOut {
     from {
       opacity: 1;
     }
     to {
       opacity: 0;
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 
@@ -187,5 +230,20 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Mobile Touch Optimizations */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  .tap-highlight-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Smooth Scroll */
+  .scroll-smooth-always {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 }
