@@ -24,8 +24,8 @@ export default async function DashboardLayout({
       <Header user={user} onSignOut={signOut} />
 
       {/* Main Content */}
-      <main className="pt-16 md:pl-60 p-4 md:p-6">
-        <div className="max-w-7xl">{children}</div>
+      <main className="pt-16 md:pl-60">
+        <div className="p-4 md:p-6 max-w-7xl mx-auto">{children}</div>
       </main>
     </div>
   )
