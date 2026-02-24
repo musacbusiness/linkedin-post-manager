@@ -45,5 +45,6 @@ export function useRealtimePosts() {
     return () => {
       supabase.removeChannel(channel)
     }
-  }, [queryClient, supabase])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryClient])
 }
