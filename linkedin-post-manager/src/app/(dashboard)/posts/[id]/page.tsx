@@ -36,6 +36,7 @@ export default function EditPostPage() {
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [isGeneratingImage, setIsGeneratingImage] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [imageError, setImageError] = useState(false)
 
   // Initialize form with post data - with defensive null checks
   useEffect(() => {
@@ -44,6 +45,7 @@ export default function EditPostPage() {
       setContent(post?.content || '')
       setImagePrompt(post?.image_prompt || '')
       setImageUrl(post?.image_url || null)
+      setImageError(false)
     }
   }, [post])
 
@@ -55,6 +57,7 @@ export default function EditPostPage() {
 
     setIsGeneratingImage(true)
     setError(null)
+    setImageError(false)
 
     try {
       const response = await fetch('/api/generate/image', {
@@ -69,6 +72,7 @@ export default function EditPostPage() {
       }
 
       const data = await response.json()
+      console.log('Generated image URL:', data.imageUrl)
       setImageUrl(data.imageUrl)
 
       // Auto-save the generated image URL to the post
@@ -140,13 +144,26 @@ export default function EditPostPage() {
             <CardContent className="space-y-4">
               {/* Image Preview */}
               <div className="aspect-square bg-gray-900 rounded-lg overflow-hidden relative">
-                {imageUrl ? (
+                {imageUrl && !imageError ? (
                   <NextImage
                     src={imageUrl}
                     alt="Post preview"
                     fill
                     className="object-cover"
+                    unoptimized
+                    onError={() => {
+                      console.error('Failed to load image:', imageUrl)
+                      setImageError(true)
+                    }}
                   />
+                ) : imageError ? (
+                  <div className="flex items-center justify-center h-full">
+                    <div className="text-center p-4">
+                      <ImageIcon className="w-16 h-16 text-red-500 mx-auto mb-2" />
+                      <p className="text-red-400 text-sm mb-2">Failed to load image</p>
+                      <p className="text-gray-500 text-xs">Try regenerating the image</p>
+                    </div>
+                  </div>
                 ) : (
                   <div className="flex items-center justify-center h-full">
                     <div className="text-center">
