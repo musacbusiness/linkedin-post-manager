@@ -25,14 +25,23 @@ export function usePost(id: string) {
   return useQuery({
     queryKey: ['posts', id],
     queryFn: async () => {
+      if (!id) {
+        throw new Error('Post ID is required')
+      }
+      console.log('[usePost] Fetching post with ID:', id)
       const response = await fetch(`/api/posts/${id}`)
       if (!response.ok) {
-        throw new Error('Failed to fetch post')
+        const errorData = await response.json().catch(() => ({}))
+        const errorMsg = errorData.error || `HTTP ${response.status}`
+        console.error('[usePost] API error:', errorMsg)
+        throw new Error(`Failed to fetch post: ${errorMsg}`)
       }
       const data = await response.json()
+      console.log('[usePost] Successfully fetched post:', data.post)
       return data.post as Post
     },
     enabled: !!id,
+    retry: 1,
   })
 }
 
