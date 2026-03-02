@@ -27,7 +27,7 @@ export default function EditPostPage() {
     }
   }, [postId, params, router])
 
-  const { data: post, isLoading } = usePost(postId)
+  const { data: post, isLoading, error: fetchError } = usePost(postId)
   const updatePost = useUpdatePost()
 
   const [title, setTitle] = useState('')
@@ -41,13 +41,22 @@ export default function EditPostPage() {
   // Initialize form with post data - with defensive null checks
   useEffect(() => {
     if (post) {
-      setTitle(post?.title || '')
-      setContent(post?.content || '')
-      setImagePrompt(post?.image_prompt || '')
-      setImageUrl(post?.image_url || null)
+      console.log('Post data loaded:', post)
+      setTitle(post.title || '')
+      setContent(post.content || '')
+      setImagePrompt(post.image_prompt || '')
+      setImageUrl(post.image_url || null)
       setImageError(false)
     }
   }, [post])
+
+  // Log fetch errors
+  useEffect(() => {
+    if (fetchError) {
+      console.error('Error fetching post:', fetchError)
+      setError(fetchError instanceof Error ? fetchError.message : 'Failed to load post')
+    }
+  }, [fetchError])
 
   async function handleGenerateImage() {
     if (!imagePrompt.trim()) {
@@ -111,6 +120,17 @@ export default function EditPostPage() {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <Loader2 className="w-8 h-8 text-purple-accent animate-spin" />
+      </div>
+    )
+  }
+
+  if (fetchError) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-red-400 mb-4">Error loading post: {fetchError instanceof Error ? fetchError.message : 'Unknown error'}</p>
+        <Button variant="primary" onClick={() => router.push('/posts')} className="mt-4">
+          Back to Posts
+        </Button>
       </div>
     )
   }
