@@ -68,9 +68,9 @@ export function Sidebar({ onSignOut }: SidebarProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all duration-200',
+                'flex items-center gap-3 px-4 py-2.5 rounded-lg font-medium transition-all duration-200',
                 active
-                  ? 'bg-purple-accent text-white hover:bg-purple-light'
+                  ? 'bg-purple-accent text-white hover:bg-purple-light shadow-lg shadow-purple-accent/30'
                   : 'text-gray-400 hover:text-white hover:bg-gray-800'
               )}
               onClick={() => setMobileOpen(false)}
@@ -100,8 +100,8 @@ export function Sidebar({ onSignOut }: SidebarProps) {
 
   return (
     <>
-      {/* Desktop Sidebar */}
-      <aside className="hidden md:fixed md:left-0 md:top-0 md:h-screen md:w-60 md:bg-purple-dark md:border-r md:border-gray-700 md:block">
+      {/* Desktop Sidebar - Enhanced Glass */}
+      <aside className="hidden md:fixed md:left-0 md:top-0 md:h-screen md:w-60 md:bg-purple-dark/60 md:backdrop-blur-2xl md:border-r md:border-gray-700/30 md:block md:z-30">
         {sidebarContent}
       </aside>
 
@@ -126,13 +126,13 @@ export function Sidebar({ onSignOut }: SidebarProps) {
               className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-30"
               onClick={() => setMobileOpen(false)}
             />
-            {/* Sidebar */}
+            {/* Sidebar - Enhanced Glass */}
             <motion.aside
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="md:hidden fixed left-0 top-0 h-screen w-60 bg-purple-dark/95 backdrop-blur-md border-r border-gray-700 z-40"
+              initial={{ x: '-100%', opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: '-100%', opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              className="md:hidden fixed left-0 top-0 h-screen w-60 bg-purple-dark/60 backdrop-blur-2xl border-r border-gray-700/30 z-40"
             >
               {sidebarContent}
             </motion.aside>

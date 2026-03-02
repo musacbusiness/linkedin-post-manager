@@ -25,7 +25,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
     .toUpperCase() || 'U'
 
   return (
-    <header className="fixed top-0 right-0 left-0 md:left-60 h-16 bg-purple-dark/80 backdrop-blur-lg border-b border-gray-700 px-6 flex items-center justify-between z-20">
+    <header className="fixed top-0 right-0 left-0 md:left-60 h-16 bg-purple-dark/40 backdrop-blur-3xl border-b border-gray-700/30 px-6 flex items-center justify-between z-20">
       {/* Left side - Page title */}
       <div className="hidden md:block">
         <h2 className="text-lg font-semibold text-white">Dashboard</h2>

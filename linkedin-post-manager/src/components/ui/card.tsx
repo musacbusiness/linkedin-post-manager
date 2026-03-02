@@ -6,16 +6,24 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, hoverable = false, ...props }, ref) => (
+  ({ className, hoverable = false, children, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
-        'rounded-xl border border-gray-700 bg-purple-dark p-6',
+        'rounded-xl border border-gray-700/30 bg-purple-dark/80 backdrop-blur-xl p-6 relative overflow-hidden',
         hoverable && 'card-hover',
         className
       )}
       {...props}
-    />
+    >
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 card-gradient opacity-50 pointer-events-none" />
+
+      {/* Content */}
+      <div className="relative z-10">
+        {children}
+      </div>
+    </div>
   )
 )
 Card.displayName = 'Card'

@@ -16,17 +16,23 @@ export default async function DashboardLayout({
   } = await supabase.auth.getUser()
 
   return (
-    <div className="min-h-screen bg-black">
-      {/* Sidebar Navigation */}
-      <Sidebar onSignOut={signOut} />
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Gradient Background Overlay */}
+      <div className="fixed inset-0 hero-gradient opacity-60 pointer-events-none z-0" />
 
-      {/* Header */}
-      <Header user={user} onSignOut={signOut} />
+      {/* Content with z-index layering */}
+      <div className="relative z-10">
+        {/* Sidebar Navigation */}
+        <Sidebar onSignOut={signOut} />
 
-      {/* Main Content */}
-      <main className="pt-16 md:pl-60">
-        <div className="p-4 md:p-6 max-w-7xl mx-auto">{children}</div>
-      </main>
+        {/* Header */}
+        <Header user={user} onSignOut={signOut} />
+
+        {/* Main Content */}
+        <main className="pt-16 md:pl-60">
+          <div className="p-4 md:p-6 max-w-7xl mx-auto">{children}</div>
+        </main>
+      </div>
     </div>
   )
 }

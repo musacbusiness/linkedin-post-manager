@@ -67,14 +67,14 @@
 }
 
 @layer components {
-  /* Card Hover Effect */
+  /* Card Hover Effect - Enhanced */
   .card-hover {
-    @apply transition-all duration-300 hover:scale-[1.02] hover:border-purple-accent hover:shadow-lg hover:shadow-purple-accent/20;
+    @apply transition-all duration-300 hover:scale-[1.02] hover:border-purple-accent hover:shadow-2xl hover:shadow-purple-accent/40;
   }
 
-  /* Primary Button */
+  /* Primary Button - Enhanced with Glow */
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-purple-accent px-4 py-2 font-semibold text-white transition-all duration-200 hover:scale-105 hover:bg-purple-light active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply inline-flex items-center justify-center rounded-lg bg-purple-accent px-4 py-2 font-semibold text-white transition-all duration-200 hover:scale-105 hover:bg-purple-light active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-purple-accent/30 hover:shadow-2xl hover:shadow-purple-accent/50;
   }
 
   /* Secondary Button */
@@ -92,14 +92,14 @@
     @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium text-white transition-colors hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
-  /* Input Styles */
+  /* Input Styles - Enhanced with Backdrop Blur & Glow */
   .input {
-    @apply w-full rounded-lg border border-gray-700 bg-gray-900 px-4 py-2 text-white placeholder-gray-500 transition-all duration-200 focus:border-purple-accent focus:outline-none focus:ring-2 focus:ring-purple-accent/20;
+    @apply w-full rounded-lg border border-gray-700/50 bg-gray-900/80 backdrop-blur-lg px-4 py-2 text-white placeholder-gray-500 transition-all duration-200 focus:border-purple-accent focus:outline-none focus:ring-2 focus:ring-purple-accent/30 focus:shadow-lg focus:shadow-purple-accent/20;
   }
 
-  /* Textarea Styles */
+  /* Textarea Styles - Enhanced with Backdrop Blur & Glow */
   .textarea {
-    @apply w-full rounded-lg border border-gray-700 bg-gray-900 px-4 py-2 text-white placeholder-gray-500 transition-all duration-200 focus:border-purple-accent focus:outline-none focus:ring-2 focus:ring-purple-accent/20 resize-none;
+    @apply w-full rounded-lg border border-gray-700/50 bg-gray-900/80 backdrop-blur-lg px-4 py-2 text-white placeholder-gray-500 transition-all duration-200 focus:border-purple-accent focus:outline-none focus:ring-2 focus:ring-purple-accent/30 focus:shadow-lg focus:shadow-purple-accent/20 resize-none;
   }
 
   /* Card Component */
@@ -142,9 +142,47 @@
     @apply bg-gradient-to-r from-purple-accent to-purple-light bg-clip-text text-transparent;
   }
 
-  /* Glass Effect */
+  /* Glass Effect - Enhanced */
   .glass {
-    @apply rounded-xl border border-gray-700/50 bg-purple-dark/80 backdrop-blur-lg;
+    @apply rounded-xl border border-gray-700/30 bg-purple-dark/60 backdrop-blur-2xl;
+  }
+
+  /* Glass Variants */
+  .glass-strong {
+    @apply rounded-xl border border-purple-accent/20 bg-purple-dark/40 backdrop-blur-3xl;
+  }
+
+  .glass-subtle {
+    @apply rounded-xl border border-gray-700/10 bg-purple-dark/80 backdrop-blur-xl;
+  }
+
+  /* Button Glow */
+  .btn-glow {
+    @apply shadow-lg shadow-purple-accent/30 hover:shadow-2xl hover:shadow-purple-accent/50 transition-shadow duration-300;
+  }
+
+  /* Text Glow */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(107, 76, 235, 0.5), 0 0 40px rgba(107, 76, 235, 0.3);
+  }
+
+  /* Hero Gradient Background */
+  .hero-gradient {
+    background: radial-gradient(
+      ellipse at top,
+      rgba(107, 76, 235, 0.3) 0%,
+      rgba(28, 24, 37, 0.8) 50%,
+      rgba(18, 17, 22, 1) 100%
+    );
+  }
+
+  /* Card Gradient Overlay */
+  .card-gradient {
+    background: radial-gradient(
+      circle at top right,
+      rgba(107, 76, 235, 0.1) 0%,
+      transparent 50%
+    );
   }
 }
 

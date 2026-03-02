@@ -73,41 +73,10 @@ export async function POST(request: NextRequest) {
 
     console.log('Image generated successfully:', imageUrl)
 
-    // Upload to Supabase Storage
-    try {
-      // Download the image from Replicate
-      const imageResponse = await fetch(imageUrl)
-      const imageBlob = await imageResponse.blob()
-      const imageBuffer = await imageBlob.arrayBuffer()
-
-      // Generate unique filename
-      const filename = `${user.id}/${Date.now()}-${Math.random().toString(36).substring(7)}.png`
-
-      // Upload to Supabase Storage
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from('post-images')
-        .upload(filename, imageBuffer, {
-          contentType: 'image/png',
-          upsert: false,
-        })
-
-      if (uploadError) {
-        console.error('Supabase upload error:', uploadError)
-        // Fall back to returning the Replicate URL if upload fails
-        return NextResponse.json({ imageUrl })
-      }
-
-      // Get public URL
-      const { data: publicUrlData } = supabase.storage
-        .from('post-images')
-        .getPublicUrl(uploadData.path)
-
-      return NextResponse.json({ imageUrl: publicUrlData.publicUrl })
-    } catch (uploadError) {
-      console.error('Error uploading to Supabase Storage:', uploadError)
-      // Fall back to returning the Replicate URL
-      return NextResponse.json({ imageUrl })
-    }
+    // Return the Replicate URL directly
+    // Replicate URLs are persistent CDN URLs that don't expire immediately
+    // This is simpler than uploading to Supabase and avoids reliability issues
+    return NextResponse.json({ imageUrl })
   } catch (error) {
     console.error('Image generation error:', error)
     return NextResponse.json(
