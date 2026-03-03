@@ -28,16 +28,36 @@ export function usePost(id: string) {
       if (!id) {
         throw new Error('Post ID is required')
       }
-      console.log('[usePost] Fetching post with ID:', id)
+      console.log('[usePost] ===== Starting fetch for post ID:', id)
       const response = await fetch(`/api/posts/${id}`)
+
+      console.log('[usePost] Response status:', response.status)
+      console.log('[usePost] Response ok:', response.ok)
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}))
         const errorMsg = errorData.error || `HTTP ${response.status}`
         console.error('[usePost] API error:', errorMsg)
+        console.error('[usePost] Full error data:', errorData)
         throw new Error(`Failed to fetch post: ${errorMsg}`)
       }
+
       const data = await response.json()
-      console.log('[usePost] Successfully fetched post:', data.post)
+      console.log('[usePost] Raw API response:', data)
+      console.log('[usePost] Extracted post object:', data.post)
+
+      if (!data.post) {
+        console.error('[usePost] WARNING: API returned data but no post object!')
+        console.error('[usePost] Response keys:', Object.keys(data))
+        throw new Error('API returned invalid response: no post object found')
+      }
+
+      console.log('[usePost] Post ID from response:', data.post.id)
+      console.log('[usePost] Post title:', data.post.title)
+      console.log('[usePost] Post content exists:', !!data.post.content)
+      console.log('[usePost] Post content length:', data.post.content ? data.post.content.length : 0)
+      console.log('[usePost] ===== Successfully fetched post')
+
       return data.post as Post
     },
     enabled: !!id,

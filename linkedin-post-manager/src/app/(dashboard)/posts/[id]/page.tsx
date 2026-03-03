@@ -37,23 +37,38 @@ export default function EditPostPage() {
   const [isGeneratingImage, setIsGeneratingImage] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [imageError, setImageError] = useState(false)
+  const [formInitialized, setFormInitialized] = useState(false)
 
-  // Initialize form with post data - with defensive null checks
+  // Initialize form with post data - with defensive null checks and comprehensive logging
   useEffect(() => {
     if (post) {
-      console.log('Post data loaded:', post)
+      console.log('=== Post Editor: Post data loaded ===')
+      console.log('Post object:', post)
+      console.log('Post title:', post.title)
+      console.log('Post content:', post.content)
+      console.log('Post content length:', post.content ? post.content.length : 'null')
+      console.log('Post image_prompt:', post.image_prompt)
+      console.log('Post image_url:', post.image_url)
+
       setTitle(post.title || '')
       setContent(post.content || '')
       setImagePrompt(post.image_prompt || '')
       setImageUrl(post.image_url || null)
       setImageError(false)
+      setFormInitialized(true)
+
+      console.log('=== Form fields updated ===')
+    } else if (!isLoading) {
+      console.log('=== Post Editor: No post data, isLoading is false ===')
     }
-  }, [post])
+  }, [post, isLoading])
 
   // Log fetch errors
   useEffect(() => {
     if (fetchError) {
-      console.error('Error fetching post:', fetchError)
+      console.error('=== Post Editor: Error fetching post ===')
+      console.error('Fetch error:', fetchError)
+      console.error('Error message:', fetchError instanceof Error ? fetchError.message : 'Unknown error')
       setError(fetchError instanceof Error ? fetchError.message : 'Failed to load post')
     }
   }, [fetchError])
