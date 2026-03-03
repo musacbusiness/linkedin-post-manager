@@ -37,7 +37,6 @@ export default function EditPostPage() {
   const [isGeneratingImage, setIsGeneratingImage] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [imageError, setImageError] = useState(false)
-  const [formInitialized, setFormInitialized] = useState(false)
 
   // Initialize form with post data - with defensive null checks and comprehensive logging
   useEffect(() => {
@@ -55,7 +54,6 @@ export default function EditPostPage() {
       setImagePrompt(post.image_prompt || '')
       setImageUrl(post.image_url || null)
       setImageError(false)
-      setFormInitialized(true)
 
       console.log('=== Form fields updated ===')
     } else if (!isLoading) {
