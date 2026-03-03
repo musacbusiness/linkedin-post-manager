@@ -37,15 +37,65 @@ export default function GeneratePostPage() {
         throw new Error(errorData.error || 'Failed to generate post')
       }
 
-      const data = await response.json()
-      
-      showToast('success', 'Post generated', 'Your AI-generated post is ready for review')
-      
-      // Redirect to the edit page for the newly created post
-      if (data.post?.id) {
-        router.push(`/posts/${data.post.id}`)
-      } else {
-        router.push('/posts')
+      // Handle Server-Sent Events (SSE)
+      if (!response.body) {
+        throw new Error('No response body')
+      }
+
+      const reader = response.body.getReader()
+      const decoder = new TextDecoder()
+      let postId: string | null = null
+      let hasError = false
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+
+        const chunk = decoder.decode(value, { stream: true })
+        const lines = chunk.split('\n')
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const dataStr = line.slice(6)
+            try {
+              const eventData = JSON.parse(dataStr)
+
+              // Check for errors
+              if (eventData.stage === -1) {
+                hasError = true
+                setError(eventData.message)
+                throw new Error(eventData.message)
+              }
+
+              // Update progress
+              if (eventData.message) {
+                setProgress((prev) => [...prev, eventData.message])
+              }
+
+              // Capture post ID on success
+              if (eventData.stage === 7 && eventData.data?.postId) {
+                postId = eventData.data.postId
+              }
+            } catch (parseErr) {
+              if (parseErr instanceof SyntaxError) {
+                // Skip invalid JSON lines (could be empty or incomplete)
+                continue
+              }
+              throw parseErr
+            }
+          }
+        }
+      }
+
+      if (!hasError) {
+        showToast('success', 'Post generated', 'Your AI-generated post is ready for review')
+
+        // Redirect to the edit page for the newly created post
+        if (postId) {
+          router.push(`/posts/${postId}`)
+        } else {
+          router.push('/posts')
+        }
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to generate post'

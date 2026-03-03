@@ -10,8 +10,9 @@ import Link from 'next/link'
 import { usePosts, useDeletePost, useUpdatePost, useSchedulePost } from '@/hooks/use-posts'
 import { useRealtimePosts } from '@/hooks/use-realtime-posts'
 import { useState } from 'react'
-import { Search, Plus, Trash2, CheckCircle, XCircle, Calendar, Clock, Sparkles } from 'lucide-react'
+import { Search, Trash2, CheckCircle, XCircle, Calendar, Clock } from 'lucide-react'
 import { Post } from '@/types/post'
+import CreatePostMenu from '@/components/posts/create-post-menu'
 
 export default function PostsPage() {
   const [statusFilter, setStatusFilter] = useState<string>('all')
@@ -120,20 +121,7 @@ export default function PostsPage() {
           <h1 className="text-3xl font-bold text-white mb-2">Posts</h1>
           <p className="text-gray-400">Manage your LinkedIn posts</p>
         </div>
-        <div className="flex gap-3">
-          <Link href="/posts/generate">
-            <Button variant="secondary" className="gap-2">
-              <Sparkles className="w-5 h-5" />
-              Generate with AI
-            </Button>
-          </Link>
-          <Link href="/posts/new">
-            <Button variant="primary">
-              <Plus className="w-5 h-5 mr-2" />
-              Create Post
-            </Button>
-          </Link>
-        </div>
+        <CreatePostMenu />
       </div>
 
       {/* Filters */}
