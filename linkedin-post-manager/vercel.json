@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/posts/auto-post",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/posts/generate-batch",
+      "schedule": "0 9 * * *"
+    }
+  ]
+}
