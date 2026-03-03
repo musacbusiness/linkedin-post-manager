@@ -62,6 +62,9 @@ export default function EditPostPage() {
       console.log('Post content length:', post.post_content ? post.post_content.length : 'null')
       console.log('Post image_prompt:', post.image_prompt)
       console.log('Post image_url:', post.image_url)
+      console.log('Post status:', post.status)
+      console.log('Post status type:', typeof post.status)
+      console.log('Status === "Pending Review":', post.status === 'Pending Review')
 
       setTitle(post.title || '')
       setContent(post.post_content || '')
@@ -424,6 +427,14 @@ export default function EditPostPage() {
                     {(content || '').length} / 3000 characters
                   </p>
                 </div>
+
+                {/* Debug: Show actual status value */}
+                {post && (
+                  <div className="p-3 bg-gray-900 rounded-lg mb-4 text-xs">
+                    <p className="text-gray-500">Debug - Post Status: <span className="text-white font-mono">{post.status}</span></p>
+                    <p className="text-gray-500">Buttons visible: <span className="text-white">{post.status === 'Pending Review' ? 'YES' : 'NO'}</span></p>
+                  </div>
+                )}
 
                 {/* Approve/Reject Buttons (only for Pending Review) */}
                 {post && post.status === 'Pending Review' && (
