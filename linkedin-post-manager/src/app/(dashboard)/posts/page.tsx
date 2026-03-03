@@ -200,25 +200,6 @@ export default function PostsPage() {
           {safePosts.map((post) => (
             <Card key={post.id} hoverable>
               <div className="relative">
-                {/* Status Badge */}
-                <div className="absolute top-4 right-4 z-10">
-                  <span
-                    className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                      post.status === 'pending_review'
-                        ? 'bg-yellow-500/20 text-yellow-400'
-                        : post.status === 'approved'
-                        ? 'bg-green-500/20 text-green-400'
-                        : post.status === 'scheduled'
-                        ? 'bg-blue-500/20 text-blue-400'
-                        : post.status === 'posted'
-                        ? 'bg-purple-accent/20 text-purple-light'
-                        : 'bg-red-500/20 text-red-400'
-                    }`}
-                  >
-                    {post.status.replace('_', ' ')}
-                  </span>
-                </div>
-
                 {/* Image Preview */}
                 <div className="h-48 bg-gray-900 rounded-t-xl overflow-hidden relative">
                   {post.image_url ? (
@@ -237,9 +218,26 @@ export default function PostsPage() {
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold text-white mb-2 line-clamp-2">
-                    {post.title}
-                  </h3>
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-lg font-semibold text-white line-clamp-2 flex-1">
+                      {post.title}
+                    </h3>
+                    <span
+                      className={`px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap ml-2 ${
+                        post.status === 'pending_review'
+                          ? 'bg-yellow-500/20 text-yellow-400'
+                          : post.status === 'approved'
+                          ? 'bg-green-500/20 text-green-400'
+                          : post.status === 'scheduled'
+                          ? 'bg-blue-500/20 text-blue-400'
+                          : post.status === 'posted'
+                          ? 'bg-purple-accent/20 text-purple-light'
+                          : 'bg-red-500/20 text-red-400'
+                      }`}
+                    >
+                      {post.status.replace('_', ' ')}
+                    </span>
+                  </div>
                   <p className="text-sm text-gray-400 mb-4 line-clamp-3">
                     {post.post_content}
                   </p>

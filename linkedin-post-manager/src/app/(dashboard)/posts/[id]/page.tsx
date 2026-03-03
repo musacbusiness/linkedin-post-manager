@@ -256,7 +256,26 @@ export default function EditPostPage() {
         <div className="lg:col-span-3">
           <Card hoverable>
             <CardHeader>
-              <CardTitle>Post Content</CardTitle>
+              <div className="flex items-center justify-between mb-2">
+                <CardTitle>Post Content</CardTitle>
+                {post && (
+                  <span
+                    className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                      post.status === 'pending_review'
+                        ? 'bg-yellow-500/20 text-yellow-400'
+                        : post.status === 'approved'
+                        ? 'bg-green-500/20 text-green-400'
+                        : post.status === 'scheduled'
+                        ? 'bg-blue-500/20 text-blue-400'
+                        : post.status === 'posted'
+                        ? 'bg-purple-accent/20 text-purple-light'
+                        : 'bg-red-500/20 text-red-400'
+                    }`}
+                  >
+                    {post.status.replace('_', ' ')}
+                  </span>
+                )}
+              </div>
               <CardDescription>Edit your post details</CardDescription>
             </CardHeader>
             <CardContent>
