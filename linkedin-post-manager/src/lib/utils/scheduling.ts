@@ -56,14 +56,16 @@ export async function autoSchedulePost(
     let scheduledDateTime: Date | null = null
 
     // Look ahead up to 30 days to find an available slot
-    for (let daysAhead = 0; daysAhead < 30; daysAhead++) {
+    for (let daysAhead = 1; daysAhead < 30; daysAhead++) {  // Start from tomorrow (daysAhead = 1)
       const checkDate = new Date(now)
       checkDate.setDate(now.getDate() + daysAhead)
+      checkDate.setHours(0, 0, 0, 0)  // Reset to midnight
 
       // Try each window for this day
       for (const [startHour, endHour] of windows) {
-        // Random time within window (2-hour range)
-        const randomHour = Math.floor(Math.random() * (endHour - startHour)) + startHour
+        // Random time within window - pick random hour within range, then random minute
+        // For window [8, 10]: picks hour 8, 9 with any minute (up to 59)
+        const randomHour = startHour + Math.floor(Math.random() * (endHour - startHour))
         const randomMinute = Math.floor(Math.random() * 60)
 
         const candidateTime = new Date(checkDate)
