@@ -35,8 +35,11 @@ export async function middleware(request: NextRequest) {
   const authRoutes = ['/login', '/signup']
   const currentPath = request.nextUrl.pathname
 
+  // DEBUG MODE: Allow access to protected routes without auth for debugging
+  const debugMode = process.env.DEBUG_AUTH === 'true'
+
   // If user is not authenticated and trying to access protected route
-  if (!user && protectedRoutes.some(route => currentPath.startsWith(route))) {
+  if (!user && !debugMode && protectedRoutes.some(route => currentPath.startsWith(route))) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 

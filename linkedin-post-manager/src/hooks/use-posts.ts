@@ -54,8 +54,8 @@ export function usePost(id: string) {
 
       console.log('[usePost] Post ID from response:', data.post.id)
       console.log('[usePost] Post title:', data.post.title)
-      console.log('[usePost] Post content exists:', !!data.post.content)
-      console.log('[usePost] Post content length:', data.post.content ? data.post.content.length : 0)
+      console.log('[usePost] Post content exists:', !!data.post.post_content)
+      console.log('[usePost] Post content length:', data.post.post_content ? data.post.post_content.length : 0)
       console.log('[usePost] ===== Successfully fetched post')
 
       return data.post as Post

@@ -10,14 +10,19 @@ export async function GET(
     console.log('[API] GET /api/posts/[id] called with ID:', params.id)
     const supabase = await createClient()
 
-    // Check auth
+    // Check auth (skip in debug mode)
+    const debugMode = process.env.DEBUG_AUTH === 'true'
     const {
       data: { user },
     } = await supabase.auth.getUser()
 
-    if (!user) {
+    if (!user && !debugMode) {
       console.log('[API] No authenticated user found')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    if (!user && debugMode) {
+      console.log('[API] DEBUG MODE: Allowing unauthenticated access')
     }
 
     console.log('[API] Authenticated user ID:', user.id)
@@ -43,8 +48,8 @@ export async function GET(
     console.log('[API] Post object keys:', post ? Object.keys(post) : 'post is null')
     console.log('[API] Post ID:', post?.id)
     console.log('[API] Post title:', post?.title)
-    console.log('[API] Post content length:', post?.content ? post.content.length : 0)
-    console.log('[API] Post content exists:', !!post?.content)
+    console.log('[API] Post content length:', post?.post_content ? post.post_content.length : 0)
+    console.log('[API] Post content exists:', !!post?.post_content)
     console.log('[API] Returning response:', { post })
 
     return NextResponse.json({ post })

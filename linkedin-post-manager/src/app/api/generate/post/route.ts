@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
               .from('posts')
               .insert({
                 title: result.title,
-                content: result.content,
+                post_content: result.content,
                 image_prompt: result.imagePrompt,
                 status: 'pending_review',
               })

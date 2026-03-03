@@ -44,13 +44,13 @@ export default function EditPostPage() {
       console.log('=== Post Editor: Post data loaded ===')
       console.log('Post object:', post)
       console.log('Post title:', post.title)
-      console.log('Post content:', post.content)
-      console.log('Post content length:', post.content ? post.content.length : 'null')
+      console.log('Post content:', post.post_content)
+      console.log('Post content length:', post.post_content ? post.post_content.length : 'null')
       console.log('Post image_prompt:', post.image_prompt)
       console.log('Post image_url:', post.image_url)
 
       setTitle(post.title || '')
-      setContent(post.content || '')
+      setContent(post.post_content || '')
       setImagePrompt(post.image_prompt || '')
       setImageUrl(post.image_url || null)
       setImageError(false)
@@ -118,7 +118,7 @@ export default function EditPostPage() {
         id: postId,
         data: {
           title,
-          content,
+          post_content: content,
           image_prompt: imagePrompt || null,
         },
       })
