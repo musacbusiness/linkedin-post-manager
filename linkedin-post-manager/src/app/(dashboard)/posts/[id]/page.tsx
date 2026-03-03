@@ -156,7 +156,7 @@ export default function EditPostPage() {
     if (saveTimeoutId) clearTimeout(saveTimeoutId)
 
     // Set new timeout for auto-save
-    const newTimeoutId = router.refresh()
+    const newTimeoutId = setTimeout(() => {
       const saveTitle = autoSaveValues?.title ?? title
       const saveContent = autoSaveValues?.content ?? content
       const savePrompt = autoSaveValues?.prompt ?? imagePrompt
@@ -426,7 +426,7 @@ export default function EditPostPage() {
                 </div>
 
                 {/* Approve/Reject Buttons (only for Pending Review) */}
-                {post {post && post.status === 'Pending Review' && ({post && post.status === 'Pending Review' && ( post.status {post && post.status === 'Pending Review' && ({post && post.status === 'Pending Review' && ( post.status === 'Pending Review' && (
+                {post && post.status === 'Pending Review' && (
                   <div className="border-t border-gray-700 pt-6 mt-6">
                     <p className="text-sm text-gray-400 mb-3">Review & Approve</p>
                     <div className="flex gap-3">
