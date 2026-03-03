@@ -361,13 +361,13 @@ export default function EditPostPage() {
                 {post && (
                   <span
                     className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                      post.status === 'pending_review'
+                      post.status === 'Pending Review'
                         ? 'bg-yellow-500/20 text-yellow-400'
-                        : post.status === 'approved'
+                        : post.status === 'Approved'
                         ? 'bg-green-500/20 text-green-400'
-                        : post.status === 'scheduled'
+                        : post.status === 'Scheduled'
                         ? 'bg-blue-500/20 text-blue-400'
-                        : post.status === 'posted'
+                        : post.status === 'Posted'
                         ? 'bg-purple-accent/20 text-purple-light'
                         : 'bg-red-500/20 text-red-400'
                     }`}

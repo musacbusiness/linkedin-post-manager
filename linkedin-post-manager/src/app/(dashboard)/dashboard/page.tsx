@@ -14,8 +14,8 @@ export default function DashboardPage() {
   // Calculate stats from real data
   const stats = useMemo(() => {
     const totalPosts = posts.length
-    const scheduledPosts = posts.filter(p => p.status === 'scheduled').length
-    const postedPosts = posts.filter(p => p.status === 'posted').length
+    const scheduledPosts = posts.filter(p => p.status === 'Scheduled').length
+    const postedPosts = posts.filter(p => p.status === 'Posted').length
 
     return [
       {
@@ -42,7 +42,7 @@ export default function DashboardPage() {
         title: 'Posted',
         value: postedPosts.toString(),
         description: `${posts.filter(p => {
-          if (p.status !== 'posted') return false
+          if (p.status !== 'Posted') return false
           const postedDate = p.posted_at ? new Date(p.posted_at) : null
           if (!postedDate) return false
           const now = new Date()
@@ -55,7 +55,7 @@ export default function DashboardPage() {
       },
       {
         title: 'Pending Review',
-        value: posts.filter(p => p.status === 'pending_review').length.toString(),
+        value: posts.filter(p => p.status === 'Pending Review').length.toString(),
         description: 'Awaiting approval',
         icon: TrendingUp,
         color: 'amber',
@@ -223,13 +223,13 @@ export default function DashboardPage() {
                     <div className="flex items-center gap-3 mt-2">
                       <span
                         className={`px-2 py-0.5 text-xs font-medium rounded ${
-                          post.status === 'pending_review'
+                          post.status === 'Pending Review'
                             ? 'bg-yellow-500/20 text-yellow-400'
-                            : post.status === 'approved'
+                            : post.status === 'Approved'
                             ? 'bg-green-500/20 text-green-400'
-                            : post.status === 'scheduled'
+                            : post.status === 'Scheduled'
                             ? 'bg-blue-500/20 text-blue-400'
-                            : post.status === 'posted'
+                            : post.status === 'Posted'
                             ? 'bg-purple-accent/20 text-purple-light'
                             : 'bg-red-500/20 text-red-400'
                         }`}

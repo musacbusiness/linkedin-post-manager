@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (search) {
-      query = query.or(`title.ilike.%${search}%,content.ilike.%${search}%`)
+      query = query.or(`title.ilike.%${search}%,post_content.ilike.%${search}%`)
     }
 
     const { data: posts, error } = await query
@@ -67,24 +67,24 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { title, content, image_prompt } = body
+    const { title, post_content, image_prompt } = body
 
     // Validate input
-    if (!title || !content) {
+    if (!title || !post_content) {
       return NextResponse.json(
         { error: 'Title and content are required' },
         { status: 400 }
       )
     }
 
-    // Insert post
+    // Insert post with Pending Review status (matching existing posts)
     const { data: post, error } = await supabase
       .from('posts')
       .insert({
         title,
-        content,
+        post_content,
         image_prompt: image_prompt || null,
-        status: 'pending_review',
+        status: 'Pending Review',
       })
       .select()
       .single()

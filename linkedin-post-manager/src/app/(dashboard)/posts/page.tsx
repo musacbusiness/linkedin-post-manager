@@ -11,7 +11,6 @@ import { usePosts, useDeletePost } from '@/hooks/use-posts'
 import { useRealtimePosts } from '@/hooks/use-realtime-posts'
 import { useState } from 'react'
 import { Search, Trash2 } from 'lucide-react'
-import { Post } from '@/types/post'
 import CreatePostMenu from '@/components/posts/create-post-menu'
 
 export default function PostsPage() {

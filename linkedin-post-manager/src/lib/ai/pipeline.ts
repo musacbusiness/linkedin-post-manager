@@ -1,5 +1,3 @@
-import Anthropic from '@anthropic-ai/sdk'
-
 export interface PipelineProgress {
   stage: number
   stageName: string
@@ -23,10 +21,48 @@ export interface PipelineResult {
 }
 
 export class PostGenerationPipeline {
-  private anthropic: any
+  private apiKey: string
 
   constructor(apiKey: string) {
-    this.anthropic = new Anthropic({ apiKey })
+    if (!apiKey) {
+      throw new Error('Anthropic API key is required')
+    }
+    this.apiKey = apiKey
+    console.log('PostGenerationPipeline initialized successfully')
+  }
+
+  private async callAnthropicAPI(userMessage: string): Promise<string> {
+    // Log to help with debugging
+    const keyPrefix = this.apiKey.substring(0, 10)
+    console.log(`[Anthropic API] Calling with key prefix: ${keyPrefix}...`)
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': this.apiKey,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-opus-4-1',
+        max_tokens: 1024,
+        messages: [{
+          role: 'user',
+          content: userMessage,
+        }],
+      }),
+    })
+
+    if (!response.ok) {
+      const error = await response.json()
+      console.error(`[Anthropic API] Error response:`, error)
+      throw new Error(`Anthropic API error: ${error.error?.message || response.statusText}`)
+    }
+
+    const data = await response.json()
+    const text = data.content[0]?.text || ''
+    console.log(`[Anthropic API] Success, received ${text.length} characters`)
+    return text.trim()
   }
 
   async run(
@@ -103,23 +139,15 @@ export class PostGenerationPipeline {
   }
 
   private async selectTopic(profile: UserProfile): Promise<string> {
-    const message = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 500,
-      messages: [{
-        role: 'user',
-        content: `Select a relevant LinkedIn post topic for a professional with:
+    const prompt = `Select a relevant LinkedIn post topic for a professional with:
 - Expertise: ${profile.expertise || 'technology'}
 - Target audience: ${profile.targetAudience || 'professionals'}
 - Tone: ${profile.tone || 'professional'}
 ${profile.pastTopics?.length ? `- Past topics: ${profile.pastTopics.join(', ')}` : ''}
 
 Return ONLY the topic (one sentence, no explanation).`
-      }]
-    })
 
-    const text = message.content[0].type === 'text' ? message.content[0].text : ''
-    return text.trim()
+    return await this.callAnthropicAPI(prompt)
   }
 
   private async conductResearch(topic: string, _profile: UserProfile): Promise<{
@@ -127,12 +155,7 @@ Return ONLY the topic (one sentence, no explanation).`
     useCases: string[]
     dataPoints: string[]
   }> {
-    const message = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 1500,
-      messages: [{
-        role: 'user',
-        content: `Research this LinkedIn post topic: "${topic}"
+    const prompt = `Research this LinkedIn post topic: "${topic}"
 
 Provide:
 1. 3-5 key points
@@ -145,10 +168,8 @@ Format as JSON:
   "useCases": [...],
   "dataPoints": [...]
 }`
-      }]
-    })
 
-    const text = message.content[0].type === 'text' ? message.content[0].text : '{}'
+    const text = await this.callAnthropicAPI(prompt)
     const jsonMatch = text.match(/\{[\s\S]*\}/)
     if (!jsonMatch) {
       throw new Error('Failed to parse research output')
@@ -157,21 +178,13 @@ Format as JSON:
   }
 
   private async selectFramework(topic: string, _research: any): Promise<string> {
-    const message = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 300,
-      messages: [{
-        role: 'user',
-        content: `Choose the best LinkedIn post framework for this topic: "${topic}"
+    const prompt = `Choose the best LinkedIn post framework for this topic: "${topic}"
 
 Options: AIDA (Attention-Interest-Desire-Action), PAS (Problem-Agitate-Solution), Story, VSQ (Value-Statistics-Quote)
 
 Return ONLY the framework name (one word).`
-      }]
-    })
 
-    const text = message.content[0].type === 'text' ? message.content[0].text : ''
-    return text.trim()
+    return await this.callAnthropicAPI(prompt)
   }
 
   private async generateContent(
@@ -180,12 +193,7 @@ Return ONLY the framework name (one word).`
     framework: string,
     profile: UserProfile
   ): Promise<string> {
-    const message = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 2000,
-      messages: [{
-        role: 'user',
-        content: `Write a compelling LinkedIn post about: "${topic}"
+    const prompt = `Write a compelling LinkedIn post about: "${topic}"
 
 Research:
 ${research.keyPoints.map((p: string, i: number) => `${i + 1}. ${p}`).join('\n')}
@@ -207,20 +215,12 @@ Requirements:
 - NO emojis
 
 Return ONLY the post content (no metadata or explanations).`
-      }]
-    })
 
-    const text = message.content[0].type === 'text' ? message.content[0].text : ''
-    return text.trim()
+    return await this.callAnthropicAPI(prompt)
   }
 
   private async generateImagePrompt(topic: string, content: string): Promise<string> {
-    const message = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 500,
-      messages: [{
-        role: 'user',
-        content: `Create a detailed image prompt for this LinkedIn post topic: "${topic}"
+    const prompt = `Create a detailed image prompt for this LinkedIn post topic: "${topic}"
 
 Post preview: ${content.substring(0, 300)}...
 
@@ -231,11 +231,8 @@ Requirements:
 - Photorealistic or clean illustration
 
 Return ONLY the image prompt (one paragraph, no explanation).`
-      }]
-    })
 
-    const text = message.content[0].type === 'text' ? message.content[0].text : ''
-    return text.trim()
+    return await this.callAnthropicAPI(prompt)
   }
 
   private async qualityControl(content: string, framework: string): Promise<{
@@ -243,12 +240,7 @@ Return ONLY the image prompt (one paragraph, no explanation).`
     score: number
     issues: string[]
   }> {
-    const message = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 1000,
-      messages: [{
-        role: 'user',
-        content: `Evaluate this LinkedIn post for quality:
+    const prompt = `Evaluate this LinkedIn post for quality:
 
 "${content}"
 
@@ -268,10 +260,8 @@ Format as JSON:
   "score": number (average score),
   "issues": ["list of issues if any"]
 }`
-      }]
-    })
 
-    const text = message.content[0].type === 'text' ? message.content[0].text : '{}'
+    const text = await this.callAnthropicAPI(prompt)
     const jsonMatch = text.match(/\{[\s\S]*\}/)
     if (!jsonMatch) {
       return { compliant: true, score: 8.5, issues: [] }
@@ -285,12 +275,7 @@ Format as JSON:
     framework: string,
     profile: UserProfile
   ): Promise<string> {
-    const message = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 2000,
-      messages: [{
-        role: 'user',
-        content: `Improve this LinkedIn post to address these issues:
+    const prompt = `Improve this LinkedIn post to address these issues:
 
 Original post:
 "${content}"
@@ -302,10 +287,7 @@ Framework: ${framework}
 Tone: ${profile.tone || 'professional'}
 
 Return ONLY the improved post content (no metadata or explanations).`
-      }]
-    })
 
-    const text = message.content[0].type === 'text' ? message.content[0].text : ''
-    return text.trim()
+    return await this.callAnthropicAPI(prompt)
   }
 }

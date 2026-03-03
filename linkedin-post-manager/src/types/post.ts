@@ -1,9 +1,9 @@
 export type PostStatus =
-  | 'pending_review'
-  | 'approved'
-  | 'scheduled'
-  | 'posted'
-  | 'rejected'
+  | 'Pending Review'
+  | 'Approved'
+  | 'Scheduled'
+  | 'Posted'
+  | 'Rejected'
 
 export interface Post {
   id: string

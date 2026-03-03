@@ -50,14 +50,14 @@ export async function POST(request: NextRequest) {
           })
 
           if (result.success) {
-            // Save generated post to Supabase
+            // Save generated post to Supabase with Pending Review status
             const { data: newPost, error: insertError } = await supabase
               .from('posts')
               .insert({
                 title: result.title,
                 post_content: result.content,
                 image_prompt: result.imagePrompt,
-                status: 'pending_review',
+                status: 'Pending Review',
               })
               .select()
               .single()
