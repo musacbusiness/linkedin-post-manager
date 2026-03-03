@@ -25,8 +25,8 @@ export async function autoSchedulePost(
     // Get all scheduled posts for conflict checking
     const { data: allPosts, error: fetchError } = await supabase
       .from('posts')
-      .select('scheduled_for')
-      .not('scheduled_for', 'is', null)
+      .select('scheduled_time')
+      .not('scheduled_time', 'is', null)
 
     if (fetchError) {
       console.error('Error fetching posts:', fetchError)
@@ -36,9 +36,9 @@ export async function autoSchedulePost(
     // Extract scheduled times
     const scheduledTimes: Date[] = []
     for (const post of allPosts || []) {
-      if (post.scheduled_for) {
+      if (post.scheduled_time) {
         try {
-          scheduledTimes.push(new Date(post.scheduled_for))
+          scheduledTimes.push(new Date(post.scheduled_time))
         } catch {
           // Skip invalid dates
         }
@@ -102,12 +102,12 @@ export async function autoSchedulePost(
       }
     }
 
-    // Update post with scheduled time and Scheduled status
+    // Update post with scheduled time and scheduled status
     const { error: updateError } = await supabase
       .from('posts')
       .update({
-        status: 'scheduled',
-        scheduled_for: scheduledDateTime.toISOString(),
+        status: 'Scheduled',
+        scheduled_time: scheduledDateTime.toISOString(),
         updated_at: new Date().toISOString()
       })
       .eq('id', postId)

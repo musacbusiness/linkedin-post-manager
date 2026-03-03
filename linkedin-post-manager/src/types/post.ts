@@ -12,7 +12,7 @@ export interface Post {
   image_url: string | null
   image_prompt: string | null
   status: PostStatus
-  scheduled_for?: string | null
+  scheduled_time?: string | null
   posted_at?: string | null
   created_at: string
   updated_at: string
@@ -37,5 +37,5 @@ export interface UpdatePostInput {
   image_url?: string | null
   image_prompt?: string | null
   status?: PostStatus
-  scheduled_for?: string | null
+  scheduled_time?: string | null
 }

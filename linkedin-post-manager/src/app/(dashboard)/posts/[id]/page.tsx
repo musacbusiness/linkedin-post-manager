@@ -9,7 +9,8 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { usePost, useUpdatePost } from '@/hooks/use-posts'
-import { Sparkles, Loader2, Image as ImageIcon } from 'lucide-react'
+import { Sparkles, Loader2, Image as ImageIcon, CheckCircle, XCircle } from 'lucide-react'
+import { useToast } from '@/components/ui/toast'
 
 export default function EditPostPage() {
   const params = useParams()
@@ -37,6 +38,19 @@ export default function EditPostPage() {
   const [isGeneratingImage, setIsGeneratingImage] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [imageError, setImageError] = useState(false)
+  const [isApprovingOrRejecting, setIsApprovingOrRejecting] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
+  const [saveTimeoutId, setSaveTimeoutId] = useState<NodeJS.Timeout | null>(null)
+
+  // Defensive: wrap useToast in try-catch
+  let showToast: ((type: any, title: string, message?: string) => void) | null = null
+  try {
+    const toastHook = useToast()
+    showToast = toastHook?.showToast || null
+  } catch (err) {
+    console.error('useToast error:', err)
+    showToast = () => {} // Fallback no-op function
+  }
 
   // Initialize form with post data - with defensive null checks and comprehensive logging
   useEffect(() => {
@@ -109,23 +123,109 @@ export default function EditPostPage() {
     }
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
+  // Auto-save with debounce
+  const autoSave = async (titleVal: string, contentVal: string, promptVal: string) => {
+    if (!titleVal || !contentVal) return // Don't save empty fields
+
+    setIsSaving(true)
+    try {
+      await updatePost.mutateAsync({
+        id: postId,
+        data: {
+          title: titleVal,
+          post_content: contentVal,
+          image_prompt: promptVal || null,
+        },
+      })
+    } catch (err) {
+      console.error('Auto-save error:', err)
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  // Handle field changes with debounced auto-save
+  const handleFieldChange = (
+    setter: (value: string) => void,
+    value: string,
+    autoSaveValues?: { title?: string; content?: string; prompt?: string }
+  ) => {
+    setter(value)
+
+    // Clear existing timeout
+    if (saveTimeoutId) clearTimeout(saveTimeoutId)
+
+    // Set new timeout for auto-save
+    const newTimeoutId = setTimeout(() => {
+      const saveTitle = autoSaveValues?.title ?? title
+      const saveContent = autoSaveValues?.content ?? content
+      const savePrompt = autoSaveValues?.prompt ?? imagePrompt
+      autoSave(saveTitle, saveContent, savePrompt)
+    }, 1500) // Save 1.5 seconds after user stops typing
+
+    setSaveTimeoutId(newTimeoutId)
+  }
+
+  async function handleApprove() {
+    setIsApprovingOrRejecting(true)
+    setError(null)
+
+    try {
+      const response = await fetch(`/api/posts/${postId}/approve`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to approve post')
+      }
+
+      const data = await response.json()
+      if (showToast) {
+        showToast('success', 'Post approved', `Scheduled for ${new Date(data.scheduledTime).toLocaleString()}`)
+      }
+
+      // Refresh post data
+      setTimeout(() => {
+        router.refresh()
+      }, 500)
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to approve post'
+      setError(errorMessage)
+      if (showToast) {
+        showToast('error', 'Approval failed', errorMessage)
+      }
+    } finally {
+      setIsApprovingOrRejecting(false)
+    }
+  }
+
+  async function handleReject() {
+    setIsApprovingOrRejecting(true)
     setError(null)
 
     try {
       await updatePost.mutateAsync({
         id: postId,
-        data: {
-          title,
-          post_content: content,
-          image_prompt: imagePrompt || null,
-        },
+        data: { status: 'Rejected' },
       })
 
-      router.push('/posts')
+      if (showToast) {
+        showToast('warning', 'Post rejected', 'The post has been marked as rejected')
+      }
+
+      setTimeout(() => {
+        router.refresh()
+      }, 500)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update post')
+      const errorMessage = err instanceof Error ? err.message : 'Failed to reject post'
+      setError(errorMessage)
+      if (showToast) {
+        showToast('error', 'Rejection failed', errorMessage)
+      }
+    } finally {
+      setIsApprovingOrRejecting(false)
     }
   }
 
@@ -279,7 +379,16 @@ export default function EditPostPage() {
               <CardDescription>Edit your post details</CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-6">
+                {/* Auto-save Status */}
+                <div className="flex items-center justify-between px-3 py-2 bg-gray-900/50 rounded-lg">
+                  <p className="text-xs text-gray-400">Auto-saving</p>
+                  <div className="flex items-center gap-2">
+                    {isSaving && <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>}
+                    <span className="text-xs text-gray-500">{isSaving ? 'Saving...' : 'All changes saved'}</span>
+                  </div>
+                </div>
+
                 {/* Error Message */}
                 {error && (
                   <div className="p-4 bg-red-900/20 border border-red-700 rounded-lg">
@@ -297,7 +406,7 @@ export default function EditPostPage() {
                     type="text"
                     placeholder="Enter post title..."
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => handleFieldChange(setTitle, e.target.value, { title: e.target.value })}
                     required
                   />
                 </div>
@@ -311,7 +420,7 @@ export default function EditPostPage() {
                     id="content"
                     placeholder="Write your post content here..."
                     value={content}
-                    onChange={(e) => setContent(e.target.value)}
+                    onChange={(e) => handleFieldChange(setContent, e.target.value, { content: e.target.value })}
                     rows={12}
                     required
                   />
@@ -320,25 +429,33 @@ export default function EditPostPage() {
                   </p>
                 </div>
 
-                {/* Actions */}
-                <div className="flex gap-4 pt-4">
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    isLoading={updatePost.isPending}
-                  >
-                    {updatePost.isPending ? 'Saving...' : 'Save Changes'}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    onClick={() => router.back()}
-                    disabled={updatePost.isPending}
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </form>
+                {/* Approve/Reject Buttons (only for Pending Review) */}
+                {post && post.status === 'Pending Review' && (
+                  <div className="border-t border-gray-700 pt-6 mt-6">
+                    <p className="text-sm text-gray-400 mb-3">Review & Approve</p>
+                    <div className="flex gap-3">
+                      <button
+                        type="button"
+                        onClick={handleApprove}
+                        disabled={isApprovingOrRejecting}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-accent to-purple-light hover:from-purple-light hover:to-purple-accent text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
+                      >
+                        <CheckCircle className="w-5 h-5" />
+                        {isApprovingOrRejecting ? 'Approving...' : 'Approve & Schedule'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleReject}
+                        disabled={isApprovingOrRejecting}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
+                      >
+                        <XCircle className="w-5 h-5" />
+                        {isApprovingOrRejecting ? 'Rejecting...' : 'Reject'}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </CardContent>
           </Card>
         </div>
