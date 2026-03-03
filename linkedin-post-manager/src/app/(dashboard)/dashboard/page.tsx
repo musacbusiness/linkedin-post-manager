@@ -55,7 +55,7 @@ export default function DashboardPage() {
       },
       {
         title: 'Pending Review',
-        value: posts.filter(p => p.status === 'pending_review').toString(),
+        value: posts.filter(p => p.status === 'pending_review').length.toString(),
         description: 'Awaiting approval',
         icon: TrendingUp,
         color: 'amber',
