@@ -34,7 +34,7 @@ export default function NewPostPage() {
     try {
       await createPost.mutateAsync({
         title: title.trim(),
-        content: content.trim(),
+        post_content: content.trim(),
         image_prompt: imagePrompt.trim() || undefined,
       })
 

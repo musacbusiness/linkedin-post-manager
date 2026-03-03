@@ -25,7 +25,9 @@ export async function GET(
       console.log('[API] DEBUG MODE: Allowing unauthenticated access')
     }
 
-    console.log('[API] Authenticated user ID:', user.id)
+    if (user) {
+      console.log('[API] Authenticated user ID:', user.id)
+    }
     console.log('[API] Querying posts table for post ID:', params.id)
 
     const { data: post, error } = await supabase
