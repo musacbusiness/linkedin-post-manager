@@ -17,7 +17,7 @@ export default function CalendarPage() {
   // Enable real-time updates
   useRealtimePosts()
 
-  const { data: posts } = usePosts({ status: 'scheduled' })
+  const { data: posts } = usePosts({ status: 'Scheduled' })
 
   // Get calendar data for current month
   const calendarData = useMemo(() => {
@@ -40,8 +40,8 @@ export default function CalendarPage() {
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(year, month, day)
       const postsOnDate = posts?.filter((post) => {
-        if (!post.scheduled_for) return false
-        const postDate = new Date(post.scheduled_for)
+        if (!post.scheduled_time) return false
+        const postDate = new Date(post.scheduled_time)
         return (
           postDate.getDate() === day &&
           postDate.getMonth() === month &&
@@ -69,16 +69,16 @@ export default function CalendarPage() {
     if (!selectedDate || !posts) return []
 
     return posts.filter((post) => {
-      if (!post.scheduled_for) return false
-      const postDate = new Date(post.scheduled_for)
+      if (!post.scheduled_time) return false
+      const postDate = new Date(post.scheduled_time)
       return (
         postDate.getDate() === selectedDate.getDate() &&
         postDate.getMonth() === selectedDate.getMonth() &&
         postDate.getFullYear() === selectedDate.getFullYear()
       )
     }).sort((a, b) => {
-      const timeA = new Date(a.scheduled_for!).getTime()
-      const timeB = new Date(b.scheduled_for!).getTime()
+      const timeA = new Date(a.scheduled_time!).getTime()
+      const timeB = new Date(b.scheduled_time!).getTime()
       return timeA - timeB
     })
   }, [selectedDate, posts])
@@ -236,7 +236,7 @@ export default function CalendarPage() {
                               {post.title}
                             </p>
                             <p className="text-xs text-gray-500">
-                              {new Date(post.scheduled_for!).toLocaleTimeString('en-US', {
+                              {new Date(post.scheduled_time!).toLocaleTimeString('en-US', {
                                 hour: 'numeric',
                                 minute: '2-digit',
                               })}
