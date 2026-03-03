@@ -73,10 +73,54 @@ export async function POST(request: NextRequest) {
 
     console.log('Image generated successfully:', imageUrl)
 
-    // Return the Replicate URL directly
-    // Replicate URLs are persistent CDN URLs that don't expire immediately
-    // This is simpler than uploading to Supabase and avoids reliability issues
-    return NextResponse.json({ imageUrl })
+    // Upload the image to Supabase Storage
+    try {
+      console.log('Uploading image to Supabase Storage...')
+
+      // Fetch the image from Replicate
+      const imageResponse = await fetch(imageUrl)
+      if (!imageResponse.ok) {
+        throw new Error(`Failed to fetch image from Replicate: ${imageResponse.statusText}`)
+      }
+
+      const imageBuffer = await imageResponse.arrayBuffer()
+      console.log('Image fetched from Replicate, size:', imageBuffer.byteLength, 'bytes')
+
+      // Generate unique filename with timestamp
+      const timestamp = Date.now()
+      const filename = `generated-${timestamp}-${Math.random().toString(36).substring(7)}.png`
+      const filepath = filename
+
+      // Upload to Supabase Storage
+      const { data, error } = await supabase.storage
+        .from('generated-images')
+        .upload(filepath, Buffer.from(imageBuffer), {
+          contentType: 'image/png',
+          upsert: false,
+        })
+
+      if (error) {
+        console.error('Supabase upload error:', error)
+        throw new Error(`Failed to upload to Supabase: ${error.message}`)
+      }
+
+      console.log('Image uploaded to Supabase:', data)
+
+      // Get the public URL
+      const { data: publicData } = supabase.storage
+        .from('generated-images')
+        .getPublicUrl(filepath)
+
+      const supabaseImageUrl = publicData.publicUrl
+      console.log('Supabase image URL:', supabaseImageUrl)
+
+      return NextResponse.json({ imageUrl: supabaseImageUrl })
+    } catch (uploadError) {
+      console.error('Error uploading to Supabase Storage:', uploadError)
+      // Fallback to Replicate URL if Supabase upload fails
+      console.log('Falling back to Replicate URL due to upload error')
+      return NextResponse.json({ imageUrl })
+    }
   } catch (error) {
     console.error('Image generation error:', error)
     return NextResponse.json(
