@@ -328,3 +328,46 @@ See DEPLOYMENT_GUIDE.md for detailed instructions.
 - **Validate input** at API boundaries, use Zod for runtime validation
 - **Sanitize output** to prevent XSS, especially for user-generated content
 - **Check auth** in Server Components and middleware before processing sensitive data
+
+## Agent Task Completion Policy
+
+**When a prompt is provided, the agent MUST complete absolutely every task it can do autonomously. Only escalate/defer tasks to the user that the agent cannot complete.**
+
+### What This Means
+
+1. **Execute fully**: Don't stop at planning, understanding, or asking questions. Execute the implementation end-to-end.
+2. **Use all available tools**: Use Read, Glob, Grep, Bash, Edit, Write, and specialized agents (Explore, Plan) to accomplish tasks.
+3. **Fix, don't report**: If you find bugs or issues while executing, fix them immediately instead of just reporting them.
+4. **Run tests and verify**: After making changes, run tests, lint checks, type checking, and manual verification to ensure the work is complete and correct.
+5. **Create commits**: Commit your work to git with proper commit messages (follow conventional commits format).
+6. **Only defer when blocked**: Only ask the user or defer work if:
+   - The task requires external credentials (API keys, secrets) that aren't configured
+   - The task requires user decisions on design/approach that weren't specified
+   - The task requires capabilities outside the agent's scope (e.g., running a physical device test)
+   - A pre-condition is missing (e.g., a dependency isn't installed and can't be installed)
+
+### High-Autonomy Execution Pattern
+
+Follow this pattern for every prompt:
+1. **Understand**: Quickly assess what's being asked
+2. **Plan** (if complex): Use the Plan agent to design the approach, then proceed without waiting for approval
+3. **Execute**: Implement immediately using all available tools
+4. **Verify**: Test the changes work as intended
+5. **Commit**: Save work to git
+6. **Report**: Summarize what was done
+
+### Examples of Full Completion
+
+- **"Add a new feature"** → Design + implement + test + commit. Don't ask "should I proceed?"
+- **"Debug this error"** → Find the bug, fix it, verify the fix, commit. Don't just report the bug.
+- **"Refactor this code"** → Read, refactor, test, lint, commit. Do the full job.
+- **"Create a script"** → Write the script, test it, commit it. Deliver a complete working solution.
+
+### When to Escalate
+
+Only escalate if one of these is true:
+- User hasn't provided required credentials (missing `NEXT_PUBLIC_SUPABASE_URL`, etc.)
+- Design decision wasn't specified ("should the button be red or blue?")
+- Major architectural choice needed that impacts multiple systems
+- External service is unavailable and task requires it
+- Task requires privileged operations the agent can't perform
