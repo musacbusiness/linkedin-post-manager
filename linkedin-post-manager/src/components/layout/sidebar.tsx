@@ -41,7 +41,7 @@ export function Sidebar({ onSignOut }: SidebarProps) {
     },
     {
       href: '/system-health',
-      label: 'System Health',
+      label: 'System Health & Settings',
       icon: Activity,
     },
   ]

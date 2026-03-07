@@ -56,6 +56,9 @@ export function usePost(id: string) {
       console.log('[usePost] Post title:', data.post.title)
       console.log('[usePost] Post content exists:', !!data.post.post_content)
       console.log('[usePost] Post content length:', data.post.post_content ? data.post.post_content.length : 0)
+      console.log('[usePost] Post status:', data.post.status)
+      console.log('[usePost] Post status type:', typeof data.post.status)
+      console.log('[usePost] Status === "Pending Review":', data.post.status === 'Pending Review')
       console.log('[usePost] ===== Successfully fetched post')
 
       return data.post as Post

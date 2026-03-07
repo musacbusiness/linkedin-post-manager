@@ -1,8 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 
-const MAKE_COM_WEBHOOK = 'https://hook.us2.make.com/yr7mo2xefqdjsr3vt6i44tgvajw22i09'
-
 // POST /api/posts/[id]/send - Send a post to make.com and mark as Posted
 export async function POST(
   _request: NextRequest,
@@ -18,6 +16,16 @@ export async function POST(
 
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    // Get webhook URL from env var
+    const MAKE_COM_WEBHOOK = process.env.MAKE_WEBHOOK_URL
+    if (!MAKE_COM_WEBHOOK) {
+      console.error('[POST /send] MAKE_WEBHOOK_URL env var not set')
+      return NextResponse.json(
+        { error: 'Webhook URL not configured' },
+        { status: 500 }
+      )
     }
 
     // Fetch the post

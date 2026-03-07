@@ -12,10 +12,11 @@ interface ScheduleResult {
  * Scheduling windows (user's local timezone):
  * - 8:00 AM - 10:00 AM
  * - 12:00 PM - 2:00 PM
- * - 5:00 PM - 7:00 PM
+ * - 5:00 PM - 8:00 PM
  *
- * Ensures 30-minute buffer between posts
- * Searches up to 30 days ahead for available slot
+ * Enforces exactly 1 post per window per day.
+ * Searches up to 30 days ahead for available slot.
+ * Naturally fills vacated slots (freed windows become earliest candidates).
  */
 export async function autoSchedulePost(
   supabase: SupabaseClient,
@@ -49,45 +50,37 @@ export async function autoSchedulePost(
     const windows = [
       [8, 10],   // 8:00 AM - 10:00 AM
       [12, 14],  // 12:00 PM - 2:00 PM
-      [17, 19],  // 5:00 PM - 7:00 PM
+      [17, 20],  // 5:00 PM - 8:00 PM
     ]
 
     const now = new Date()
     let scheduledDateTime: Date | null = null
 
     // Look ahead up to 30 days to find an available slot
-    for (let daysAhead = 1; daysAhead < 30; daysAhead++) {  // Start from tomorrow (daysAhead = 1)
+    for (let daysAhead = 1; daysAhead < 30; daysAhead++) {
       const checkDate = new Date(now)
       checkDate.setDate(now.getDate() + daysAhead)
       checkDate.setHours(0, 0, 0, 0)  // Reset to midnight
 
       // Try each window for this day
       for (const [startHour, endHour] of windows) {
-        // Random time within window - pick random hour within range, then random minute
-        // For window [8, 10]: picks hour 8, 9 with any minute (up to 59)
-        const randomHour = startHour + Math.floor(Math.random() * (endHour - startHour))
-        const randomMinute = Math.floor(Math.random() * 60)
+        const windowStart = new Date(checkDate)
+        windowStart.setHours(startHour, 0, 0, 0)
+        const windowEnd = new Date(checkDate)
+        windowEnd.setHours(endHour, 0, 0, 0)
 
-        const candidateTime = new Date(checkDate)
-        candidateTime.setHours(randomHour, randomMinute, 0, 0)
+        // Check if this window already has a post scheduled
+        const windowOccupied = scheduledTimes.some(
+          (t) => t >= windowStart && t < windowEnd
+        )
 
-        // Skip past times
-        if (candidateTime <= now) {
-          continue
-        }
+        if (!windowOccupied) {
+          // Pick a random time within the window
+          const randomHour = startHour + Math.floor(Math.random() * (endHour - startHour))
+          const randomMinute = Math.floor(Math.random() * 60)
 
-        // Check if slot is available (no post within 30 minutes)
-        let slotAvailable = true
-        for (const existingTime of scheduledTimes) {
-          const timeDiff = Math.abs(candidateTime.getTime() - existingTime.getTime())
-          if (timeDiff < 1800000) {  // 30 minutes in milliseconds
-            slotAvailable = false
-            break
-          }
-        }
-
-        if (slotAvailable) {
-          scheduledDateTime = candidateTime
+          scheduledDateTime = new Date(checkDate)
+          scheduledDateTime.setHours(randomHour, randomMinute, 0, 0)
           break
         }
       }

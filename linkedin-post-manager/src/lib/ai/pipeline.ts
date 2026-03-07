@@ -20,6 +20,41 @@ export interface PipelineResult {
   error?: string
 }
 
+export interface QualityCriterion {
+  name: string
+  description: string
+}
+
+export interface PipelineSettings {
+  // Stage 1: Topic Selection
+  topicExpertise: string
+  topicAudience: string
+  topicTone: string
+  topicPastTopics: string[]
+  topicCustomPool: string[]
+  // Stage 2: Research
+  researchSources: string[]
+  // Stage 3: Framework Selection
+  frameworkAllowed: string[]
+  frameworkForced: string | null
+  // Stage 4: Content Generation
+  contentMinChars: number
+  contentMaxChars: number
+  contentHookChars: number
+  contentAllowHashtags: boolean
+  contentAllowEmojis: boolean
+  contentCtaGuidance: string
+  // Stage 5: Image Prompt
+  imageStyle: string
+  imageExtraRequirements: string
+  // Stage 6: Quality Control
+  qualityMinScore: number
+  qualityCriteria: QualityCriterion[]
+  // Stage 7: RCA / Improve
+  rcaEnabled: boolean
+  rcaMaxRetries: number
+}
+
 export class PostGenerationPipeline {
   private apiKey: string
 
@@ -67,37 +102,44 @@ export class PostGenerationPipeline {
 
   async run(
     userProfile: UserProfile,
-    onProgress: (progress: PipelineProgress) => void
+    onProgress: (progress: PipelineProgress) => void,
+    settings?: PipelineSettings
   ): Promise<PipelineResult> {
     try {
       // Stage 1: Topic Selection
       onProgress({ stage: 1, stageName: 'Topic Selection', message: 'Selecting topic...' })
-      const topic = await this.selectTopic(userProfile)
+      const topic = await this.selectTopic(userProfile, settings)
       onProgress({ stage: 1, stageName: 'Topic Selection', message: `Selected: ${topic}`, data: { topic } })
 
       // Stage 2: Research
       onProgress({ stage: 2, stageName: 'Research', message: 'Conducting research...' })
-      const research = await this.conductResearch(topic, userProfile)
+      const research = await this.conductResearch(topic, userProfile, settings)
       onProgress({ stage: 2, stageName: 'Research', message: `Found ${research.keyPoints.length} key points`, data: research })
 
       // Stage 3: Framework Selection
       onProgress({ stage: 3, stageName: 'Framework Selection', message: 'Selecting framework...' })
-      const framework = await this.selectFramework(topic, research)
-      onProgress({ stage: 3, stageName: 'Framework Selection', message: `Using ${framework}`, data: { framework } })
+      let framework: string
+      if (settings?.frameworkForced) {
+        framework = settings.frameworkForced
+        onProgress({ stage: 3, stageName: 'Framework Selection', message: `Using forced framework: ${framework}`, data: { framework } })
+      } else {
+        framework = await this.selectFramework(topic, research, settings)
+        onProgress({ stage: 3, stageName: 'Framework Selection', message: `Using ${framework}`, data: { framework } })
+      }
 
       // Stage 4: Content Generation
       onProgress({ stage: 4, stageName: 'Content Generation', message: 'Writing post...' })
-      const content = await this.generateContent(topic, research, framework, userProfile)
+      const content = await this.generateContent(topic, research, framework, userProfile, settings)
       onProgress({ stage: 4, stageName: 'Content Generation', message: `Generated ${content.length} characters`, data: { content } })
 
       // Stage 5: Image Prompt
       onProgress({ stage: 5, stageName: 'Image Prompt', message: 'Creating image prompt...' })
-      const imagePrompt = await this.generateImagePrompt(topic, content)
+      const imagePrompt = await this.generateImagePrompt(topic, content, settings)
       onProgress({ stage: 5, stageName: 'Image Prompt', message: 'Image prompt created', data: { imagePrompt } })
 
       // Stage 6: Quality Control
       onProgress({ stage: 6, stageName: 'Quality Control', message: 'Evaluating quality...' })
-      const qualityResult = await this.qualityControl(content, framework)
+      const qualityResult = await this.qualityControl(content, framework, settings)
       onProgress({ stage: 6, stageName: 'Quality Control', message: `Score: ${qualityResult.score}/10`, data: qualityResult })
 
       if (qualityResult.compliant) {
@@ -110,18 +152,49 @@ export class PostGenerationPipeline {
           imagePrompt,
         }
       } else {
-        // Stage 7: Root Cause Analysis (simplified - just retry once with feedback)
-        onProgress({ stage: 7, stageName: 'Root Cause Analysis', message: 'Quality check failed, analyzing...', data: qualityResult })
+        // Stage 7: Root Cause Analysis
+        if (!settings?.rcaEnabled) {
+          onProgress({ stage: 7, stageName: 'Complete', message: 'Quality check failed, RCA disabled', data: { success: false } })
+          return {
+            success: false,
+            title: topic.substring(0, 80),
+            content: '',
+            imagePrompt: '',
+            error: `Quality score ${qualityResult.score} below threshold ${settings?.qualityMinScore || 8}`,
+          }
+        }
 
-        const improvedContent = await this.improveContent(content, qualityResult.issues, framework, userProfile)
+        const maxRetries = settings?.rcaMaxRetries || 1
+        let improvedContent = content
+        let currentQuality = qualityResult
 
-        onProgress({ stage: 7, stageName: 'Complete', message: 'Improved post generated!', data: { success: true } })
+        for (let attempt = 0; attempt < maxRetries; attempt++) {
+          onProgress({ stage: 7, stageName: 'Root Cause Analysis', message: `Improving content (attempt ${attempt + 1}/${maxRetries})...`, data: currentQuality })
 
+          improvedContent = await this.improveContent(improvedContent, currentQuality.issues, framework, userProfile, settings)
+
+          // Re-evaluate quality
+          currentQuality = await this.qualityControl(improvedContent, framework, settings)
+
+          if (currentQuality.compliant) {
+            onProgress({ stage: 7, stageName: 'Complete', message: 'Improved post passed quality check!', data: { success: true } })
+            return {
+              success: true,
+              title: topic.substring(0, 80),
+              content: improvedContent,
+              imagePrompt,
+            }
+          }
+        }
+
+        // Still not compliant after retries
+        onProgress({ stage: 7, stageName: 'Complete', message: `Quality check failed after ${maxRetries} retry attempts`, data: { success: false } })
         return {
-          success: true,
+          success: false,
           title: topic.substring(0, 80),
-          content: improvedContent,
-          imagePrompt,
+          content: '',
+          imagePrompt: '',
+          error: `Quality score ${currentQuality.score} below threshold after retries`,
         }
       }
     } catch (error) {
@@ -138,31 +211,45 @@ export class PostGenerationPipeline {
     }
   }
 
-  private async selectTopic(profile: UserProfile): Promise<string> {
-    const prompt = `Select a relevant LinkedIn post topic for a professional with:
-- Expertise: ${profile.expertise || 'technology'}
-- Target audience: ${profile.targetAudience || 'professionals'}
-- Tone: ${profile.tone || 'professional'}
-${profile.pastTopics?.length ? `- Past topics: ${profile.pastTopics.join(', ')}` : ''}
+  private async selectTopic(profile: UserProfile, settings?: PipelineSettings): Promise<string> {
+    const expertise = settings?.topicExpertise || profile.expertise || 'technology'
+    const audience = settings?.topicAudience || profile.targetAudience || 'professionals'
+    const tone = settings?.topicTone || profile.tone || 'professional'
+    const pastTopics = settings?.topicPastTopics || profile.pastTopics || []
+    const customPool = settings?.topicCustomPool || []
 
-Return ONLY the topic (one sentence, no explanation).`
+    let prompt = `Select a relevant LinkedIn post topic for a professional with:
+- Expertise: ${expertise}
+- Target audience: ${audience}
+- Tone: ${tone}
+${pastTopics.length ? `- Past topics to avoid: ${pastTopics.join(', ')}` : ''}`
+
+    if (customPool.length > 0) {
+      prompt += `\n\nCandidate topics to consider:\n${customPool.map((t, i) => `${i + 1}. ${t}`).join('\n')}`
+    }
+
+    prompt += '\n\nReturn ONLY the topic (one sentence, no explanation).'
 
     return await this.callAnthropicAPI(prompt)
   }
 
-  private async conductResearch(topic: string, _profile: UserProfile): Promise<{
+  private async conductResearch(topic: string, _profile: UserProfile, settings?: PipelineSettings): Promise<{
     keyPoints: string[]
     useCases: string[]
     dataPoints: string[]
   }> {
-    const prompt = `Research this LinkedIn post topic: "${topic}"
+    let prompt = `Research this LinkedIn post topic: "${topic}"
 
 Provide:
 1. 3-5 key points
 2. 2-3 real-world use cases
-3. 2-3 relevant data points or statistics
+3. 2-3 relevant data points or statistics`
 
-Format as JSON:
+    if (settings?.researchSources && settings.researchSources.length > 0) {
+      prompt += `\n\nFocus your research on information from these sources/domains:\n${settings.researchSources.join(', ')}`
+    }
+
+    prompt += `\n\nFormat as JSON:
 {
   "keyPoints": [...],
   "useCases": [...],
@@ -177,10 +264,22 @@ Format as JSON:
     return JSON.parse(jsonMatch[0])
   }
 
-  private async selectFramework(topic: string, _research: any): Promise<string> {
+  private async selectFramework(topic: string, _research: any, settings?: PipelineSettings): Promise<string> {
+    const allowedFrameworks = settings?.frameworkAllowed || ['AIDA', 'PAS', 'Story', 'VSQ']
+    const frameworkDescriptions: Record<string, string> = {
+      AIDA: 'AIDA (Attention-Interest-Desire-Action)',
+      PAS: 'PAS (Problem-Agitate-Solution)',
+      Story: 'Story',
+      VSQ: 'VSQ (Value-Statistics-Quote)',
+    }
+
+    const options = allowedFrameworks
+      .map(f => frameworkDescriptions[f] || f)
+      .join(', ')
+
     const prompt = `Choose the best LinkedIn post framework for this topic: "${topic}"
 
-Options: AIDA (Attention-Interest-Desire-Action), PAS (Problem-Agitate-Solution), Story, VSQ (Value-Statistics-Quote)
+Options: ${options}
 
 Return ONLY the framework name (one word).`
 
@@ -191,9 +290,19 @@ Return ONLY the framework name (one word).`
     topic: string,
     research: any,
     framework: string,
-    profile: UserProfile
+    profile: UserProfile,
+    settings?: PipelineSettings
   ): Promise<string> {
-    const prompt = `Write a compelling LinkedIn post about: "${topic}"
+    const minChars = settings?.contentMinChars ?? 1300
+    const maxChars = settings?.contentMaxChars ?? 1900
+    const hookChars = settings?.contentHookChars ?? 210
+    const allowHashtags = settings?.contentAllowHashtags ?? false
+    const allowEmojis = settings?.contentAllowEmojis ?? false
+    const ctaGuidance = settings?.contentCtaGuidance || ''
+    const tone = settings?.topicTone || profile.tone || 'professional'
+    const audience = settings?.topicAudience || profile.targetAudience || 'professionals'
+
+    let prompt = `Write a compelling LinkedIn post about: "${topic}"
 
 Research:
 ${research.keyPoints.map((p: string, i: number) => `${i + 1}. ${p}`).join('\n')}
@@ -202,44 +311,70 @@ Use Cases:
 ${research.useCases.map((u: string) => `- ${u}`).join('\n')}
 
 Framework: ${framework}
-Tone: ${profile.tone || 'professional'}
-Target: ${profile.targetAudience || 'professionals'}
+Tone: ${tone}
+Target: ${audience}
 
 Requirements:
-- 1,300-1,900 characters
-- Engaging hook (first 210 chars)
+- ${minChars}-${maxChars} characters
+- Engaging hook (first ${hookChars} chars)
 - Clear value proposition
 - Call-to-action at end
 - Use line breaks for readability
-- NO hashtags
-- NO emojis
+${!allowHashtags ? '- NO hashtags' : '- Can use hashtags'}
+${!allowEmojis ? '- NO emojis' : '- Can use emojis'}`
 
-Return ONLY the post content (no metadata or explanations).`
+    if (ctaGuidance) {
+      prompt += `\n- CTA guidance: ${ctaGuidance}`
+    }
+
+    prompt += '\n\nReturn ONLY the post content (no metadata or explanations).'
 
     return await this.callAnthropicAPI(prompt)
   }
 
-  private async generateImagePrompt(topic: string, content: string): Promise<string> {
-    const prompt = `Create a detailed image prompt for this LinkedIn post topic: "${topic}"
+  private async generateImagePrompt(topic: string, content: string, settings?: PipelineSettings): Promise<string> {
+    const style = settings?.imageStyle || 'Professional, modern style'
+    const extraReqs = settings?.imageExtraRequirements || ''
+
+    let prompt = `Create a detailed image prompt for this LinkedIn post topic: "${topic}"
 
 Post preview: ${content.substring(0, 300)}...
 
+Style: ${style}
+
 Requirements:
-- Professional, modern style
 - Relevant to the topic
 - Suitable for LinkedIn
-- Photorealistic or clean illustration
+- High quality`
 
-Return ONLY the image prompt (one paragraph, no explanation).`
+    if (extraReqs) {
+      prompt += `\n- ${extraReqs}`
+    }
+
+    prompt += '\n\nReturn ONLY the image prompt (one paragraph, no explanation).'
 
     return await this.callAnthropicAPI(prompt)
   }
 
-  private async qualityControl(content: string, framework: string): Promise<{
+  private async qualityControl(content: string, framework: string, settings?: PipelineSettings): Promise<{
     compliant: boolean
     score: number
     issues: string[]
   }> {
+    const minScore = settings?.qualityMinScore ?? 8
+    const criteria = settings?.qualityCriteria || [
+      { name: 'hook', description: 'Opening line grabs attention immediately' },
+      { name: 'value', description: 'Provides actionable insights or unique perspective' },
+      { name: 'engagement', description: 'Encourages comments, shares, or reactions' },
+      { name: 'cta', description: 'Clear call-to-action or next step' },
+      { name: 'tone', description: 'Matches professional yet approachable voice' },
+      { name: 'length', description: 'Optimal length for LinkedIn engagement' },
+    ]
+
+    const criteriaList = criteria
+      .map((c, i) => `${i + 1}. ${c.name} - ${c.description}`)
+      .join('\n')
+
     const prompt = `Evaluate this LinkedIn post for quality:
 
 "${content}"
@@ -247,16 +382,11 @@ Return ONLY the image prompt (one paragraph, no explanation).`
 Framework used: ${framework}
 
 Rate on these criteria (each 1-10):
-1. Hook strength (first 210 chars)
-2. Value proposition clarity
-3. Engagement potential
-4. Call-to-action effectiveness
-5. Professional tone
-6. Length appropriateness (1,300-1,900 chars)
+${criteriaList}
 
 Format as JSON:
 {
-  "compliant": boolean (true if all >= 8),
+  "compliant": boolean (true if all >= ${minScore}),
   "score": number (average score),
   "issues": ["list of issues if any"]
 }`
@@ -266,15 +396,21 @@ Format as JSON:
     if (!jsonMatch) {
       return { compliant: true, score: 8.5, issues: [] }
     }
-    return JSON.parse(jsonMatch[0])
+    const result = JSON.parse(jsonMatch[0])
+    // Override compliant check based on configured min score
+    result.compliant = result.score >= minScore
+    return result
   }
 
   private async improveContent(
     content: string,
     issues: string[],
     framework: string,
-    profile: UserProfile
+    profile: UserProfile,
+    settings?: PipelineSettings
   ): Promise<string> {
+    const tone = settings?.topicTone || profile.tone || 'professional'
+
     const prompt = `Improve this LinkedIn post to address these issues:
 
 Original post:
@@ -284,7 +420,7 @@ Issues to fix:
 ${issues.map((issue, i) => `${i + 1}. ${issue}`).join('\n')}
 
 Framework: ${framework}
-Tone: ${profile.tone || 'professional'}
+Tone: ${tone}
 
 Return ONLY the improved post content (no metadata or explanations).`
 

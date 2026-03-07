@@ -1,22 +1,34 @@
-import { createClient } from '@/lib/supabase/server'
+import { createClient as createServiceClient } from '@supabase/supabase-js'
 import { NextRequest, NextResponse } from 'next/server'
 
-const MAKE_COM_WEBHOOK = 'https://hook.us2.make.com/yr7mo2xefqdjsr3vt6i44tgvajw22i09'
-
 // GET /api/posts/auto-post - Check for due posts and send them to make.com
-// Can be called by a cron job or manually
+// Called by Vercel Cron Job
 export async function GET(request: NextRequest) {
   try {
-    const supabase = await createClient()
-
-    // Optional: Check for a cron secret if you want to secure this endpoint
-    const cronSecret = request.headers.get('x-cron-secret')
-    if (process.env.CRON_SECRET && cronSecret !== process.env.CRON_SECRET) {
+    // Check Vercel cron authorization header
+    const authHeader = request.headers.get('authorization')
+    if (process.env.CRON_SECRET && authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
       console.log('[AUTO-POST] Unauthorized cron call (wrong secret)')
       // Allow unauthenticated calls for local testing
       if (process.env.NODE_ENV === 'production') {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
       }
+    }
+
+    // Use service role key to bypass RLS (cron has no user session)
+    const supabase = createServiceClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+
+    // Validate webhook URL is configured
+    const MAKE_COM_WEBHOOK = process.env.MAKE_WEBHOOK_URL
+    if (!MAKE_COM_WEBHOOK) {
+      console.error('[AUTO-POST] MAKE_WEBHOOK_URL env var not set')
+      return NextResponse.json(
+        { error: 'Webhook URL not configured' },
+        { status: 500 }
+      )
     }
 
     // Find all scheduled posts where scheduled_time <= now

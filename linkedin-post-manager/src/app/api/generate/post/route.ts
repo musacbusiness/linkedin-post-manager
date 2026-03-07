@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
-import { PostGenerationPipeline, UserProfile } from '@/lib/ai/pipeline'
+import { PostGenerationPipeline, UserProfile, PipelineSettings } from '@/lib/ai/pipeline'
 
 // POST /api/generate/post - Generate post with AI pipeline (Server-Sent Events)
 export async function POST(request: NextRequest) {
@@ -34,6 +34,40 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Fetch pipeline settings for this user
+    let pipelineSettings: PipelineSettings | undefined
+    const { data: settingsRow } = await supabase
+      .from('pipeline_settings')
+      .select('*')
+      .eq('user_id', user.id)
+      .maybeSingle()
+
+    if (settingsRow) {
+      // Map database columns to camelCase
+      pipelineSettings = {
+        topicExpertise: settingsRow.topic_expertise,
+        topicAudience: settingsRow.topic_audience,
+        topicTone: settingsRow.topic_tone,
+        topicPastTopics: settingsRow.topic_past_topics || [],
+        topicCustomPool: settingsRow.topic_custom_pool || [],
+        researchSources: settingsRow.research_sources || [],
+        frameworkAllowed: settingsRow.framework_allowed || ['AIDA', 'PAS', 'Story', 'VSQ'],
+        frameworkForced: settingsRow.framework_forced,
+        contentMinChars: settingsRow.content_min_chars,
+        contentMaxChars: settingsRow.content_max_chars,
+        contentHookChars: settingsRow.content_hook_chars,
+        contentAllowHashtags: settingsRow.content_allow_hashtags,
+        contentAllowEmojis: settingsRow.content_allow_emojis,
+        contentCtaGuidance: settingsRow.content_cta_guidance,
+        imageStyle: settingsRow.image_style,
+        imageExtraRequirements: settingsRow.image_extra_requirements,
+        qualityMinScore: settingsRow.quality_min_score,
+        qualityCriteria: settingsRow.quality_criteria,
+        rcaEnabled: settingsRow.rca_enabled,
+        rcaMaxRetries: settingsRow.rca_max_retries,
+      }
+    }
+
     // Create a readable stream for Server-Sent Events
     const encoder = new TextEncoder()
     const stream = new ReadableStream({
@@ -47,7 +81,7 @@ export async function POST(request: NextRequest) {
             // Send progress update as SSE
             const data = JSON.stringify(progress)
             controller.enqueue(encoder.encode(`data: ${data}\n\n`))
-          })
+          }, pipelineSettings)
 
           if (result.success) {
             // Save generated post to Supabase with Pending Review status

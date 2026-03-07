@@ -3,18 +3,20 @@
 import { useState, useEffect } from 'react'
 import NextImage from 'next/image'
 import { useRouter, useParams } from 'next/navigation'
+import { useQueryClient } from '@tanstack/react-query'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { usePost, useUpdatePost } from '@/hooks/use-posts'
-import { Sparkles, Loader2, Image as ImageIcon, CheckCircle, XCircle } from 'lucide-react'
+import { Sparkles, Loader2, Image as ImageIcon, CheckCircle, XCircle, CalendarX } from 'lucide-react'
 import { useToast } from '@/components/ui/toast'
 
 export default function EditPostPage() {
   const params = useParams()
   const router = useRouter()
+  const queryClient = useQueryClient()
 
   // Defensive: ensure postId is a valid string
   const rawId = params?.id
@@ -38,7 +40,10 @@ export default function EditPostPage() {
   const [isGeneratingImage, setIsGeneratingImage] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [imageError, setImageError] = useState(false)
-  const [isApprovingOrRejecting, setIsApprovingOrRejecting] = useState(false)
+  // Separate loading states for each action button
+  const [isApproving, setIsApproving] = useState(false)
+  const [isRejecting, setIsRejecting] = useState(false)
+  const [isUnscheduling, setIsUnscheduling] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [saveTimeoutId, setSaveTimeoutId] = useState<NodeJS.Timeout | null>(null)
 
@@ -49,44 +54,32 @@ export default function EditPostPage() {
     showToast = toastHook?.showToast || null
   } catch (err) {
     console.error('useToast error:', err)
-    showToast = () => {} // Fallback no-op function
+    showToast = () => {}
   }
 
-  // Initialize form with post data - with defensive null checks and comprehensive logging
+  // Initialize form with post data
   useEffect(() => {
     if (post) {
-      console.log('=== Post Editor: Post data loaded ===')
-      console.log('Post object:', post)
-      console.log('Post title:', post.title)
-      console.log('Post content:', post.post_content)
-      console.log('Post content length:', post.post_content ? post.post_content.length : 'null')
-      console.log('Post image_prompt:', post.image_prompt)
-      console.log('Post image_url:', post.image_url)
-      console.log('Post status:', post.status)
-      console.log('Post status type:', typeof post.status)
-      console.log('Status === "Pending Review":', post.status === 'Pending Review')
-
       setTitle(post.title || '')
       setContent(post.post_content || '')
       setImagePrompt(post.image_prompt || '')
       setImageUrl(post.image_url || null)
       setImageError(false)
-
-      console.log('=== Form fields updated ===')
-    } else if (!isLoading) {
-      console.log('=== Post Editor: No post data, isLoading is false ===')
     }
-  }, [post, isLoading])
+  }, [post])
 
   // Log fetch errors
   useEffect(() => {
     if (fetchError) {
-      console.error('=== Post Editor: Error fetching post ===')
-      console.error('Fetch error:', fetchError)
-      console.error('Error message:', fetchError instanceof Error ? fetchError.message : 'Unknown error')
       setError(fetchError instanceof Error ? fetchError.message : 'Failed to load post')
     }
   }, [fetchError])
+
+  // Invalidate React Query cache so UI updates immediately without page refresh
+  const invalidatePost = () => {
+    queryClient.invalidateQueries({ queryKey: ['posts'] })
+    queryClient.invalidateQueries({ queryKey: ['posts', postId] })
+  }
 
   async function handleGenerateImage() {
     if (!imagePrompt.trim()) {
@@ -111,10 +104,8 @@ export default function EditPostPage() {
       }
 
       const data = await response.json()
-      console.log('Generated image URL:', data.imageUrl)
       setImageUrl(data.imageUrl)
 
-      // Auto-save the generated image URL to the post
       await updatePost.mutateAsync({
         id: postId,
         data: { image_url: data.imageUrl, image_prompt: imagePrompt },
@@ -128,7 +119,7 @@ export default function EditPostPage() {
 
   // Auto-save with debounce
   const autoSave = async (titleVal: string, contentVal: string, promptVal: string) => {
-    if (!titleVal || !contentVal) return // Don't save empty fields
+    if (!titleVal || !contentVal) return
 
     setIsSaving(true)
     try {
@@ -147,7 +138,6 @@ export default function EditPostPage() {
     }
   }
 
-  // Handle field changes with debounced auto-save
   const handleFieldChange = (
     setter: (value: string) => void,
     value: string,
@@ -155,22 +145,20 @@ export default function EditPostPage() {
   ) => {
     setter(value)
 
-    // Clear existing timeout
     if (saveTimeoutId) clearTimeout(saveTimeoutId)
 
-    // Set new timeout for auto-save
     const newTimeoutId = setTimeout(() => {
       const saveTitle = autoSaveValues?.title ?? title
       const saveContent = autoSaveValues?.content ?? content
       const savePrompt = autoSaveValues?.prompt ?? imagePrompt
       autoSave(saveTitle, saveContent, savePrompt)
-    }, 1500) // Save 1.5 seconds after user stops typing
+    }, 1500)
 
     setSaveTimeoutId(newTimeoutId)
   }
 
   async function handleApprove() {
-    setIsApprovingOrRejecting(true)
+    setIsApproving(true)
     setError(null)
 
     try {
@@ -189,7 +177,8 @@ export default function EditPostPage() {
         showToast('success', 'Post approved', `Scheduled for ${new Date(data.scheduledTime).toLocaleString()}`)
       }
 
-      // Refresh post data
+      // Update React Query cache immediately so status badge + buttons update without page refresh
+      invalidatePost()
       router.refresh()
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to approve post'
@@ -198,12 +187,12 @@ export default function EditPostPage() {
         showToast('error', 'Approval failed', errorMessage)
       }
     } finally {
-      setIsApprovingOrRejecting(false)
+      setIsApproving(false)
     }
   }
 
   async function handleReject() {
-    setIsApprovingOrRejecting(true)
+    setIsRejecting(true)
     setError(null)
 
     try {
@@ -216,6 +205,7 @@ export default function EditPostPage() {
         showToast('warning', 'Post rejected', 'The post has been marked as rejected')
       }
 
+      invalidatePost()
       router.refresh()
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to reject post'
@@ -224,7 +214,40 @@ export default function EditPostPage() {
         showToast('error', 'Rejection failed', errorMessage)
       }
     } finally {
-      setIsApprovingOrRejecting(false)
+      setIsRejecting(false)
+    }
+  }
+
+  async function handleUnschedule() {
+    setIsUnscheduling(true)
+    setError(null)
+
+    try {
+      const response = await fetch(`/api/posts/${postId}/unschedule`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to unschedule post')
+      }
+
+      if (showToast) {
+        showToast('success', 'Post unscheduled', 'The post has been removed from the scheduling queue')
+      }
+
+      // Update React Query cache immediately so approve/reject buttons appear without page refresh
+      invalidatePost()
+      router.refresh()
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to unschedule post'
+      setError(errorMessage)
+      if (showToast) {
+        showToast('error', 'Unschedule failed', errorMessage)
+      }
+    } finally {
+      setIsUnscheduling(false)
     }
   }
 
@@ -361,11 +384,11 @@ export default function EditPostPage() {
                   <span
                     className={`px-3 py-1 text-xs font-semibold rounded-full ${
                       post.status === 'Pending Review'
-                        ? 'bg-yellow-500/20 text-yellow-400'
+                        ? 'bg-gray-500/20 text-gray-400'
                         : post.status === 'Approved'
                         ? 'bg-green-500/20 text-green-400'
                         : post.status === 'Scheduled'
-                        ? 'bg-blue-500/20 text-blue-400'
+                        ? 'bg-purple-accent/20 text-purple-light'
                         : post.status === 'Posted'
                         ? 'bg-purple-accent/20 text-purple-light'
                         : 'bg-red-500/20 text-red-400'
@@ -428,38 +451,58 @@ export default function EditPostPage() {
                   </p>
                 </div>
 
-                {/* Debug: Show actual status value */}
-                {post && (
-                  <div className="p-3 bg-gray-900 rounded-lg mb-4 text-xs">
-                    <p className="text-gray-500">Debug - Post Status: <span className="text-white font-mono">{post.status}</span></p>
-                    <p className="text-gray-500">Buttons visible: <span className="text-white">{post.status === 'Pending Review' ? 'YES' : 'NO'}</span></p>
-                  </div>
-                )}
-
-                {/* Approve/Reject Buttons (only for Pending Review) */}
-                {post && post.status === 'Pending Review' && (
+                {/* Approve/Reject Buttons (for Pending Review) */}
+                {post.status === 'Pending Review' && (
                   <div className="border-t border-gray-700 pt-6 mt-6">
                     <p className="text-sm text-gray-400 mb-3">Review & Approve</p>
                     <div className="flex gap-3">
                       <button
                         type="button"
                         onClick={handleApprove}
-                        disabled={isApprovingOrRejecting}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-accent to-purple-light hover:from-purple-light hover:to-purple-accent text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
+                        disabled={isApproving || isRejecting}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-accent to-purple-light hover:from-purple-light hover:to-purple-accent text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 disabled:hover:from-purple-accent disabled:hover:to-purple-light"
                       >
-                        <CheckCircle className="w-5 h-5" />
-                        {isApprovingOrRejecting ? 'Approving...' : 'Approve & Schedule'}
+                        {isApproving ? (
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                        ) : (
+                          <CheckCircle className="w-5 h-5" />
+                        )}
+                        {isApproving ? 'Approving...' : 'Approve & Schedule'}
                       </button>
                       <button
                         type="button"
                         onClick={handleReject}
-                        disabled={isApprovingOrRejecting}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
+                        disabled={isApproving || isRejecting}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 disabled:hover:bg-red-600"
                       >
-                        <XCircle className="w-5 h-5" />
-                        {isApprovingOrRejecting ? 'Rejecting...' : 'Reject'}
+                        {isRejecting ? (
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                        ) : (
+                          <XCircle className="w-5 h-5" />
+                        )}
+                        {isRejecting ? 'Rejecting...' : 'Reject'}
                       </button>
                     </div>
+                  </div>
+                )}
+
+                {/* Unschedule Button (for Scheduled posts) */}
+                {post.status === 'Scheduled' && (
+                  <div className="border-t border-gray-700 pt-6 mt-6">
+                    <p className="text-sm text-gray-400 mb-3">Scheduled Actions</p>
+                    <button
+                      type="button"
+                      onClick={handleUnschedule}
+                      disabled={isUnscheduling}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
+                    >
+                      {isUnscheduling ? (
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                      ) : (
+                        <CalendarX className="w-5 h-5" />
+                      )}
+                      {isUnscheduling ? 'Unscheduling...' : 'Remove from Schedule'}
+                    </button>
                   </div>
                 )}
               </div>

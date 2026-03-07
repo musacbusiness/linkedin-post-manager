@@ -52,6 +52,9 @@ export async function GET(
     console.log('[API] Post title:', post?.title)
     console.log('[API] Post content length:', post?.post_content ? post.post_content.length : 0)
     console.log('[API] Post content exists:', !!post?.post_content)
+    console.log('[API] Post status:', post?.status)
+    console.log('[API] Post status type:', typeof post?.status)
+    console.log('[API] Status === "Pending Review":', post?.status === 'Pending Review')
     console.log('[API] Returning response:', { post })
 
     return NextResponse.json({ post })
