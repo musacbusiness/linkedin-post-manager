@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { CheckCircle, ChevronDown, ChevronUp, Loader } from 'lucide-react'
-import { PipelineSettings, QualityCriterion } from '@/lib/ai/pipeline'
+import { PipelineSettings } from '@/lib/ai/pipeline'
 
 const TONES = ['professional', 'casual', 'inspirational']
 const FRAMEWORKS = ['AIDA', 'PAS', 'Story', 'VSQ']

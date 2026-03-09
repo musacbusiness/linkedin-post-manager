@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
+import { schedulePostDelivery } from '@/lib/qstash'
 
 // POST /api/posts/[id]/schedule-custom - Schedule a post for a specific time
 export async function POST(
@@ -56,6 +57,9 @@ export async function POST(
     }
 
     console.log(`Scheduled post ${params.id} for ${scheduledTime}`)
+
+    // Schedule QStash delivery at exact time
+    await schedulePostDelivery(params.id, scheduledTime)
 
     return NextResponse.json({
       success: true,
