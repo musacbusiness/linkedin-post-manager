@@ -3,7 +3,8 @@ import { Client, Receiver } from '@upstash/qstash'
 export function getQStashClient() {
   const token = process.env.QSTASH_TOKEN
   if (!token) throw new Error('QSTASH_TOKEN not configured')
-  return new Client({ token })
+  const baseUrl = process.env.QSTASH_URL ?? 'https://qstash.upstash.io'
+  return new Client({ token, baseUrl })
 }
 
 export function getQStashReceiver() {
