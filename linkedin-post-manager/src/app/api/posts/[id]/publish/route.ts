@@ -46,10 +46,10 @@ export async function POST(
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }
 
-    // Guard: skip if already posted
-    if (post.status === 'Posted') {
-      console.log(`[PUBLISH] Post ${params.id} already posted, skipping`)
-      return NextResponse.json({ success: true, message: 'Already posted' })
+    // Guard: skip if already sent or posted
+    if (post.status === 'Post Sent' || post.status === 'Posted') {
+      console.log(`[PUBLISH] Post ${params.id} already sent, skipping`)
+      return NextResponse.json({ success: true, message: 'Already sent' })
     }
 
     // Send to make.com
@@ -77,10 +77,10 @@ export async function POST(
       )
     }
 
-    // Mark as Posted
+    // Mark as Post Sent — make.com will update to Posted after successful LinkedIn publish
     const { error: updateError } = await supabase
       .from('posts')
-      .update({ status: 'Posted', updated_at: new Date().toISOString() })
+      .update({ status: 'Post Sent', updated_at: new Date().toISOString() })
       .eq('id', params.id)
 
     if (updateError) {

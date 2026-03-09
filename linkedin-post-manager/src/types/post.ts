@@ -2,6 +2,7 @@ export type PostStatus =
   | 'Pending Review'
   | 'Approved'
   | 'Scheduled'
+  | 'Post Sent'
   | 'Posted'
   | 'Rejected'
 
