@@ -1,0 +1,12 @@
+{
+  "framework": "nextjs",
+  "installCommand": "cd linkedin-post-manager && npm ci",
+  "buildCommand": "cd linkedin-post-manager && npm run build",
+  "outputDirectory": "linkedin-post-manager/.next",
+  "crons": [
+    {
+      "path": "/api/posts/generate-batch",
+      "schedule": "0 9 * * *"
+    }
+  ]
+}
