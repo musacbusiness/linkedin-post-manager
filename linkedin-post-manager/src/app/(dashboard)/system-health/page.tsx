@@ -621,9 +621,10 @@ export default function SystemHealthPage() {
                         settings.imageGenerationModel === 'production' ? 'bg-green-500' : 'bg-gray-600'
                       }`}
                     >
-                      <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-transform ${
-                        settings.imageGenerationModel === 'production' ? 'translate-x-7' : 'translate-x-1'
-                      }`} />
+                      <span
+                        className="absolute top-1 left-0 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200"
+                        style={{ transform: settings.imageGenerationModel === 'production' ? 'translateX(28px)' : 'translateX(4px)' }}
+                      />
                     </button>
 
                     <div className={`flex-1 p-3 rounded-lg border-2 cursor-pointer transition-all ${
