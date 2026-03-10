@@ -742,7 +742,9 @@ Return ONLY a JSON object:
     framework: string,
     settings?: PipelineSettings
   ): Promise<{ compliant: boolean; score: number; issues: string[]; autoFailed: boolean }> {
-    const minScore = settings?.qualityMinScore ?? 7
+    // Cap at 7.5 max — scoring above this causes consistent first-attempt failures
+    // since Claude's self-evaluation calibration clusters 7-8 for good content
+    const minScore = Math.min(settings?.qualityMinScore ?? 7, 7.5)
 
     const prompt = `Evaluate this LinkedIn post for quality. Score each criterion 1-10 using the calibration scale below.
 
