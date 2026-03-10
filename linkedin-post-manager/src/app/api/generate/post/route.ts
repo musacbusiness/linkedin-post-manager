@@ -61,10 +61,12 @@ export async function POST(request: NextRequest) {
         contentCtaGuidance: settingsRow.content_cta_guidance,
         imageStyle: settingsRow.image_style,
         imageExtraRequirements: settingsRow.image_extra_requirements,
-        qualityMinScore: settingsRow.quality_min_score,
+        // Cap qualityMinScore at 7.0 and rcaMaxRetries at 2 regardless of stored values
+        // to ensure first-attempt pass rate and prevent SSE timeouts from excessive retries
+        qualityMinScore: Math.min(settingsRow.quality_min_score ?? 7, 7.0),
         qualityCriteria: settingsRow.quality_criteria,
         rcaEnabled: settingsRow.rca_enabled,
-        rcaMaxRetries: settingsRow.rca_max_retries,
+        rcaMaxRetries: Math.min(settingsRow.rca_max_retries ?? 2, 2),
       }
     }
 
