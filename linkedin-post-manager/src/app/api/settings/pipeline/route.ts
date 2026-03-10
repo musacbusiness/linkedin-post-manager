@@ -43,7 +43,7 @@ export async function GET(_request: NextRequest) {
         contentCtaGuidance: '',
         imageStyle: 'Auto-selected by content pillar (CLEAN_TECH / DATA_VIZ / SYSTEMS_FLOW / CONCEPTUAL / IMPACT)',
         imageExtraRequirements: '',
-        qualityMinScore: 8,
+        qualityMinScore: 7,
         qualityCriteria: [
           { name: 'Hook Power', description: 'Stops scroll. Specific, unexpected, pattern-breaking. Makes reader HAVE to click "see more".' },
           { name: 'Value Density', description: 'Every sentence earns its place. No filler, no throat-clearing, no restating the obvious.' },
@@ -53,7 +53,7 @@ export async function GET(_request: NextRequest) {
           { name: 'Length Compliance', description: '1300–1900 chars total, hook under 210 chars, proper spacing with short paragraphs.' },
         ],
         rcaEnabled: true,
-        rcaMaxRetries: 1,
+        rcaMaxRetries: 2,
       })
     }
 

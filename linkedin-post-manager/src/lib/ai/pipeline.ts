@@ -289,7 +289,7 @@ export class PostGenerationPipeline {
           }
         }
 
-        const maxRetries = settings?.rcaMaxRetries || 1
+        const maxRetries = settings?.rcaMaxRetries || 2
         let improvedContent = content
         let currentQuality = qualityResult
 
@@ -602,7 +602,14 @@ LINKEDIN ALGORITHM AWARENESS:
 - Use narrative tension and information gaps to keep people reading (dwell time matters)
 - Native text currently outperforms image posts — write as if the text is the primary asset
 
-Return ONLY the post content. No preamble, no metadata, no explanations.`
+BEFORE YOU RETURN THE POST — SELF-CHECK (fix any failures before returning):
+□ Count the first line character by character. Is it under ${hookChars} characters? If not, shorten it.
+□ Count the entire post character by character. Is total length between ${minChars} and ${maxChars}? If not, expand or trim.
+□ Read the CTA (last line before hashtags). Does it say "Thoughts?", "Agree?", or "What do you think?" — if yes, replace it with a specific question tied to the topic.
+□ Scan for: leverage, synergy, game-changer, disrupt, unlock, transformative. If 2+ appear, remove them.
+□ Find the most specific example, number, or tool name in the post. If there isn't one, add it.
+
+Return ONLY the post content. No preamble, no metadata, no explanations. Do NOT include a self-check report.`
 
     return await this.callAnthropicAPI(prompt, 2048)
   }
@@ -735,29 +742,40 @@ Return ONLY a JSON object:
     framework: string,
     settings?: PipelineSettings
   ): Promise<{ compliant: boolean; score: number; issues: string[]; autoFailed: boolean }> {
-    const minScore = settings?.qualityMinScore ?? 8
+    const minScore = settings?.qualityMinScore ?? 7
 
-    const prompt = `Evaluate this LinkedIn post for quality. Score each criterion 1-10.
+    const prompt = `Evaluate this LinkedIn post for quality. Score each criterion 1-10 using the calibration scale below.
 
 POST:
 "${content}"
 
 Framework used: ${framework}
+Character count: ${content.length}
+
+SCORING SCALE (use this as your reference — do not be harsher than this):
+5 = mediocre, typical generic AI content
+6 = below average, serviceable but forgettable
+7 = good quality, would perform well on LinkedIn — this is the target baseline
+8 = high quality, outperforms most posts in this category
+9 = excellent, top 10% of LinkedIn content
+10 = near perfect, rarely achievable — only for genuinely exceptional posts
+
+Score 7 or above if the criterion is solidly met. Score 8+ only if it's genuinely exceptional. Do not default to 6 for average performance — if it meets the criterion, score it at least 7.
 
 SCORING CRITERIA:
-1. Hook Power (1-10): Does the first line stop the scroll? Is it specific, unexpected, or pattern-breaking? A 10 makes the reader HAVE to click "see more."
-2. Value Density (1-10): Does every sentence earn its place? A 10 has zero filler, no throat-clearing, no restating the obvious.
-3. Engagement Potential (1-10): Is this written to provoke saves, comments, and shares — not just likes? A 10 asks a question worth answering.
-4. CTA Strength (1-10): Does it end with a specific, low-friction ask the reader actually wants to respond to? A 10 is NOT "Thoughts?" or "Agree?"
-5. Tone Authenticity (1-10): Does it sound like a real practitioner with real experience? A 10 sounds nothing like corporate AI output.
-6. Length Compliance (1-10): Is it 1300–1900 characters? Hook under 210 characters? Proper spacing with short paragraphs? A 10 hits all three.
+1. Hook Power (1-10): Does the first line stop the scroll? Is it specific, unexpected, or pattern-breaking? Score 7 if it's specific and non-generic. Score 8+ if it's genuinely surprising or pattern-breaking.
+2. Value Density (1-10): Does every sentence earn its place? Score 7 if there's minimal filler. Score 8+ if every single sentence adds new information.
+3. Engagement Potential (1-10): Is this written to provoke saves, comments, and shares? Score 7 if it has a solid CTA and interesting take. Score 8+ if it's genuinely thought-provoking.
+4. CTA Strength (1-10): Does it end with a specific ask the reader wants to respond to? Score 7 if it's a real question tied to the topic. Score 8+ if it's creative and highly specific.
+5. Tone Authenticity (1-10): Does it sound like a practitioner with real experience? Score 7 if it's conversational and grounded. Score 8+ if it has unmistakably human, experience-based voice.
+6. Length Compliance (1-10): The post is ${content.length} characters. Hook should be ≤210 chars, total 1300–1900. Score 10 if all constraints are hit. Score 7 if length is within 10% of range. Score 5 if significantly out of range.
 
-AUTOMATIC FAIL CONDITIONS (check these regardless of score):
-- Hook is generic and could apply to any industry → autoFail: true
-- Post contains NO specific example, number, or concrete detail → autoFail: true
-- CTA is literally "Thoughts?" or "Agree?" or "What do you think?" → autoFail: true
-- Post contains 3+ of these buzzwords: leverage, synergy, game-changer, disrupt, unlock → autoFail: true
-- Post reads as a thinly veiled sales pitch → autoFail: true
+AUTOMATIC FAIL CONDITIONS (only trigger if clearly and obviously violated — do not over-apply):
+- Hook is completely generic with zero specificity AND could apply to literally any industry → autoFail: true
+- Post contains ZERO specific examples, numbers, tool names, or concrete details anywhere → autoFail: true
+- CTA is literally and exactly "Thoughts?" or "Agree?" or "What do you think?" (not variations) → autoFail: true
+- Post contains 4+ of these exact buzzwords: leverage, synergy, game-changer, disrupt, unlock → autoFail: true
+- Post is explicitly promoting a product/service and reads as an ad → autoFail: true
 
 Return ONLY a JSON object:
 {
