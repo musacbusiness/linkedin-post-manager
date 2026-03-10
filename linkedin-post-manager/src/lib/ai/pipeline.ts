@@ -432,24 +432,46 @@ REQUIREMENTS:
 - Data points MUST cite a specific source (even if approximate)
 - Use cases should be concrete and specific, not generic
 - Key points should be non-obvious insights, not basic facts
+- Be concise — each array item max 1-2 sentences
 
-Return ONLY a JSON object:
+Return ONLY a valid JSON object with NO markdown fences, NO preamble:
 {
-  "keyPoints": ["3-5 non-obvious insights about the topic"],
-  "useCases": ["2-3 concrete, specific real-world use cases with details"],
-  "dataPoints": ["2-3 data points or stats, each citing a source e.g. 'According to McKinsey 2024...'"],
-  "sources": ["list of sources referenced"]
+  "keyPoints": ["3 non-obvious insights about the topic"],
+  "useCases": ["2 concrete, specific real-world use cases"],
+  "dataPoints": ["2 data points or stats, each citing a source e.g. 'According to McKinsey 2024...'"],
+  "sources": ["2-3 sources referenced"]
 }`
 
-    const text = await this.callAnthropicAPI(prompt, 1024)
+    const text = await this.callAnthropicAPI(prompt, 2048)
+
+    // Extract JSON — handle markdown fences and partial responses
     const jsonMatch = text.match(/\{[\s\S]*\}/)
-    if (!jsonMatch) throw new Error('Failed to parse research output')
-    const parsed = JSON.parse(jsonMatch[0])
-    return {
-      keyPoints: parsed.keyPoints || [],
-      useCases: parsed.useCases || [],
-      dataPoints: parsed.dataPoints || [],
-      sources: parsed.sources || [],
+    if (!jsonMatch) {
+      console.warn('[Stage 2] Could not find JSON in research response, using fallback')
+      return {
+        keyPoints: [`Key insight about ${topic}`],
+        useCases: [`Practical application of ${topic}`],
+        dataPoints: [],
+        sources: [],
+      }
+    }
+
+    try {
+      const parsed = JSON.parse(jsonMatch[0])
+      return {
+        keyPoints: parsed.keyPoints || [],
+        useCases: parsed.useCases || [],
+        dataPoints: parsed.dataPoints || [],
+        sources: parsed.sources || [],
+      }
+    } catch {
+      console.warn('[Stage 2] JSON parse failed, using fallback')
+      return {
+        keyPoints: [`Key insight about ${topic}`],
+        useCases: [`Practical application of ${topic}`],
+        dataPoints: [],
+        sources: [],
+      }
     }
   }
 
