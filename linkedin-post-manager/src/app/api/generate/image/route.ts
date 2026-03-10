@@ -34,16 +34,28 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Read user's image generation model preference
+    const { data: settingsRow } = await supabase
+      .from('pipeline_settings')
+      .select('image_style')
+      .eq('user_id', user.id)
+      .maybeSingle()
+
+    const PRODUCTION_MODEL = 'google/nano-banana-pro'
+    const TESTING_MODEL = 'stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b'
+    const modelMode = settingsRow?.image_style || 'testing'
+    const selectedModel = modelMode === 'production' ? PRODUCTION_MODEL : TESTING_MODEL
+
     // Initialize Replicate client
     const replicate = new Replicate({
       auth: process.env.REPLICATE_API_TOKEN,
     })
 
-    // Generate image using Stable Diffusion
-    console.log('Generating image with prompt:', prompt)
+    console.log(`Generating image with model: ${selectedModel} (mode: ${modelMode})`)
+    console.log('Prompt:', prompt)
 
     const output = await replicate.run(
-      'stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b',
+      selectedModel as `${string}/${string}` | `${string}/${string}:${string}`,
       {
         input: {
           prompt: prompt,

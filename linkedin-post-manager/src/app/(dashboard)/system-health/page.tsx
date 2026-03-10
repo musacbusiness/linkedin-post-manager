@@ -598,6 +598,49 @@ export default function SystemHealthPage() {
 
             {expandedSections[5] && (
               <CardContent className="space-y-4 pt-0">
+                {/* Image Generation Model Toggle */}
+                <div>
+                  <label className="text-sm font-medium text-white mb-3 block">Image Generation Model</label>
+                  <div className="flex items-center gap-4 p-4 bg-gray-900/60 rounded-lg border border-gray-700">
+                    <div className={`flex-1 p-3 rounded-lg border-2 cursor-pointer transition-all ${
+                      settings.imageGenerationModel !== 'production'
+                        ? 'border-purple-accent bg-purple-accent/10'
+                        : 'border-gray-700 bg-gray-900/40 opacity-50'
+                    }`} onClick={() => updateStringField('imageGenerationModel', 'testing')}>
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className={`w-3 h-3 rounded-full ${settings.imageGenerationModel !== 'production' ? 'bg-purple-accent' : 'bg-gray-600'}`} />
+                        <span className="text-sm font-semibold text-white">Testing</span>
+                      </div>
+                      <p className="text-xs text-gray-400 font-mono">stability-ai/sdxl</p>
+                    </div>
+
+                    {/* Toggle switch */}
+                    <button
+                      onClick={() => updateStringField('imageGenerationModel', settings.imageGenerationModel === 'production' ? 'testing' : 'production')}
+                      className={`relative w-12 h-6 rounded-full transition-colors flex-shrink-0 ${
+                        settings.imageGenerationModel === 'production' ? 'bg-green-500' : 'bg-gray-600'
+                      }`}
+                    >
+                      <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-transform ${
+                        settings.imageGenerationModel === 'production' ? 'translate-x-7' : 'translate-x-1'
+                      }`} />
+                    </button>
+
+                    <div className={`flex-1 p-3 rounded-lg border-2 cursor-pointer transition-all ${
+                      settings.imageGenerationModel === 'production'
+                        ? 'border-green-500 bg-green-500/10'
+                        : 'border-gray-700 bg-gray-900/40 opacity-50'
+                    }`} onClick={() => updateStringField('imageGenerationModel', 'production')}>
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className={`w-3 h-3 rounded-full ${settings.imageGenerationModel === 'production' ? 'bg-green-500' : 'bg-gray-600'}`} />
+                        <span className="text-sm font-semibold text-white">Production</span>
+                      </div>
+                      <p className="text-xs text-gray-400 font-mono">google/nano-banana-pro</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Visual styles reference */}
                 <div className="p-3 bg-gray-900/60 rounded-lg border border-gray-700 space-y-2">
                   <p className="text-xs font-medium text-gray-300 uppercase tracking-wide">Auto-assigned visual styles by pillar</p>
                   <div className="grid grid-cols-1 gap-1">

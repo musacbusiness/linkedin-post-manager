@@ -59,7 +59,7 @@ export interface PipelineSettings {
   contentAllowEmojis: boolean
   contentCtaGuidance: string
   // Stage 5: Image Prompt
-  imageStyle: string
+  imageGenerationModel: string  // 'production' | 'testing'
   imageExtraRequirements: string
   // Stage 6: Quality Control
   qualityMinScore: number

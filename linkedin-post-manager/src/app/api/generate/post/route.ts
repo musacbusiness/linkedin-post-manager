@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         contentAllowHashtags: settingsRow.content_allow_hashtags,
         contentAllowEmojis: settingsRow.content_allow_emojis,
         contentCtaGuidance: settingsRow.content_cta_guidance,
-        imageStyle: settingsRow.image_style,
+        imageGenerationModel: settingsRow.image_style,
         imageExtraRequirements: settingsRow.image_extra_requirements,
         // Cap qualityMinScore at 7.0 and rcaMaxRetries at 2 regardless of stored values
         // to ensure first-attempt pass rate and prevent SSE timeouts from excessive retries
