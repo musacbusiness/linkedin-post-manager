@@ -9,8 +9,23 @@ import { Textarea } from '@/components/ui/textarea'
 import { CheckCircle, ChevronDown, ChevronUp, Loader } from 'lucide-react'
 import { PipelineSettings } from '@/lib/ai/pipeline'
 
-const TONES = ['professional', 'casual', 'inspirational']
-const FRAMEWORKS = ['AIDA', 'PAS', 'Story', 'VSQ']
+const TONES = ['practitioner', 'professional', 'casual', 'inspirational']
+const FRAMEWORKS = [
+  { id: 'VALUE-STACK', label: 'VALUE-STACK', description: 'Tips, how-tos, step-by-step (best: Pillar A & D)' },
+  { id: 'CONTRAST-BRIDGE', label: 'CONTRAST-BRIDGE', description: 'Comparisons, nuanced takes (best: Pillar C & E)' },
+  { id: 'STORY-LESSON', label: 'STORY-LESSON', description: 'Case studies, real experience (best: Pillar E & F)' },
+  { id: 'PAS-ADAPT', label: 'PAS-ADAPT', description: 'Problem/solution, business case (best: Pillar D & F)' },
+  { id: 'VSQ', label: 'VSQ', description: 'Feature spotlights, new tools (best: Pillar B)' },
+]
+
+const PILLAR_LABELS: Record<string, string> = {
+  A: 'Practical AI Usage Tips',
+  B: 'AI Product & Feature Spotlights',
+  C: 'AI Model Comparisons & Analysis',
+  D: 'Business Process Automation',
+  E: 'Strategic AI Adoption',
+  F: 'The Case for AI & Automation (ROI)',
+}
 
 export default function SystemHealthPage() {
   const [activeTab, setActiveTab] = useState<'health' | 'settings'>('health')
@@ -93,8 +108,10 @@ export default function SystemHealthPage() {
   // Services for System Health tab
   const services = [
     { name: 'Supabase', status: 'operational', icon: CheckCircle },
-    { name: 'Anthropic API', status: 'operational', icon: CheckCircle },
+    { name: 'Anthropic API (claude-opus-4-6)', status: 'operational', icon: CheckCircle },
     { name: 'Replicate', status: 'operational', icon: CheckCircle },
+    { name: 'QStash (Upstash)', status: 'operational', icon: CheckCircle },
+    { name: 'Make.com Webhook', status: 'operational', icon: CheckCircle },
   ]
 
   if (!settings) {
@@ -139,7 +156,7 @@ export default function SystemHealthPage() {
       {/* System Health Tab */}
       {activeTab === 'health' && (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => {
               const Icon = service.icon
               return (
@@ -208,6 +225,18 @@ export default function SystemHealthPage() {
 
             {expandedSections[1] && (
               <CardContent className="space-y-4 pt-0">
+                <div className="p-3 bg-gray-900/60 rounded-lg border border-gray-700 space-y-2">
+                  <p className="text-xs font-medium text-gray-300 uppercase tracking-wide">Content pillars (auto-rotated A → F)</p>
+                  <div className="grid grid-cols-1 gap-1">
+                    {Object.entries(PILLAR_LABELS).map(([pillar, label]) => (
+                      <div key={pillar} className="flex items-start gap-2 text-xs">
+                        <span className="text-purple-light font-bold w-5 shrink-0">{pillar}</span>
+                        <span className="text-gray-300">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
                 <div>
                   <label className="text-sm font-medium text-white mb-2 block">Expertise</label>
                   <Input
@@ -327,24 +356,30 @@ export default function SystemHealthPage() {
             {expandedSections[3] && (
               <CardContent className="space-y-4 pt-0">
                 <div>
-                  <label className="text-sm font-medium text-white mb-3 block">
+                  <label className="text-sm font-medium text-white mb-1 block">
                     Allowed Frameworks
                   </label>
-                  <div className="space-y-2">
+                  <p className="text-xs text-gray-400 mb-3">
+                    The pipeline auto-selects the best fit based on content pillar. Uncheck to disable a framework.
+                  </p>
+                  <div className="space-y-3">
                     {FRAMEWORKS.map((fw) => (
-                      <label key={fw} className="flex items-center gap-3 cursor-pointer">
+                      <label key={fw.id} className="flex items-start gap-3 cursor-pointer">
                         <input
                           type="checkbox"
-                          checked={settings.frameworkAllowed.includes(fw)}
+                          checked={settings.frameworkAllowed.includes(fw.id)}
                           onChange={(e) => {
                             const items = e.target.checked
-                              ? [...settings.frameworkAllowed, fw]
-                              : settings.frameworkAllowed.filter((f) => f !== fw)
+                              ? [...settings.frameworkAllowed, fw.id]
+                              : settings.frameworkAllowed.filter((f) => f !== fw.id)
                             updateArrayField('frameworkAllowed', items)
                           }}
-                          className="w-4 h-4"
+                          className="w-4 h-4 mt-0.5"
                         />
-                        <span className="text-white">{fw}</span>
+                        <div>
+                          <span className="text-white font-medium">{fw.label}</span>
+                          <p className="text-xs text-gray-400">{fw.description}</p>
+                        </div>
                       </label>
                     ))}
                   </div>
@@ -364,10 +399,10 @@ export default function SystemHealthPage() {
                     }
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white"
                   >
-                    <option value="">No forced framework</option>
+                    <option value="">Auto-select based on pillar</option>
                     {FRAMEWORKS.map((fw) => (
-                      <option key={fw} value={fw}>
-                        {fw}
+                      <option key={fw.id} value={fw.id}>
+                        {fw.label} — {fw.description}
                       </option>
                     ))}
                   </select>
@@ -518,22 +553,31 @@ export default function SystemHealthPage() {
 
             {expandedSections[5] && (
               <CardContent className="space-y-4 pt-0">
-                <div>
-                  <label className="text-sm font-medium text-white mb-2 block">
-                    Image Style
-                  </label>
-                  <Input
-                    value={settings.imageStyle}
-                    onChange={(e) =>
-                      updateStringField('imageStyle', e.target.value)
-                    }
-                    placeholder="e.g., 'Professional, modern style'"
-                  />
+                <div className="p-3 bg-gray-900/60 rounded-lg border border-gray-700 space-y-2">
+                  <p className="text-xs font-medium text-gray-300 uppercase tracking-wide">Auto-assigned visual styles by pillar</p>
+                  <div className="grid grid-cols-1 gap-1">
+                    {Object.entries(PILLAR_LABELS).map(([pillar, label]) => {
+                      const styleMap: Record<string, string> = {
+                        A: 'CLEAN_TECH (navy/cyan, flat digital illustration)',
+                        B: 'CLEAN_TECH (navy/cyan, flat digital illustration)',
+                        C: 'DATA_VIZ (charcoal/teal/coral, network graphs)',
+                        D: 'SYSTEMS_FLOW (slate/green/amber, blueprint/pipeline)',
+                        E: 'CONCEPTUAL (warm grays/burgundy/gold, surreal minimalism)',
+                        F: 'IMPACT (black/green/gold, dynamic energy)',
+                      }
+                      return (
+                        <div key={pillar} className="flex items-start gap-2 text-xs">
+                          <span className="text-purple-light font-bold w-5 shrink-0">{pillar}</span>
+                          <span className="text-gray-400">{label} → <span className="text-white">{styleMap[pillar]}</span></span>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
 
                 <div>
                   <label className="text-sm font-medium text-white mb-2 block">
-                    Extra Requirements
+                    Extra Requirements (appended to all image prompts)
                   </label>
                   <Textarea
                     value={settings.imageExtraRequirements}
@@ -543,7 +587,7 @@ export default function SystemHealthPage() {
                         e.target.value
                       )
                     }
-                    placeholder="e.g., 'Include data visualization', 'Dark background'"
+                    placeholder="e.g., 'Always use square 1:1 aspect ratio', 'Avoid warm tones'"
                     rows={3}
                   />
                 </div>
