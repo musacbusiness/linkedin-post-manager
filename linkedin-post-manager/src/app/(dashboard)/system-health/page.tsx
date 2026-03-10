@@ -315,19 +315,64 @@ export default function SystemHealthPage() {
 
             {expandedSections[2] && (
               <CardContent className="space-y-4 pt-0">
+                <div className="p-3 bg-gray-900/60 rounded-lg border border-gray-700 space-y-3">
+                  <div>
+                    <p className="text-xs font-medium text-gray-300 uppercase tracking-wide mb-2">Primary sources (always active)</p>
+                    <div className="space-y-1">
+                      {[
+                        { name: 'Anthropic Blog', url: 'anthropic.com/news', note: 'Claude features, research, safety' },
+                        { name: 'OpenAI Blog', url: 'openai.com/blog', note: 'GPT updates, API changes' },
+                        { name: "Simon Willison's Blog", url: 'simonwillison.net', note: 'Practitioner LLM coverage' },
+                        { name: "Ethan Mollick's Substack", url: 'oneusefulthing.org', note: 'Research-backed AI in work' },
+                        { name: 'Hugging Face Blog', url: 'huggingface.co/blog', note: 'Open-source model releases' },
+                        { name: 'McKinsey Digital', url: 'mckinsey.com/digital', note: 'AI adoption data, business impact' },
+                        { name: 'Stanford HAI AI Index', url: 'aiindex.stanford.edu', note: 'Comprehensive AI trends' },
+                        { name: 'Make.com / Zapier / n8n Blogs', url: 'various', note: 'Automation templates and guides' },
+                      ].map((src) => (
+                        <div key={src.url} className="flex items-start gap-2 text-xs">
+                          <span className="text-green-400 mt-0.5">•</span>
+                          <div>
+                            <span className="text-white font-medium">{src.name}</span>
+                            <span className="text-gray-500"> — {src.note}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-gray-300 uppercase tracking-wide mb-2">Secondary sources (topic-specific)</p>
+                    <div className="space-y-1">
+                      {[
+                        { name: 'MIT Technology Review / TechCrunch AI / Ars Technica AI', note: 'General AI news' },
+                        { name: 'Papers With Code', url: 'paperswithcode.com', note: 'Benchmark data' },
+                        { name: 'LMSYS Chatbot Arena', note: 'Model comparison rankings' },
+                        { name: 'Harvard Business Review', note: 'Strategic AI adoption' },
+                      ].map((src) => (
+                        <div key={src.name} className="flex items-start gap-2 text-xs">
+                          <span className="text-blue-400 mt-0.5">•</span>
+                          <div>
+                            <span className="text-white font-medium">{src.name}</span>
+                            <span className="text-gray-500"> — {src.note}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
                 <div>
-                  <label className="text-sm font-medium text-white mb-2 block">
-                    Allowed Research Sources
+                  <label className="text-sm font-medium text-white mb-1 block">
+                    Additional Focus Areas
                   </label>
                   <p className="text-xs text-gray-400 mb-3">
-                    Leave empty to use general knowledge
+                    Add extra sources or topics for the research stage to prioritize (appended on top of built-in sources above)
                   </p>
                   <TagInput
                     items={settings.researchSources}
                     onChange={(items) =>
                       updateArrayField('researchSources', items)
                     }
-                    placeholder="Add sources (e.g., 'harvard.edu', 'techcrunch.com')"
+                    placeholder="e.g., 'Gartner AI reports', 'specific industry case studies'"
                   />
                 </div>
               </CardContent>
