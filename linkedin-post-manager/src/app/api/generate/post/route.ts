@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
         topicPastTopics: settingsRow.topic_past_topics || [],
         topicCustomPool: settingsRow.topic_custom_pool || [],
         researchSources: settingsRow.research_sources || [],
-        frameworkAllowed: settingsRow.framework_allowed || ['AIDA', 'PAS', 'Story', 'VSQ'],
+        frameworkAllowed: settingsRow.framework_allowed || ['VALUE-STACK', 'CONTRAST-BRIDGE', 'STORY-LESSON', 'PAS-ADAPT', 'VSQ'],
         frameworkForced: settingsRow.framework_forced,
         contentMinChars: settingsRow.content_min_chars,
         contentMaxChars: settingsRow.content_max_chars,
@@ -65,6 +65,28 @@ export async function POST(request: NextRequest) {
         qualityCriteria: settingsRow.quality_criteria,
         rcaEnabled: settingsRow.rca_enabled,
         rcaMaxRetries: settingsRow.rca_max_retries,
+      }
+    }
+
+    // Query last 3 posts for pillar/framework rotation context
+    const { data: recentPosts } = await supabase
+      .from('posts')
+      .select('generation_metadata')
+      .order('created_at', { ascending: false })
+      .limit(3)
+
+    if (recentPosts && recentPosts.length > 0) {
+      const recentPillars: string[] = []
+      const recentFrameworks: string[] = []
+      for (const post of recentPosts) {
+        const meta = post.generation_metadata as Record<string, string> | null
+        if (meta?.pillar) recentPillars.push(meta.pillar)
+        if (meta?.framework) recentFrameworks.push(meta.framework)
+      }
+      pipelineSettings = {
+        ...(pipelineSettings || {} as PipelineSettings),
+        recentPillars,
+        recentFrameworks,
       }
     }
 
@@ -92,6 +114,11 @@ export async function POST(request: NextRequest) {
                 post_content: result.content,
                 image_prompt: result.imagePrompt,
                 status: 'Pending Review',
+                generation_metadata: {
+                  pillar: result.pillar,
+                  framework: result.framework,
+                  imagePromptMetadata: result.imagePromptMetadata,
+                },
               })
               .select()
               .single()
