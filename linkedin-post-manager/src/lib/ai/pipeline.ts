@@ -137,45 +137,61 @@ SIGNAL: What this tells us about where AI/automation is heading — connect to a
 QUESTION: Turn it into a discussion — "Are you using this yet?" or "What would you use this for?"`,
 }
 
-const VISUAL_STYLES: Record<string, { keywords: string; palette: string; negatives: string }> = {
-  'CLEAN_TECH': {
-    keywords: 'clean digital illustration, modern flat design with depth, isometric tech illustration, minimal UI-inspired aesthetic, soft gradients, geometric precision',
-    palette: 'deep navy (#0A1628), electric blue (#2196F3), cyan (#00BCD4), white (#FFFFFF), light gray (#F0F4F8)',
-    negatives: 'photorealistic, dark moody, grunge, vintage, retro, hand-drawn sketch, oil painting, heavy texture, complex busy background',
+// Scene archetypes for photorealistic image generation
+const SCENE_ARCHETYPES = {
+  DEEP_WORK: {
+    name: 'Deep Work',
+    description: 'Individual focused on AI-assisted task at a desk or workstation.',
+    sceneHint: 'Single professional at a desk, focused on laptop/monitor. Screen shows interface relevant to the post. Not looking at camera. Modern office, co-working space, or home office.',
+    cameraHint: 'Medium shot or over-the-shoulder, slight angle, shallow depth of field.',
+    negatives: 'multiple people, crowd, group, meeting, empty desk, no screen visible, back of head only, face completely hidden',
+    bestFor: ['A', 'B', 'C'],
   },
-  'DATA_VIZ': {
-    keywords: 'data visualization aesthetic, infographic-inspired, abstract chart elements, network graph visualization, clean analytical design, minimal technical illustration',
-    palette: 'dark charcoal (#1A1A2E), teal (#00897B), coral/orange (#FF6B35), soft white (#F5F5F5), muted purple (#7C4DFF)',
-    negatives: 'photorealistic people, emotional, dramatic, fantasy, surreal, hand-drawn, painterly, messy, organic, nature-heavy',
+  COLLABORATION: {
+    name: 'Collaboration',
+    description: '2-4 people around a shared screen discussing AI/automation output.',
+    sceneHint: 'Small team around a large monitor, conference screen, or collaborative workspace. Shared screen shows workflow/tool relevant to the post. Someone pointing at screen, others leaning in. Modern meeting room or open office.',
+    cameraHint: 'Wide-medium shot capturing group and screen. Natural depth of field.',
+    negatives: 'single person alone, empty room, no screen visible, everyone looking at camera, posed group photo, corporate headshot arrangement',
+    bestFor: ['D', 'F', 'E'],
   },
-  'SYSTEMS_FLOW': {
-    keywords: 'technical flowchart aesthetic, blueprint style, interconnected nodes and pathways, automation pipeline visualization, mechanical precision meets digital, circuit-board inspired',
-    palette: 'dark slate (#1E293B), bright green (#4CAF50), amber (#FFB300), white lines on dark background, electric blue (#2979FF)',
-    negatives: 'organic, nature, flowers, animals, painterly, impressionist, chaotic, disorganized, asymmetric clutter, photorealistic faces',
+  RESULTS: {
+    name: 'The Results',
+    description: 'Screen/dashboard showing the outcome of AI/automation work as the hero.',
+    sceneHint: 'Monitor or large screen in foreground showing dashboard, analytics, workflow, or before/after comparison relevant to the post. Screen is sharp and in focus. People may be slightly out of focus in background reacting positively.',
+    cameraHint: 'Shallow depth of field, screen sharp, people as soft background. 85mm lens aesthetic.',
+    negatives: 'blank screen, powered-off monitor, no data visible, person blocking screen, screen too small to see',
+    bestFor: ['D', 'F', 'C'],
   },
-  'CONCEPTUAL': {
-    keywords: 'conceptual digital art, surreal minimalism, metaphorical imagery, editorial illustration style, thought-provoking composition, balanced tension',
-    palette: 'warm grays (#37474F), deep burgundy (#880E4F), gold (#FFC107), cool blue (#1565C0)',
-    negatives: 'literal, obvious, cheesy metaphor, corporate stock photo, clip art, overly bright, neon overload, busy pattern background',
+  PROCESS: {
+    name: 'The Process',
+    description: 'Whiteboard or large screen showing a framework, system, or workflow being designed.',
+    sceneHint: 'Professional at or beside a whiteboard/glass wall/large screen showing a workflow diagram, decision framework, or system architecture connected to the post. Post-it notes or markers add authenticity. 1-2 others seated watching.',
+    cameraHint: 'Medium-wide shot showing both the person and the board content.',
+    negatives: 'empty whiteboard, blank wall, no visible diagram or framework, person with back fully to camera, dark room',
+    bestFor: ['E', 'A', 'D'],
   },
-  'IMPACT': {
-    keywords: 'before-after transformation visual, growth metaphor, upward momentum, expanding possibilities, dynamic energy, breakthrough moment',
-    palette: 'deep black (#0D1117), vibrant green (#00E676), gold (#FFD600), white (#FFFFFF)',
-    negatives: 'static, flat, dull, muted colors, depressing, dark moody, cluttered, complicated, photorealistic people',
+  MOMENT: {
+    name: 'The Moment',
+    description: 'Editorial candid shot — a professional in a natural work moment.',
+    sceneHint: 'Professional in a natural work moment: reviewing a document with laptop open, walking through office past active screens, pausing thoughtfully at standing desk, marking up a printed workflow. Technology present but human is the subject.',
+    cameraHint: 'Candid editorial style, natural framing, environmental portrait.',
+    negatives: 'posed, staged, looking directly at camera, corporate headshot, standing stiffly, arms crossed, artificial setting',
+    bestFor: ['E', 'F', 'A'],
   },
 }
 
-const UNIVERSAL_NEGATIVE_PROMPT = 'text, words, letters, numbers, watermark, signature, logo, username, label, caption, title, subtitle, banner, badge, low quality, blurry, pixelated, jpeg artifacts, noise, grainy, oversaturated, overexposed, underexposed, ugly, deformed, disfigured, mutated, extra limbs, extra fingers, bad anatomy, bad proportions, cropped, out of frame, cut off, stock photo, cheesy, clipart, busy background, cluttered, messy composition, tree, plant, seeds, growth, leaves, branches, roots, flower, forest, nature, organic, cosmic, galaxy, nebula, stars, star field, outer space, universe, fantasy, mythological, phoenix, dragon, crystal ball, ocean waves, tides, iceberg, fire, flames, explosion, animals, wildlife, biological, photorealistic human face, detailed human figure'
+const UNIVERSAL_NEGATIVE_PROMPT = '(readable text:1.5), (legible words:1.5), (visible letters:1.4), (text on screen:1.3), words, letters, numbers, alphabet, characters, watermark, signature, logo, label, caption, title, subtitle, illustration, digital art, vector art, cartoon, anime, 3D render, CGI, painting, drawing, sketch, abstract, geometric shapes, stock photo pose, looking at camera, fake smile, staged handshake, pointing at blank screen, thumbs up, exaggerated expression, bad anatomy, deformed hands, extra fingers, missing fingers, disfigured, poorly drawn face, mutation, mutated, ugly, blurry, low quality, low resolution, pixelated, oversaturated, HDR overprocessed, plastic skin, airbrushed, uncanny valley, wax figure, mannequin, dark moody lighting, cyberpunk neon, fantasy, sci-fi, futuristic hologram, glowing elements, lens flare overload'
 
-function getVisualStyleForPillar(pillar: string): keyof typeof VISUAL_STYLES {
+function getPrimaryArchetypesForPillar(pillar: string): Array<keyof typeof SCENE_ARCHETYPES> {
   switch (pillar) {
-    case 'A':
-    case 'B': return 'CLEAN_TECH'
-    case 'C': return 'DATA_VIZ'
-    case 'D': return 'SYSTEMS_FLOW'
-    case 'E': return 'CONCEPTUAL'
-    case 'F': return 'IMPACT'
-    default: return 'CLEAN_TECH'
+    case 'A': return ['DEEP_WORK', 'PROCESS', 'MOMENT']
+    case 'B': return ['DEEP_WORK', 'RESULTS', 'COLLABORATION']
+    case 'C': return ['RESULTS', 'DEEP_WORK', 'COLLABORATION']
+    case 'D': return ['COLLABORATION', 'RESULTS', 'PROCESS']
+    case 'E': return ['PROCESS', 'MOMENT', 'COLLABORATION']
+    case 'F': return ['RESULTS', 'COLLABORATION', 'MOMENT']
+    default: return ['DEEP_WORK', 'RESULTS', 'COLLABORATION']
   }
 }
 
@@ -630,97 +646,100 @@ Return ONLY the post content. No preamble, no metadata, no explanations. Do NOT 
     pillar: string,
     settings?: PipelineSettings
   ): Promise<ImagePromptOutput> {
-    const styleKey = getVisualStyleForPillar(pillar)
-    const style = VISUAL_STYLES[styleKey]
+    const suggestedArchetypeKeys = getPrimaryArchetypesForPillar(pillar)
+    const archetypeDescriptions = suggestedArchetypeKeys
+      .map(k => `- ${k} (${SCENE_ARCHETYPES[k].name}): ${SCENE_ARCHETYPES[k].description} [Best for Pillar ${SCENE_ARCHETYPES[k].bestFor.join(', ')}]\n  Scene: ${SCENE_ARCHETYPES[k].sceneHint}\n  Camera: ${SCENE_ARCHETYPES[k].cameraHint}`)
+      .join('\n\n')
+    const allArchetypeNegatives = suggestedArchetypeKeys
+      .map(k => SCENE_ARCHETYPES[k].negatives)
+      .join(', ')
     const extraReqs = settings?.imageExtraRequirements || ''
 
-    const prompt = `You are a visual art director for an AI & automation content feed on LinkedIn. Your job: generate a Stable Diffusion image prompt where ANY viewer can identify the image's connection to the post topic within 2 seconds.
+    const prompt = `You are an editorial photography art director for an AI & automation content brand on LinkedIn. Your images must look like they were shot by a professional photographer for Fast Company, Wired, or Harvard Business Review — real environments, real people, real tools. NOT abstract digital art, NOT illustrations, NOT stock photography poses.
 
 POST TOPIC: "${topic}"
 CONTENT PILLAR: ${pillar}
 FULL POST:
 "${content}"
 
-VISUAL STYLE for Pillar ${pillar}:
-Style keywords: ${style.keywords}
-Color palette: ${style.palette}
+━━━ STEP 1: ALIGNMENT — Extract concrete elements from the post ━━━
+List the tangible nouns, actions, and metrics. Select the 2-3 most visual.
+The connection to the post must be embedded in the scene through screen content, props, or action — NOT through abstract metaphor.
 
-━━━ ALIGNMENT PROCESS (work through all 5 steps before building the prompt) ━━━
+━━━ STEP 2: SCENE SELECTION ━━━
+Choose the best archetype for this post from the list below.
 
-STEP 1 — EXTRACT CONCRETE ELEMENTS from the post:
-  - List every tangible NOUN or OBJECT mentioned (tools, reports, systems, devices)
-  - List every CONCRETE ACTION described (automating, comparing, sorting, saving)
-  - List every NUMBER or METRIC mentioned (hours saved, percentage, number of steps)
-  - Select the 2-3 most VISUAL elements from those lists
+SUGGESTED ARCHETYPES for Pillar ${pillar} (in priority order):
 
-STEP 2 — DESCRIBE THE CORE VISUAL SCENE in plain English first:
-  Write one sentence using the concrete elements from Step 1.
-  The scene must contain at least one element the viewer can NAME from the post.
-  Example: "Three small workflow modules connected by a pipeline to a clock showing reclaimed hours"
+${archetypeDescriptions}
 
-STEP 3 — CHECK METAPHOR DEPTH (max ONE associative leap allowed):
-  ✅ ALLOWED: "Three automations" → Three connected module blocks (one leap)
-  ❌ BANNED: "Automations compound over time" → Seeds growing into a tree (three leaps)
-  If your scene requires 2+ leaps to connect to the post, go more literal.
+Pick the archetype that most naturally lets you embed the post's concrete elements.
+If the same archetype was used recently, select the next best fit.
 
-STEP 4 — CHECK VISUAL VOCABULARY (workplace-adjacent only):
-  ALLOWED: Dashboards, interfaces, workflows, pipelines, clocks, calendars, documents,
-    reports, nodes, blocks, arrows, tools, switches, split frames, before/after compositions,
-    minimalist workspace elements
-  BANNED (unless the post literally discusses these): Trees, plants, seeds, nature,
-    cosmic imagery, galaxies, nebulae, mythological elements, ocean/water, fire, flames,
-    animals, photorealistic humans, pure abstract art with no identifiable objects
-  → If your scene contains banned vocabulary, rebuild using allowed vocabulary
+━━━ STEP 3: EMBED POST CONTENT IN THE SCENE ━━━
+Choose a connection method:
+  • SCREEN CONTENT: Show the relevant interface/dashboard/workflow on screen
+    → Screen must be "suggestive not legible" — show UI shapes/layout/color blocks
+       that SUGGEST the right content type, with NO readable text or letters
+    → Example: "laptop screen displaying workflow automation interface with
+       three color-coded connected modules, no legible text"
+  • PROPS: Physical objects in frame that reinforce the topic
+    → Whiteboard with abstract diagram, documents beside laptop, multiple screens
+  • ACTION: What the person is doing tells the story
+    → Typing a structured prompt, drag-and-dropping modules, reviewing output with checklist
 
-STEP 5 — SCROLL TEST:
-  Imagine a LinkedIn viewer seeing ONLY your image (no post text).
-  Could they write a 5-word caption that roughly matches the post topic?
-  If NO → go back to Step 2 and use more literal/concrete elements.
+━━━ STEP 4: BUILD THE 7-LAYER PHOTOREALISTIC PROMPT ━━━
 
-VISUAL METAPHOR BANK for workplace topics (use these for inspiration):
-- Workflows/Pipelines: Three connected module blocks → single output, conveyor with sorting bins
-- Time savings: Clock face with segments lighting up, time-blocks being unlocked
-- AI tools comparison: Two distinct interfaces side-by-side with comparison indicators
-- Prompt quality: Messy tangled input on left → clean structured output on right
-- Automation audit: Grid of items, most gray/crossed, 2-3 highlighted green with checkmarks
-- Single point of failure: System diagram with one node showing stress fractures
-- AI model: Stylized dashboard or terminal interface (NOT a brain)
-- Business process: Flowchart with clearly labeled stages
+Layer 1 — Subject & Action: Who is in frame and what are they doing?
+  (engaged, focused, collaborating, presenting, reviewing — NOT looking at camera)
 
-FORBIDDEN SUBJECTS (never generate):
-- Person at laptop / person looking at phone
-- Generic handshake
-- Generic lightbulb
-- Brain with gears
-- Photorealistic humans
-- Trees, plants, seeds, nature growth metaphors
-- Cosmic imagery (galaxies, nebulae, star fields)
-- Fire, flames, explosions
-- Abstract art with no identifiable objects
+Layer 2 — Environment: Modern office, co-working space, glass-walled conference room,
+  clean home office, startup workspace with exposed brick, airy workspace
 
-6-LAYER PROMPT ARCHITECTURE (apply AFTER completing the alignment process above):
-1. Subject/Core Concept (put first — this is your scene from Step 2)
-2. Style/Medium
-3. Composition/Framing
-4. Lighting/Atmosphere
-5. Color Palette
-6. Quality Enhancers: "highly detailed, sharp focus, professional quality, 8K"
+Layer 3 — Screen/Prop Connection: MUST include defensive text-suppression language:
+  "screen displaying [interface type] with abstract blurred color blocks and UI layout
+   shapes, NO readable text, no legible words, no visible characters"
+  OR: "whiteboard with abstract diagram shapes and connecting lines, no legible writing"
 
-PROMPT RULES:
-- 40-80 tokens, specific, no contradictory terms
-- No more than 3 primary colors
-- Do NOT use artist names — use style families
-${extraReqs ? `- Additional requirements: ${extraReqs}` : ''}
+Layer 4 — Camera & Lens: Simulate real photography
+  Examples: "shot on Sony A7IV with 35mm f/1.8, shallow depth of field, natural bokeh,
+  over-the-shoulder perspective" / "Canon R5 with 85mm f/1.8, tight on screen,
+  person as soft background bokeh"
+
+Layer 5 — Lighting: Real-world mixed sources
+  Examples: "soft natural window light from left with warm overhead ambient",
+  "screen glow illuminating face subtly", "diffused daylight from skylights"
+
+Layer 6 — Color Grade: Editorial photography look
+  "warm neutral color grading, slightly desaturated, clean shadows with warm midtones,
+   professional editorial color palette, modern tech publication aesthetic"
+
+Layer 7 — Quality & Realism Enhancers:
+  "photorealistic, RAW photo, ultra-realistic, natural skin texture,
+   realistic fabric detail, professional photography, editorial quality, 8K UHD"
+
+━━━ STEP 5: SCROLL TEST ━━━
+Imagine a LinkedIn viewer seeing ONLY the image. Could they write a 5-word caption
+matching the post topic? If NO — go back and make the scene more literal.
+
+ABSOLUTELY FORBIDDEN (instant disqualification):
+- Any illustration, digital art, vector art, abstract shapes, CGI, 3D render
+- Staged stock photo poses (handshakes, fake smiles at camera, thumbs up)
+- Readable text anywhere in the image (use "(readable text:1.5)" in negatives)
+- Glowing elements, neon, cyberpunk, holograms, futuristic sci-fi aesthetics
+- Fantasy, cosmic, nature metaphors
+${extraReqs ? `\nADDITIONAL REQUIREMENTS: ${extraReqs}` : ''}
 
 Return ONLY a JSON object:
 {
-  "alignmentScene": "your plain-English scene description from Step 2",
-  "prompt": "the full Stable Diffusion prompt following the 6-layer architecture",
-  "negativePrompt": "universal negatives plus style-specific negatives for ${styleKey}",
+  "alignmentScene": "plain-English scene description — what the viewer sees and how it connects to the post",
+  "selectedArchetype": "DEEP_WORK|COLLABORATION|RESULTS|PROCESS|MOMENT",
+  "prompt": "the full photorealistic photography prompt using all 7 layers",
+  "negativePrompt": "full negative prompt including text suppression weights and archetype-specific negatives",
   "aspectRatio": "1:1",
   "resolution": "1080x1080",
-  "format": "PNG",
-  "cfgScale": 8,
+  "format": "JPEG",
+  "cfgScale": 7,
   "steps": 40,
   "sampler": "DPM++ 2M Karras"
 }`
@@ -728,15 +747,16 @@ Return ONLY a JSON object:
     const text = await this.callAnthropicAPI(prompt, 1024)
     const jsonMatch = text.match(/\{[\s\S]*\}/)
 
+    const archetypeNegatives = allArchetypeNegatives
+
     if (!jsonMatch) {
-      // Fallback: return a reasonable default
       return {
         prompt: text.substring(0, 500),
-        negativePrompt: UNIVERSAL_NEGATIVE_PROMPT + ', ' + style.negatives,
+        negativePrompt: `${UNIVERSAL_NEGATIVE_PROMPT}, ${archetypeNegatives}`,
         aspectRatio: '1:1',
         resolution: '1080x1080',
-        format: 'PNG',
-        cfgScale: 8,
+        format: 'JPEG',
+        cfgScale: 7,
         steps: 40,
         sampler: 'DPM++ 2M Karras',
       }
@@ -744,29 +764,29 @@ Return ONLY a JSON object:
 
     try {
       const parsed = JSON.parse(jsonMatch[0])
-      // Always append universal negatives to whatever the model returns
+      // Always ensure universal negatives are included — model may omit them
       const negativePrompt = parsed.negativePrompt
-        ? `${parsed.negativePrompt}, ${style.negatives}`
-        : `${UNIVERSAL_NEGATIVE_PROMPT}, ${style.negatives}`
+        ? `${parsed.negativePrompt}, ${UNIVERSAL_NEGATIVE_PROMPT}`
+        : `${UNIVERSAL_NEGATIVE_PROMPT}, ${archetypeNegatives}`
 
       return {
         prompt: parsed.prompt || text.substring(0, 500),
         negativePrompt,
         aspectRatio: parsed.aspectRatio || '1:1',
         resolution: parsed.resolution || '1080x1080',
-        format: parsed.format || 'PNG',
-        cfgScale: parsed.cfgScale ?? 8,
+        format: parsed.format || 'JPEG',
+        cfgScale: parsed.cfgScale ?? 7,
         steps: parsed.steps ?? 40,
         sampler: parsed.sampler || 'DPM++ 2M Karras',
       }
     } catch {
       return {
         prompt: text.substring(0, 500),
-        negativePrompt: `${UNIVERSAL_NEGATIVE_PROMPT}, ${style.negatives}`,
+        negativePrompt: `${UNIVERSAL_NEGATIVE_PROMPT}, ${archetypeNegatives}`,
         aspectRatio: '1:1',
         resolution: '1080x1080',
-        format: 'PNG',
-        cfgScale: 8,
+        format: 'JPEG',
+        cfgScale: 7,
         steps: 40,
         sampler: 'DPM++ 2M Karras',
       }

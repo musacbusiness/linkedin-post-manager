@@ -656,23 +656,23 @@ export default function SystemHealthPage() {
                   </div>
                 </div>
 
-                {/* Visual styles reference */}
+                {/* Scene archetype reference */}
                 <div className="p-3 bg-gray-900/60 rounded-lg border border-gray-700 space-y-2">
-                  <p className="text-xs font-medium text-gray-300 uppercase tracking-wide">Auto-assigned visual styles by pillar</p>
+                  <p className="text-xs font-medium text-gray-300 uppercase tracking-wide">Photorealistic scene archetypes by pillar</p>
                   <div className="grid grid-cols-1 gap-1">
                     {Object.entries(PILLAR_LABELS).map(([pillar, label]) => {
-                      const styleMap: Record<string, string> = {
-                        A: 'CLEAN_TECH (navy/cyan, flat digital illustration)',
-                        B: 'CLEAN_TECH (navy/cyan, flat digital illustration)',
-                        C: 'DATA_VIZ (charcoal/teal/coral, network graphs)',
-                        D: 'SYSTEMS_FLOW (slate/green/amber, blueprint/pipeline)',
-                        E: 'CONCEPTUAL (warm grays/burgundy/gold, surreal minimalism)',
-                        F: 'IMPACT (black/green/gold, dynamic energy)',
+                      const archetypeMap: Record<string, string> = {
+                        A: 'Deep Work → Process → Moment',
+                        B: 'Deep Work → Results → Collaboration',
+                        C: 'Results → Deep Work → Collaboration',
+                        D: 'Collaboration → Results → Process',
+                        E: 'Process → Moment → Collaboration',
+                        F: 'Results → Collaboration → Moment',
                       }
                       return (
                         <div key={pillar} className="flex items-start gap-2 text-xs">
                           <span className="text-purple-light font-bold w-5 shrink-0">{pillar}</span>
-                          <span className="text-gray-400">{label} → <span className="text-white">{styleMap[pillar]}</span></span>
+                          <span className="text-gray-400">{label} → <span className="text-white">{archetypeMap[pillar]}</span></span>
                         </div>
                       )
                     })}
