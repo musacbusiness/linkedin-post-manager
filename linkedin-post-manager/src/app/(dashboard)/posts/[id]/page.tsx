@@ -165,6 +165,7 @@ export default function EditPostPage() {
       const response = await fetch(`/api/posts/${postId}/approve`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
       })
 
       if (!response.ok) {

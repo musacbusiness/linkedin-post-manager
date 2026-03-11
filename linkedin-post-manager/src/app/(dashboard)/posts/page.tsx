@@ -100,7 +100,11 @@ export default function PostsPage() {
     let succeeded = 0
     for (const id of ids) {
       try {
-        const res = await fetch(`/api/posts/${id}/approve`, { method: 'POST' })
+        const res = await fetch(`/api/posts/${id}/approve`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
+        })
         if (res.ok) succeeded++
       } catch { /* skip */ }
       setBulkProgress({ done: succeeded, total: ids.length })

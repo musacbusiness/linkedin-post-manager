@@ -5,7 +5,7 @@ import { schedulePostDelivery } from '@/lib/qstash'
 
 // POST /api/posts/[id]/schedule - Auto-schedule a post
 export async function POST(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -31,8 +31,15 @@ export async function POST(
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }
 
-    // Auto-schedule the post
-    const result = await autoSchedulePost(supabase, params.id)
+    // Read timezone from request body
+    let timezone = 'UTC'
+    try {
+      const body = await request.json()
+      if (body?.timezone) timezone = body.timezone
+    } catch { /* no body — use UTC */ }
+
+    // Auto-schedule the post in the user's timezone
+    const result = await autoSchedulePost(supabase, params.id, timezone)
 
     if (!result.success) {
       return NextResponse.json(
