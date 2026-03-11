@@ -80,6 +80,21 @@ export default function SystemHealthPage() {
     }
   }
 
+  const setImageModel = async (model: string) => {
+    if (!settings) return
+    const updated = { ...settings, imageGenerationModel: model }
+    setSettings(updated)
+    try {
+      await fetch('/api/settings/pipeline', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updated),
+      })
+    } catch (error) {
+      console.error('Failed to save image model:', error)
+    }
+  }
+
   const toggleSection = (section: number) => {
     setExpandedSections((prev) => ({
       ...prev,
@@ -606,7 +621,7 @@ export default function SystemHealthPage() {
                       settings.imageGenerationModel !== 'production'
                         ? 'border-purple-accent bg-purple-accent/10'
                         : 'border-gray-700 bg-gray-900/40 opacity-50'
-                    }`} onClick={() => updateStringField('imageGenerationModel', 'testing')}>
+                    }`} onClick={() => setImageModel('testing')}>
                       <div className="flex items-center gap-2 mb-1">
                         <div className={`w-3 h-3 rounded-full ${settings.imageGenerationModel !== 'production' ? 'bg-purple-accent' : 'bg-gray-600'}`} />
                         <span className="text-sm font-semibold text-white">Testing</span>
@@ -616,7 +631,7 @@ export default function SystemHealthPage() {
 
                     {/* Toggle switch */}
                     <button
-                      onClick={() => updateStringField('imageGenerationModel', settings.imageGenerationModel === 'production' ? 'testing' : 'production')}
+                      onClick={() => setImageModel(settings.imageGenerationModel === 'production' ? 'testing' : 'production')}
                       className={`relative w-12 h-6 rounded-full transition-colors flex-shrink-0 ${
                         settings.imageGenerationModel === 'production' ? 'bg-green-500' : 'bg-gray-600'
                       }`}
@@ -631,7 +646,7 @@ export default function SystemHealthPage() {
                       settings.imageGenerationModel === 'production'
                         ? 'border-green-500 bg-green-500/10'
                         : 'border-gray-700 bg-gray-900/40 opacity-50'
-                    }`} onClick={() => updateStringField('imageGenerationModel', 'production')}>
+                    }`} onClick={() => setImageModel('production')}>
                       <div className="flex items-center gap-2 mb-1">
                         <div className={`w-3 h-3 rounded-full ${settings.imageGenerationModel === 'production' ? 'bg-green-500' : 'bg-gray-600'}`} />
                         <span className="text-sm font-semibold text-white">Production</span>
