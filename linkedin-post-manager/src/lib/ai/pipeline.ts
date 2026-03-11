@@ -165,7 +165,7 @@ const VISUAL_STYLES: Record<string, { keywords: string; palette: string; negativ
   },
 }
 
-const UNIVERSAL_NEGATIVE_PROMPT = 'text, words, letters, numbers, watermark, signature, logo, username, label, caption, title, subtitle, banner, badge, low quality, blurry, pixelated, jpeg artifacts, noise, grainy, oversaturated, overexposed, underexposed, ugly, deformed, disfigured, mutated, extra limbs, extra fingers, bad anatomy, bad proportions, cropped, out of frame, cut off, stock photo, cheesy, clipart, busy background, cluttered, messy composition'
+const UNIVERSAL_NEGATIVE_PROMPT = 'text, words, letters, numbers, watermark, signature, logo, username, label, caption, title, subtitle, banner, badge, low quality, blurry, pixelated, jpeg artifacts, noise, grainy, oversaturated, overexposed, underexposed, ugly, deformed, disfigured, mutated, extra limbs, extra fingers, bad anatomy, bad proportions, cropped, out of frame, cut off, stock photo, cheesy, clipart, busy background, cluttered, messy composition, tree, plant, seeds, growth, leaves, branches, roots, flower, forest, nature, organic, cosmic, galaxy, nebula, stars, star field, outer space, universe, fantasy, mythological, phoenix, dragon, crystal ball, ocean waves, tides, iceberg, fire, flames, explosion, animals, wildlife, biological, photorealistic human face, detailed human figure'
 
 function getVisualStyleForPillar(pillar: string): keyof typeof VISUAL_STYLES {
   switch (pillar) {
@@ -257,13 +257,21 @@ export class PostGenerationPipeline {
 
       // Stage 5: Image Prompt
       onProgress({ stage: 5, stageName: 'Image Prompt', message: 'Creating image prompt...' })
-      const imagePromptResult = await this.generateImagePrompt(topic, content, pillar, settings)
+      let imagePromptResult = await this.generateImagePrompt(topic, content, pillar, settings)
       onProgress({ stage: 5, stageName: 'Image Prompt', message: 'Image prompt created', data: { imagePrompt: imagePromptResult.prompt } })
 
-      // Stage 6: Quality Control
+      // Stage 6: Quality Control (includes image-post alignment check)
       onProgress({ stage: 6, stageName: 'Quality Control', message: 'Evaluating quality...' })
-      const qualityResult = await this.qualityControl(content, framework, settings)
-      onProgress({ stage: 6, stageName: 'Quality Control', message: `Score: ${qualityResult.score}/10${qualityResult.autoFailed ? ' (auto-fail triggered)' : ''}`, data: qualityResult })
+      const qualityResult = await this.qualityControl(content, framework, settings, imagePromptResult.prompt)
+
+      // If image alignment failed, regenerate image prompt before continuing
+      if (qualityResult.imageAlignmentFailed) {
+        onProgress({ stage: 5, stageName: 'Image Prompt', message: 'Regenerating image prompt for better content alignment...' })
+        imagePromptResult = await this.generateImagePrompt(topic, content, pillar, settings)
+        onProgress({ stage: 5, stageName: 'Image Prompt', message: 'Image prompt regenerated', data: { imagePrompt: imagePromptResult.prompt } })
+      }
+
+      onProgress({ stage: 6, stageName: 'Quality Control', message: `Score: ${qualityResult.score}/10${qualityResult.autoFailed ? ' (auto-fail triggered)' : ''}${qualityResult.imageAlignmentFailed ? ' (image regenerated)' : ''}`, data: qualityResult })
 
       if (qualityResult.compliant) {
         onProgress({ stage: 7, stageName: 'Complete', message: 'Post generation complete!', data: { success: true } })
@@ -626,42 +634,72 @@ Return ONLY the post content. No preamble, no metadata, no explanations. Do NOT 
     const style = VISUAL_STYLES[styleKey]
     const extraReqs = settings?.imageExtraRequirements || ''
 
-    const prompt = `You are a visual art director for an AI & automation content feed on LinkedIn. Generate a Stable Diffusion image prompt for this post.
+    const prompt = `You are a visual art director for an AI & automation content feed on LinkedIn. Your job: generate a Stable Diffusion image prompt where ANY viewer can identify the image's connection to the post topic within 2 seconds.
 
 POST TOPIC: "${topic}"
 CONTENT PILLAR: ${pillar}
-POST PREVIEW: "${content.substring(0, 400)}..."
+FULL POST:
+"${content}"
 
 VISUAL STYLE for Pillar ${pillar}:
 Style keywords: ${style.keywords}
 Color palette: ${style.palette}
 
-DESIGN PHILOSOPHY:
-- Professional but not corporate — avoid sterile stock photo aesthetics
-- Tech-forward but approachable — futuristic without being alienating
-- Clean and bold — high contrast, strong focal point, minimal clutter
-- Abstract over literal — conceptual representations beat literal depictions
+━━━ ALIGNMENT PROCESS (work through all 5 steps before building the prompt) ━━━
 
-VISUAL METAPHOR BANK (use as inspiration, not prescription):
-AI/ML: neural network constellations, layered translucent planes of data, luminous interconnected nodes
-Prompting/Input: funnel transforming raw material into refined output, architect's blueprint becoming a building
-Automation: domino chains, self-assembling puzzle pieces, flowing pipeline with glowing data packets
-Data Processing: streams of light through crystalline filters, prismatic refraction of information
-ROI/Value: seeds growing into digital trees, small inputs creating exponential output curves
-Efficiency: streamlined paths through complex mazes, clean highway through a chaotic landscape
-Comparison: split composition — analog/manual on left, digital/automated on right
-Human+AI: two complementary puzzle pieces, conductor leading an orchestra of digital instruments
+STEP 1 — EXTRACT CONCRETE ELEMENTS from the post:
+  - List every tangible NOUN or OBJECT mentioned (tools, reports, systems, devices)
+  - List every CONCRETE ACTION described (automating, comparing, sorting, saving)
+  - List every NUMBER or METRIC mentioned (hours saved, percentage, number of steps)
+  - Select the 2-3 most VISUAL elements from those lists
 
-FORBIDDEN SUBJECTS (never generate these):
-- Person sitting at laptop or looking at phone
+STEP 2 — DESCRIBE THE CORE VISUAL SCENE in plain English first:
+  Write one sentence using the concrete elements from Step 1.
+  The scene must contain at least one element the viewer can NAME from the post.
+  Example: "Three small workflow modules connected by a pipeline to a clock showing reclaimed hours"
+
+STEP 3 — CHECK METAPHOR DEPTH (max ONE associative leap allowed):
+  ✅ ALLOWED: "Three automations" → Three connected module blocks (one leap)
+  ❌ BANNED: "Automations compound over time" → Seeds growing into a tree (three leaps)
+  If your scene requires 2+ leaps to connect to the post, go more literal.
+
+STEP 4 — CHECK VISUAL VOCABULARY (workplace-adjacent only):
+  ALLOWED: Dashboards, interfaces, workflows, pipelines, clocks, calendars, documents,
+    reports, nodes, blocks, arrows, tools, switches, split frames, before/after compositions,
+    minimalist workspace elements
+  BANNED (unless the post literally discusses these): Trees, plants, seeds, nature,
+    cosmic imagery, galaxies, nebulae, mythological elements, ocean/water, fire, flames,
+    animals, photorealistic humans, pure abstract art with no identifiable objects
+  → If your scene contains banned vocabulary, rebuild using allowed vocabulary
+
+STEP 5 — SCROLL TEST:
+  Imagine a LinkedIn viewer seeing ONLY your image (no post text).
+  Could they write a 5-word caption that roughly matches the post topic?
+  If NO → go back to Step 2 and use more literal/concrete elements.
+
+VISUAL METAPHOR BANK for workplace topics (use these for inspiration):
+- Workflows/Pipelines: Three connected module blocks → single output, conveyor with sorting bins
+- Time savings: Clock face with segments lighting up, time-blocks being unlocked
+- AI tools comparison: Two distinct interfaces side-by-side with comparison indicators
+- Prompt quality: Messy tangled input on left → clean structured output on right
+- Automation audit: Grid of items, most gray/crossed, 2-3 highlighted green with checkmarks
+- Single point of failure: System diagram with one node showing stress fractures
+- AI model: Stylized dashboard or terminal interface (NOT a brain)
+- Business process: Flowchart with clearly labeled stages
+
+FORBIDDEN SUBJECTS (never generate):
+- Person at laptop / person looking at phone
 - Generic handshake
 - Generic lightbulb
 - Brain with gears
-- Photorealistic humans (uncanny and hurts credibility)
-- Generic corporate office scene
+- Photorealistic humans
+- Trees, plants, seeds, nature growth metaphors
+- Cosmic imagery (galaxies, nebulae, star fields)
+- Fire, flames, explosions
+- Abstract art with no identifiable objects
 
-6-LAYER PROMPT ARCHITECTURE (order matters — earlier tokens weighted more heavily):
-1. Subject/Core Concept (most important — put first)
+6-LAYER PROMPT ARCHITECTURE (apply AFTER completing the alignment process above):
+1. Subject/Core Concept (put first — this is your scene from Step 2)
 2. Style/Medium
 3. Composition/Framing
 4. Lighting/Atmosphere
@@ -669,14 +707,14 @@ FORBIDDEN SUBJECTS (never generate these):
 6. Quality Enhancers: "highly detailed, sharp focus, professional quality, 8K"
 
 PROMPT RULES:
-- 40-80 tokens — specific enough, not contradictory
-- No more than 3 primary colors in palette — restraint creates professionalism
-- Do NOT use artist names — use style families instead (e.g. "retro-futurism" not a specific artist)
-- Vary composition from recent posts (options: centered, asymmetric left/right, split, full bleed)
+- 40-80 tokens, specific, no contradictory terms
+- No more than 3 primary colors
+- Do NOT use artist names — use style families
 ${extraReqs ? `- Additional requirements: ${extraReqs}` : ''}
 
 Return ONLY a JSON object:
 {
+  "alignmentScene": "your plain-English scene description from Step 2",
   "prompt": "the full Stable Diffusion prompt following the 6-layer architecture",
   "negativePrompt": "universal negatives plus style-specific negatives for ${styleKey}",
   "aspectRatio": "1:1",
@@ -740,11 +778,25 @@ Return ONLY a JSON object:
   private async qualityControl(
     content: string,
     framework: string,
-    settings?: PipelineSettings
-  ): Promise<{ compliant: boolean; score: number; issues: string[]; autoFailed: boolean }> {
+    settings?: PipelineSettings,
+    imagePrompt?: string
+  ): Promise<{ compliant: boolean; score: number; issues: string[]; autoFailed: boolean; imageAlignmentFailed: boolean }> {
     // Cap at 7.0 max — scoring above this causes consistent first-attempt failures
     // since Claude's self-evaluation calibration clusters 7-8 for good content
     const minScore = Math.min(settings?.qualityMinScore ?? 7, 7.0)
+
+    const imageAlignmentSection = imagePrompt ? `
+IMAGE PROMPT TO EVALUATE:
+"${imagePrompt}"
+
+7. Image-Post Alignment (1-10): Can a stranger shown ONLY the image (no post text) write a 5-word caption that roughly matches the post topic?
+  Scoring guide:
+  9-10: Image directly depicts elements named in the post. Zero ambiguity.
+  7-8: Clear one-leap metaphor — most viewers get it quickly.
+  5-6: Thematically related but requires thought to connect. Risky.
+  3-4: Metaphor buried — aesthetically consistent but disconnected (e.g. glowing tree for "automation stacking").
+  1-2: No discernible connection to the post content.
+  Score 7+ if a workplace-adjacent viewer can connect image to topic in one step. Score below 7 if it requires 2+ mental leaps.` : ''
 
     const prompt = `Evaluate this LinkedIn post for quality. Score each criterion 1-10 using the calibration scale below.
 
@@ -771,6 +823,7 @@ SCORING CRITERIA:
 4. CTA Strength (1-10): Does it end with a specific ask the reader wants to respond to? Score 7 if it's a real question tied to the topic. Score 8+ if it's creative and highly specific.
 5. Tone Authenticity (1-10): Does it sound like a practitioner with real experience? Score 7 if it's conversational and grounded. Score 8+ if it has unmistakably human, experience-based voice.
 6. Length Compliance (1-10): The post is ${content.length} characters. Hook should be ≤210 chars, total 1300–1900. Score 10 if all constraints are hit. Score 7 if length is within 10% of range. Score 5 if significantly out of range.
+${imageAlignmentSection}
 
 AUTOMATIC FAIL CONDITIONS (only trigger if clearly and obviously violated — do not over-apply):
 - Hook is completely generic with zero specificity AND could apply to literally any industry → autoFail: true
@@ -787,9 +840,9 @@ Return ONLY a JSON object:
     "engagementPotential": number,
     "ctaStrength": number,
     "toneAuthenticity": number,
-    "lengthCompliance": number
+    "lengthCompliance": number${imagePrompt ? ',\n    "imageAlignment": number' : ''}
   },
-  "score": number (average of all 6),
+  "score": number (average of all ${imagePrompt ? '7' : '6'} criteria),
   "autoFail": boolean,
   "autoFailReasons": ["list any triggered automatic fail conditions"],
   "issues": ["list specific, actionable issues — map each to a criterion name"]
@@ -798,7 +851,7 @@ Return ONLY a JSON object:
     const text = await this.callAnthropicAPI(prompt)
     const jsonMatch = text.match(/\{[\s\S]*\}/)
     if (!jsonMatch) {
-      return { compliant: true, score: 8.5, issues: [], autoFailed: false }
+      return { compliant: true, score: 8.5, issues: [], autoFailed: false, imageAlignmentFailed: false }
     }
 
     try {
@@ -806,14 +859,17 @@ Return ONLY a JSON object:
       const autoFailed = result.autoFail === true
       const score = typeof result.score === 'number' ? result.score : 8.5
       const compliant = !autoFailed && score >= minScore
+      const imageAlignmentScore = result.scores?.imageAlignment
+      const imageAlignmentFailed = imagePrompt !== undefined && typeof imageAlignmentScore === 'number' && imageAlignmentScore < 7
       return {
         compliant,
         score,
         issues: result.issues || result.autoFailReasons || [],
         autoFailed,
+        imageAlignmentFailed,
       }
     } catch {
-      return { compliant: true, score: 8.5, issues: [], autoFailed: false }
+      return { compliant: true, score: 8.5, issues: [], autoFailed: false, imageAlignmentFailed: false }
     }
   }
 
