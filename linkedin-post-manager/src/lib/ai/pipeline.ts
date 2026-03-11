@@ -138,62 +138,7 @@ QUESTION: Turn it into a discussion — "Are you using this yet?" or "What would
 }
 
 // Scene archetypes for photorealistic image generation
-const SCENE_ARCHETYPES = {
-  DEEP_WORK: {
-    name: 'Deep Work',
-    description: 'Individual focused on AI-assisted task at a desk or workstation.',
-    sceneHint: 'Single professional at a desk, focused on laptop/monitor. Screen shows interface relevant to the post. Not looking at camera. Modern office, co-working space, or home office.',
-    cameraHint: 'Medium shot or over-the-shoulder, slight angle, shallow depth of field.',
-    negatives: 'multiple people, crowd, group, meeting, empty desk, no screen visible, back of head only, face completely hidden',
-    bestFor: ['A', 'B', 'C'],
-  },
-  COLLABORATION: {
-    name: 'Collaboration',
-    description: '2-4 people around a shared screen discussing AI/automation output.',
-    sceneHint: 'Small team around a large monitor, conference screen, or collaborative workspace. Shared screen shows workflow/tool relevant to the post. Someone pointing at screen, others leaning in. Modern meeting room or open office.',
-    cameraHint: 'Wide-medium shot capturing group and screen. Natural depth of field.',
-    negatives: 'single person alone, empty room, no screen visible, everyone looking at camera, posed group photo, corporate headshot arrangement',
-    bestFor: ['D', 'F', 'E'],
-  },
-  RESULTS: {
-    name: 'The Results',
-    description: 'Screen/dashboard showing the outcome of AI/automation work as the hero.',
-    sceneHint: 'Monitor or large screen in foreground showing dashboard, analytics, workflow, or before/after comparison relevant to the post. Screen is sharp and in focus. People may be slightly out of focus in background reacting positively.',
-    cameraHint: 'Shallow depth of field, screen sharp, people as soft background. 85mm lens aesthetic.',
-    negatives: 'blank screen, powered-off monitor, no data visible, person blocking screen, screen too small to see',
-    bestFor: ['D', 'F', 'C'],
-  },
-  PROCESS: {
-    name: 'The Process',
-    description: 'Whiteboard or large screen showing a framework, system, or workflow being designed.',
-    sceneHint: 'Professional at or beside a whiteboard/glass wall/large screen showing a workflow diagram, decision framework, or system architecture connected to the post. Post-it notes or markers add authenticity. 1-2 others seated watching.',
-    cameraHint: 'Medium-wide shot showing both the person and the board content.',
-    negatives: 'empty whiteboard, blank wall, no visible diagram or framework, person with back fully to camera, dark room',
-    bestFor: ['E', 'A', 'D'],
-  },
-  MOMENT: {
-    name: 'The Moment',
-    description: 'Editorial candid shot — a professional in a natural work moment.',
-    sceneHint: 'Professional in a natural work moment: reviewing a document with laptop open, walking through office past active screens, pausing thoughtfully at standing desk, marking up a printed workflow. Technology present but human is the subject.',
-    cameraHint: 'Candid editorial style, natural framing, environmental portrait.',
-    negatives: 'posed, staged, looking directly at camera, corporate headshot, standing stiffly, arms crossed, artificial setting',
-    bestFor: ['E', 'F', 'A'],
-  },
-}
-
 const UNIVERSAL_NEGATIVE_PROMPT = '(readable text:1.5), (legible words:1.5), (visible letters:1.4), (text on screen:1.3), words, letters, numbers, alphabet, characters, watermark, signature, logo, label, caption, title, subtitle, illustration, digital art, vector art, cartoon, anime, 3D render, CGI, painting, drawing, sketch, abstract, geometric shapes, stock photo pose, looking at camera, fake smile, staged handshake, pointing at blank screen, thumbs up, exaggerated expression, bad anatomy, deformed hands, extra fingers, missing fingers, disfigured, poorly drawn face, mutation, mutated, ugly, blurry, low quality, low resolution, pixelated, oversaturated, HDR overprocessed, plastic skin, airbrushed, uncanny valley, wax figure, mannequin, dark moody lighting, cyberpunk neon, fantasy, sci-fi, futuristic hologram, glowing elements, lens flare overload'
-
-function getPrimaryArchetypesForPillar(pillar: string): Array<keyof typeof SCENE_ARCHETYPES> {
-  switch (pillar) {
-    case 'A': return ['DEEP_WORK', 'PROCESS', 'MOMENT']
-    case 'B': return ['DEEP_WORK', 'RESULTS', 'COLLABORATION']
-    case 'C': return ['RESULTS', 'DEEP_WORK', 'COLLABORATION']
-    case 'D': return ['COLLABORATION', 'RESULTS', 'PROCESS']
-    case 'E': return ['PROCESS', 'MOMENT', 'COLLABORATION']
-    case 'F': return ['RESULTS', 'COLLABORATION', 'MOMENT']
-    default: return ['DEEP_WORK', 'RESULTS', 'COLLABORATION']
-  }
-}
 
 // ─── Pipeline class ─────────────────────────────────────────────────────────
 
@@ -646,13 +591,6 @@ Return ONLY the post content. No preamble, no metadata, no explanations. Do NOT 
     pillar: string,
     settings?: PipelineSettings
   ): Promise<ImagePromptOutput> {
-    const suggestedArchetypeKeys = getPrimaryArchetypesForPillar(pillar)
-    const archetypeDescriptions = suggestedArchetypeKeys
-      .map(k => `- ${k} (${SCENE_ARCHETYPES[k].name}): ${SCENE_ARCHETYPES[k].description} [Best for Pillar ${SCENE_ARCHETYPES[k].bestFor.join(', ')}]\n  Scene: ${SCENE_ARCHETYPES[k].sceneHint}\n  Camera: ${SCENE_ARCHETYPES[k].cameraHint}`)
-      .join('\n\n')
-    const allArchetypeNegatives = suggestedArchetypeKeys
-      .map(k => SCENE_ARCHETYPES[k].negatives)
-      .join(', ')
     const extraReqs = settings?.imageExtraRequirements || ''
 
     const prompt = `You are an editorial photography art director for an AI & automation content brand on LinkedIn. Your images must look like they were shot by a professional photographer for Fast Company, Wired, or Harvard Business Review — real environments, real people, real tools. NOT abstract digital art, NOT illustrations, NOT stock photography poses.
@@ -662,80 +600,166 @@ CONTENT PILLAR: ${pillar}
 FULL POST:
 "${content}"
 
-━━━ STEP 1: ALIGNMENT — Extract concrete elements from the post ━━━
-List the tangible nouns, actions, and metrics. Select the 2-3 most visual.
-The connection to the post must be embedded in the scene through screen content, props, or action — NOT through abstract metaphor.
+━━━ STEP 0: COMMIT TO THE STORY FIRST ━━━
+Before designing anything, answer these three questions in your reasoning:
 
-━━━ STEP 2: SCENE SELECTION ━━━
-Choose the best archetype for this post from the list below.
+1. CLAIM TYPE — What kind of claim is this post making?
+   Choose one: TRANSFORMATION | REVELATION | FRAMEWORK | PIPELINE-AGENT | QUIET-WIN | CONTRAST | COLLABORATION | PERSONAL-SYSTEM
 
-SUGGESTED ARCHETYPES for Pillar ${pillar} (in priority order):
+2. THE SPECIFIC STORY — Complete this sentence:
+   "A stranger shown only this image would instantly understand: [post-specific story in 6 words or fewer]"
+   Target: something like "AI handles email triage automatically" or "automation freed analyst from reporting"
+   NOT: "AI in the workplace" or "automation helps people" — those are too generic.
 
-${archetypeDescriptions}
+3. THE DIFFERENTIATOR — What ONE concrete detail (specific tool, metric, prop, action, or outcome mentioned in THIS post) makes this image different from any other AI/automation LinkedIn post?
+   If the answer is "nothing" — the scene is too generic. Redesign before proceeding.
 
-Pick the archetype that most naturally lets you embed the post's concrete elements.
-If the same archetype was used recently, select the next best fit.
+━━━ STEP 1: EXTRACT THE NARRATIVE TRIAD ━━━
+From the post content, identify:
+- BEFORE: Who was doing what manually / inefficiently / at cost?
+- AFTER: What specific AI or automation outcome replaced it? (name specific tools or outcomes if post mentions them)
+- EVIDENCE: What physical object, screen layout, or human action shows the "after" state most visually?
 
-━━━ STEP 3: EMBED POST CONTENT IN THE SCENE ━━━
-Choose a connection method:
-  • SCREEN CONTENT: Show the relevant interface/dashboard/workflow on screen
-    → Screen must be "suggestive not legible" — show UI shapes/layout/color blocks
-       that SUGGEST the right content type, with NO readable text or letters
-    → Example: "laptop screen displaying workflow automation interface with
-       three color-coded connected modules, no legible text"
-  • PROPS: Physical objects in frame that reinforce the topic
-    → Whiteboard with abstract diagram, documents beside laptop, multiple screens
-  • ACTION: What the person is doing tells the story
-    → Typing a structured prompt, drag-and-dropping modules, reviewing output with checklist
+The EVIDENCE is what goes on the screen or in the props. It must be specific to THIS post, not a generic workflow diagram.
+
+━━━ STEP 2: SELECT THE NARRATIVE SCENE TEMPLATE ━━━
+Choose the template that matches the CLAIM TYPE from Step 0. Pick the PRIMARY template unless it was recently used — then pick SECONDARY.
+
+CLAIM TYPE → PRIMARY → SECONDARY
+TRANSFORMATION    → THE TRANSFORMATION   → THE CONTRAST DESK
+REVELATION        → THE REVELATION       → THE QUIET DIVIDEND
+FRAMEWORK         → THE EVIDENCE BOARD   → THE PRACTITIONER SETUP
+PIPELINE-AGENT    → THE SYSTEM IN MOTION → THE PRACTITIONER SETUP
+QUIET-WIN         → THE QUIET DIVIDEND   → THE TRANSFORMATION
+CONTRAST          → THE CONTRAST DESK    → THE EVIDENCE BOARD
+COLLABORATION     → THE COLLABORATION REVIEW → THE EVIDENCE BOARD
+PERSONAL-SYSTEM   → THE PRACTITIONER SETUP → THE SYSTEM IN MOTION
+
+━━━ TEMPLATE LIBRARY ━━━
+
+THE TRANSFORMATION
+When: Switching from manual → automated, time savings, ROI, before/after AI adoption.
+Scene: Professional at desk with clean monitor showing the automated result. Evidence of the former manual process visible — stack of reports to the side, discarded pen and notepad, closed binder. Human looks focused and calm, not celebratory.
+Screen: Shows the specific "after" state from the EVIDENCE (Step 1) — rendered as abstract UI shapes. NOT a generic 3-box flow diagram.
+Camera: Medium shot or slight over-shoulder. Screen in mid-ground, props in soft foreground.
+
+THE REVELATION
+When: AI capability discovery, "I tried X and was shocked", first-time result that surprised the author.
+Scene: Professional mid-reaction — leaning slightly forward toward screen, genuine curiosity or surprise (slight widening of eyes, chin resting on hand). NOT performed shock or staged expression. Modern workspace.
+Screen: Shows the specific AI output from EVIDENCE — a document shape that looks AI-generated, analysis view, completed pipeline — something that justifies the reaction.
+Camera: 3/4 profile or over-shoulder. Face and screen both in frame. Shallow depth of field.
+
+THE SYSTEM IN MOTION
+When: Automation pipeline, AI agent, multi-step workflow running without human intervention.
+Scene: Multiple monitors or wide screen showing different stages of an active process from EVIDENCE. Professional in background overseeing — NOT doing. Standing with arms folded or hands on hips.
+Screen: Abstract representations of 3-5 pipeline stages with "in progress" visual indicators — progress fills, active node highlights, flowing connection shapes. No readable text.
+Camera: Medium-wide. The running system is the hero. Professional is background.
+
+THE EVIDENCE BOARD
+When: Framework, comparison, step-by-step guide, or structured breakdown.
+Scene: Professional beside a whiteboard or large glass wall showing a real-looking diagram that maps the post's structure. Post-it notes for authenticity. 1 other person seated watching. Person is mid-gesture, pointing or writing.
+Board: Abstract diagram shapes — boxes, arrows, columns — structurally matching the post's framework count. If post has 5 steps, show 5 connected shapes. No legible writing.
+Camera: Medium-wide showing both person and board.
+
+THE QUIET DIVIDEND
+When: Time reclaimed, work-life balance through automation, "let AI do the grunt work", outcome of a good system.
+Scene: Professional doing something human — coffee by a window, leaning back reviewing printed doc, mid-conversation — while screens in BACKGROUND show automated work completing. The human is NOT working. The machine is.
+Screen: Slightly out of focus background. Shows completion states — dashboard updating, process finishing. Human is disengaged from it.
+Camera: Environmental portrait. Person foreground, screens ambient background.
+
+THE CONTRAST DESK
+When: Before/after comparison, tool adoption story, old way vs. new way.
+Scene: Two visual zones in one frame. Left/background: cluttered evidence of the old process — stacked papers, color-coded sticky notes, paper calendar. Right/foreground: clean workstation with monitor showing streamlined automated output from EVIDENCE. Professional is on the right side, in the clean zone.
+Camera: Wide-medium capturing both zones. Natural depth of field separates them. Editorial look.
+
+THE PRACTITIONER SETUP
+When: Personal productivity system, tool stack, workflow configuration, "here's how I work" angle.
+Scene: Over-the-shoulder of professional showing their actual workspace — multiple monitors, notebook, specific tools in use. The monitor configuration tells the story based on EVIDENCE: which types of apps are open, how they're arranged.
+Screen: Each monitor implies a different layer of the stack — AI output on one, dashboard on another, task list on another. All abstract, no readable text.
+Camera: Over-the-shoulder or wide desk shot. Environmental detail is the hook.
+
+THE COLLABORATION REVIEW
+When: Human+AI working together, team using AI output, AI augmenting group decisions.
+Scene: 2-3 people reviewing AI-generated output on shared screen with critical, engaged eyes — NOT passive. Someone pointing at a specific section, another taking notes. Active, not a presentation.
+Screen: Document or output shape implying AI generation from EVIDENCE — structured content layout, visual completeness — while humans annotate/critique.
+Camera: Medium-wide capturing group and screen. Dynamic framing.
+
+━━━ STEP 3: BUILD THE SCREEN CONTENT SPECIFICALLY ━━━
+The screen (or whiteboard/prop) must show the EVIDENCE from Step 1 — NOT a generic workflow.
+
+SCREEN CONTENT FORMULA:
+→ Identify what the post's specific outcome looks like as a UI layout
+→ Render it as abstract color blocks and shape language — suggestive, not legible
+→ ALWAYS include: "screen displaying [specific layout] with abstract color blocks, NO readable text, no legible characters, no visible words"
+
+SCREEN CONTENT EXAMPLES by post type:
+• Inbox automation → inbox-column layout, most rows greyed-out/auto-handled, 1-2 highlighted active
+• AI report generation → document-shape nearly full, clean structured layout implying automation wrote it
+• CRM lead processing → pipeline kanban columns with batch completion fill indicators
+• Time savings → calendar grid with large empty blocks (freed time), sparse appointments
+• Multi-step AI agent → 4-5 connected node shapes in sequence, one actively pulsing/highlighted
+• Data analysis → chart/graph shape with clear data pattern visible as abstract form
+• Workflow simplification → before: many small cluttered nodes; after: 3 clean connected steps
 
 ━━━ STEP 4: BUILD THE 7-LAYER PHOTOREALISTIC PROMPT ━━━
 
 Layer 1 — Subject & Action: Who is in frame and what are they doing?
-  (engaged, focused, collaborating, presenting, reviewing — NOT looking at camera)
+  (Use the template's defined action — NOT looking at camera, NOT posed)
 
 Layer 2 — Environment: Modern office, co-working space, glass-walled conference room,
-  clean home office, startup workspace with exposed brick, airy workspace
+  clean home office, startup workspace with exposed brick, airy creative workspace
 
-Layer 3 — Screen/Prop Connection: MUST include defensive text-suppression language:
-  "screen displaying [interface type] with abstract blurred color blocks and UI layout
-   shapes, NO readable text, no legible words, no visible characters"
-  OR: "whiteboard with abstract diagram shapes and connecting lines, no legible writing"
+Layer 3 — Screen/Prop Content: Describe specifically what is shown, with text suppression:
+  "screen displaying [specific layout from Step 3] with abstract color blocks and UI shapes, NO readable text, no legible words, no visible characters"
+  OR: "whiteboard with abstract diagram of [framework shape], no legible writing, no readable text"
 
 Layer 4 — Camera & Lens: Simulate real photography
-  Examples: "shot on Sony A7IV with 35mm f/1.8, shallow depth of field, natural bokeh,
-  over-the-shoulder perspective" / "Canon R5 with 85mm f/1.8, tight on screen,
-  person as soft background bokeh"
+  "shot on Sony A7IV with 35mm f/1.8, shallow depth of field, natural bokeh, over-the-shoulder perspective"
+  "Canon R5 with 85mm f/1.8, tight on screen, person as soft background bokeh"
+  "Fujifilm X-T5 with 23mm f/2, wide environmental portrait, everything in focus"
 
 Layer 5 — Lighting: Real-world mixed sources
-  Examples: "soft natural window light from left with warm overhead ambient",
-  "screen glow illuminating face subtly", "diffused daylight from skylights"
+  "soft natural window light from left with warm overhead ambient"
+  "screen glow illuminating face subtly, diffused daylight from skylights"
+  "overcast natural light through large windows, no harsh shadows"
 
 Layer 6 — Color Grade: Editorial photography look
-  "warm neutral color grading, slightly desaturated, clean shadows with warm midtones,
-   professional editorial color palette, modern tech publication aesthetic"
+  "warm neutral color grading, slightly desaturated, clean shadows with warm midtones, professional editorial color palette, modern tech publication aesthetic"
 
 Layer 7 — Quality & Realism Enhancers:
-  "photorealistic, RAW photo, ultra-realistic, natural skin texture,
-   realistic fabric detail, professional photography, editorial quality, 8K UHD"
+  "photorealistic, RAW photo, ultra-realistic, natural skin texture, realistic fabric detail, professional photography, editorial quality, 8K UHD"
 
-━━━ STEP 5: SCROLL TEST ━━━
-Imagine a LinkedIn viewer seeing ONLY the image. Could they write a 5-word caption
-matching the post topic? If NO — go back and make the scene more literal.
+━━━ STEP 5: TRANSFORMATION FRAME OPTION ━━━
+For TRANSFORMATION, CONTRAST, or QUIET-WIN templates — consider adding evidence of the "before" state:
+- Clean desk with monitor showing automated result + discarded manual stack in corner
+- Person at clean workstation, with the old process artifacts (binder, sticky notes) pushed aside and slightly out of focus
+- Two visual zones: left side chaotic/analog (soft focus), right side clean/automated (sharp)
+This should feel natural, not staged. One detail is enough.
+
+━━━ STEP 6: CAPTION VERIFICATION ━━━
+Before finalizing, write the exact 6-word caption a LinkedIn viewer would write seeing ONLY the image:
+"Caption: ____"
+
+Now ask: Could this caption describe 20 other LinkedIn AI posts?
+If YES — the scene is too generic. Go back to Step 3 and make the screen content or props more specific to this post's EVIDENCE.
+If NO — proceed.
 
 ABSOLUTELY FORBIDDEN (instant disqualification):
 - Any illustration, digital art, vector art, abstract shapes, CGI, 3D render
-- Staged stock photo poses (handshakes, fake smiles at camera, thumbs up)
-- Readable text anywhere in the image (use "(readable text:1.5)" in negatives)
+- Staged stock photo poses (handshakes, fake smiles at camera, thumbs up, arms crossed)
+- Readable text anywhere in the image (use "(readable text:1.5)" in negatives always)
 - Glowing elements, neon, cyberpunk, holograms, futuristic sci-fi aesthetics
-- Fantasy, cosmic, nature metaphors
+- Fantasy, cosmic, nature metaphors (no trees, no lightbulbs, no brains with gears)
+- Generic workflow diagrams that could apply to any post
 ${extraReqs ? `\nADDITIONAL REQUIREMENTS: ${extraReqs}` : ''}
 
 Return ONLY a JSON object:
 {
-  "alignmentScene": "plain-English scene description — what the viewer sees and how it connects to the post",
-  "selectedArchetype": "DEEP_WORK|COLLABORATION|RESULTS|PROCESS|MOMENT",
+  "alignmentScene": "plain-English description of the specific scene and exactly how it connects to this post's story",
+  "selectedTemplate": "THE TRANSFORMATION|THE REVELATION|THE SYSTEM IN MOTION|THE EVIDENCE BOARD|THE QUIET DIVIDEND|THE CONTRAST DESK|THE PRACTITIONER SETUP|THE COLLABORATION REVIEW",
+  "sixWordCaption": "the exact 6-word viewer caption",
   "prompt": "the full photorealistic photography prompt using all 7 layers",
-  "negativePrompt": "full negative prompt including text suppression weights and archetype-specific negatives",
+  "negativePrompt": "full negative prompt including text suppression weights and style negatives",
   "aspectRatio": "1:1",
   "resolution": "1080x1080",
   "format": "JPEG",
@@ -744,15 +768,13 @@ Return ONLY a JSON object:
   "sampler": "DPM++ 2M Karras"
 }`
 
-    const text = await this.callAnthropicAPI(prompt, 1024)
+    const text = await this.callAnthropicAPI(prompt, 1536)
     const jsonMatch = text.match(/\{[\s\S]*\}/)
-
-    const archetypeNegatives = allArchetypeNegatives
 
     if (!jsonMatch) {
       return {
         prompt: text.substring(0, 500),
-        negativePrompt: `${UNIVERSAL_NEGATIVE_PROMPT}, ${archetypeNegatives}`,
+        negativePrompt: UNIVERSAL_NEGATIVE_PROMPT,
         aspectRatio: '1:1',
         resolution: '1080x1080',
         format: 'JPEG',
@@ -767,7 +789,7 @@ Return ONLY a JSON object:
       // Always ensure universal negatives are included — model may omit them
       const negativePrompt = parsed.negativePrompt
         ? `${parsed.negativePrompt}, ${UNIVERSAL_NEGATIVE_PROMPT}`
-        : `${UNIVERSAL_NEGATIVE_PROMPT}, ${archetypeNegatives}`
+        : UNIVERSAL_NEGATIVE_PROMPT
 
       return {
         prompt: parsed.prompt || text.substring(0, 500),
@@ -782,7 +804,7 @@ Return ONLY a JSON object:
     } catch {
       return {
         prompt: text.substring(0, 500),
-        negativePrompt: `${UNIVERSAL_NEGATIVE_PROMPT}, ${archetypeNegatives}`,
+        negativePrompt: UNIVERSAL_NEGATIVE_PROMPT,
         aspectRatio: '1:1',
         resolution: '1080x1080',
         format: 'JPEG',
