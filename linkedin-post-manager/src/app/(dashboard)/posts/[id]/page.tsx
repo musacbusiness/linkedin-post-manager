@@ -38,8 +38,13 @@ export default function EditPostPage() {
   const [imagePrompt, setImagePrompt] = useState('')
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [isGeneratingImage, setIsGeneratingImage] = useState(false)
+  const [generationStep, setGenerationStep] = useState<'idle' | 'prompt' | 'image'>('idle')
   const [error, setError] = useState<string | null>(null)
   const [imageError, setImageError] = useState(false)
+  // Regenerate modal state
+  const [showRegenModal, setShowRegenModal] = useState(false)
+  const [regenMode, setRegenMode] = useState<'same' | 'new'>('same')
+  const [promptFeedback, setPromptFeedback] = useState('')
   // Separate loading states for each action button
   const [isApproving, setIsApproving] = useState(false)
   const [isRejecting, setIsRejecting] = useState(false)
@@ -81,13 +86,15 @@ export default function EditPostPage() {
     queryClient.invalidateQueries({ queryKey: ['posts', postId] })
   }
 
-  async function handleGenerateImage() {
-    if (!imagePrompt.trim()) {
+  async function handleGenerateImage(promptOverride?: string) {
+    const promptToUse = promptOverride ?? imagePrompt
+    if (!promptToUse.trim()) {
       setError('Please enter an image prompt')
       return
     }
 
     setIsGeneratingImage(true)
+    setGenerationStep('image')
     setError(null)
     setImageError(false)
 
@@ -95,7 +102,7 @@ export default function EditPostPage() {
       const response = await fetch('/api/generate/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: imagePrompt }),
+        body: JSON.stringify({ prompt: promptToUse }),
       })
 
       if (!response.ok) {
@@ -108,12 +115,72 @@ export default function EditPostPage() {
 
       await updatePost.mutateAsync({
         id: postId,
-        data: { image_url: data.imageUrl, image_prompt: imagePrompt },
+        data: { image_url: data.imageUrl, image_prompt: promptToUse },
       })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to generate image')
     } finally {
       setIsGeneratingImage(false)
+      setGenerationStep('idle')
+    }
+  }
+
+  async function handleRegenerate() {
+    setShowRegenModal(false)
+
+    if (regenMode === 'same') {
+      await handleGenerateImage()
+      return
+    }
+
+    // Generate new prompt first, then generate image with it
+    setIsGeneratingImage(true)
+    setGenerationStep('prompt')
+    setError(null)
+    setImageError(false)
+
+    try {
+      const promptRes = await fetch('/api/generate/image-prompt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ postId, feedback: promptFeedback }),
+      })
+
+      if (!promptRes.ok) {
+        const errData = await promptRes.json()
+        throw new Error(errData.error || 'Failed to generate new image prompt')
+      }
+
+      const { prompt: newPrompt } = await promptRes.json()
+      setImagePrompt(newPrompt)
+      setPromptFeedback('')
+
+      // Now generate the image with the new prompt
+      setGenerationStep('image')
+      const imageRes = await fetch('/api/generate/image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: newPrompt }),
+      })
+
+      if (!imageRes.ok) {
+        const errData = await imageRes.json()
+        throw new Error(errData.error || 'Failed to generate image')
+      }
+
+      const { imageUrl: newImageUrl } = await imageRes.json()
+      setImageUrl(newImageUrl)
+      setImageError(false)
+
+      await updatePost.mutateAsync({
+        id: postId,
+        data: { image_url: newImageUrl, image_prompt: newPrompt },
+      })
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to regenerate image')
+    } finally {
+      setIsGeneratingImage(false)
+      setGenerationStep('idle')
     }
   }
 
@@ -343,19 +410,27 @@ export default function EditPostPage() {
                 />
               </div>
 
-              {/* Generate Button */}
+              {/* Generate / Regenerate Button */}
               <Button
                 type="button"
                 variant="primary"
                 className="w-full"
-                onClick={handleGenerateImage}
+                onClick={() => {
+                  if (imageUrl) {
+                    setRegenMode('same')
+                    setPromptFeedback('')
+                    setShowRegenModal(true)
+                  } else {
+                    handleGenerateImage()
+                  }
+                }}
                 disabled={isGeneratingImage || !imagePrompt.trim()}
                 isLoading={isGeneratingImage}
               >
                 {isGeneratingImage ? (
                   <>
                     <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    Generating...
+                    {generationStep === 'prompt' ? 'Generating prompt...' : 'Generating image...'}
                   </>
                 ) : (
                   <>
@@ -511,6 +586,91 @@ export default function EditPostPage() {
           </Card>
         </div>
       </div>
+
+      {/* Regenerate Image Modal */}
+      {showRegenModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}
+          onClick={(e) => { if (e.target === e.currentTarget) setShowRegenModal(false) }}
+        >
+          <div className="bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-md p-6 space-y-5 shadow-2xl">
+            <h2 className="text-lg font-semibold text-white">Regenerate Image</h2>
+
+            {/* Option 1 */}
+            <button
+              type="button"
+              onClick={() => setRegenMode('same')}
+              className={`w-full text-left p-4 rounded-xl border transition-all ${
+                regenMode === 'same'
+                  ? 'border-purple-accent bg-purple-accent/10'
+                  : 'border-gray-700 hover:border-gray-500'
+              }`}
+            >
+              <p className={`font-medium text-sm ${regenMode === 'same' ? 'text-purple-light' : 'text-white'}`}>
+                Use same image prompt
+              </p>
+              <p className="text-xs text-gray-400 mt-1">
+                Re-run image generation with the current prompt
+              </p>
+            </button>
+
+            {/* Option 2 */}
+            <button
+              type="button"
+              onClick={() => setRegenMode('new')}
+              className={`w-full text-left p-4 rounded-xl border transition-all ${
+                regenMode === 'new'
+                  ? 'border-purple-accent bg-purple-accent/10'
+                  : 'border-gray-700 hover:border-gray-500'
+              }`}
+            >
+              <p className={`font-medium text-sm ${regenMode === 'new' ? 'text-purple-light' : 'text-white'}`}>
+                Generate new image prompt
+              </p>
+              <p className="text-xs text-gray-400 mt-1">
+                AI will create a revised prompt based on your feedback
+              </p>
+            </button>
+
+            {/* Feedback textarea — visible only for "new" mode */}
+            {regenMode === 'new' && (
+              <div className="space-y-2">
+                <label className="text-sm text-gray-300">
+                  What would you like to change?
+                </label>
+                <textarea
+                  className="w-full bg-gray-800 border border-gray-600 rounded-xl p-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-purple-accent resize-none"
+                  rows={4}
+                  placeholder="e.g. make it show someone working alone at a laptop, no group scenes... or focus more on the before/after transformation..."
+                  value={promptFeedback}
+                  onChange={(e) => setPromptFeedback(e.target.value)}
+                  autoFocus
+                />
+              </div>
+            )}
+
+            {/* Actions */}
+            <div className="flex gap-3 pt-1">
+              <button
+                type="button"
+                onClick={() => setShowRegenModal(false)}
+                className="flex-1 px-4 py-2.5 text-sm font-medium text-gray-300 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleRegenerate}
+                disabled={regenMode === 'new' && !promptFeedback.trim()}
+                className="flex-1 px-4 py-2.5 text-sm font-medium text-white bg-purple-accent hover:bg-purple-accent/80 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Regenerate
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
