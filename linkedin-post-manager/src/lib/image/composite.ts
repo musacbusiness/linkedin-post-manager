@@ -75,27 +75,39 @@ function anchorOrigin(
 }
 
 // ── Anchor renderers ─────────────────────────────────────────────────────────
+// All text is centered/anchored relative to the panel origin (px, py),
+// never relative to the full image dimensions.
+
+const PANEL_BORDER = `stroke="${ACCENT}" stroke-width="1.5" stroke-opacity="0.5"`
 
 function renderBigNumber(anchor: BigNumberAnchor, w: number, h: number, baseCategory?: string): string {
   const accent = anchor.accentColor ?? ACCENT
   const pw = 480
-  const ph = 260
+  const ph = 280
   const { px, py } = anchorOrigin(baseCategory, w, h, pw, ph)
+  const cx = px + pw / 2   // panel centre x
+  const numY = py + 180    // baseline of the big number
+  const lineY = py + 205
+  const labelY = py + 252
 
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-  <rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="20" fill="${PANEL_BG}"/>
-  <text x="${w / 2}" y="${py + 155}" font-family="Arial,Helvetica,sans-serif" font-size="130" font-weight="bold" fill="${WHITE}" text-anchor="middle" dominant-baseline="auto">${escapeXml(anchor.number)}</text>
-  <line x1="${w / 2 - 60}" y1="${py + 175}" x2="${w / 2 + 60}" y2="${py + 175}" stroke="${accent}" stroke-width="3" stroke-linecap="round"/>
-  <text x="${w / 2}" y="${py + 218}" font-family="Arial,Helvetica,sans-serif" font-size="26" fill="${WHITE_DIM}" text-anchor="middle">${escapeXml(anchor.label)}</text>
+  <rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="20" fill="${PANEL_BG}" ${PANEL_BORDER}/>
+  <text x="${cx}" y="${numY}" font-family="Arial Black,Arial,Helvetica,sans-serif" font-size="148" font-weight="900" fill="${WHITE}" text-anchor="middle">${escapeXml(anchor.number)}</text>
+  <line x1="${cx - 56}" y1="${lineY}" x2="${cx + 56}" y2="${lineY}" stroke="${accent}" stroke-width="4" stroke-linecap="round"/>
+  <text x="${cx}" y="${labelY}" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="600" fill="${WHITE_DIM}" text-anchor="middle" letter-spacing="1">${escapeXml(anchor.label)}</text>
 </svg>`
 }
 
 function renderSimpleDiagram(anchor: SimpleDiagramAnchor, w: number, h: number, baseCategory?: string): string {
-  const items = anchor.elements.slice(0, 5)
+  // Narrow categories (monitor/screen) fit 3 elements max; wide scenes can fit 4
+  const screenFit = baseCategory === 'OVER_THE_SHOULDER' || baseCategory === 'HANDS_CLOSE_UP'
+  const maxEl = screenFit ? 3 : 4
+  const items = anchor.elements.slice(0, maxEl)
   const count = items.length
-  const boxW = 130
-  const boxH = 70
-  const gap = anchor.arrows ? 44 : 20
+
+  const boxW = 148
+  const boxH = 88
+  const gap = anchor.arrows ? 48 : 24
   const totalW = count * boxW + (count - 1) * gap
   const pw = totalW + 80
   const ph = boxH + 100
@@ -109,65 +121,65 @@ function renderSimpleDiagram(anchor: SimpleDiagramAnchor, w: number, h: number, 
     const bx = startX + i * (boxW + gap)
     const by = centerY - boxH / 2
     const isLast = i === count - 1
-    const fill = isLast ? ACCENT : 'none'
-    const stroke = isLast ? ACCENT : WHITE
-    const textColor = isLast ? '#0f172a' : WHITE
+    const fill = isLast ? ACCENT : 'rgba(255,255,255,0.08)'
+    const stroke = isLast ? ACCENT : 'rgba(255,255,255,0.7)'
+    const textFill = isLast ? '#0a1628' : WHITE
 
     if (el.shape === 'circle') {
       const cx = bx + boxW / 2
       const cy = centerY
-      shapes += `<circle cx="${cx}" cy="${cy}" r="${boxH / 2}" fill="${fill}" stroke="${stroke}" stroke-width="2"/>`
-      shapes += `<text x="${cx}" y="${cy}" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${escapeXml(el.label)}</text>`
+      shapes += `<circle cx="${cx}" cy="${cy}" r="${boxH / 2}" fill="${fill}" stroke="${stroke}" stroke-width="2.5"/>`
+      shapes += `<text x="${cx}" y="${cy}" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="${textFill}" text-anchor="middle" dominant-baseline="middle">${escapeXml(el.label)}</text>`
     } else {
-      shapes += `<rect x="${bx}" y="${by}" width="${boxW}" height="${boxH}" rx="10" fill="${fill}" stroke="${stroke}" stroke-width="2"/>`
-      shapes += `<text x="${bx + boxW / 2}" y="${centerY}" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${escapeXml(el.label)}</text>`
+      shapes += `<rect x="${bx}" y="${by}" width="${boxW}" height="${boxH}" rx="12" fill="${fill}" stroke="${stroke}" stroke-width="2.5"/>`
+      shapes += `<text x="${bx + boxW / 2}" y="${centerY}" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="${textFill}" text-anchor="middle" dominant-baseline="middle">${escapeXml(el.label)}</text>`
     }
 
     if (anchor.arrows && i < count - 1) {
       const ax = bx + boxW + 6
       const ay = centerY
-      shapes += `<line x1="${ax}" y1="${ay}" x2="${ax + gap - 12}" y2="${ay}" stroke="${WHITE_DIM}" stroke-width="2"/>`
-      shapes += `<polygon points="${ax + gap - 12},${ay - 5} ${ax + gap - 2},${ay} ${ax + gap - 12},${ay + 5}" fill="${WHITE_DIM}"/>`
+      shapes += `<line x1="${ax}" y1="${ay}" x2="${ax + gap - 14}" y2="${ay}" stroke="${WHITE_DIM}" stroke-width="2.5"/>`
+      shapes += `<polygon points="${ax + gap - 14},${ay - 8} ${ax + gap - 2},${ay} ${ax + gap - 14},${ay + 8}" fill="${WHITE_DIM}"/>`
     }
   }
 
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-  <rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="16" fill="${PANEL_BG}"/>
+  <rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="18" fill="${PANEL_BG}" ${PANEL_BORDER}/>
   ${shapes}
 </svg>`
 }
 
 function renderIconCluster(anchor: IconClusterAnchor, w: number, h: number, baseCategory?: string): string {
   const items = anchor.items.slice(0, 4)
-  const iconSize = 52
-  const labelH = 22
-  const cellW = 120
-  const cellH = iconSize + 12 + labelH
-  const gap = 24
+  const iconSize = 64
+  const labelH = 28
+  const cellW = 140
+  const cellH = iconSize + 16 + labelH
+  const gap = 28
   const count = items.length
   const totalW = count * cellW + (count - 1) * gap
-  const pw = totalW + 72
-  const ph = cellH + 72
+  const pw = totalW + 80
+  const ph = cellH + 80
   const { px, py } = anchorOrigin(baseCategory, w, h, pw, ph)
 
   let icons = ''
   for (let i = 0; i < count; i++) {
     const item = items[i]
-    const cx = px + 36 + i * (cellW + gap) + cellW / 2
+    const cx = px + 40 + i * (cellW + gap) + cellW / 2
     const iconX = cx - iconSize / 2
-    const iconY = py + 36
+    const iconY = py + 40
     icons += iconSvg(item.icon, iconX, iconY, iconSize, WHITE)
-    icons += `<text x="${cx}" y="${iconY + iconSize + 18}" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="${WHITE_DIM}" text-anchor="middle">${escapeXml(item.label)}</text>`
+    icons += `<text x="${cx}" y="${iconY + iconSize + 22}" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="${WHITE_DIM}" text-anchor="middle">${escapeXml(item.label)}</text>`
 
     if (i < count - 1) {
-      const lx = px + 36 + i * (cellW + gap) + cellW + gap / 2
-      const ly = py + 36 + iconSize / 2
-      icons += `<line x1="${lx - 8}" y1="${ly}" x2="${lx + 8}" y2="${ly}" stroke="${WHITE_DIM}" stroke-width="1.5" stroke-dasharray="3,3"/>`
+      const lx = px + 40 + i * (cellW + gap) + cellW + gap / 2
+      const ly = py + 40 + iconSize / 2
+      icons += `<line x1="${lx - 10}" y1="${ly}" x2="${lx + 10}" y2="${ly}" stroke="${WHITE_DIM}" stroke-width="2" stroke-dasharray="4,4"/>`
     }
   }
 
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-  <rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="16" fill="${PANEL_BG}"/>
+  <rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="18" fill="${PANEL_BG}" ${PANEL_BORDER}/>
   ${icons}
 </svg>`
 }
@@ -175,36 +187,38 @@ function renderIconCluster(anchor: IconClusterAnchor, w: number, h: number, base
 function renderPullQuote(anchor: PullQuoteAnchor, w: number, h: number): string {
   const font = anchor.style === 'editorial'
     ? 'Georgia,"Times New Roman",serif'
-    : 'Arial,Helvetica,sans-serif'
-  const gradH = Math.round(h * 0.42)
+    : 'Arial Black,Arial,Helvetica,sans-serif'
+  const gradH = Math.round(h * 0.48)
   const gradY = h - gradH
-  const textY = h - 68
-  const accentY = textY - 52
+  const pad = 56
+  const textY = h - 80
+  const accentY = textY - 64
 
-  // Word-wrap naively at ~42 chars
+  // Word-wrap at ~28 chars for big bold text
   const words = anchor.quote.split(' ')
   const lines: string[] = []
   let line = ''
-  for (const w of words) {
-    const test = line ? `${line} ${w}` : w
-    if (test.length > 32 && line) { lines.push(line); line = w } else { line = test }
+  for (const word of words) {
+    const test = line ? `${line} ${word}` : word
+    if (test.length > 28 && line) { lines.push(line); line = word } else { line = test }
   }
   if (line) lines.push(line)
 
-  const lineH = 62
-  const firstLineY = lines.length > 1 ? textY - lineH : textY
+  const lineH = 72
+  const firstLineY = lines.length > 1 ? textY - (lines.length - 1) * lineH : textY
 
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="fadeUp" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0f172a" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.84"/>
+      <stop offset="0%" stop-color="#050c1a" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#050c1a" stop-opacity="0.72"/>
+      <stop offset="100%" stop-color="#050c1a" stop-opacity="0.94"/>
     </linearGradient>
   </defs>
   <rect x="0" y="${gradY}" width="${w}" height="${gradH}" fill="url(#fadeUp)"/>
-  <rect x="48" y="${accentY}" width="72" height="4" rx="2" fill="${ACCENT}"/>
+  <rect x="${pad}" y="${accentY}" width="80" height="5" rx="2.5" fill="${ACCENT}"/>
   ${lines.map((l, i) =>
-    `<text x="48" y="${firstLineY + i * lineH}" font-family="${font}" font-size="54" font-weight="bold" fill="${WHITE}">${escapeXml(l)}</text>`
+    `<text x="${pad}" y="${firstLineY + i * lineH}" font-family="${font}" font-size="62" font-weight="900" fill="${WHITE}">${escapeXml(l)}</text>`
   ).join('\n  ')}
 </svg>`
 }
@@ -248,18 +262,24 @@ async function compositeBeforeAfter(
     .jpeg({ quality: 95 })
     .toBuffer()
 
-  // SVG label overlay
+  // SVG label overlay — labels are large and sit at image bottom for readability
+  const labelPad = 40
+  const labelW = 220
+  const labelH = 80
+  const labelY = h - labelPad - labelH
   const labelSvg = `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-  <!-- Divider -->
-  <line x1="${splitX}" y1="0" x2="${splitX}" y2="${h}" stroke="white" stroke-width="2" opacity="0.7"/>
+  <!-- Divider line -->
+  <line x1="${splitX}" y1="0" x2="${splitX}" y2="${h}" stroke="white" stroke-width="3" opacity="0.75"/>
+  <!-- Triangle pointer -->
+  <polygon points="${splitX - 14},${h / 2 - 18} ${splitX + 14},${h / 2} ${splitX - 14},${h / 2 + 18}" fill="white" opacity="0.75"/>
   <!-- Before label -->
-  <rect x="32" y="32" width="140" height="48" rx="8" fill="rgba(15,23,42,0.78)"/>
-  <text x="102" y="64" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="bold" fill="rgba(255,180,160,0.9)" text-anchor="middle">Before</text>
-  <text x="102" y="96" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="rgba(255,255,255,0.75)" text-anchor="middle">${escapeXml(anchor.beforeLabel)}</text>
+  <rect x="${labelPad}" y="${labelY}" width="${labelW}" height="${labelH}" rx="12" fill="rgba(10,18,40,0.88)" stroke="rgba(255,160,130,0.5)" stroke-width="1.5"/>
+  <text x="${labelPad + labelW / 2}" y="${labelY + 34}" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="rgba(255,180,160,0.85)" text-anchor="middle" letter-spacing="3">BEFORE</text>
+  <text x="${labelPad + labelW / 2}" y="${labelY + 62}" font-family="Arial Black,Arial,Helvetica,sans-serif" font-size="24" font-weight="900" fill="${WHITE}" text-anchor="middle">${escapeXml(anchor.beforeLabel)}</text>
   <!-- After label -->
-  <rect x="${splitX + 32}" y="32" width="140" height="48" rx="8" fill="rgba(15,23,42,0.78)"/>
-  <text x="${splitX + 102}" y="64" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="bold" fill="${ACCENT}" text-anchor="middle">After</text>
-  <text x="${splitX + 102}" y="96" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="rgba(255,255,255,0.75)" text-anchor="middle">${escapeXml(anchor.afterLabel)}</text>
+  <rect x="${splitX + labelPad}" y="${labelY}" width="${labelW}" height="${labelH}" rx="12" fill="rgba(10,18,40,0.88)" stroke="${ACCENT}" stroke-width="1.5" stroke-opacity="0.6"/>
+  <text x="${splitX + labelPad + labelW / 2}" y="${labelY + 34}" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="600" fill="${ACCENT}" text-anchor="middle" letter-spacing="3">AFTER</text>
+  <text x="${splitX + labelPad + labelW / 2}" y="${labelY + 62}" font-family="Arial Black,Arial,Helvetica,sans-serif" font-size="24" font-weight="900" fill="${WHITE}" text-anchor="middle">${escapeXml(anchor.afterLabel)}</text>
 </svg>`
 
   return sharp(stitched)
