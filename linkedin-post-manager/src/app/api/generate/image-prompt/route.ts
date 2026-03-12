@@ -1,9 +1,11 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
+import type { AnchorConfig } from '@/types/anchor'
 
 // POST /api/generate/image-prompt
-// Generates a revised image prompt for an existing post based on user feedback
+// Generates a revised base image prompt + anchor config for an existing post
+// based on user feedback. Used by the "Regenerate with new prompt" modal.
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient()
@@ -23,7 +25,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'postId is required' }, { status: 400 })
     }
 
-    // Fetch the post's content and current image prompt
     const { data: post, error: fetchError } = await supabase
       .from('posts')
       .select('post_content, image_prompt, generation_metadata')
@@ -34,58 +35,79 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 })
     }
 
-    const currentPrompt = post.image_prompt || ''
-    const postContent = post.post_content || ''
-
     if (!process.env.ANTHROPIC_API_KEY) {
       return NextResponse.json({ error: 'Anthropic API key not configured' }, { status: 500 })
     }
 
     const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
-    const systemPrompt = `You are an editorial photography art director for an AI & automation content brand on LinkedIn. Your image prompts must produce photorealistic photographs that look like they were shot for Fast Company, Wired, or Harvard Business Review. NOT illustrations, NOT abstract art, NOT stock photo poses.`
+    const userPrompt = `You are redesigning a two-stage hybrid LinkedIn image for an AI & automation content brand.
 
-    const userPrompt = `You need to revise an image prompt for a LinkedIn post based on user feedback.
+The pipeline works as follows:
+- Stage 1: Stable Diffusion generates a clean photorealistic base photo. Screens are INTENTIONALLY BLANK — they are a canvas.
+- Stage 2: A visual anchor (bold text/graphic) is composited programmatically onto the photo. This is where the story lives.
 
 POST CONTENT:
-"${postContent}"
+"${post.post_content || ''}"
 
-CURRENT IMAGE PROMPT:
-"${currentPrompt}"
+CURRENT SD BASE PROMPT:
+"${post.image_prompt || '(none)'}"
 
 USER FEEDBACK (what they want changed):
-"${feedback || 'Generate a fresh, more content-specific version of the image prompt'}"
+"${feedback || 'Generate a fresh base image prompt and anchor config that better matches the post'}"
 
-Generate a REVISED image prompt that:
-1. Directly addresses the user's feedback
-2. Still accurately represents THIS post's specific story and content
-3. Maintains photorealistic editorial photography style
-4. Uses a specific narrative scene (not a generic "person at desk" or "team meeting")
-5. The screen/props in the scene must show something specific to this post's topic — not a generic workflow diagram
-6. Includes text suppression: "(readable text:1.5), (legible words:1.5), (visible letters:1.4), (text on screen:1.3)" in the negative prompt section
+Produce a revised base image prompt AND a new anchor config that addresses the feedback.
 
-Keep what works from the current prompt. Only change what the feedback asks for.
+BASE IMAGE CATEGORIES (choose one — screens must be intentionally blank):
+CLEAN_DESK — Elevated angle, dark blank monitor, minimal desk items, no people, bright window light.
+TEAM_HUDDLE — 2–4 professionals, NO screens, open office, large soft-focus space around group.
+OVER_THE_SHOULDER — Professional looking at large monitor with SOLID DARK screen. Screen glow on face.
+WIDE_OFFICE — Wide architectural shot, professionals soft in background, large open foreground.
+HANDS_CLOSE_UP — Close-up of hands on laptop/tablet with SOLID DARK screen. Warm side light.
 
-Return ONLY the revised prompt text — no JSON, no explanation, no preamble. Just the prompt.`
+ANCHOR TYPES (choose one):
+big_number   — Post has a standout metric → { "type": "big_number", "number": "20+", "label": "hours/week saved" }
+simple_diagram — Post has N named steps → { "type": "simple_diagram", "elements": [{"shape":"box","label":"Step 1"},...], "arrows": true }
+before_after — Post contrasts two states → { "type": "before_after", "beforeLabel": "Manual", "afterLabel": "Automated" }
+icon_cluster — Post lists tools/items → { "type": "icon_cluster", "items": [{"icon":"file-text","label":"Notes"},...] }
+             Available icons: file-text, bar-chart, git-branch, clock, zap, check-circle, x-circle, arrow-right, users, cpu
+pull_quote   — Post has a killer 1-liner → { "type": "pull_quote", "quote": "Stack small. Compound big.", "style": "editorial" }
+
+Return ONLY a JSON object:
+{
+  "sdPrompt": "the revised SD base image prompt (blank screens, photorealistic, editorial photography)",
+  "negativePrompt": "(text:1.6),(words:1.6),(letters:1.6),(numbers:1.5),(readable:1.5),(legible:1.5), any content on screen, any interface on screen, illustration, digital art, vector, cartoon, anime, 3D render, stock photo pose, looking at camera, fake smile, staged, bad anatomy, deformed hands, blurry, low quality, oversaturated, dark moody, cyberpunk, neon, fantasy, sci-fi, hologram",
+  "anchor": { /* the revised AnchorConfig */ }
+}`
 
     const message = await client.messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 1024,
       messages: [{ role: 'user', content: userPrompt }],
-      system: systemPrompt,
     })
 
-    const revisedPrompt = message.content[0].type === 'text'
-      ? message.content[0].text.trim()
-      : ''
+    const rawText = message.content[0].type === 'text' ? message.content[0].text.trim() : ''
+    const jsonMatch = rawText.match(/\{[\s\S]*\}/)
 
-    if (!revisedPrompt) {
+    if (!jsonMatch) {
       return NextResponse.json({ error: 'Failed to generate revised prompt' }, { status: 500 })
     }
 
-    return NextResponse.json({ prompt: revisedPrompt })
+    const parsed = JSON.parse(jsonMatch[0])
+
+    const fallbackAnchor: AnchorConfig = {
+      type: 'pull_quote',
+      quote: (post.post_content || '').split(' ').slice(0, 7).join(' '),
+      style: 'modern',
+    }
+
+    return NextResponse.json({
+      prompt: parsed.sdPrompt || parsed.prompt || '',
+      negativePrompt: parsed.negativePrompt || '',
+      anchorConfig: (parsed.anchor ?? fallbackAnchor) as AnchorConfig,
+    })
   } catch (error) {
-    console.error('Image prompt generation error:', error)
+    console.error('[ImagePrompt] Error:', error)
     return NextResponse.json(
       { error: error instanceof Error ? error.message : 'Failed to generate image prompt' },
       { status: 500 }

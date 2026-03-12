@@ -37,6 +37,7 @@ export default function EditPostPage() {
   const [content, setContent] = useState('')
   const [imagePrompt, setImagePrompt] = useState('')
   const [imageUrl, setImageUrl] = useState<string | null>(null)
+  const [storedAnchorConfig, setStoredAnchorConfig] = useState<object | null>(null)
   const [isGeneratingImage, setIsGeneratingImage] = useState(false)
   const [generationStep, setGenerationStep] = useState<'idle' | 'prompt' | 'image'>('idle')
   const [error, setError] = useState<string | null>(null)
@@ -70,6 +71,10 @@ export default function EditPostPage() {
       setImagePrompt(post.image_prompt || '')
       setImageUrl(post.image_url || null)
       setImageError(false)
+      // Restore stored anchor config from generation metadata if present
+      const meta = post.generation_metadata as Record<string, unknown> | null
+      const imgMeta = meta?.imagePromptMetadata as Record<string, unknown> | null
+      setStoredAnchorConfig((imgMeta?.anchorConfig as object) ?? null)
     }
   }, [post])
 
@@ -102,7 +107,10 @@ export default function EditPostPage() {
       const response = await fetch('/api/generate/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: promptToUse }),
+        body: JSON.stringify({
+          prompt: promptToUse,
+          ...(storedAnchorConfig ? { anchorConfig: storedAnchorConfig } : {}),
+        }),
       })
 
       if (!response.ok) {
@@ -151,16 +159,17 @@ export default function EditPostPage() {
         throw new Error(errData.error || 'Failed to generate new image prompt')
       }
 
-      const { prompt: newPrompt } = await promptRes.json()
+      const { prompt: newPrompt, negativePrompt, anchorConfig } = await promptRes.json()
       setImagePrompt(newPrompt)
+      setStoredAnchorConfig(anchorConfig ?? null)
       setPromptFeedback('')
 
-      // Now generate the image with the new prompt
+      // Now generate the image with the new prompt + anchor config
       setGenerationStep('image')
       const imageRes = await fetch('/api/generate/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: newPrompt }),
+        body: JSON.stringify({ prompt: newPrompt, negativePrompt, anchorConfig }),
       })
 
       if (!imageRes.ok) {
