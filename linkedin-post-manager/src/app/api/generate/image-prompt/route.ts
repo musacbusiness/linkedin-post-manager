@@ -105,6 +105,7 @@ Return ONLY a JSON object:
       prompt: parsed.sdPrompt || parsed.prompt || '',
       negativePrompt: parsed.negativePrompt || '',
       anchorConfig: (parsed.anchor ?? fallbackAnchor) as AnchorConfig,
+      baseCategory: parsed.baseCategory || undefined,
     })
   } catch (error) {
     console.error('[ImagePrompt] Error:', error)

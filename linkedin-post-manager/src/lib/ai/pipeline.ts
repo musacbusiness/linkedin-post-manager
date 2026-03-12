@@ -18,6 +18,7 @@ export interface ImagePromptOutput {
   prompt: string
   negativePrompt: string
   anchorConfig: AnchorConfig
+  baseCategory?: string
   aspectRatio: '1:1' | '4:5' | '1.91:1'
   resolution: '1080x1080' | '1080x1350' | '1200x627'
   format: 'PNG' | 'JPEG'
@@ -723,6 +724,7 @@ Return ONLY a JSON object:
         prompt: parsed.sdPrompt || parsed.prompt || text.substring(0, 500),
         negativePrompt,
         anchorConfig,
+        baseCategory: parsed.baseCategory || undefined,
         aspectRatio: parsed.aspectRatio || '1:1',
         resolution: parsed.resolution || '1080x1080',
         format: parsed.format || 'JPEG',

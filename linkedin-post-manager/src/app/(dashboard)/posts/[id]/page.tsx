@@ -38,6 +38,7 @@ export default function EditPostPage() {
   const [imagePrompt, setImagePrompt] = useState('')
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [storedAnchorConfig, setStoredAnchorConfig] = useState<object | null>(null)
+  const [storedBaseCategory, setStoredBaseCategory] = useState<string | null>(null)
   const [isGeneratingImage, setIsGeneratingImage] = useState(false)
   const [generationStep, setGenerationStep] = useState<'idle' | 'prompt' | 'image'>('idle')
   const [error, setError] = useState<string | null>(null)
@@ -75,6 +76,7 @@ export default function EditPostPage() {
       const meta = post.generation_metadata as Record<string, unknown> | null
       const imgMeta = meta?.imagePromptMetadata as Record<string, unknown> | null
       setStoredAnchorConfig((imgMeta?.anchorConfig as object) ?? null)
+      setStoredBaseCategory((imgMeta?.baseCategory as string) ?? null)
     }
   }, [post])
 
@@ -110,6 +112,7 @@ export default function EditPostPage() {
         body: JSON.stringify({
           prompt: promptToUse,
           ...(storedAnchorConfig ? { anchorConfig: storedAnchorConfig } : {}),
+          ...(storedBaseCategory ? { baseCategory: storedBaseCategory } : {}),
         }),
       })
 
@@ -159,9 +162,10 @@ export default function EditPostPage() {
         throw new Error(errData.error || 'Failed to generate new image prompt')
       }
 
-      const { prompt: newPrompt, negativePrompt, anchorConfig } = await promptRes.json()
+      const { prompt: newPrompt, negativePrompt, anchorConfig, baseCategory } = await promptRes.json()
       setImagePrompt(newPrompt)
       setStoredAnchorConfig(anchorConfig ?? null)
+      setStoredBaseCategory(baseCategory ?? null)
       setPromptFeedback('')
 
       // Now generate the image with the new prompt + anchor config
@@ -169,7 +173,7 @@ export default function EditPostPage() {
       const imageRes = await fetch('/api/generate/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: newPrompt, negativePrompt, anchorConfig }),
+        body: JSON.stringify({ prompt: newPrompt, negativePrompt, anchorConfig, baseCategory }),
       })
 
       if (!imageRes.ok) {

@@ -45,14 +45,42 @@ function iconSvg(name: SupportedIcon, x: number, y: number, size: number, color:
   </g>`
 }
 
+// ── Per-category anchor placement ────────────────────────────────────────────
+// Returns the top-left corner (px, py) for a panel of size (pw, ph)
+// anchored to the "canvas" zone of each base image category.
+
+function anchorOrigin(
+  baseCategory: string | undefined,
+  w: number,
+  h: number,
+  pw: number,
+  ph: number
+): { px: number; py: number } {
+  // Centre of the "canvas zone" as fractions of (w, h)
+  const zones: Record<string, { cx: number; cy: number }> = {
+    OVER_THE_SHOULDER: { cx: 0.28, cy: 0.50 }, // monitor is left of centre
+    HANDS_CLOSE_UP:   { cx: 0.50, cy: 0.62 }, // laptop/tablet screen, lower-centre
+    CLEAN_DESK:       { cx: 0.50, cy: 0.47 }, // monitor centred on desk
+    TEAM_HUDDLE:      { cx: 0.50, cy: 0.68 }, // empty space below the huddle
+    WIDE_OFFICE:      { cx: 0.50, cy: 0.58 }, // open foreground
+  }
+  const zone = zones[baseCategory ?? ''] ?? { cx: 0.50, cy: 0.50 }
+
+  // Clamp so panel never bleeds outside image
+  const idealPx = Math.round(zone.cx * w - pw / 2)
+  const idealPy = Math.round(zone.cy * h - ph / 2)
+  const px = Math.max(0, Math.min(idealPx, w - pw))
+  const py = Math.max(0, Math.min(idealPy, h - ph))
+  return { px, py }
+}
+
 // ── Anchor renderers ─────────────────────────────────────────────────────────
 
-function renderBigNumber(anchor: BigNumberAnchor, w: number, h: number): string {
+function renderBigNumber(anchor: BigNumberAnchor, w: number, h: number, baseCategory?: string): string {
   const accent = anchor.accentColor ?? ACCENT
   const pw = 480
   const ph = 260
-  const px = (w - pw) / 2
-  const py = (h - ph) / 2
+  const { px, py } = anchorOrigin(baseCategory, w, h, pw, ph)
 
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
   <rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="20" fill="${PANEL_BG}"/>
@@ -62,7 +90,7 @@ function renderBigNumber(anchor: BigNumberAnchor, w: number, h: number): string 
 </svg>`
 }
 
-function renderSimpleDiagram(anchor: SimpleDiagramAnchor, w: number, h: number): string {
+function renderSimpleDiagram(anchor: SimpleDiagramAnchor, w: number, h: number, baseCategory?: string): string {
   const items = anchor.elements.slice(0, 5)
   const count = items.length
   const boxW = 130
@@ -71,8 +99,7 @@ function renderSimpleDiagram(anchor: SimpleDiagramAnchor, w: number, h: number):
   const totalW = count * boxW + (count - 1) * gap
   const pw = totalW + 80
   const ph = boxH + 100
-  const px = (w - pw) / 2
-  const py = (h - ph) / 2
+  const { px, py } = anchorOrigin(baseCategory, w, h, pw, ph)
   const startX = px + 40
   const centerY = py + ph / 2
 
@@ -110,7 +137,7 @@ function renderSimpleDiagram(anchor: SimpleDiagramAnchor, w: number, h: number):
 </svg>`
 }
 
-function renderIconCluster(anchor: IconClusterAnchor, w: number, h: number): string {
+function renderIconCluster(anchor: IconClusterAnchor, w: number, h: number, baseCategory?: string): string {
   const items = anchor.items.slice(0, 4)
   const iconSize = 52
   const labelH = 22
@@ -121,8 +148,7 @@ function renderIconCluster(anchor: IconClusterAnchor, w: number, h: number): str
   const totalW = count * cellW + (count - 1) * gap
   const pw = totalW + 72
   const ph = cellH + 72
-  const px = (w - pw) / 2
-  const py = (h - ph) / 2
+  const { px, py } = anchorOrigin(baseCategory, w, h, pw, ph)
 
   let icons = ''
   for (let i = 0; i < count; i++) {
@@ -246,7 +272,8 @@ async function compositeBeforeAfter(
 
 export async function compositeAnchor(
   imageBuffer: Buffer | Uint8Array,
-  anchor: AnchorConfig
+  anchor: AnchorConfig,
+  baseCategory?: string
 ): Promise<Buffer> {
   if (anchor.type === 'before_after') {
     return compositeBeforeAfter(imageBuffer, anchor as BeforeAfterAnchor)
@@ -259,13 +286,13 @@ export async function compositeAnchor(
   let svg: string
   switch (anchor.type) {
     case 'big_number':
-      svg = renderBigNumber(anchor as BigNumberAnchor, w, h)
+      svg = renderBigNumber(anchor as BigNumberAnchor, w, h, baseCategory)
       break
     case 'simple_diagram':
-      svg = renderSimpleDiagram(anchor as SimpleDiagramAnchor, w, h)
+      svg = renderSimpleDiagram(anchor as SimpleDiagramAnchor, w, h, baseCategory)
       break
     case 'icon_cluster':
-      svg = renderIconCluster(anchor as IconClusterAnchor, w, h)
+      svg = renderIconCluster(anchor as IconClusterAnchor, w, h, baseCategory)
       break
     case 'pull_quote':
       svg = renderPullQuote(anchor as PullQuoteAnchor, w, h)

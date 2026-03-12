@@ -20,10 +20,11 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { prompt, negativePrompt, anchorConfig } = body as {
+    const { prompt, negativePrompt, anchorConfig, baseCategory } = body as {
       prompt: string
       negativePrompt?: string
       anchorConfig?: AnchorConfig
+      baseCategory?: string
     }
 
     if (!prompt) {
@@ -50,7 +51,7 @@ export async function POST(request: NextRequest) {
 
     console.log(`[Image] Generating base with model: ${selectedModel} (${modelMode})`)
     console.log('[Image] Prompt:', prompt.substring(0, 120))
-    if (anchorConfig) console.log('[Image] Anchor type:', anchorConfig.type)
+    if (anchorConfig) console.log('[Image] Anchor type:', anchorConfig.type, '| baseCategory:', baseCategory ?? 'none')
 
     const sdNegativePrompt = negativePrompt ||
       '(text:1.6),(words:1.6),(letters:1.6),(numbers:1.5),(readable:1.5),(legible:1.5), any content on screen, any interface on screen, illustration, digital art, vector, cartoon, anime, 3D render, stock photo pose, looking at camera, fake smile, staged, bad anatomy, deformed hands, blurry, low quality, oversaturated, dark moody, cyberpunk, neon, fantasy, sci-fi, hologram'
@@ -88,7 +89,7 @@ export async function POST(request: NextRequest) {
     if (anchorConfig) {
       try {
         console.log('[Image] Compositing anchor:', anchorConfig.type)
-        imageBuffer = await compositeAnchor(imageBuffer, anchorConfig)
+        imageBuffer = await compositeAnchor(imageBuffer, anchorConfig, baseCategory)
         console.log('[Image] Anchor composited, final size:', imageBuffer.byteLength, 'bytes')
       } catch (compositeErr) {
         console.error('[Image] Composite failed, using base image:', compositeErr)
