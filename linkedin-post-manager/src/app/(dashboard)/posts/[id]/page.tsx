@@ -552,24 +552,9 @@ export default function EditPostPage() {
 
                 {/* Content */}
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="content" required>
-                      Post Content
-                    </Label>
-                    <button
-                      type="button"
-                      onClick={handleRegenerateContent}
-                      disabled={isRegeneratingContent}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-purple-light bg-purple-accent/10 hover:bg-purple-accent/20 border border-purple-accent/30 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isRegeneratingContent ? (
-                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                      ) : (
-                        <Sparkles className="w-3.5 h-3.5" />
-                      )}
-                      {isRegeneratingContent ? 'Rewriting...' : 'Regenerate'}
-                    </button>
-                  </div>
+                  <Label htmlFor="content" required>
+                    Post Content
+                  </Label>
                   <Textarea
                     id="content"
                     placeholder="Write your post content here..."
@@ -582,6 +567,21 @@ export default function EditPostPage() {
                     {(content || '').length} / 3000 characters
                   </p>
                 </div>
+
+                {/* Regenerate Content Button */}
+                <button
+                  type="button"
+                  onClick={handleRegenerateContent}
+                  disabled={isRegeneratingContent}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-accent to-purple-light hover:from-purple-light hover:to-purple-accent text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 disabled:hover:from-purple-accent disabled:hover:to-purple-light"
+                >
+                  {isRegeneratingContent ? (
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  ) : (
+                    <Sparkles className="w-5 h-5" />
+                  )}
+                  {isRegeneratingContent ? 'Rewriting...' : 'Regenerate Content'}
+                </button>
 
                 {/* Approve/Reject Buttons (for Pending Review) */}
                 {post.status === 'Pending Review' && (
