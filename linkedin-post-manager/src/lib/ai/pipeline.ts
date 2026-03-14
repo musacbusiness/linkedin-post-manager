@@ -12,6 +12,29 @@ export interface UserProfile {
   pastTopics?: string[]
 }
 
+export interface AnchorConfig {
+  type: 'metric_card' | 'comparison' | 'flow_diagram' | 'dashboard' | 'pull_quote_card'
+  // metric_card
+  top_label?: string
+  metric?: string
+  unit?: string
+  context?: string
+  sub_items?: { label: string }[]
+  // comparison
+  left?: { label: string; metric: string; metric_label: string; tone: string; bars: number[] }
+  right?: { label: string; metric: string; metric_label: string; tone: string; bars: number[] }
+  // flow_diagram
+  steps?: { label: string; sublabel: string }[]
+  result?: { label: string; metric: string; sublabel: string }
+  // dashboard
+  top_metrics?: { label: string; value: string; change: string; tone: string }[]
+  chart?: { values: number[]; labels: string[] }
+  bottom_stats?: { label: string; value: string }[]
+  // pull_quote_card
+  quote?: string
+  author?: string
+}
+
 export interface ImagePromptOutput {
   prompt: string
   negativePrompt: string
@@ -21,6 +44,7 @@ export interface ImagePromptOutput {
   cfgScale: number
   steps: number
   sampler: string
+  anchorConfig?: AnchorConfig
 }
 
 export interface PipelineResult {
@@ -29,6 +53,7 @@ export interface PipelineResult {
   content: string
   imagePrompt: string
   imagePromptMetadata?: ImagePromptOutput
+  anchorConfig?: AnchorConfig
   pillar?: string
   framework?: string
   error?: string
@@ -242,6 +267,7 @@ export class PostGenerationPipeline {
           content,
           imagePrompt: imagePromptResult.prompt,
           imagePromptMetadata: imagePromptResult,
+          anchorConfig: imagePromptResult.anchorConfig,
           pillar,
           framework,
         }
@@ -275,6 +301,7 @@ export class PostGenerationPipeline {
               content: improvedContent,
               imagePrompt: imagePromptResult.prompt,
               imagePromptMetadata: imagePromptResult,
+              anchorConfig: imagePromptResult.anchorConfig,
               pillar,
               framework,
             }
@@ -289,6 +316,7 @@ export class PostGenerationPipeline {
           content: improvedContent,
           imagePrompt: imagePromptResult.prompt,
           imagePromptMetadata: imagePromptResult,
+          anchorConfig: imagePromptResult.anchorConfig,
           pillar,
           framework,
         }
@@ -753,19 +781,54 @@ ABSOLUTELY FORBIDDEN (instant disqualification):
 - Generic workflow diagrams that could apply to any post
 ${extraReqs ? `\nADDITIONAL REQUIREMENTS: ${extraReqs}` : ''}
 
-Return ONLY a JSON object:
+━━━ STEP 7: SCREEN & ANCHOR CONFIG ━━━
+This pipeline uses a two-pass compositing system. The base photo must have a BLANK UNIFORM DARK SCREEN that our system will detect and fill with a programmatically rendered overlay.
+
+SCREEN PROMPT RULES (critical — these override Layer 3 from Step 4):
+- The screen/monitor/display MUST show ONLY a solid uniform dark color: charcoal (#2D2D2D), dark slate (#1E293B), or dark navy (#1a1a2e)
+- NO content on the screen at all — no shapes, no UI, no gradients, no glows
+- The screen MUST have a clearly visible bezel/frame with HIGH CONTRAST against the background
+- Add to the prompt: "the screen shows only solid uniform dark charcoal gray with no content whatsoever, completely blank dark rectangle"
+- Add to negatives: "(content on screen:1.5), (interface on screen:1.5), (text on screen:1.6), (graphics on screen:1.4), (dashboard on screen:1.4), (loading screen:1.3), (gradient on screen:1.3)"
+
+ANCHOR CONFIG SELECTION:
+Based on the post content, select the most appropriate overlay type:
+1. Post has a standout number/metric? → "metric_card"
+2. Post describes a process/workflow? → "flow_diagram"
+3. Post compares two approaches? → "comparison"
+4. Post shows results/analytics over time? → "dashboard"
+5. Post is philosophical/strategic with no clear metric? → "pull_quote_card"
+
+Return ONLY a JSON object (no markdown, no explanation):
 {
-  "alignmentScene": "plain-English description of the specific scene and exactly how it connects to this post's story",
+  "alignmentScene": "plain-English description of scene and how it connects to the post",
   "selectedTemplate": "THE TRANSFORMATION|THE REVELATION|THE SYSTEM IN MOTION|THE EVIDENCE BOARD|THE QUIET DIVIDEND|THE CONTRAST DESK|THE PRACTITIONER SETUP|THE COLLABORATION REVIEW",
   "sixWordCaption": "the exact 6-word viewer caption",
-  "prompt": "the full photorealistic photography prompt using all 7 layers",
-  "negativePrompt": "full negative prompt including text suppression weights and style negatives",
+  "prompt": "the full photorealistic photography prompt — MUST include blank dark uniform screen with no content",
+  "negativePrompt": "full negative prompt including (content on screen:1.5), (interface on screen:1.5), (text on screen:1.6) plus all style negatives",
   "aspectRatio": "1:1",
   "resolution": "1080x1080",
   "format": "JPEG",
   "cfgScale": 7,
   "steps": 40,
-  "sampler": "DPM++ 2M Karras"
+  "sampler": "DPM++ 2M Karras",
+  "anchorConfig": {
+    "type": "metric_card|comparison|flow_diagram|dashboard|pull_quote_card",
+    "top_label": "...(metric_card only: short descriptor like 'Weekly Time Saved')",
+    "metric": "...(metric_card only: the big number, e.g. '20+' or '73%')",
+    "unit": "...(metric_card only: unit label, e.g. 'hours / week')",
+    "context": "...(metric_card only: supporting line, e.g. 'across a 7-person team')",
+    "sub_items": [...],
+    "left": {"label":"...","metric":"...","metric_label":"...","tone":"negative","bars":[0.4,0.5,0.3,0.6,0.35]},
+    "right": {"label":"...","metric":"...","metric_label":"...","tone":"positive","bars":[0.85,0.9,0.95,0.8,0.88]},
+    "steps": [{"label":"...","sublabel":"..."},{"label":"...","sublabel":"..."}],
+    "result": {"label":"TOTAL","metric":"...","sublabel":"..."},
+    "top_metrics": [{"label":"...","value":"...","change":"...","tone":"positive"}],
+    "chart": {"values":[4,8,14,20],"labels":["Wk 1","Wk 2","Wk 3","Wk 4"]},
+    "bottom_stats": [{"label":"...","value":"..."}],
+    "quote": "...(pull_quote_card only)",
+    "author": "...(pull_quote_card only, optional)"
+  }
 }`
 
     const text = await this.callAnthropicAPI(prompt, 1536)
@@ -800,6 +863,7 @@ Return ONLY a JSON object:
         cfgScale: parsed.cfgScale ?? 7,
         steps: parsed.steps ?? 40,
         sampler: parsed.sampler || 'DPM++ 2M Karras',
+        anchorConfig: parsed.anchorConfig || undefined,
       }
     } catch {
       return {

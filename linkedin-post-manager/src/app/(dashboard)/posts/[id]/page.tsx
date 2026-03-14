@@ -98,11 +98,14 @@ export default function EditPostPage() {
     setError(null)
     setImageError(false)
 
+    // Pass anchorConfig from generation_metadata if available
+    const anchorConfig = (post?.generation_metadata as any)?.anchorConfig ?? null
+
     try {
       const response = await fetch('/api/generate/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: promptToUse }),
+        body: JSON.stringify({ prompt: promptToUse, anchorConfig }),
       })
 
       if (!response.ok) {
@@ -157,10 +160,11 @@ export default function EditPostPage() {
 
       // Now generate the image with the new prompt
       setGenerationStep('image')
+      const anchorConfig = (post?.generation_metadata as any)?.anchorConfig ?? null
       const imageRes = await fetch('/api/generate/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: newPrompt }),
+        body: JSON.stringify({ prompt: newPrompt, anchorConfig }),
       })
 
       if (!imageRes.ok) {

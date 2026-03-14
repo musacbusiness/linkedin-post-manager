@@ -120,6 +120,7 @@ export async function POST(request: NextRequest) {
                   pillar: result.pillar,
                   framework: result.framework,
                   imagePromptMetadata: result.imagePromptMetadata,
+                  anchorConfig: result.anchorConfig,
                 },
               })
               .select()

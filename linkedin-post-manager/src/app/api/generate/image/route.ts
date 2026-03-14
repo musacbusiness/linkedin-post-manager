@@ -1,13 +1,19 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 import Replicate from 'replicate'
+import { execFile } from 'child_process'
+import { promisify } from 'util'
+import { writeFile, readFile, unlink } from 'fs/promises'
+import { tmpdir } from 'os'
+import path from 'path'
 
-// POST /api/generate/image - Generate image with Replicate
+const execFileAsync = promisify(execFile)
+
+// POST /api/generate/image - Generate image with Replicate + optional compositing
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient()
 
-    // Check auth
     const {
       data: { user },
     } = await supabase.auth.getUser()
@@ -17,7 +23,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { prompt } = body
+    const { prompt, anchorConfig } = body
 
     if (!prompt) {
       return NextResponse.json(
@@ -26,7 +32,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if Replicate API token is configured
     if (!process.env.REPLICATE_API_TOKEN) {
       return NextResponse.json(
         { error: 'Replicate API token not configured' },
@@ -46,20 +51,19 @@ export async function POST(request: NextRequest) {
     const modelMode = settingsRow?.image_style || 'testing'
     const selectedModel = modelMode === 'production' ? PRODUCTION_MODEL : TESTING_MODEL
 
-    // Initialize Replicate client
     const replicate = new Replicate({
       auth: process.env.REPLICATE_API_TOKEN,
     })
 
-    console.log(`Generating image with model: ${selectedModel} (mode: ${modelMode})`)
+    console.log(`Generating base image with model: ${selectedModel}`)
     console.log('Prompt:', prompt)
 
     const output = await replicate.run(
       selectedModel as `${string}/${string}` | `${string}/${string}:${string}`,
       {
         input: {
-          prompt: prompt,
-          negative_prompt: 'ugly, blurry, poor quality, distorted',
+          prompt,
+          negative_prompt: '(content on screen:1.5), (interface on screen:1.5), (text on screen:1.6), (graphics on screen:1.4), (dashboard on screen:1.4), (loading screen:1.3), (gradient on screen:1.3), ugly, blurry, poor quality, distorted',
           width: 1024,
           height: 1024,
           num_outputs: 1,
@@ -67,47 +71,86 @@ export async function POST(request: NextRequest) {
       }
     )
 
-    // Get the generated image URL
     let imageUrl = Array.isArray(output) ? output[0] : output
 
     if (!imageUrl || typeof imageUrl !== 'string') {
       console.error('Invalid output from Replicate:', output)
-      return NextResponse.json(
-        { error: 'Failed to generate image' },
-        { status: 500 }
-      )
+      return NextResponse.json({ error: 'Failed to generate image' }, { status: 500 })
     }
 
-    // Fix protocol-relative URLs from Replicate
     if (imageUrl.startsWith('//')) {
       imageUrl = 'https:' + imageUrl
     }
 
-    console.log('Image generated successfully:', imageUrl)
+    console.log('Base image generated:', imageUrl)
 
-    // Upload the image to Supabase Storage
-    try {
-      console.log('Uploading image to Supabase Storage...')
+    // Fetch the image buffer from Replicate
+    const imageResponse = await fetch(imageUrl)
+    if (!imageResponse.ok) {
+      throw new Error(`Failed to fetch image from Replicate: ${imageResponse.statusText}`)
+    }
+    const imageBuffer = await imageResponse.arrayBuffer()
 
-      // Fetch the image from Replicate
-      const imageResponse = await fetch(imageUrl)
-      if (!imageResponse.ok) {
-        throw new Error(`Failed to fetch image from Replicate: ${imageResponse.statusText}`)
+    let finalBuffer: Buffer = Buffer.from(imageBuffer)
+    let finalContentType = 'image/png'
+
+    // ── Run Python compositing pipeline if anchorConfig is provided ───────────
+    if (anchorConfig && typeof anchorConfig === 'object') {
+      const ts = Date.now()
+      const baseImagePath = path.join(tmpdir(), `base-${ts}.png`)
+      const outputImagePath = path.join(tmpdir(), `composited-${ts}.png`)
+
+      try {
+        // Write base image to temp file
+        await writeFile(baseImagePath, Buffer.from(imageBuffer))
+
+        // Locate the Python script relative to the project root
+        const scriptPath = path.join(process.cwd(), 'scripts', 'image_pipeline.py')
+        const anchorJson = JSON.stringify(anchorConfig)
+
+        console.log('Running image pipeline:', scriptPath)
+        console.log('Anchor config type:', anchorConfig.type)
+
+        const { stdout, stderr } = await execFileAsync(
+          'python3',
+          [scriptPath, '--anchor_config', anchorJson, '--base_image', baseImagePath, '--output', outputImagePath],
+          { timeout: 120_000 }
+        )
+
+        if (stderr) console.log('[python pipeline stderr]', stderr)
+        if (stdout) {
+          try {
+            const result = JSON.parse(stdout.trim().split('\n').pop() || '{}')
+            if (result.error) {
+              console.error('Pipeline error:', result.error)
+            } else {
+              console.log('Pipeline result:', result)
+              finalBuffer = await readFile(outputImagePath)
+              finalContentType = 'image/png'
+            }
+          } catch {
+            console.error('Could not parse pipeline output:', stdout)
+          }
+        }
+      } catch (err) {
+        console.error('Python pipeline failed, using raw base image:', err)
+        // Fall through — use the raw Replicate image
+      } finally {
+        // Clean up temp files
+        await unlink(baseImagePath).catch(() => {})
+        await unlink(outputImagePath).catch(() => {})
       }
+    }
 
-      const imageBuffer = await imageResponse.arrayBuffer()
-      console.log('Image fetched from Replicate, size:', imageBuffer.byteLength, 'bytes')
-
-      // Generate unique filename with timestamp
+    // ── Upload to Supabase Storage ─────────────────────────────────────────────
+    try {
       const timestamp = Date.now()
       const filename = `generated-${timestamp}-${Math.random().toString(36).substring(7)}.png`
-      const filepath = filename
 
-      // Upload to Supabase Storage
       const { data, error } = await supabase.storage
         .from('generated-images')
-        .upload(filepath, Buffer.from(imageBuffer), {
-          contentType: 'image/png',
+        .upload(filename, finalBuffer, {
+          contentType: finalContentType,
           upsert: false,
         })
 
@@ -118,19 +161,13 @@ export async function POST(request: NextRequest) {
 
       console.log('Image uploaded to Supabase:', data)
 
-      // Get the public URL
       const { data: publicData } = supabase.storage
         .from('generated-images')
-        .getPublicUrl(filepath)
+        .getPublicUrl(filename)
 
-      const supabaseImageUrl = publicData.publicUrl
-      console.log('Supabase image URL:', supabaseImageUrl)
-
-      return NextResponse.json({ imageUrl: supabaseImageUrl })
+      return NextResponse.json({ imageUrl: publicData.publicUrl })
     } catch (uploadError) {
-      console.error('Error uploading to Supabase Storage:', uploadError)
-      // Fallback to Replicate URL if Supabase upload fails
-      console.log('Falling back to Replicate URL due to upload error')
+      console.error('Supabase upload failed, falling back to Replicate URL:', uploadError)
       return NextResponse.json({ imageUrl })
     }
   } catch (error) {
