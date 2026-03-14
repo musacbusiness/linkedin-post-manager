@@ -99,7 +99,7 @@ Example angles: AI-assisted vs AI-dependent, why copy-pasting ChatGPT outputs is
 
 PILLAR F — The Case for AI & Automation (Benefits & ROI)
 Making the business case grounded in real outcomes.
-Example angles: time saved vs value created, case studies before/after automation, compounding effect of small automations, "we saved 20 hours/week" breakdowns, why winning companies started small, cost of NOT automating.`
+Example angles: time saved vs value created, projected ROI of automating specific processes, compounding effect of small automations, concrete "here's the math" breakdowns (hours × rate × frequency), why winning companies started small, cost of NOT automating, services I offer that directly address these gains.`
 
 const FRAMEWORK_TEMPLATES: Record<string, string> = {
   'VALUE-STACK': `VALUE-STACK framework (best for Pillar A & D — tips, how-tos, step-by-step):
@@ -117,12 +117,12 @@ SIDE B: Present the reality, the better option, or the nuance
 THE BRIDGE: How to think about this going forward / a framework for deciding
 CTA: Ask which side the audience falls on, or what their experience has been`,
 
-  'STORY-LESSON': `STORY-LESSON framework (best for Pillar E & F — real experience, case studies):
-HOOK: Set the scene with a specific moment or detail (max 210 chars)
-THE STORY: What happened — 3-5 sentences max. Include a specific detail that makes it feel real (a number, a quote, a tool name). Build to the moment of realization or failure.
+  'STORY-LESSON': `STORY-LESSON framework (best for Pillar E & F — personal testing experience, observed patterns):
+HOOK: Set the scene with a specific moment or detail from your own work (max 210 chars)
+THE STORY: What happened when YOU built/tested/tried this — 3-5 sentences max. Include a specific detail that makes it feel real (a number, a tool name, a result you observed). Build to the moment of realization. Frame as your own experience: "I built...", "I tested...", "I ran into..." — NOT "a client of mine..." or "one of my clients..."
 THE LESSON: What this taught you — this is the real value
 THE PRINCIPLE: Generalize it — why this matters beyond your specific situation
-CTA: "Have you experienced something similar?" or share your version`,
+CTA: "Have you run into this?" or share your version`,
 
   'PAS-ADAPT': `PAS-ADAPT framework (best for Pillar D & F — making the case for a solution):
 HOOK: Name a specific, recognizable pain point (max 210 chars)
@@ -521,7 +521,7 @@ ${research.dataPoints.map(d => `- ${d}`).join('\n')}
 
 VOICE PROFILE:
 - Confident but not arrogant — share what you know, admit what you don't
-- Practitioner-first — lead with "here's what I built/tested/broke," not "here's what the industry says"
+- Practitioner-first — lead with "here's what I built/tested/broke," not "here's what the industry says". Speak from your own direct tool experience or frame examples as concrete industry observations — never as client work you've done.
 - Conversational authority — write like you're explaining to a smart peer over coffee
 - Anti-fluff — zero buzzword salads, no "leverage synergies" language
 - Plain English — if a technical term is necessary, explain it in the same sentence
@@ -542,7 +542,7 @@ ${ctaGuidance ? `- CTA guidance: ${ctaGuidance}` : '- CTA: end with a specific, 
 
 DO:
 - Lead with a specific, concrete detail (a number, a tool name, a result)
-- Include at least one "I tested/built/saw" moment (frame as first-person experience)
+- Include at least one "I tested/built/saw" moment (frame as first-person testing or building — your own work, not a client's)
 - Use line breaks aggressively — LinkedIn is mobile-first
 - Write hooks that create an information gap — reader MUST click "see more" for the payoff
 - Ground opinions in evidence — cite a source, a benchmark, or a personal observation
@@ -557,6 +557,7 @@ DON'T:
 - Talk AT the audience instead of WITH them
 - Use "I" more than 3 times in the first 3 sentences
 - Pad with transition phrases ("That being said," "At the end of the day," "Moving forward")
+- Reference clients, client work, or client case studies — avoid "a client of mine," "one of my clients," "I worked with a client who," or any variation. Speak about services you offer or your own direct experience testing tools instead.
 - Use these buzzwords: leverage, synergies, game-changer, disrupt, unlock, transformative, seamlessly
 
 AVOID THESE AUTOMATIC FAIL CONDITIONS:
@@ -608,7 +609,7 @@ FULL POST:
 ━━━ THE 6 VISUAL MODES ━━━
 
 MODE 1: EDITORIAL PHOTO
-Best for: team collaboration, client story posts, human element is the point.
+Best for: team collaboration, posts where the human/practitioner element is the point, service-oriented posts.
 Connection: The scenario depicted matches the post scenario — people, body language, environment ARE the story. Do NOT rely on screen content.
 Prompt template: [Scene matching post scenario], [specific body language], [environment context], modern bright office with natural light, photorealistic, RAW photo, [lens spec], shallow depth of field, editorial photography, natural candid moment, 8K UHD
 Negative: (text:1.5), (words:1.5), (letters:1.5), watermark, logo, illustration, cartoon, stock photo pose, looking at camera, fake smile, staged, bad anatomy, deformed hands, blurry, low quality, oversaturated, dark moody, cyberpunk, neon, fantasy
