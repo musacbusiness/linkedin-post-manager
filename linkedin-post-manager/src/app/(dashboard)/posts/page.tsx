@@ -10,8 +10,9 @@ import Link from 'next/link'
 import { usePosts, useDeletePost, useUpdatePost } from '@/hooks/use-posts'
 import { useRealtimePosts } from '@/hooks/use-realtime-posts'
 import { useState, useCallback } from 'react'
-import { Search, Trash2, CheckSquare, Square, CheckCircle, ImageIcon, X } from 'lucide-react'
+import { Search, Trash2, CheckSquare, Square, CheckCircle, ImageIcon, X, Loader2, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react'
 import CreatePostMenu from '@/components/posts/create-post-menu'
+import { useGenerationStore } from '@/store/generation-store'
 
 export default function PostsPage() {
   const [statusFilter, setStatusFilter] = useState<string>('all')
@@ -19,6 +20,9 @@ export default function PostsPage() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [bulkLoading, setBulkLoading] = useState<string | null>(null) // 'delete' | 'approve' | 'images'
   const [bulkProgress, setBulkProgress] = useState<{ done: number; total: number } | null>(null)
+  const [genPanelExpanded, setGenPanelExpanded] = useState(true)
+
+  const { isGenerating, posts: genPosts, count: genCount, topic: genTopic, clearGeneration } = useGenerationStore()
 
   let showToast: ((type: any, title: string, message?: string) => void) | null = null
   try {
@@ -179,6 +183,90 @@ export default function PostsPage() {
         </div>
         <CreatePostMenu />
       </div>
+
+      {/* ─── Generation Progress Panel ──────────────────────────────────────── */}
+      {genPosts.length > 0 && (
+        <div className="rounded-xl border border-purple-accent/30 bg-purple-accent/5 overflow-hidden">
+          {/* Panel header */}
+          <div className="flex items-center justify-between px-4 py-3 border-b border-purple-accent/20">
+            <div className="flex items-center gap-3">
+              {isGenerating ? (
+                <Loader2 className="w-4 h-4 text-purple-light animate-spin shrink-0" />
+              ) : (
+                <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0" />
+              )}
+              <span className="text-sm font-semibold text-white">
+                {isGenerating
+                  ? `Generating ${genCount} post${genCount !== 1 ? 's' : ''}${genTopic ? ` — "${genTopic}"` : ''}…`
+                  : `${genPosts.filter(p => p.status === 'done').length} post${genPosts.filter(p => p.status === 'done').length !== 1 ? 's' : ''} generated`}
+              </span>
+              <span className="text-xs text-gray-500">
+                {genPosts.filter(p => p.status === 'done').length}/{genCount} complete
+                {genPosts.filter(p => p.status === 'error').length > 0 &&
+                  ` · ${genPosts.filter(p => p.status === 'error').length} failed`}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setGenPanelExpanded(v => !v)}
+                className="p-1 text-gray-400 hover:text-white transition-colors"
+              >
+                {genPanelExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+              {!isGenerating && (
+                <button
+                  onClick={clearGeneration}
+                  className="p-1 text-gray-400 hover:text-white transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Per-post rows */}
+          {genPanelExpanded && (
+            <div className="divide-y divide-gray-800/50 max-h-72 overflow-y-auto">
+              {genPosts.map((post, i) => (
+                <div key={i} className="px-4 py-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    {post.status === 'done' ? (
+                      <CheckCircle2 className="w-3.5 h-3.5 text-green-400 shrink-0" />
+                    ) : post.status === 'running' ? (
+                      <Loader2 className="w-3.5 h-3.5 text-purple-light animate-spin shrink-0" />
+                    ) : post.status === 'error' ? (
+                      <div className="w-3.5 h-3.5 rounded-full bg-red-500/20 flex items-center justify-center shrink-0">
+                        <div className="w-2 h-2 rounded-full bg-red-400" />
+                      </div>
+                    ) : (
+                      <div className="w-3.5 h-3.5 rounded-full border border-gray-600 shrink-0" />
+                    )}
+                    <span className={`text-xs font-semibold ${
+                      post.status === 'done' ? 'text-green-400'
+                      : post.status === 'running' ? 'text-purple-light'
+                      : post.status === 'error' ? 'text-red-400'
+                      : 'text-gray-500'
+                    }`}>
+                      Post {i + 1}
+                      {post.status === 'done' && ' — Done'}
+                      {post.status === 'error' && ' — Failed'}
+                      {post.status === 'pending' && ' — Waiting'}
+                    </span>
+                  </div>
+                  {post.steps.length > 0 && (
+                    <p className="ml-5 text-xs text-gray-500 truncate">
+                      {post.steps[post.steps.length - 1]}
+                    </p>
+                  )}
+                  {post.status === 'error' && post.errorMessage && (
+                    <p className="ml-5 text-xs text-red-400 mt-0.5">{post.errorMessage}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Filters + Select All row */}
       <div className="flex flex-col md:flex-row gap-4">

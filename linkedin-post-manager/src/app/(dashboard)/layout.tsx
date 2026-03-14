@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Header } from '@/components/layout/header'
+import { GenerationManager } from '@/components/generation/generation-manager'
 import { signOut } from './actions'
 
 export const dynamic = 'force-dynamic'
@@ -33,6 +34,9 @@ export default async function DashboardLayout({
           <div className="p-4 md:p-6 max-w-7xl mx-auto">{children}</div>
         </main>
       </div>
+
+      {/* Generation manager — runs SSE in background across all pages */}
+      <GenerationManager />
     </div>
   )
 }
