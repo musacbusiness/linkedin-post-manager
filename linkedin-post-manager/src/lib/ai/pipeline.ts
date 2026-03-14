@@ -12,29 +12,6 @@ export interface UserProfile {
   pastTopics?: string[]
 }
 
-export interface AnchorConfig {
-  type: 'metric_card' | 'comparison' | 'flow_diagram' | 'dashboard' | 'pull_quote_card'
-  // metric_card
-  top_label?: string
-  metric?: string
-  unit?: string
-  context?: string
-  sub_items?: { label: string }[]
-  // comparison
-  left?: { label: string; metric: string; metric_label: string; tone: string; bars: number[] }
-  right?: { label: string; metric: string; metric_label: string; tone: string; bars: number[] }
-  // flow_diagram
-  steps?: { label: string; sublabel: string }[]
-  result?: { label: string; metric: string; sublabel: string }
-  // dashboard
-  top_metrics?: { label: string; value: string; change: string; tone: string }[]
-  chart?: { values: number[]; labels: string[] }
-  bottom_stats?: { label: string; value: string }[]
-  // pull_quote_card
-  quote?: string
-  author?: string
-}
-
 export interface ImagePromptOutput {
   prompt: string
   negativePrompt: string
@@ -44,7 +21,7 @@ export interface ImagePromptOutput {
   cfgScale: number
   steps: number
   sampler: string
-  anchorConfig?: AnchorConfig
+  selectedMode?: string
 }
 
 export interface PipelineResult {
@@ -53,7 +30,6 @@ export interface PipelineResult {
   content: string
   imagePrompt: string
   imagePromptMetadata?: ImagePromptOutput
-  anchorConfig?: AnchorConfig
   pillar?: string
   framework?: string
   error?: string
@@ -95,6 +71,7 @@ export interface PipelineSettings {
   // Rotation tracking
   recentPillars?: string[]
   recentFrameworks?: string[]
+  recentModes?: string[]
 }
 
 // ─── Directive constants ────────────────────────────────────────────────────
@@ -162,8 +139,7 @@ SIGNAL: What this tells us about where AI/automation is heading — connect to a
 QUESTION: Turn it into a discussion — "Are you using this yet?" or "What would you use this for?"`,
 }
 
-// Scene archetypes for photorealistic image generation
-const UNIVERSAL_NEGATIVE_PROMPT = '(readable text:1.5), (legible words:1.5), (visible letters:1.4), (text on screen:1.3), words, letters, numbers, alphabet, characters, watermark, signature, logo, label, caption, title, subtitle, illustration, digital art, vector art, cartoon, anime, 3D render, CGI, painting, drawing, sketch, abstract, geometric shapes, stock photo pose, looking at camera, fake smile, staged handshake, pointing at blank screen, thumbs up, exaggerated expression, bad anatomy, deformed hands, extra fingers, missing fingers, disfigured, poorly drawn face, mutation, mutated, ugly, blurry, low quality, low resolution, pixelated, oversaturated, HDR overprocessed, plastic skin, airbrushed, uncanny valley, wax figure, mannequin, dark moody lighting, cyberpunk neon, fantasy, sci-fi, futuristic hologram, glowing elements, lens flare overload'
+const UNIVERSAL_NEGATIVE_PROMPT = '(text:1.5), (words:1.5), (letters:1.5), (numbers:1.4), (readable:1.4), (legible:1.4), watermark, signature, logo, label, caption, illustration, digital art, vector art, cartoon, anime, 3D render, CGI, painting, drawing, sketch, stock photo pose, looking at camera, fake smile, staged handshake, thumbs up, bad anatomy, deformed hands, extra fingers, missing fingers, disfigured, ugly, blurry, low quality, low resolution, pixelated, oversaturated, plastic skin, airbrushed, uncanny valley, cyberpunk neon, fantasy, sci-fi, futuristic hologram, glowing elements'
 
 // ─── Pipeline class ─────────────────────────────────────────────────────────
 
@@ -267,7 +243,6 @@ export class PostGenerationPipeline {
           content,
           imagePrompt: imagePromptResult.prompt,
           imagePromptMetadata: imagePromptResult,
-          anchorConfig: imagePromptResult.anchorConfig,
           pillar,
           framework,
         }
@@ -301,7 +276,6 @@ export class PostGenerationPipeline {
               content: improvedContent,
               imagePrompt: imagePromptResult.prompt,
               imagePromptMetadata: imagePromptResult,
-              anchorConfig: imagePromptResult.anchorConfig,
               pillar,
               framework,
             }
@@ -316,7 +290,6 @@ export class PostGenerationPipeline {
           content: improvedContent,
           imagePrompt: imagePromptResult.prompt,
           imagePromptMetadata: imagePromptResult,
-          anchorConfig: imagePromptResult.anchorConfig,
           pillar,
           framework,
         }
@@ -621,214 +594,98 @@ Return ONLY the post content. No preamble, no metadata, no explanations. Do NOT 
   ): Promise<ImagePromptOutput> {
     const extraReqs = settings?.imageExtraRequirements || ''
 
-    const prompt = `You are an editorial photography art director for an AI & automation content brand on LinkedIn. Your images must look like they were shot by a professional photographer for Fast Company, Wired, or Harvard Business Review — real environments, real people, real tools. NOT abstract digital art, NOT illustrations, NOT stock photography poses.
+    const recentModesNote = settings?.recentModes?.length
+      ? `\nRECENT MODES USED (do NOT repeat the immediately prior mode; avoid using the same mode more than once per 3 posts): ${settings.recentModes.slice(-3).join(', ')}`
+      : ''
+
+    const prompt = `You are an image art director for an AI & automation LinkedIn content brand. Select the best visual mode from the 6 below, write a complete Stable Diffusion prompt for it, and return JSON.
 
 POST TOPIC: "${topic}"
 CONTENT PILLAR: ${pillar}
 FULL POST:
-"${content}"
+"${content}"${recentModesNote}
 
-━━━ STEP 0: COMMIT TO THE STORY FIRST ━━━
-Before designing anything, answer these three questions in your reasoning:
+━━━ THE 6 VISUAL MODES ━━━
 
-1. CLAIM TYPE — What kind of claim is this post making?
-   Choose one: TRANSFORMATION | REVELATION | FRAMEWORK | PIPELINE-AGENT | QUIET-WIN | CONTRAST | COLLABORATION | PERSONAL-SYSTEM
+MODE 1: EDITORIAL PHOTO
+Best for: team collaboration, client story posts, human element is the point.
+Connection: The scenario depicted matches the post scenario — people, body language, environment ARE the story. Do NOT rely on screen content.
+Prompt template: [Scene matching post scenario], [specific body language], [environment context], modern bright office with natural light, photorealistic, RAW photo, [lens spec], shallow depth of field, editorial photography, natural candid moment, 8K UHD
+Negative: (text:1.5), (words:1.5), (letters:1.5), watermark, logo, illustration, cartoon, stock photo pose, looking at camera, fake smile, staged, bad anatomy, deformed hands, blurry, low quality, oversaturated, dark moody, cyberpunk, neon, fantasy
 
-2. THE SPECIFIC STORY — Complete this sentence:
-   "A stranger shown only this image would instantly understand: [post-specific story in 6 words or fewer]"
-   Target: something like "AI handles email triage automatically" or "automation freed analyst from reporting"
-   NOT: "AI in the workplace" or "automation helps people" — those are too generic.
+MODE 2: CLEAN DIAGRAM
+Best for: process/workflow, framework, system architecture, steps and connections.
+Connection: The diagram IS the post's concept visualized. Viewer sees structure and immediately understands the post's framework.
+Prompt template: Clean technical diagram on a dark [navy/charcoal] background, [specific diagram — nodes, arrows, flow, layout], modern flat design with subtle depth and soft glowing accents, [2-3 color palette], minimalist infographic style, no photorealistic elements, sharp clean vector-like aesthetic, professional presentation quality, highly detailed, crisp lines, 8K
+Negative: text, words, readable labels, letters, numbers, photorealistic, people, faces, hands, office, desk, 3D render, cartoon, busy, cluttered, blurry, low quality, watermark
 
-3. THE DIFFERENTIATOR — What ONE concrete detail (specific tool, metric, prop, action, or outcome mentioned in THIS post) makes this image different from any other AI/automation LinkedIn post?
-   If the answer is "nothing" — the scene is too generic. Redesign before proceeding.
+MODE 3: VISUAL METAPHOR (Concrete, Not Abstract)
+Best for: posts with a specific analogy in the hook, contrast posts, cautionary posts, one vivid image captures the whole idea.
+Connection: The metaphor is OBVIOUS — one mental leap maximum. If you must explain it, pick something simpler.
+Prompt template: [Concrete metaphor object described in vivid detail], [setting grounding it in professional/tech context], photorealistic with slightly heightened dramatic lighting, [lighting emphasizing the metaphor], clean composition with strong focal point, shot on [lens spec], [depth of field], cinematic quality, editorial photography, 8K UHD
+Negative: text, words, letters, watermark, logo, cartoon, illustration, abstract art, digital art, bad anatomy, deformed, blurry, low quality, oversaturated, busy background, cluttered
 
-━━━ STEP 1: EXTRACT THE NARRATIVE TRIAD ━━━
-From the post content, identify:
-- BEFORE: Who was doing what manually / inefficiently / at cost?
-- AFTER: What specific AI or automation outcome replaced it? (name specific tools or outcomes if post mentions them)
-- EVIDENCE: What physical object, screen layout, or human action shows the "after" state most visually?
+MODE 4: BOLD DATA VISUAL
+Best for: ROI/results posts with a key number, benchmark/performance posts, trend posts.
+Connection: The data visual represents the post's key metric or trend directly. No axis labels — bar heights and color tell the story.
+Prompt template: Stylized [chart/graph type] data visualization, [specific description of data pattern], [color palette matching the data story], dark [navy/charcoal/black] background, modern data visualization design aesthetic, clean geometric shapes with subtle glow and shadow effects, minimalist with high visual impact, no axis labels no readable text just pure visual data shapes, professional presentation quality, crisp edges, 8K
+Negative: text, words, letters, numbers, labels, axis labels, readable characters, photorealistic, people, faces, office, 3D render, cartoon, blurry, low quality, watermark, busy, too many elements
 
-The EVIDENCE is what goes on the screen or in the props. It must be specific to THIS post, not a generic workflow diagram.
+MODE 5: SPLIT FRAME
+Best for: before/after transformation, comparison posts, old vs. new contrast.
+Connection: Each half represents one side of the post's argument. Visual contrast between halves IS the message.
+Prompt template: Split-frame image divided vertically down the center, left half shows [the "before" or "bad" state described vividly], right half shows [the "after" or "good" state described vividly], [left half — desaturated/warm/chaotic visual treatment], [right half — vibrant/cool/clean visual treatment], the contrast between the two halves is stark and immediate, [photorealistic or illustrated], clean composition, professional quality, 8K
+Negative: (text:1.5), (words:1.5), (letters:1.5), watermark, logo, cartoon, bad anatomy, deformed, blurry, low quality, no clear division between halves
 
-━━━ STEP 2: SELECT THE NARRATIVE SCENE TEMPLATE ━━━
-Choose the template that matches the CLAIM TYPE from Step 0. Pick the PRIMARY template unless it was recently used — then pick SECONDARY.
+MODE 6: ICONIC OBJECT
+Best for: posts centered on a specific tool or concept, minimalist single-point posts, pattern-breaking feed variety.
+Connection: The object IS the concept, or directly represents the key tool/idea.
+Prompt template: [Single object described in detail] photographed on a [clean background], dramatic [lighting type] creating strong shadows and highlights, the object is the sole focal point centered in the frame, [material/texture details], product photography style, shot on macro lens, very shallow depth of field, studio quality, photorealistic, high-end commercial photography aesthetic, 8K UHD
+Negative: text, words, letters, watermark, logo, multiple objects, busy background, people, hands holding the object, cartoon, illustration, blurry, low quality, flat lighting
 
-CLAIM TYPE → PRIMARY → SECONDARY
-TRANSFORMATION    → THE TRANSFORMATION   → THE CONTRAST DESK
-REVELATION        → THE REVELATION       → THE QUIET DIVIDEND
-FRAMEWORK         → THE EVIDENCE BOARD   → THE PRACTITIONER SETUP
-PIPELINE-AGENT    → THE SYSTEM IN MOTION → THE PRACTITIONER SETUP
-QUIET-WIN         → THE QUIET DIVIDEND   → THE TRANSFORMATION
-CONTRAST          → THE CONTRAST DESK    → THE EVIDENCE BOARD
-COLLABORATION     → THE COLLABORATION REVIEW → THE EVIDENCE BOARD
-PERSONAL-SYSTEM   → THE PRACTITIONER SETUP → THE SYSTEM IN MOTION
+━━━ MODE SELECTION LOGIC ━━━
 
-━━━ TEMPLATE LIBRARY ━━━
+Step 1 — Check for natural fit:
+  Does the hook use a specific analogy or metaphor? → Mode 3 (Visual Metaphor) — depict it literally
+  Does the post describe a step-by-step process or framework? → Mode 2 (Clean Diagram)
+  Does the post explicitly contrast two things (before/after, A vs B)? → Mode 5 (Split Frame)
+  Does the post lead with a dramatic number or metric? → Mode 4 (Bold Data Visual)
+  Is the post a story about a person, team, or client? → Mode 1 (Editorial Photo)
+  Is it a single sharp philosophical point? → Mode 6 (Iconic Object) or Mode 3
 
-THE TRANSFORMATION
-When: Switching from manual → automated, time savings, ROI, before/after AI adoption.
-Scene: Professional at desk with clean monitor showing the automated result. Evidence of the former manual process visible — stack of reports to the side, discarded pen and notepad, closed binder. Human looks focused and calm, not celebratory.
-Screen: Shows the specific "after" state from the EVIDENCE (Step 1) — rendered as abstract UI shapes. NOT a generic 3-box flow diagram.
-Camera: Medium shot or slight over-shoulder. Screen in mid-ground, props in soft foreground.
+Step 2 — Check rotation: avoid repeating the immediately prior mode; aim for variety across 3 posts.
 
-THE REVELATION
-When: AI capability discovery, "I tried X and was shocked", first-time result that surprised the author.
-Scene: Professional mid-reaction — leaning slightly forward toward screen, genuine curiosity or surprise (slight widening of eyes, chin resting on hand). NOT performed shock or staged expression. Modern workspace.
-Screen: Shows the specific AI output from EVIDENCE — a document shape that looks AI-generated, analysis view, completed pipeline — something that justifies the reaction.
-Camera: 3/4 profile or over-shoulder. Face and screen both in frame. Shallow depth of field.
+Step 3 — Defaults: process/tip posts → Mode 2; story posts → Mode 1; any number present → Mode 4.
 
-THE SYSTEM IN MOTION
-When: Automation pipeline, AI agent, multi-step workflow running without human intervention.
-Scene: Multiple monitors or wide screen showing different stages of an active process from EVIDENCE. Professional in background overseeing — NOT doing. Standing with arms folded or hands on hips.
-Screen: Abstract representations of 3-5 pipeline stages with "in progress" visual indicators — progress fills, active node highlights, flowing connection shapes. No readable text.
-Camera: Medium-wide. The running system is the hero. Professional is background.
-
-THE EVIDENCE BOARD
-When: Framework, comparison, step-by-step guide, or structured breakdown.
-Scene: Professional beside a whiteboard or large glass wall showing a real-looking diagram that maps the post's structure. Post-it notes for authenticity. 1 other person seated watching. Person is mid-gesture, pointing or writing.
-Board: Abstract diagram shapes — boxes, arrows, columns — structurally matching the post's framework count. If post has 5 steps, show 5 connected shapes. No legible writing.
-Camera: Medium-wide showing both person and board.
-
-THE QUIET DIVIDEND
-When: Time reclaimed, work-life balance through automation, "let AI do the grunt work", outcome of a good system.
-Scene: Professional doing something human — coffee by a window, leaning back reviewing printed doc, mid-conversation — while screens in BACKGROUND show automated work completing. The human is NOT working. The machine is.
-Screen: Slightly out of focus background. Shows completion states — dashboard updating, process finishing. Human is disengaged from it.
-Camera: Environmental portrait. Person foreground, screens ambient background.
-
-THE CONTRAST DESK
-When: Before/after comparison, tool adoption story, old way vs. new way.
-Scene: Two visual zones in one frame. Left/background: cluttered evidence of the old process — stacked papers, color-coded sticky notes, paper calendar. Right/foreground: clean workstation with monitor showing streamlined automated output from EVIDENCE. Professional is on the right side, in the clean zone.
-Camera: Wide-medium capturing both zones. Natural depth of field separates them. Editorial look.
-
-THE PRACTITIONER SETUP
-When: Personal productivity system, tool stack, workflow configuration, "here's how I work" angle.
-Scene: Over-the-shoulder of professional showing their actual workspace — multiple monitors, notebook, specific tools in use. The monitor configuration tells the story based on EVIDENCE: which types of apps are open, how they're arranged.
-Screen: Each monitor implies a different layer of the stack — AI output on one, dashboard on another, task list on another. All abstract, no readable text.
-Camera: Over-the-shoulder or wide desk shot. Environmental detail is the hook.
-
-THE COLLABORATION REVIEW
-When: Human+AI working together, team using AI output, AI augmenting group decisions.
-Scene: 2-3 people reviewing AI-generated output on shared screen with critical, engaged eyes — NOT passive. Someone pointing at a specific section, another taking notes. Active, not a presentation.
-Screen: Document or output shape implying AI generation from EVIDENCE — structured content layout, visual completeness — while humans annotate/critique.
-Camera: Medium-wide capturing group and screen. Dynamic framing.
-
-━━━ STEP 3: BUILD THE SCREEN CONTENT SPECIFICALLY ━━━
-The screen (or whiteboard/prop) must show the EVIDENCE from Step 1 — NOT a generic workflow.
-
-SCREEN CONTENT FORMULA:
-→ Identify what the post's specific outcome looks like as a UI layout
-→ Render it as abstract color blocks and shape language — suggestive, not legible
-→ ALWAYS include: "screen displaying [specific layout] with abstract color blocks, NO readable text, no legible characters, no visible words"
-
-SCREEN CONTENT EXAMPLES by post type:
-• Inbox automation → inbox-column layout, most rows greyed-out/auto-handled, 1-2 highlighted active
-• AI report generation → document-shape nearly full, clean structured layout implying automation wrote it
-• CRM lead processing → pipeline kanban columns with batch completion fill indicators
-• Time savings → calendar grid with large empty blocks (freed time), sparse appointments
-• Multi-step AI agent → 4-5 connected node shapes in sequence, one actively pulsing/highlighted
-• Data analysis → chart/graph shape with clear data pattern visible as abstract form
-• Workflow simplification → before: many small cluttered nodes; after: 3 clean connected steps
-
-━━━ STEP 4: BUILD THE 7-LAYER PHOTOREALISTIC PROMPT ━━━
-
-Layer 1 — Subject & Action: Who is in frame and what are they doing?
-  (Use the template's defined action — NOT looking at camera, NOT posed)
-
-Layer 2 — Environment: Modern office, co-working space, glass-walled conference room,
-  clean home office, startup workspace with exposed brick, airy creative workspace
-
-Layer 3 — Screen/Prop Content: Describe specifically what is shown, with text suppression:
-  "screen displaying [specific layout from Step 3] with abstract color blocks and UI shapes, NO readable text, no legible words, no visible characters"
-  OR: "whiteboard with abstract diagram of [framework shape], no legible writing, no readable text"
-
-Layer 4 — Camera & Lens: Simulate real photography
-  "shot on Sony A7IV with 35mm f/1.8, shallow depth of field, natural bokeh, over-the-shoulder perspective"
-  "Canon R5 with 85mm f/1.8, tight on screen, person as soft background bokeh"
-  "Fujifilm X-T5 with 23mm f/2, wide environmental portrait, everything in focus"
-
-Layer 5 — Lighting: Real-world mixed sources
-  "soft natural window light from left with warm overhead ambient"
-  "screen glow illuminating face subtly, diffused daylight from skylights"
-  "overcast natural light through large windows, no harsh shadows"
-
-Layer 6 — Color Grade: Editorial photography look
-  "warm neutral color grading, slightly desaturated, clean shadows with warm midtones, professional editorial color palette, modern tech publication aesthetic"
-
-Layer 7 — Quality & Realism Enhancers:
-  "photorealistic, RAW photo, ultra-realistic, natural skin texture, realistic fabric detail, professional photography, editorial quality, 8K UHD"
-
-━━━ STEP 5: TRANSFORMATION FRAME OPTION ━━━
-For TRANSFORMATION, CONTRAST, or QUIET-WIN templates — consider adding evidence of the "before" state:
-- Clean desk with monitor showing automated result + discarded manual stack in corner
-- Person at clean workstation, with the old process artifacts (binder, sticky notes) pushed aside and slightly out of focus
-- Two visual zones: left side chaotic/analog (soft focus), right side clean/automated (sharp)
-This should feel natural, not staged. One detail is enough.
-
-━━━ STEP 6: CAPTION VERIFICATION ━━━
-Before finalizing, write the exact 6-word caption a LinkedIn viewer would write seeing ONLY the image:
-"Caption: ____"
-
-Now ask: Could this caption describe 20 other LinkedIn AI posts?
-If YES — the scene is too generic. Go back to Step 3 and make the screen content or props more specific to this post's EVIDENCE.
-If NO — proceed.
-
-ABSOLUTELY FORBIDDEN (instant disqualification):
-- Any illustration, digital art, vector art, abstract shapes, CGI, 3D render
-- Staged stock photo poses (handshakes, fake smiles at camera, thumbs up, arms crossed)
-- Readable text anywhere in the image (use "(readable text:1.5)" in negatives always)
-- Glowing elements, neon, cyberpunk, holograms, futuristic sci-fi aesthetics
-- Fantasy, cosmic, nature metaphors (no trees, no lightbulbs, no brains with gears)
-- Generic workflow diagrams that could apply to any post
+━━━ UNIVERSAL RULES ━━━
+- 3-Second Rule: image must communicate ONE clear idea — topic, concept, OR emotional tone
+- ABSOLUTE: No readable text in any generated image. Period. If text is needed to make it work, the concept is wrong.
+- Color palette: dark navy (#0F172A) or charcoal bg + teal (#00BCD4) / amber (#FFB300) / green (#4CAF50) / red (#EF5350) accents
+- The "What's This Post About?" test: stranger sees only this image + first line of post → do they get the gist?
 ${extraReqs ? `\nADDITIONAL REQUIREMENTS: ${extraReqs}` : ''}
 
-━━━ STEP 7: SCREEN & ANCHOR CONFIG ━━━
-This pipeline uses a two-pass compositing system. The base photo must have a BLANK UNIFORM DARK SCREEN that our system will detect and fill with a programmatically rendered overlay.
+━━━ QC — SCORE 1-10 (average must be 7+) ━━━
+Post Connection | 3-Second Clarity | Scroll-Stop Power | Text-Free | Mode Appropriateness | Feed Variety
 
-SCREEN PROMPT RULES (critical — these override Layer 3 from Step 4):
-- The screen/monitor/display MUST show ONLY a solid uniform dark color: charcoal (#2D2D2D), dark slate (#1E293B), or dark navy (#1a1a2e)
-- NO content on the screen at all — no shapes, no UI, no gradients, no glows
-- The screen MUST have a clearly visible bezel/frame with HIGH CONTRAST against the background
-- Add to the prompt: "the screen shows only solid uniform dark charcoal gray with no content whatsoever, completely blank dark rectangle"
-- Add to negatives: "(content on screen:1.5), (interface on screen:1.5), (text on screen:1.6), (graphics on screen:1.4), (dashboard on screen:1.4), (loading screen:1.3), (gradient on screen:1.3)"
-
-ANCHOR CONFIG SELECTION:
-Based on the post content, select the most appropriate overlay type:
-1. Post has a standout number/metric? → "metric_card"
-2. Post describes a process/workflow? → "flow_diagram"
-3. Post compares two approaches? → "comparison"
-4. Post shows results/analytics over time? → "dashboard"
-5. Post is philosophical/strategic with no clear metric? → "pull_quote_card"
+Auto-fail (regenerate immediately if any apply):
+- Any visible text artifacts
+- Image could be swapped onto a different post and still make sense
+- Multi-leap abstract metaphor (trees for growth, galaxies for scale, etc.)
+- Same visual mode as the immediately preceding post
+- Mood mismatch (dark/dystopian for positive post, bright/upbeat for cautionary)
 
 Return ONLY a JSON object (no markdown, no explanation):
 {
-  "alignmentScene": "plain-English description of scene and how it connects to the post",
-  "selectedTemplate": "THE TRANSFORMATION|THE REVELATION|THE SYSTEM IN MOTION|THE EVIDENCE BOARD|THE QUIET DIVIDEND|THE CONTRAST DESK|THE PRACTITIONER SETUP|THE COLLABORATION REVIEW",
-  "sixWordCaption": "the exact 6-word viewer caption",
-  "prompt": "the full photorealistic photography prompt — MUST include blank dark uniform screen with no content",
-  "negativePrompt": "full negative prompt including (content on screen:1.5), (interface on screen:1.5), (text on screen:1.6) plus all style negatives",
+  "selectedMode": "Mode N: NAME",
+  "modeRationale": "one sentence why this mode fits this specific post",
+  "prompt": "full SD prompt following the mode's template",
+  "negativePrompt": "mode-specific negatives combined with universal text suppression",
   "aspectRatio": "1:1",
   "resolution": "1080x1080",
   "format": "JPEG",
   "cfgScale": 7,
   "steps": 40,
-  "sampler": "DPM++ 2M Karras",
-  "anchorConfig": {
-    "type": "metric_card|comparison|flow_diagram|dashboard|pull_quote_card",
-    "top_label": "...(metric_card only: short descriptor like 'Weekly Time Saved')",
-    "metric": "...(metric_card only: the big number, e.g. '20+' or '73%')",
-    "unit": "...(metric_card only: unit label, e.g. 'hours / week')",
-    "context": "...(metric_card only: supporting line, e.g. 'across a 7-person team')",
-    "sub_items": [...],
-    "left": {"label":"...","metric":"...","metric_label":"...","tone":"negative","bars":[0.4,0.5,0.3,0.6,0.35]},
-    "right": {"label":"...","metric":"...","metric_label":"...","tone":"positive","bars":[0.85,0.9,0.95,0.8,0.88]},
-    "steps": [{"label":"...","sublabel":"..."},{"label":"...","sublabel":"..."}],
-    "result": {"label":"TOTAL","metric":"...","sublabel":"..."},
-    "top_metrics": [{"label":"...","value":"...","change":"...","tone":"positive"}],
-    "chart": {"values":[4,8,14,20],"labels":["Wk 1","Wk 2","Wk 3","Wk 4"]},
-    "bottom_stats": [{"label":"...","value":"..."}],
-    "quote": "...(pull_quote_card only)",
-    "author": "...(pull_quote_card only, optional)"
-  }
+  "sampler": "DPM++ 2M Karras"
 }`
 
     const text = await this.callAnthropicAPI(prompt, 1536)
@@ -863,7 +720,7 @@ Return ONLY a JSON object (no markdown, no explanation):
         cfgScale: parsed.cfgScale ?? 7,
         steps: parsed.steps ?? 40,
         sampler: parsed.sampler || 'DPM++ 2M Karras',
-        anchorConfig: parsed.anchorConfig || undefined,
+        selectedMode: parsed.selectedMode || undefined,
       }
     } catch {
       return {

@@ -98,14 +98,14 @@ export default function EditPostPage() {
     setError(null)
     setImageError(false)
 
-    // Pass anchorConfig from generation_metadata if available
-    const anchorConfig = (post?.generation_metadata as any)?.anchorConfig ?? null
+    // Pass the Claude-generated negative prompt from metadata so Replicate uses it
+    const negativePrompt = (post?.generation_metadata as any)?.imagePromptMetadata?.negativePrompt ?? null
 
     try {
       const response = await fetch('/api/generate/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: promptToUse, anchorConfig }),
+        body: JSON.stringify({ prompt: promptToUse, negativePrompt }),
       })
 
       if (!response.ok) {
@@ -160,11 +160,11 @@ export default function EditPostPage() {
 
       // Now generate the image with the new prompt
       setGenerationStep('image')
-      const anchorConfig = (post?.generation_metadata as any)?.anchorConfig ?? null
+      const negativePrompt = (post?.generation_metadata as any)?.imagePromptMetadata?.negativePrompt ?? null
       const imageRes = await fetch('/api/generate/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: newPrompt, anchorConfig }),
+        body: JSON.stringify({ prompt: newPrompt, negativePrompt }),
       })
 
       if (!imageRes.ok) {
