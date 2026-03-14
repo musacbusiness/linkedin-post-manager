@@ -86,9 +86,11 @@ export async function autoSchedulePost(
     ]
 
     const now = new Date()
+    // Require at least 10 minutes of lead time before posting
+    const minScheduleTime = new Date(now.getTime() + 10 * 60_000)
     let scheduledDateTime: Date | null = null
 
-    for (let daysAhead = 1; daysAhead < 30; daysAhead++) {
+    for (let daysAhead = 0; daysAhead < 30; daysAhead++) {
       // Get the local calendar date daysAhead from today in the user's timezone
       const futureUTC = new Date(now.getTime() + daysAhead * 86_400_000)
       const localDateStr = getLocalDateString(futureUTC, timezone) // 'YYYY-MM-DD'
@@ -98,14 +100,20 @@ export async function autoSchedulePost(
         const windowStart = localToUTC(localDateStr, startHour, 0, timezone)
         const windowEnd = localToUTC(localDateStr, endHour, 0, timezone)
 
+        // Skip windows that have already ended (or don't have enough time left)
+        if (windowEnd <= minScheduleTime) continue
+
         const windowOccupied = scheduledTimes.some(
           (t) => t >= windowStart && t < windowEnd
         )
 
         if (!windowOccupied) {
-          const randomHour = startHour + Math.floor(Math.random() * (endHour - startHour))
-          const randomMinute = Math.floor(Math.random() * 60)
-          scheduledDateTime = localToUTC(localDateStr, randomHour, randomMinute, timezone)
+          // Pick a random time within the window, clamped so it's never in the past
+          const effectiveStart = Math.max(windowStart.getTime(), minScheduleTime.getTime())
+          const windowEndMs = windowEnd.getTime()
+          const rangeMs = windowEndMs - effectiveStart
+          const randomOffsetMs = Math.floor(Math.random() * rangeMs)
+          scheduledDateTime = new Date(effectiveStart + randomOffsetMs)
           break
         }
       }
