@@ -7,101 +7,138 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useToast } from '@/components/ui/toast'
-import { ArrowLeft, Sparkles, Loader2 } from 'lucide-react'
+import { ArrowLeft, Sparkles, Loader2, CheckCircle2, Circle } from 'lucide-react'
 import Link from 'next/link'
+
+const COUNT_OPTIONS = [1, 2, 3, 4, 5]
+
+interface PostProgress {
+  steps: string[]
+  status: 'pending' | 'running' | 'done' | 'error'
+  postId?: string
+  errorMessage?: string
+}
 
 export default function GeneratePostPage() {
   const router = useRouter()
   const { showToast } = useToast()
 
   const [topic, setTopic] = useState('')
+  const [count, setCount] = useState(1)
   const [isGenerating, setIsGenerating] = useState(false)
-  const [progress, setProgress] = useState<string[]>([])
+  const [posts, setPosts] = useState<PostProgress[]>([])
   const [error, setError] = useState<string | null>(null)
+
+  async function runSingleGeneration(index: number): Promise<string | null> {
+    setPosts((prev) =>
+      prev.map((p, i) => (i === index ? { ...p, status: 'running' } : p))
+    )
+
+    const response = await fetch('/api/generate/post', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic: topic.trim() || undefined }),
+    })
+
+    if (!response.ok || !response.body) {
+      const msg = 'Failed to start generation'
+      setPosts((prev) =>
+        prev.map((p, i) => (i === index ? { ...p, status: 'error', errorMessage: msg } : p))
+      )
+      return null
+    }
+
+    const reader = response.body.getReader()
+    const decoder = new TextDecoder()
+    let postId: string | null = null
+    let hasError = false
+
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+
+      const chunk = decoder.decode(value, { stream: true })
+      for (const line of chunk.split('\n')) {
+        if (!line.startsWith('data: ')) continue
+        try {
+          const evt = JSON.parse(line.slice(6))
+
+          if (evt.stage === -1) {
+            hasError = true
+            setPosts((prev) =>
+              prev.map((p, i) =>
+                i === index ? { ...p, status: 'error', errorMessage: evt.message } : p
+              )
+            )
+            break
+          }
+
+          if (evt.message) {
+            setPosts((prev) =>
+              prev.map((p, i) =>
+                i === index ? { ...p, steps: [...p.steps, evt.message] } : p
+              )
+            )
+          }
+
+          if (evt.stage === 7 && evt.data?.postId) {
+            postId = evt.data.postId
+          }
+        } catch {
+          // skip invalid JSON fragments
+        }
+      }
+
+      if (hasError) break
+    }
+
+    if (!hasError && postId) {
+      setPosts((prev) =>
+        prev.map((p, i) => (i === index ? { ...p, status: 'done', postId } : p))
+      )
+      return postId
+    }
+
+    return null
+  }
 
   async function handleGenerate(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
-    setProgress([])
     setIsGenerating(true)
 
-    try {
-      const response = await fetch('/api/generate/post', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ topic: topic.trim() || undefined }),
-      })
+    // Initialise all slots as pending
+    setPosts(Array.from({ length: count }, () => ({ steps: [], status: 'pending' })))
 
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to generate post')
-      }
+    const completedIds: string[] = []
 
-      // Handle Server-Sent Events (SSE)
-      if (!response.body) {
-        throw new Error('No response body')
-      }
+    for (let i = 0; i < count; i++) {
+      const id = await runSingleGeneration(i)
+      if (id) completedIds.push(id)
+    }
 
-      const reader = response.body.getReader()
-      const decoder = new TextDecoder()
-      let postId: string | null = null
-      let hasError = false
+    setIsGenerating(false)
 
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
+    if (completedIds.length === 0) {
+      setError('All generations failed. Check the errors above.')
+      showToast('error', 'Generation failed', 'No posts were created')
+      return
+    }
 
-        const chunk = decoder.decode(value, { stream: true })
-        const lines = chunk.split('\n')
+    const succeeded = completedIds.length
+    const failed = count - succeeded
 
-        for (const line of lines) {
-          if (line.startsWith('data: ')) {
-            const dataStr = line.slice(6)
-            try {
-              const eventData = JSON.parse(dataStr)
+    showToast(
+      failed === 0 ? 'success' : 'warning',
+      `${succeeded} post${succeeded !== 1 ? 's' : ''} generated`,
+      failed > 0 ? `${failed} failed` : undefined
+    )
 
-              // Check for errors
-              if (eventData.stage === -1) {
-                hasError = true
-                setError(eventData.message)
-                throw new Error(eventData.message)
-              }
-
-              // Update progress
-              if (eventData.message) {
-                setProgress((prev) => [...prev, eventData.message])
-              }
-
-              // Capture post ID on success
-              if (eventData.stage === 7 && eventData.data?.postId) {
-                postId = eventData.data.postId
-              }
-            } catch (parseErr) {
-              if (parseErr instanceof SyntaxError) {
-                // Skip invalid JSON lines (could be empty or incomplete)
-                continue
-              }
-              throw parseErr
-            }
-          }
-        }
-      }
-
-      if (!hasError) {
-        showToast('success', 'Post generated', 'Your AI-generated post is ready for review')
-
-        // Redirect to the edit page for the newly created post
-        if (postId) {
-          router.push(`/posts/${postId}`)
-        } else {
-          router.push('/posts')
-        }
-      }
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to generate post'
-      setError(errorMessage)
-      showToast('error', 'Generation failed', errorMessage)
-      setIsGenerating(false)
+    // Single post → go straight to editor; multiple → go to posts list
+    if (count === 1 && completedIds[0]) {
+      router.push(`/posts/${completedIds[0]}`)
+    } else {
+      router.push('/posts')
     }
   }
 
@@ -117,7 +154,7 @@ export default function GeneratePostPage() {
         </Link>
         <div>
           <h1 className="text-3xl font-bold text-white mb-2">Generate Post with AI</h1>
-          <p className="text-gray-400">Let AI create a LinkedIn post for you</p>
+          <p className="text-gray-400">Let AI create LinkedIn posts for you</p>
         </div>
       </div>
 
@@ -143,9 +180,7 @@ export default function GeneratePostPage() {
 
             {/* Topic Input */}
             <div className="space-y-2">
-              <Label htmlFor="topic">
-                Topic (Optional)
-              </Label>
+              <Label htmlFor="topic">Topic (Optional)</Label>
               <Input
                 id="topic"
                 type="text"
@@ -159,18 +194,104 @@ export default function GeneratePostPage() {
               </p>
             </div>
 
+            {/* Count Selector */}
+            <div className="space-y-2">
+              <Label>Number of Posts</Label>
+              <div className="flex gap-2">
+                {COUNT_OPTIONS.map((n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    onClick={() => setCount(n)}
+                    disabled={isGenerating}
+                    className={`w-10 h-10 rounded-lg text-sm font-semibold transition-all ${
+                      count === n
+                        ? 'bg-purple-accent text-white shadow-lg shadow-purple-accent/25'
+                        : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'
+                    } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
+              {count > 1 && (
+                <p className="text-xs text-gray-500">
+                  Posts are generated one at a time — each runs the full 7-stage pipeline
+                </p>
+              )}
+            </div>
+
             {/* Progress Display */}
-            {isGenerating && progress.length > 0 && (
-              <div className="p-4 bg-gray-900 rounded-lg border border-gray-700">
-                <h4 className="text-sm font-semibold text-white mb-3">Generation Progress:</h4>
-                <div className="space-y-2">
-                  {progress.map((step, index) => (
-                    <div key={index} className="flex items-center gap-2 text-sm text-gray-400">
-                      <div className="w-2 h-2 bg-purple-accent rounded-full animate-pulse" />
-                      {step}
+            {posts.length > 0 && (
+              <div className="space-y-3">
+                {posts.map((post, i) => (
+                  <div
+                    key={i}
+                    className={`rounded-xl border p-4 transition-colors ${
+                      post.status === 'running'
+                        ? 'border-purple-accent/40 bg-purple-accent/5'
+                        : post.status === 'done'
+                        ? 'border-green-600/40 bg-green-600/5'
+                        : post.status === 'error'
+                        ? 'border-red-600/40 bg-red-600/5'
+                        : 'border-gray-700 bg-gray-900/40'
+                    }`}
+                  >
+                    {/* Post header */}
+                    <div className="flex items-center gap-2 mb-2">
+                      {post.status === 'done' ? (
+                        <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0" />
+                      ) : post.status === 'running' ? (
+                        <Loader2 className="w-4 h-4 text-purple-light animate-spin shrink-0" />
+                      ) : post.status === 'error' ? (
+                        <div className="w-4 h-4 rounded-full bg-red-500/20 flex items-center justify-center shrink-0">
+                          <div className="w-2 h-2 rounded-full bg-red-400" />
+                        </div>
+                      ) : (
+                        <Circle className="w-4 h-4 text-gray-600 shrink-0" />
+                      )}
+                      <span
+                        className={`text-sm font-semibold ${
+                          post.status === 'done'
+                            ? 'text-green-400'
+                            : post.status === 'running'
+                            ? 'text-purple-light'
+                            : post.status === 'error'
+                            ? 'text-red-400'
+                            : 'text-gray-500'
+                        }`}
+                      >
+                        Post {i + 1}{count > 1 ? ` of ${count}` : ''}
+                        {post.status === 'done' && ' — Done'}
+                        {post.status === 'error' && ' — Failed'}
+                        {post.status === 'pending' && ' — Waiting'}
+                      </span>
                     </div>
-                  ))}
-                </div>
+
+                    {/* Steps */}
+                    {post.steps.length > 0 && (
+                      <div className="space-y-1 ml-6">
+                        {post.steps.map((step, j) => (
+                          <div key={j} className="flex items-center gap-2 text-xs text-gray-400">
+                            <div
+                              className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                                j === post.steps.length - 1 && post.status === 'running'
+                                  ? 'bg-purple-accent animate-pulse'
+                                  : 'bg-gray-600'
+                              }`}
+                            />
+                            {step}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Error message */}
+                    {post.status === 'error' && post.errorMessage && (
+                      <p className="ml-6 mt-1 text-xs text-red-400">{post.errorMessage}</p>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
 
@@ -191,7 +312,7 @@ export default function GeneratePostPage() {
                 ) : (
                   <>
                     <Sparkles className="w-5 h-5" />
-                    Generate Post
+                    Generate {count > 1 ? `${count} Posts` : 'Post'}
                   </>
                 )}
               </Button>
@@ -208,8 +329,8 @@ export default function GeneratePostPage() {
             {/* Info Box */}
             <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
               <p className="text-sm text-blue-400">
-                <strong>Note:</strong> AI generation uses a 7-stage pipeline to create high-quality 
-                LinkedIn posts. This may take 1-2 minutes.
+                <strong>Note:</strong> Each post uses a 7-stage AI pipeline and takes 1–2 minutes.
+                {count > 1 && ` Generating ${count} posts will take approximately ${count * 1.5}–${count * 2} minutes.`}
               </p>
             </div>
           </form>
