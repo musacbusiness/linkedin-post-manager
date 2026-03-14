@@ -45,6 +45,7 @@ export default function EditPostPage() {
   const [showRegenModal, setShowRegenModal] = useState(false)
   const [regenMode, setRegenMode] = useState<'same' | 'new'>('same')
   const [promptFeedback, setPromptFeedback] = useState('')
+  const [isRegeneratingContent, setIsRegeneratingContent] = useState(false)
   // Separate loading states for each action button
   const [isApproving, setIsApproving] = useState(false)
   const [isRejecting, setIsRejecting] = useState(false)
@@ -185,6 +186,42 @@ export default function EditPostPage() {
     } finally {
       setIsGeneratingImage(false)
       setGenerationStep('idle')
+    }
+  }
+
+  async function handleRegenerateContent() {
+    setIsRegeneratingContent(true)
+    setError(null)
+    try {
+      const response = await fetch('/api/generate/post-content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ postId }),
+      })
+
+      if (!response.ok) {
+        const errData = await response.json()
+        throw new Error(errData.error || 'Failed to regenerate content')
+      }
+
+      const { content: newContent } = await response.json()
+      setContent(newContent)
+
+      // Persist immediately
+      await updatePost.mutateAsync({
+        id: postId,
+        data: { post_content: newContent },
+      })
+
+      if (showToast) {
+        showToast('success', 'Content regenerated', 'Fresh post content has been saved')
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to regenerate content'
+      setError(msg)
+      if (showToast) showToast('error', 'Regeneration failed', msg)
+    } finally {
+      setIsRegeneratingContent(false)
     }
   }
 
@@ -515,9 +552,24 @@ export default function EditPostPage() {
 
                 {/* Content */}
                 <div className="space-y-2">
-                  <Label htmlFor="content" required>
-                    Post Content
-                  </Label>
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="content" required>
+                      Post Content
+                    </Label>
+                    <button
+                      type="button"
+                      onClick={handleRegenerateContent}
+                      disabled={isRegeneratingContent}
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-purple-light bg-purple-accent/10 hover:bg-purple-accent/20 border border-purple-accent/30 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isRegeneratingContent ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      ) : (
+                        <Sparkles className="w-3.5 h-3.5" />
+                      )}
+                      {isRegeneratingContent ? 'Rewriting...' : 'Regenerate'}
+                    </button>
+                  </div>
                   <Textarea
                     id="content"
                     placeholder="Write your post content here..."
