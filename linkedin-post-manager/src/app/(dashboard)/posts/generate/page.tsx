@@ -7,10 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useToast } from '@/components/ui/toast'
-import { ArrowLeft, Sparkles, Loader2, CheckCircle2, Circle } from 'lucide-react'
+import { ArrowLeft, Sparkles, Loader2, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
-
-const COUNT_OPTIONS = [1, 2, 3, 4, 5]
 
 interface PostProgress {
   steps: string[]
@@ -194,29 +192,26 @@ export default function GeneratePostPage() {
               </p>
             </div>
 
-            {/* Count Selector */}
+            {/* Count Input */}
             <div className="space-y-2">
               <Label>Number of Posts</Label>
-              <div className="flex gap-2">
-                {COUNT_OPTIONS.map((n) => (
-                  <button
-                    key={n}
-                    type="button"
-                    onClick={() => setCount(n)}
-                    disabled={isGenerating}
-                    className={`w-10 h-10 rounded-lg text-sm font-semibold transition-all ${
-                      count === n
-                        ? 'bg-purple-accent text-white shadow-lg shadow-purple-accent/25'
-                        : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'
-                    } disabled:opacity-50 disabled:cursor-not-allowed`}
-                  >
-                    {n}
-                  </button>
-                ))}
-              </div>
+              <input
+                type="number"
+                min={1}
+                max={21}
+                value={count}
+                onChange={(e) => {
+                  const val = Math.min(21, Math.max(1, parseInt(e.target.value) || 1))
+                  setCount(val)
+                }}
+                disabled={isGenerating}
+                className="w-24 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:border-purple-accent disabled:opacity-50 disabled:cursor-not-allowed"
+              />
               {count > 1 && (
                 <p className="text-xs text-gray-500">
-                  Posts are generated one at a time — each runs the full 7-stage pipeline
+                  {topic.trim()
+                    ? `All ${count} posts will be written on this topic with different angles`
+                    : `AI will choose a different topic for each post`}
                 </p>
               )}
             </div>
@@ -248,7 +243,7 @@ export default function GeneratePostPage() {
                           <div className="w-2 h-2 rounded-full bg-red-400" />
                         </div>
                       ) : (
-                        <Circle className="w-4 h-4 text-gray-600 shrink-0" />
+                        <div className="w-4 h-4 rounded-full border border-gray-600 shrink-0" />
                       )}
                       <span
                         className={`text-sm font-semibold ${
@@ -314,6 +309,7 @@ export default function GeneratePostPage() {
                     <Sparkles className="w-5 h-5" />
                     Generate {count > 1 ? `${count} Posts` : 'Post'}
                   </>
+
                 )}
               </Button>
               <Button
@@ -329,8 +325,10 @@ export default function GeneratePostPage() {
             {/* Info Box */}
             <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
               <p className="text-sm text-blue-400">
-                <strong>Note:</strong> Each post uses a 7-stage AI pipeline and takes 1–2 minutes.
-                {count > 1 && ` Generating ${count} posts will take approximately ${count * 1.5}–${count * 2} minutes.`}
+                <strong>Note:</strong> Each post runs a 7-stage AI pipeline (~1–2 min each).
+                {count > 1
+                  ? ` ${count} posts will take roughly ${Math.round(count * 1.5)}–${count * 2} minutes total.`
+                  : ' Posts are saved as Pending Review when complete.'}
               </p>
             </div>
           </form>

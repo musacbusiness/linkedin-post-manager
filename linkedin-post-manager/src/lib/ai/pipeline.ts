@@ -72,6 +72,8 @@ export interface PipelineSettings {
   recentPillars?: string[]
   recentFrameworks?: string[]
   recentModes?: string[]
+  // Topic override — when set, all posts use this topic
+  forcedTopic?: string
 }
 
 // ─── Directive constants ────────────────────────────────────────────────────
@@ -318,6 +320,54 @@ export class PostGenerationPipeline {
     const allPillars = ['A', 'B', 'C', 'D', 'E', 'F']
     const underrepresented = allPillars.filter(p => !recentPillars.includes(p))
     const pillarPriority = underrepresented.length > 0 ? underrepresented : allPillars
+
+    // If a topic is forced (user-provided), skip free topic selection —
+    // only ask Claude to assign the best pillar + framework for that topic
+    const forcedTopic = settings?.forcedTopic
+    if (forcedTopic) {
+      const forcedPrompt = `The LinkedIn post topic has already been chosen: "${forcedTopic}"
+
+Assign the most appropriate content pillar and framework for this topic.
+Prioritise pillars NOT recently used. Recent pillars: [${recentPillars.join(', ') || 'none'}]
+Prioritise frameworks NOT recently used. Recent frameworks: [${recentFrameworks.join(', ') || 'none'}]
+Prefer from underrepresented pillars: [${pillarPriority.join(', ')}]
+
+PILLARS:
+A = Practical AI Usage Tips
+B = AI Product & Feature Spotlights
+C = AI Model Comparisons & Analysis
+D = Business Process Automation
+E = Strategic AI Adoption
+F = The Case for AI & Automation
+
+FRAMEWORKS (pick the best fit for the topic AND pillar):
+- VALUE-STACK: best for Pillar A & D
+- CONTRAST-BRIDGE: best for Pillar C & E
+- STORY-LESSON: best for Pillar E & F
+- PAS-ADAPT: best for Pillar D & F
+- VSQ: best for Pillar B
+
+Return ONLY a JSON object, no explanation:
+{
+  "topic": "${forcedTopic}",
+  "pillar": "A|B|C|D|E|F",
+  "recommendedFramework": "VALUE-STACK|CONTRAST-BRIDGE|STORY-LESSON|PAS-ADAPT|VSQ"
+}`
+
+      const forcedText = await this.callAnthropicAPI(forcedPrompt)
+      const forcedMatch = forcedText.match(/\{[\s\S]*\}/)
+      if (forcedMatch) {
+        try {
+          const parsed = JSON.parse(forcedMatch[0])
+          return {
+            topic: forcedTopic,
+            pillar: parsed.pillar || 'A',
+            recommendedFramework: parsed.recommendedFramework || 'VALUE-STACK',
+          }
+        } catch { /* fall through to default */ }
+      }
+      return { topic: forcedTopic, pillar: pillarPriority[0] || 'A', recommendedFramework: 'VALUE-STACK' }
+    }
 
     const prompt = `You are a content strategist for an AI & automation consultancy. Select a LinkedIn post topic following this decision tree.
 

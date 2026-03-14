@@ -18,6 +18,7 @@ export async function POST(request: NextRequest) {
 
     // Parse user profile from request
     const body = await request.json()
+    const forcedTopic = (body.topic as string)?.trim() || undefined
     const userProfile: UserProfile = {
       expertise: body.expertise || 'technology',
       targetAudience: body.targetAudience || 'professionals',
@@ -89,6 +90,14 @@ export async function POST(request: NextRequest) {
         ...(pipelineSettings || {} as PipelineSettings),
         recentPillars,
         recentFrameworks,
+      }
+    }
+
+    // Merge forced topic if provided by the user
+    if (forcedTopic) {
+      pipelineSettings = {
+        ...(pipelineSettings || {} as PipelineSettings),
+        forcedTopic,
       }
     }
 
