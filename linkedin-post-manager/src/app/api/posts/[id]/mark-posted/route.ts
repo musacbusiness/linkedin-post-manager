@@ -17,7 +17,7 @@ export async function POST(
       return NextResponse.json({ error: 'Webhook secret not configured' }, { status: 500 })
     }
 
-    if (secret !== expectedSecret) {
+    if (secret?.trim() !== expectedSecret?.trim()) {
       console.error('[MARK-POSTED] Invalid webhook secret')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
