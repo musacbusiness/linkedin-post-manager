@@ -1,16 +1,13 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextRequest, NextResponse } from 'next/server'
 import Replicate from 'replicate'
-import { compositeAnchor } from '@/lib/image/composite'
-import type { AnchorConfig } from '@/types/anchor'
 
-// POST /api/generate/image
-// Body: { prompt, negativePrompt?, anchorConfig? }
-// If anchorConfig is provided, composites a visual anchor onto the SD base image.
+// POST /api/generate/image - Generate image with Replicate
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient()
 
+    // Check auth
     const {
       data: { user },
     } = await supabase.auth.getUser()
@@ -20,22 +17,24 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { prompt, negativePrompt, anchorConfig, baseCategory } = body as {
-      prompt: string
-      negativePrompt?: string
-      anchorConfig?: AnchorConfig
-      baseCategory?: string
-    }
+    const { prompt } = body
 
     if (!prompt) {
-      return NextResponse.json({ error: 'Prompt is required' }, { status: 400 })
+      return NextResponse.json(
+        { error: 'Prompt is required' },
+        { status: 400 }
+      )
     }
 
+    // Check if Replicate API token is configured
     if (!process.env.REPLICATE_API_TOKEN) {
-      return NextResponse.json({ error: 'Replicate API token not configured' }, { status: 500 })
+      return NextResponse.json(
+        { error: 'Replicate API token not configured' },
+        { status: 500 }
+      )
     }
 
-    // Read user's model preference
+    // Read user's image generation model preference
     const { data: settingsRow } = await supabase
       .from('pipeline_settings')
       .select('image_style')
@@ -47,21 +46,20 @@ export async function POST(request: NextRequest) {
     const modelMode = settingsRow?.image_style || 'testing'
     const selectedModel = modelMode === 'production' ? PRODUCTION_MODEL : TESTING_MODEL
 
-    const replicate = new Replicate({ auth: process.env.REPLICATE_API_TOKEN })
+    // Initialize Replicate client
+    const replicate = new Replicate({
+      auth: process.env.REPLICATE_API_TOKEN,
+    })
 
-    console.log(`[Image] Generating base with model: ${selectedModel} (${modelMode})`)
-    console.log('[Image] Prompt:', prompt.substring(0, 120))
-    if (anchorConfig) console.log('[Image] Anchor type:', anchorConfig.type, '| baseCategory:', baseCategory ?? 'none')
-
-    const sdNegativePrompt = negativePrompt ||
-      '(text:1.6),(words:1.6),(letters:1.6),(numbers:1.5),(readable:1.5),(legible:1.5), any content on screen, any interface on screen, illustration, digital art, vector, cartoon, anime, 3D render, stock photo pose, looking at camera, fake smile, staged, bad anatomy, deformed hands, blurry, low quality, oversaturated, dark moody, cyberpunk, neon, fantasy, sci-fi, hologram'
+    console.log(`Generating image with model: ${selectedModel} (mode: ${modelMode})`)
+    console.log('Prompt:', prompt)
 
     const output = await replicate.run(
       selectedModel as `${string}/${string}` | `${string}/${string}:${string}`,
       {
         input: {
-          prompt,
-          negative_prompt: sdNegativePrompt,
+          prompt: prompt,
+          negative_prompt: 'ugly, blurry, poor quality, distorted',
           width: 1024,
           height: 1024,
           num_outputs: 1,
@@ -69,62 +67,81 @@ export async function POST(request: NextRequest) {
       }
     )
 
-    let replicateUrl = Array.isArray(output) ? output[0] : output
-    if (!replicateUrl || typeof replicateUrl !== 'string') {
-      return NextResponse.json({ error: 'Failed to generate image' }, { status: 500 })
-    }
-    if (replicateUrl.startsWith('//')) replicateUrl = 'https:' + replicateUrl
+    // Get the generated image URL
+    let imageUrl = Array.isArray(output) ? output[0] : output
 
-    console.log('[Image] Base generated:', replicateUrl)
-
-    // Fetch raw base image
-    const imageResponse = await fetch(replicateUrl)
-    if (!imageResponse.ok) {
-      throw new Error(`Failed to fetch base image: ${imageResponse.statusText}`)
-    }
-    let imageBuffer: Buffer | Uint8Array = Buffer.from(await imageResponse.arrayBuffer())
-    console.log('[Image] Base image fetched, size:', imageBuffer.byteLength, 'bytes')
-
-    // Stage 2: composite visual anchor if provided
-    if (anchorConfig) {
-      try {
-        console.log('[Image] Compositing anchor:', anchorConfig.type)
-        imageBuffer = await compositeAnchor(imageBuffer, anchorConfig, baseCategory)
-        console.log('[Image] Anchor composited, final size:', imageBuffer.byteLength, 'bytes')
-      } catch (compositeErr) {
-        console.error('[Image] Composite failed, using base image:', compositeErr)
-        // Graceful degradation — upload base image without overlay
-      }
+    if (!imageUrl || typeof imageUrl !== 'string') {
+      console.error('Invalid output from Replicate:', output)
+      return NextResponse.json(
+        { error: 'Failed to generate image' },
+        { status: 500 }
+      )
     }
 
-    // Upload final image to Supabase Storage
+    // Fix protocol-relative URLs from Replicate
+    if (imageUrl.startsWith('//')) {
+      imageUrl = 'https:' + imageUrl
+    }
+
+    console.log('Image generated successfully:', imageUrl)
+
+    // Upload the image to Supabase Storage
     try {
-      const timestamp = Date.now()
-      const filename = `generated-${timestamp}-${Math.random().toString(36).substring(7)}.jpg`
+      console.log('Uploading image to Supabase Storage...')
 
+      // Fetch the image from Replicate
+      const imageResponse = await fetch(imageUrl)
+      if (!imageResponse.ok) {
+        throw new Error(`Failed to fetch image from Replicate: ${imageResponse.statusText}`)
+      }
+
+      const imageBuffer = await imageResponse.arrayBuffer()
+      console.log('Image fetched from Replicate, size:', imageBuffer.byteLength, 'bytes')
+
+      // Generate unique filename with timestamp
+      const timestamp = Date.now()
+      const filename = `generated-${timestamp}-${Math.random().toString(36).substring(7)}.png`
+      const filepath = filename
+
+      // Upload to Supabase Storage
       const { data, error } = await supabase.storage
         .from('generated-images')
-        .upload(filename, imageBuffer, {
-          contentType: 'image/jpeg',
+        .upload(filepath, Buffer.from(imageBuffer), {
+          contentType: 'image/png',
           upsert: false,
         })
 
-      if (error) throw new Error(`Supabase upload failed: ${error.message}`)
-      console.log('[Image] Uploaded to Supabase:', data)
+      if (error) {
+        console.error('Supabase upload error:', error)
+        throw new Error(`Failed to upload to Supabase: ${error.message}`)
+      }
 
+      console.log('Image uploaded to Supabase:', data)
+
+      // Get the public URL
       const { data: publicData } = supabase.storage
         .from('generated-images')
-        .getPublicUrl(filename)
+        .getPublicUrl(filepath)
 
-      return NextResponse.json({ imageUrl: publicData.publicUrl })
+      const supabaseImageUrl = publicData.publicUrl
+      console.log('Supabase image URL:', supabaseImageUrl)
+
+      return NextResponse.json({ imageUrl: supabaseImageUrl })
     } catch (uploadError) {
-      console.error('[Image] Upload failed, falling back to Replicate URL:', uploadError)
-      return NextResponse.json({ imageUrl: replicateUrl })
+      console.error('Error uploading to Supabase Storage:', uploadError)
+      // Fallback to Replicate URL if Supabase upload fails
+      console.log('Falling back to Replicate URL due to upload error')
+      return NextResponse.json({ imageUrl })
     }
   } catch (error) {
-    console.error('[Image] Generation error:', error)
+    console.error('Image generation error:', error)
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Failed to generate image' },
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : 'Failed to generate image',
+      },
       { status: 500 }
     )
   }

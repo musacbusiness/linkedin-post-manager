@@ -12,13 +12,9 @@ export interface UserProfile {
   pastTopics?: string[]
 }
 
-import type { AnchorConfig } from '@/types/anchor'
-
 export interface ImagePromptOutput {
   prompt: string
   negativePrompt: string
-  anchorConfig: AnchorConfig
-  baseCategory?: string
   aspectRatio: '1:1' | '4:5' | '1.91:1'
   resolution: '1080x1080' | '1080x1350' | '1200x627'
   format: 'PNG' | 'JPEG'
@@ -587,10 +583,7 @@ Return ONLY the post content. No preamble, no metadata, no explanations. Do NOT 
     return await this.callAnthropicAPI(prompt, 2048)
   }
 
-  // ─── Stage 5: Image Prompt (Hybrid Pipeline) ─────────────────────────────
-  // Stage 1: Generate a clean "canvas" base image prompt (intentionally generic,
-  //          screens intentionally blank — SD does what it's good at)
-  // Stage 2: Design a visual anchor (composited programmatically in post-processing)
+  // ─── Stage 5: Image Prompt ────────────────────────────────────────────────
 
   private async generateImagePrompt(
     topic: string,
@@ -600,87 +593,173 @@ Return ONLY the post content. No preamble, no metadata, no explanations. Do NOT 
   ): Promise<ImagePromptOutput> {
     const extraReqs = settings?.imageExtraRequirements || ''
 
-    const prompt = `You are designing a two-stage hybrid LinkedIn image for an AI & automation content brand.
-
-STAGE 1 produces a clean photorealistic base photo (SD). Screens are intentionally BLANK/DARK — they are a canvas, not the story.
-STAGE 2 composites a bold visual anchor (programmatic text/graphic) onto the photo. THIS is where the post-specific story lives.
+    const prompt = `You are an editorial photography art director for an AI & automation content brand on LinkedIn. Your images must look like they were shot by a professional photographer for Fast Company, Wired, or Harvard Business Review — real environments, real people, real tools. NOT abstract digital art, NOT illustrations, NOT stock photography poses.
 
 POST TOPIC: "${topic}"
 CONTENT PILLAR: ${pillar}
 FULL POST:
 "${content}"
 
-━━━ STEP 1: ANCHOR SELECTION ━━━
-Analyze the post. Choose exactly ONE anchor type using this decision tree:
+━━━ STEP 0: COMMIT TO THE STORY FIRST ━━━
+Before designing anything, answer these three questions in your reasoning:
 
-1. Does the post feature a standout metric? (hours saved, multiplier like "4x", percentage, count)
-   → "big_number" — use the most impressive specific number
+1. CLAIM TYPE — What kind of claim is this post making?
+   Choose one: TRANSFORMATION | REVELATION | FRAMEWORK | PIPELINE-AGENT | QUIET-WIN | CONTRAST | COLLABORATION | PERSONAL-SYSTEM
 
-2. Does the post describe a process/flow/framework with named steps?
-   → "simple_diagram" — 3–5 boxes/circles with short labels + connecting arrows
+2. THE SPECIFIC STORY — Complete this sentence:
+   "A stranger shown only this image would instantly understand: [post-specific story in 6 words or fewer]"
+   Target: something like "AI handles email triage automatically" or "automation freed analyst from reporting"
+   NOT: "AI in the workplace" or "automation helps people" — those are too generic.
 
-3. Does the post contrast two states? (before vs after, old way vs new way, vague vs structured)
-   → "before_after" — two short labels like "Manual" / "Automated"
+3. THE DIFFERENTIATOR — What ONE concrete detail (specific tool, metric, prop, action, or outcome mentioned in THIS post) makes this image different from any other AI/automation LinkedIn post?
+   If the answer is "nothing" — the scene is too generic. Redesign before proceeding.
 
-4. Does the post list 2–4 specific tools, categories, or deliverables?
-   → "icon_cluster" — icon per item from: file-text, bar-chart, git-branch, clock, zap, check-circle, x-circle, arrow-right, users, cpu
+━━━ STEP 1: EXTRACT THE NARRATIVE TRIAD ━━━
+From the post content, identify:
+- BEFORE: Who was doing what manually / inefficiently / at cost?
+- AFTER: What specific AI or automation outcome replaced it? (name specific tools or outcomes if post mentions them)
+- EVIDENCE: What physical object, screen layout, or human action shows the "after" state most visually?
 
-5. Does the post have one killer hook line (≤8 words) that stands alone?
-   → "pull_quote" — distil hook to ≤8 words; style "editorial" for narrative posts, "modern" for tactical posts
+The EVIDENCE is what goes on the screen or in the props. It must be specific to THIS post, not a generic workflow diagram.
 
-Default: If no standout number exists → "pull_quote" with hook distilled to ≤8 words.
-Rule: Pick ONE. Never combine multiple anchor types.
+━━━ STEP 2: SELECT THE NARRATIVE SCENE TEMPLATE ━━━
+Choose the template that matches the CLAIM TYPE from Step 0. Pick the PRIMARY template unless it was recently used — then pick SECONDARY.
 
-━━━ STEP 2: BASE IMAGE CATEGORY ━━━
-Choose the category that gives the anchor the best canvas. Match anchor → base:
+CLAIM TYPE → PRIMARY → SECONDARY
+TRANSFORMATION    → THE TRANSFORMATION   → THE CONTRAST DESK
+REVELATION        → THE REVELATION       → THE QUIET DIVIDEND
+FRAMEWORK         → THE EVIDENCE BOARD   → THE PRACTITIONER SETUP
+PIPELINE-AGENT    → THE SYSTEM IN MOTION → THE PRACTITIONER SETUP
+QUIET-WIN         → THE QUIET DIVIDEND   → THE TRANSFORMATION
+CONTRAST          → THE CONTRAST DESK    → THE EVIDENCE BOARD
+COLLABORATION     → THE COLLABORATION REVIEW → THE EVIDENCE BOARD
+PERSONAL-SYSTEM   → THE PRACTITIONER SETUP → THE SYSTEM IN MOTION
 
-| Anchor type    | Best base category        | Why |
-|----------------|--------------------------|-----|
-| big_number     | OVER_THE_SHOULDER or HANDS_CLOSE_UP | Number sits on the blank screen |
-| simple_diagram | OVER_THE_SHOULDER or CLEAN_DESK    | Diagram needs a clean rectangle |
-| before_after   | TEAM_HUDDLE or WIDE_OFFICE         | Split treatment works on wider scenes |
-| icon_cluster   | CLEAN_DESK or OVER_THE_SHOULDER    | Icons need uncluttered area |
-| pull_quote     | TEAM_HUDDLE or WIDE_OFFICE         | Quote overlays need environment + people |
+━━━ TEMPLATE LIBRARY ━━━
 
-BASE CATEGORIES:
-CLEAN_DESK — Slightly elevated angle, clean modern desk, dark/blank monitor centered. Coffee cup, notebook. Bright window light. People NOT visible. Canvas = the screen or desk surface.
-TEAM_HUDDLE — 2–4 professionals, NO screens visible, open modern office, natural body language. Large soft-focus space around group. Canvas = the blurred environmental space.
-OVER_THE_SHOULDER — Professional looking at large monitor with SOLID DARK screen (no content). Screen glow on face. Clean desk. Canvas = the blank screen.
-WIDE_OFFICE — Wide architectural shot, bright open-plan office, professionals in soft background. Large open foreground or blank wall/glass. Canvas = foreground or blank surface.
-HANDS_CLOSE_UP — Close-up of hands on laptop, tablet screen SOLID DARK. Warm side light. Blurred office/café background. Canvas = the device screen.
+THE TRANSFORMATION
+When: Switching from manual → automated, time savings, ROI, before/after AI adoption.
+Scene: Professional at desk with clean monitor showing the automated result. Evidence of the former manual process visible — stack of reports to the side, discarded pen and notepad, closed binder. Human looks focused and calm, not celebratory.
+Screen: Shows the specific "after" state from the EVIDENCE (Step 1) — rendered as abstract UI shapes. NOT a generic 3-box flow diagram.
+Camera: Medium shot or slight over-shoulder. Screen in mid-ground, props in soft foreground.
 
-━━━ STEP 3: BUILD THE SD BASE PROMPT ━━━
-Write the Stable Diffusion prompt for the base image. It must:
-- Match the chosen base category exactly
-- Screens/surfaces INTENTIONALLY BLANK — no content, no interface, no text on screen
-- Include: "blank dark screen with no content, no interface, no text, no display"
-- Be photorealistic editorial photography (NOT illustration, NOT digital art)
-- Include camera/lens simulation, lighting, color grade, quality enhancers
-- Include text suppression in negative prompt
+THE REVELATION
+When: AI capability discovery, "I tried X and was shocked", first-time result that surprised the author.
+Scene: Professional mid-reaction — leaning slightly forward toward screen, genuine curiosity or surprise (slight widening of eyes, chin resting on hand). NOT performed shock or staged expression. Modern workspace.
+Screen: Shows the specific AI output from EVIDENCE — a document shape that looks AI-generated, analysis view, completed pipeline — something that justifies the reaction.
+Camera: 3/4 profile or over-shoulder. Face and screen both in frame. Shallow depth of field.
 
-━━━ STEP 4: BUILD THE ANCHOR CONFIG ━━━
-Based on your chosen anchor type, populate the exact JSON fields:
+THE SYSTEM IN MOTION
+When: Automation pipeline, AI agent, multi-step workflow running without human intervention.
+Scene: Multiple monitors or wide screen showing different stages of an active process from EVIDENCE. Professional in background overseeing — NOT doing. Standing with arms folded or hands on hips.
+Screen: Abstract representations of 3-5 pipeline stages with "in progress" visual indicators — progress fills, active node highlights, flowing connection shapes. No readable text.
+Camera: Medium-wide. The running system is the hero. Professional is background.
 
-For big_number:    { "type": "big_number", "number": "20+", "label": "hours/week saved" }
-For simple_diagram: { "type": "simple_diagram", "elements": [{"shape":"box","label":"Step 1"},{"shape":"box","label":"Step 2"}], "arrows": true }
-For before_after:  { "type": "before_after", "beforeLabel": "Manual", "afterLabel": "Automated" }
-For icon_cluster:  { "type": "icon_cluster", "items": [{"icon":"file-text","label":"Notes"},{"icon":"bar-chart","label":"Reports"}] }
-For pull_quote:    { "type": "pull_quote", "quote": "Stack small. Compound big.", "style": "editorial" }
+THE EVIDENCE BOARD
+When: Framework, comparison, step-by-step guide, or structured breakdown.
+Scene: Professional beside a whiteboard or large glass wall showing a real-looking diagram that maps the post's structure. Post-it notes for authenticity. 1 other person seated watching. Person is mid-gesture, pointing or writing.
+Board: Abstract diagram shapes — boxes, arrows, columns — structurally matching the post's framework count. If post has 5 steps, show 5 connected shapes. No legible writing.
+Camera: Medium-wide showing both person and board.
 
-ANCHOR QUALITY RULES:
-- big_number: The number must come from the post. If no number exists, use pull_quote instead.
-- simple_diagram: Max 5 elements. Labels max 3 words each.
-- before_after: Labels max 2 words each. Make them specific to the post (not generic "Before/After").
-- icon_cluster: Only use icons from this list: file-text, bar-chart, git-branch, clock, zap, check-circle, x-circle, arrow-right, users, cpu
-- pull_quote: MUST be ≤8 words. Must be punchy and post-specific.
+THE QUIET DIVIDEND
+When: Time reclaimed, work-life balance through automation, "let AI do the grunt work", outcome of a good system.
+Scene: Professional doing something human — coffee by a window, leaning back reviewing printed doc, mid-conversation — while screens in BACKGROUND show automated work completing. The human is NOT working. The machine is.
+Screen: Slightly out of focus background. Shows completion states — dashboard updating, process finishing. Human is disengaged from it.
+Camera: Environmental portrait. Person foreground, screens ambient background.
 
-${extraReqs ? `ADDITIONAL REQUIREMENTS: ${extraReqs}\n` : ''}
+THE CONTRAST DESK
+When: Before/after comparison, tool adoption story, old way vs. new way.
+Scene: Two visual zones in one frame. Left/background: cluttered evidence of the old process — stacked papers, color-coded sticky notes, paper calendar. Right/foreground: clean workstation with monitor showing streamlined automated output from EVIDENCE. Professional is on the right side, in the clean zone.
+Camera: Wide-medium capturing both zones. Natural depth of field separates them. Editorial look.
+
+THE PRACTITIONER SETUP
+When: Personal productivity system, tool stack, workflow configuration, "here's how I work" angle.
+Scene: Over-the-shoulder of professional showing their actual workspace — multiple monitors, notebook, specific tools in use. The monitor configuration tells the story based on EVIDENCE: which types of apps are open, how they're arranged.
+Screen: Each monitor implies a different layer of the stack — AI output on one, dashboard on another, task list on another. All abstract, no readable text.
+Camera: Over-the-shoulder or wide desk shot. Environmental detail is the hook.
+
+THE COLLABORATION REVIEW
+When: Human+AI working together, team using AI output, AI augmenting group decisions.
+Scene: 2-3 people reviewing AI-generated output on shared screen with critical, engaged eyes — NOT passive. Someone pointing at a specific section, another taking notes. Active, not a presentation.
+Screen: Document or output shape implying AI generation from EVIDENCE — structured content layout, visual completeness — while humans annotate/critique.
+Camera: Medium-wide capturing group and screen. Dynamic framing.
+
+━━━ STEP 3: BUILD THE SCREEN CONTENT SPECIFICALLY ━━━
+The screen (or whiteboard/prop) must show the EVIDENCE from Step 1 — NOT a generic workflow.
+
+SCREEN CONTENT FORMULA:
+→ Identify what the post's specific outcome looks like as a UI layout
+→ Render it as abstract color blocks and shape language — suggestive, not legible
+→ ALWAYS include: "screen displaying [specific layout] with abstract color blocks, NO readable text, no legible characters, no visible words"
+
+SCREEN CONTENT EXAMPLES by post type:
+• Inbox automation → inbox-column layout, most rows greyed-out/auto-handled, 1-2 highlighted active
+• AI report generation → document-shape nearly full, clean structured layout implying automation wrote it
+• CRM lead processing → pipeline kanban columns with batch completion fill indicators
+• Time savings → calendar grid with large empty blocks (freed time), sparse appointments
+• Multi-step AI agent → 4-5 connected node shapes in sequence, one actively pulsing/highlighted
+• Data analysis → chart/graph shape with clear data pattern visible as abstract form
+• Workflow simplification → before: many small cluttered nodes; after: 3 clean connected steps
+
+━━━ STEP 4: BUILD THE 7-LAYER PHOTOREALISTIC PROMPT ━━━
+
+Layer 1 — Subject & Action: Who is in frame and what are they doing?
+  (Use the template's defined action — NOT looking at camera, NOT posed)
+
+Layer 2 — Environment: Modern office, co-working space, glass-walled conference room,
+  clean home office, startup workspace with exposed brick, airy creative workspace
+
+Layer 3 — Screen/Prop Content: Describe specifically what is shown, with text suppression:
+  "screen displaying [specific layout from Step 3] with abstract color blocks and UI shapes, NO readable text, no legible words, no visible characters"
+  OR: "whiteboard with abstract diagram of [framework shape], no legible writing, no readable text"
+
+Layer 4 — Camera & Lens: Simulate real photography
+  "shot on Sony A7IV with 35mm f/1.8, shallow depth of field, natural bokeh, over-the-shoulder perspective"
+  "Canon R5 with 85mm f/1.8, tight on screen, person as soft background bokeh"
+  "Fujifilm X-T5 with 23mm f/2, wide environmental portrait, everything in focus"
+
+Layer 5 — Lighting: Real-world mixed sources
+  "soft natural window light from left with warm overhead ambient"
+  "screen glow illuminating face subtly, diffused daylight from skylights"
+  "overcast natural light through large windows, no harsh shadows"
+
+Layer 6 — Color Grade: Editorial photography look
+  "warm neutral color grading, slightly desaturated, clean shadows with warm midtones, professional editorial color palette, modern tech publication aesthetic"
+
+Layer 7 — Quality & Realism Enhancers:
+  "photorealistic, RAW photo, ultra-realistic, natural skin texture, realistic fabric detail, professional photography, editorial quality, 8K UHD"
+
+━━━ STEP 5: TRANSFORMATION FRAME OPTION ━━━
+For TRANSFORMATION, CONTRAST, or QUIET-WIN templates — consider adding evidence of the "before" state:
+- Clean desk with monitor showing automated result + discarded manual stack in corner
+- Person at clean workstation, with the old process artifacts (binder, sticky notes) pushed aside and slightly out of focus
+- Two visual zones: left side chaotic/analog (soft focus), right side clean/automated (sharp)
+This should feel natural, not staged. One detail is enough.
+
+━━━ STEP 6: CAPTION VERIFICATION ━━━
+Before finalizing, write the exact 6-word caption a LinkedIn viewer would write seeing ONLY the image:
+"Caption: ____"
+
+Now ask: Could this caption describe 20 other LinkedIn AI posts?
+If YES — the scene is too generic. Go back to Step 3 and make the screen content or props more specific to this post's EVIDENCE.
+If NO — proceed.
+
+ABSOLUTELY FORBIDDEN (instant disqualification):
+- Any illustration, digital art, vector art, abstract shapes, CGI, 3D render
+- Staged stock photo poses (handshakes, fake smiles at camera, thumbs up, arms crossed)
+- Readable text anywhere in the image (use "(readable text:1.5)" in negatives always)
+- Glowing elements, neon, cyberpunk, holograms, futuristic sci-fi aesthetics
+- Fantasy, cosmic, nature metaphors (no trees, no lightbulbs, no brains with gears)
+- Generic workflow diagrams that could apply to any post
+${extraReqs ? `\nADDITIONAL REQUIREMENTS: ${extraReqs}` : ''}
+
 Return ONLY a JSON object:
 {
-  "baseCategory": "CLEAN_DESK|TEAM_HUDDLE|OVER_THE_SHOULDER|WIDE_OFFICE|HANDS_CLOSE_UP",
-  "sdPrompt": "the full SD base image prompt (photorealistic, blank screens, 7-layer structure)",
-  "negativePrompt": "(text:1.6),(words:1.6),(letters:1.6),(numbers:1.5),(readable:1.5),(legible:1.5), any content on screen, any interface on screen, any text on screen, illustration, digital art, vector, cartoon, anime, 3D render, stock photo pose, looking at camera, fake smile, staged, bad anatomy, deformed hands, extra fingers, blurry, low quality, oversaturated, dark moody, cyberpunk, neon, fantasy, sci-fi, hologram",
-  "anchor": { /* the AnchorConfig object for the chosen anchor type */ },
+  "alignmentScene": "plain-English description of the specific scene and exactly how it connects to this post's story",
+  "selectedTemplate": "THE TRANSFORMATION|THE REVELATION|THE SYSTEM IN MOTION|THE EVIDENCE BOARD|THE QUIET DIVIDEND|THE CONTRAST DESK|THE PRACTITIONER SETUP|THE COLLABORATION REVIEW",
+  "sixWordCaption": "the exact 6-word viewer caption",
+  "prompt": "the full photorealistic photography prompt using all 7 layers",
+  "negativePrompt": "full negative prompt including text suppression weights and style negatives",
   "aspectRatio": "1:1",
   "resolution": "1080x1080",
   "format": "JPEG",
@@ -692,17 +771,10 @@ Return ONLY a JSON object:
     const text = await this.callAnthropicAPI(prompt, 1536)
     const jsonMatch = text.match(/\{[\s\S]*\}/)
 
-    const fallbackAnchor: AnchorConfig = {
-      type: 'pull_quote',
-      quote: topic.split(' ').slice(0, 7).join(' '),
-      style: 'modern',
-    }
-
     if (!jsonMatch) {
       return {
         prompt: text.substring(0, 500),
         negativePrompt: UNIVERSAL_NEGATIVE_PROMPT,
-        anchorConfig: fallbackAnchor,
         aspectRatio: '1:1',
         resolution: '1080x1080',
         format: 'JPEG',
@@ -714,17 +786,14 @@ Return ONLY a JSON object:
 
     try {
       const parsed = JSON.parse(jsonMatch[0])
+      // Always ensure universal negatives are included — model may omit them
       const negativePrompt = parsed.negativePrompt
         ? `${parsed.negativePrompt}, ${UNIVERSAL_NEGATIVE_PROMPT}`
         : UNIVERSAL_NEGATIVE_PROMPT
 
-      const anchorConfig: AnchorConfig = parsed.anchor ?? fallbackAnchor
-
       return {
-        prompt: parsed.sdPrompt || parsed.prompt || text.substring(0, 500),
+        prompt: parsed.prompt || text.substring(0, 500),
         negativePrompt,
-        anchorConfig,
-        baseCategory: parsed.baseCategory || undefined,
         aspectRatio: parsed.aspectRatio || '1:1',
         resolution: parsed.resolution || '1080x1080',
         format: parsed.format || 'JPEG',
@@ -736,7 +805,6 @@ Return ONLY a JSON object:
       return {
         prompt: text.substring(0, 500),
         negativePrompt: UNIVERSAL_NEGATIVE_PROMPT,
-        anchorConfig: fallbackAnchor,
         aspectRatio: '1:1',
         resolution: '1080x1080',
         format: 'JPEG',
