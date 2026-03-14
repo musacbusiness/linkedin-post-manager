@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { usePost, useUpdatePost } from '@/hooks/use-posts'
-import { Sparkles, Loader2, Image as ImageIcon, CheckCircle, XCircle, CalendarX } from 'lucide-react'
+import { Sparkles, Loader2, Image as ImageIcon, CheckCircle, XCircle, CalendarX, Maximize2, X } from 'lucide-react'
 import { useToast } from '@/components/ui/toast'
 
 export default function EditPostPage() {
@@ -46,6 +46,8 @@ export default function EditPostPage() {
   const [regenMode, setRegenMode] = useState<'same' | 'new'>('same')
   const [promptFeedback, setPromptFeedback] = useState('')
   const [isRegeneratingContent, setIsRegeneratingContent] = useState(false)
+  // Expanded view state: null | 'image' | 'imagePrompt' | 'content'
+  const [expandedView, setExpandedView] = useState<null | 'image' | 'imagePrompt' | 'content'>(null)
   // Separate loading states for each action button
   const [isApproving, setIsApproving] = useState(false)
   const [isRejecting, setIsRejecting] = useState(false)
@@ -407,19 +409,29 @@ export default function EditPostPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               {/* Image Preview */}
-              <div className="aspect-square bg-gray-900 rounded-lg overflow-hidden relative">
+              <div className="aspect-square bg-gray-900 rounded-lg overflow-hidden relative group">
                 {imageUrl && !imageError ? (
-                  <NextImage
-                    src={imageUrl}
-                    alt="Post preview"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                    onError={() => {
-                      console.error('Failed to load image:', imageUrl)
-                      setImageError(true)
-                    }}
-                  />
+                  <>
+                    <NextImage
+                      src={imageUrl}
+                      alt="Post preview"
+                      fill
+                      className="object-cover"
+                      unoptimized
+                      onError={() => {
+                        console.error('Failed to load image:', imageUrl)
+                        setImageError(true)
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setExpandedView('image')}
+                      className="absolute top-2 right-2 p-1.5 bg-black/60 hover:bg-black/80 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                      title="View fullscreen"
+                    >
+                      <Maximize2 className="w-4 h-4" />
+                    </button>
+                  </>
                 ) : imageError ? (
                   <div className="flex items-center justify-center h-full">
                     <div className="text-center p-4">
@@ -440,7 +452,17 @@ export default function EditPostPage() {
 
               {/* Image Prompt */}
               <div className="space-y-2">
-                <Label htmlFor="imagePrompt">Image Prompt</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="imagePrompt">Image Prompt</Label>
+                  <button
+                    type="button"
+                    onClick={() => setExpandedView('imagePrompt')}
+                    className="p-1 text-gray-500 hover:text-gray-300 transition-colors"
+                    title="Expand"
+                  >
+                    <Maximize2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
                 <Textarea
                   id="imagePrompt"
                   placeholder="Describe the image you want to generate..."
@@ -552,9 +574,19 @@ export default function EditPostPage() {
 
                 {/* Content */}
                 <div className="space-y-2">
-                  <Label htmlFor="content" required>
-                    Post Content
-                  </Label>
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="content" required>
+                      Post Content
+                    </Label>
+                    <button
+                      type="button"
+                      onClick={() => setExpandedView('content')}
+                      className="p-1 text-gray-500 hover:text-gray-300 transition-colors"
+                      title="Expand"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                   <Textarea
                     id="content"
                     placeholder="Write your post content here..."
@@ -642,6 +674,80 @@ export default function EditPostPage() {
           </Card>
         </div>
       </div>
+
+      {/* Fullscreen Expand Modals */}
+      {expandedView && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
+          style={{ backgroundColor: 'rgba(0,0,0,0.85)' }}
+          onClick={(e) => { if (e.target === e.currentTarget) setExpandedView(null) }}
+        >
+          <div className="relative w-full max-w-5xl max-h-[90vh] flex flex-col bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl overflow-hidden">
+            {/* Modal header */}
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-gray-700 shrink-0">
+              <p className="text-sm font-semibold text-white">
+                {expandedView === 'image' ? 'Post Image' : expandedView === 'imagePrompt' ? 'Image Prompt' : 'Post Content'}
+              </p>
+              <button
+                type="button"
+                onClick={() => setExpandedView(null)}
+                className="p-1.5 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Modal body */}
+            <div className="flex-1 overflow-auto p-5">
+              {expandedView === 'image' && imageUrl && !imageError && (
+                <div className="relative w-full" style={{ paddingBottom: '100%' }}>
+                  <NextImage
+                    src={imageUrl}
+                    alt="Post image fullscreen"
+                    fill
+                    className="object-contain rounded-xl"
+                    unoptimized
+                  />
+                </div>
+              )}
+
+              {expandedView === 'imagePrompt' && (
+                <textarea
+                  className="w-full h-full min-h-[60vh] bg-gray-800 border border-gray-600 rounded-xl p-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-purple-accent resize-none leading-relaxed"
+                  value={imagePrompt}
+                  onChange={(e) => setImagePrompt(e.target.value)}
+                  placeholder="Describe the image you want to generate..."
+                  autoFocus
+                />
+              )}
+
+              {expandedView === 'content' && (
+                <>
+                  <textarea
+                    className="w-full min-h-[60vh] bg-gray-800 border border-gray-600 rounded-xl p-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-purple-accent resize-none leading-relaxed"
+                    value={content}
+                    onChange={(e) => handleFieldChange(setContent, e.target.value, { content: e.target.value })}
+                    placeholder="Write your post content here..."
+                    autoFocus
+                  />
+                  <p className="text-xs text-gray-500 mt-2 text-right">{(content || '').length} / 3000 characters</p>
+                </>
+              )}
+            </div>
+
+            {/* Modal footer — close / done */}
+            <div className="px-5 py-3.5 border-t border-gray-700 flex justify-end shrink-0">
+              <button
+                type="button"
+                onClick={() => setExpandedView(null)}
+                className="px-5 py-2 text-sm font-semibold text-white bg-purple-accent hover:bg-purple-accent/80 rounded-lg transition-colors"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Regenerate Image Modal */}
       {showRegenModal && (
